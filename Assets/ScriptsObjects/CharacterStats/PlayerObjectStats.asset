@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5eac169f66d096428752ed9c9ae5a10, type: 3}
+  m_Name: PlayerObjectStats
+  m_EditorClassIdentifier: 
+  objectName: Liam
+  description: 
+  type: 1
+  expValue: 10
+  stats:
+  - statName: 0
+    value: 100
+  - statName: 1
+    value: 0
+  - statName: 2
+    value: 0
+  - statName: 3
+    value: 50

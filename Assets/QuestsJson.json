@@ -1,0 +1,36 @@
+{
+    "Quests" : [
+        {
+            "name" : "Slay the Orcs",
+            "description": "Keep the village safe and stop the nearby orcs.",
+            "steps": [
+                {
+                    "name": "Kill 5 orcs",
+                    "type": "Kill",
+                    "amount": 1,
+                    "target": "Orc",
+                    "stepNum": 0
+                },
+                {
+                    "name": "Return to Bob",
+                    "type": "Talk",
+                    "target": "Bob",
+                    "stepNum": 1
+                }
+            ]
+        },
+        {
+            "name" : "Gather Swords",
+            "description": "The village needs swords to fend off the orcs.",
+            "steps": [
+                {
+                    "name": "Gather 5 swords",
+                    "type": "Gather",
+                    "amount": 5,
+                    "target": "Sword",
+                    "stepNum": 0
+                }
+            ]
+        }
+    ]
+}
