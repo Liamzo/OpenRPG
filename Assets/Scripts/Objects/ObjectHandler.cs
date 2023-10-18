@@ -72,7 +72,7 @@ public class ObjectHandler : MonoBehaviour
 
         GameObject go = ObjectPoolManager.instance.GetPooledObject(PoolIdentifiers.DamageNumber);
         go.transform.parent = gameObject.transform;
-        go.transform.localPosition = Vector3.zero;
+        go.transform.localPosition = Vector3.up;
         go.GetComponentInChildren<TextMeshPro>().SetText(damage.ToString());
         go.SetActive(true);
 
