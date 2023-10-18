@@ -44,8 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a71790b28c960f847aa9f305ce45400e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radiusMin: 0
-  radiusMax: 0
+  radiusMax: 8
   pauseDuration: 3
   minPauseWait: 2
   maxPauseWait: 4
@@ -133,7 +132,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!95 &3161783211275567208
 Animator:
   serializedVersion: 5
@@ -200,6 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: 0.5
+  weapon: {fileID: 0}
 --- !u!1 &3161783212397411800
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,6 +321,7 @@ MonoBehaviour:
   footSteps: {fileID: 6766988191163624841}
   movement: {x: 0, y: 0, z: 0}
   lookingDirection: {x: 0, y: 0, z: 0}
+  thoughtLocked: {fileID: 0}
   attackCoolDown: 3
   attackTimer: 0
 --- !u!114 &4509059622782544903
@@ -339,6 +340,7 @@ MonoBehaviour:
   baseStats: {fileID: 11400000, guid: 95de858976419614e84657b179246d3b, type: 2}
   objectName: 
   objectType: 0
+  movement: {x: 0, y: 0, z: 0}
   currentHealth: 0
   objectStatusHandler: {fileID: 0}
   baseCharacterStats: {fileID: 11400000, guid: 8221420ade17c174d8079dd656f2ebdf, type: 2}
@@ -505,6 +507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: 0.5
+  weapon: {fileID: 0}
 --- !u!1001 &8353406869699055049
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -137,7 +137,7 @@ MonoBehaviour:
   bulletSpawn: {fileID: 3989888253477283457}
   muzzleFlash: {fileID: 446427581160875890}
   bulletPrefab: {fileID: 7319803943386155118, guid: fb028c1093ce9a1468561fc04d6a46f1, type: 3}
-  bulletSpeed: 8
+  bulletSpeed: 50
   currentAmmo: 0
   reloadTimer: 0
 --- !u!114 &2563025540127241547
