@@ -15,6 +15,19 @@ public class HandSpot : MonoBehaviour
         owner = transform.parent;
     }
 
+    void Update() {
+        if (weapon != null) {
+            SpriteRenderer sprite = weapon.item.objectHandler.spriteRenderer;
+
+
+            if (transform.localPosition.y > 0) {
+                sprite.sortingOrder = -1;
+            } else if (transform.localPosition.y < 0) {
+                sprite.sortingOrder = 1;
+            }
+        }
+    }
+
     public void AimAtTarget(Vector3 target, EquipmentSlot slot) {
         Vector2 diff = target - owner.position;
         diff = diff.normalized;
