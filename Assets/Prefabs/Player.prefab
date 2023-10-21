@@ -121,7 +121,6 @@ GameObject:
   m_Component:
   - component: {fileID: 735325724}
   - component: {fileID: 8216754118719115536}
-  - component: {fileID: 425352376}
   m_Layer: 0
   m_Name: LeftHandSpot
   m_TagString: Untagged
@@ -158,20 +157,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: 0.5
   weapon: {fileID: 0}
---- !u!114 &425352376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 735325723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7798809c34df98246acc199c168e0ff1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: 0.5
-  weapon: {fileID: 0}
 --- !u!1 &6498385305998234484
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,6 +168,8 @@ GameObject:
   - component: {fileID: 6498385305998234487}
   - component: {fileID: 6498385305998234489}
   - component: {fileID: 6498385305998234486}
+  - component: {fileID: 665855398}
+  - component: {fileID: 665855399}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -247,7 +234,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1836657564, guid: 7137b19a51f0bdb40aa4354a53e8d762, type: 3}
+  m_Sprite: {fileID: -1285889837, guid: 3ac43dd595ae39c428b6f6e72886cb23, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -268,7 +255,7 @@ Animator:
   m_GameObject: {fileID: 6498385305998234484}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 50c9e69f45ac9ed41a1d35f4b1a76231, type: 2}
+  m_Controller: {fileID: 9100000, guid: d52a091394ca22d408251cda49e98b23, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -279,6 +266,35 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &665855398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6498385305998234484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CategoryHash: 2.0810095e-26
+  m_labelHash: 0.00000040954276
+  m_SpriteKey: 0.00000023606415
+--- !u!114 &665855399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6498385305998234484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library: []
+  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 28dba5ac41ba3bc40a3ddd5610f49d01, type: 3}
 --- !u!1 &6498385307091005126
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,8 +530,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingEquipment: {fileID: 11400000, guid: 7e9924f84f1ef0747b7b365e1fb3949b, type: 2}
   currentEquipment: []
-  rightMeleeSpot: {fileID: 2009472642}
-  leftMeleeSpot: {fileID: 425352376}
+  rightMeleeSpot: {fileID: 5185528332149784036}
+  leftMeleeSpot: {fileID: 8216754118719115536}
   bulletUIPrefab: {fileID: 3231775640795351773, guid: e0f5cb642d9a1b34baaa0295eea49c3e, type: 3}
   bulletUIHolder: {fileID: 0}
   currentRangedWeapon: {fileID: 0}
@@ -554,7 +570,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6498385307280544708}
   - component: {fileID: 5185528332149784036}
-  - component: {fileID: 2009472642}
   m_Layer: 0
   m_Name: RightHandSpot
   m_TagString: Untagged
@@ -578,20 +593,6 @@ Transform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!114 &5185528332149784036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6498385307280544709}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7798809c34df98246acc199c168e0ff1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: 0.5
-  weapon: {fileID: 0}
---- !u!114 &2009472642
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
