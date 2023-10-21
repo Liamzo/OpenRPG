@@ -62,8 +62,8 @@ public abstract class BaseWeaponHandler : MonoBehaviour
 
     public abstract float AttackHoldCost();
     public abstract float AttackHold();
-    public abstract float AttackEndCost();
-    public abstract float AttackEnd();
+    public abstract float AttackReleaseCost();
+    public abstract float AttackRelease();
     public abstract void AttackCancel();
 
     public abstract void AttackAnticipation();

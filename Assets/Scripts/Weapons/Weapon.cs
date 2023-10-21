@@ -57,11 +57,11 @@ public class Weapon : BaseWeaponHandler
         return statsWeapon[WeaponStatNames.StaminaCostHold].GetValue() * Time.deltaTime;
     }
 
-    public override float AttackEndCost()
+    public override float AttackReleaseCost()
     {
         return statsWeapon[WeaponStatNames.StaminaCostEnd].GetValue();
     }
-    public override float AttackEnd() {
+    public override float AttackRelease() {
         animator.SetBool("Charging", false);
         isCharging = false;
         Attack();

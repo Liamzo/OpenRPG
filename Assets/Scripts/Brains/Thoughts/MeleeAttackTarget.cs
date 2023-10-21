@@ -36,7 +36,7 @@ public class MeleeAttackTarget : BaseThought
             if (delayTimer >= 0.2f) {
                 // Do the attack
                 if (weapon != null) {
-                    weapon.AttackEnd();
+                    weapon.AttackRelease();
                 }
 
                 brain.attackTimer = brain.attackCoolDown;

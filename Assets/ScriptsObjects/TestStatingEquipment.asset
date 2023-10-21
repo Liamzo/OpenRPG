@@ -15,4 +15,4 @@ MonoBehaviour:
   coins: 100
   items:
   - {fileID: 7794635414972195345, guid: f539692fdc607964ab48915ebf110156, type: 3}
-  - {fileID: 2299074030743016788, guid: caaf6069cca94c3438d6bd1667329584, type: 3}
+  - {fileID: 1486458305870933434, guid: b7b58165901f8f747b2b03206a1e3e5e, type: 3}

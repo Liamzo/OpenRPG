@@ -37,11 +37,11 @@ public class LizardSpit : BaseWeaponHandler
         return 0f;
     }
 
-    public override float AttackEndCost()
+    public override float AttackReleaseCost()
     {
         return 0f;
     }
-    public override float AttackEnd() {
+    public override float AttackRelease() {
         return 0f;
     }
 

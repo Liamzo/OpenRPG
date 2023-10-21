@@ -70,11 +70,11 @@ public class Pistol : BaseWeaponHandler
         return 0f;
     }
 
-    public override float AttackEndCost()
+    public override float AttackReleaseCost()
     {
         return statsWeapon[WeaponStatNames.StaminaCostEnd].GetValue();
     }
-    public override float AttackEnd() {
+    public override float AttackRelease() {
         canFire = true;
         return statsWeapon[WeaponStatNames.StaminaCostEnd].GetValue();
     }

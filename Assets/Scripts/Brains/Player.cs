@@ -179,8 +179,8 @@ public class Player : BaseBrain
                     }
                 } else {
                     if (rightMousePressedBefore) {
-                        if (character.currentStamina >= weapon.AttackEndCost()) {
-                            cost = weapon.AttackEnd();
+                        if (character.currentStamina >= weapon.AttackReleaseCost()) {
+                            cost = weapon.AttackRelease();
                             if (cost != 0f) {
                                 character.ChangeStamina(-cost);
                                 character.objectStatusHandler.BlockRegainStamina(0.2f);
@@ -215,8 +215,8 @@ public class Player : BaseBrain
                     }
                 } else {
                     if (leftMousePressedBefore == true) {
-                        if (character.currentStamina >= weapon.AttackEndCost()) {
-                            float cost = weapon.AttackEnd();
+                        if (character.currentStamina >= weapon.AttackReleaseCost()) {
+                            float cost = weapon.AttackRelease();
                             if (cost != 0f) {
                                 character.ChangeStamina(-cost);
                                 character.objectStatusHandler.BlockRegainStamina(0.2f);

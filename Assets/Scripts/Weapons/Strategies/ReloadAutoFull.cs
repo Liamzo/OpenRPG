@@ -1,0 +1,39 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ReloadAutoFull : BaseStrategy, IReload
+{
+    float reloadTimer = 0f;
+
+    protected override void Awake() {
+        base.Awake();
+        
+        weapon.OnAttack += ResetReloadTimer;
+    }
+
+    public void ReloadUpdate()
+    {
+        if (reloadTimer > 0f) {
+            reloadTimer -= Time.deltaTime;
+
+            if (reloadTimer <= 0f) {
+                // Reload
+                reloadTimer = 0f;
+                weapon.ammo.Reload((int)weapon.statsWeapon[WeaponStatNames.ClipSize].GetValue());
+            }
+        }
+    }
+
+    public float ReloadPercentage() {
+        if (reloadTimer <= 0f) {
+            return 1f;
+        }
+
+        return (weapon.statsWeapon[WeaponStatNames.ReloadDuration].GetValue() - reloadTimer) / weapon.statsWeapon[WeaponStatNames.ReloadDuration].GetValue();
+    }
+
+    void ResetReloadTimer() {
+        reloadTimer = weapon.statsWeapon[WeaponStatNames.ReloadDuration].GetValue();
+    }
+}
