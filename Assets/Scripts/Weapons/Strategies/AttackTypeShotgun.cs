@@ -44,7 +44,7 @@ public class AttackTypeShotgun : BaseStrategy, IAttackType
 
                 Vector2 dir = (objectHandler.transform.position - transform.position).normalized;
 
-                if (dist <= weapon.statsWeapon[WeaponStatNames.Range].GetValue() && (Vector3.Angle(-transform.up, dir) <= 90f / 2f || dist < 0.5f)) {
+                if (dist <= weapon.statsWeapon[WeaponStatNames.Range].GetValue() && (Vector3.Angle(-transform.up, dir) <= 90f / 2f || dist < 1f)) {
                     enemyStats.Add(objectHandler);
                 }
             }
