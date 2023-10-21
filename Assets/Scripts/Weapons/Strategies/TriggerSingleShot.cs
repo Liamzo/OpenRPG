@@ -25,6 +25,7 @@ public class TriggerSingleShot : BaseStrategy, ITrigger
             weapon.ammo.UseAmmo();
             weapon.fireRate.FiredShot();
             weapon.CallOnAttack();
+            weapon.item.owner.GetComponent<Physicsable>().Knock(transform.up, weapon.statsWeapon[WeaponStatNames.SelfKnockForce].GetValue());
 
             return weapon.statsWeapon[WeaponStatNames.StaminaCostHold].GetValue();
         }
