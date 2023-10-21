@@ -8,8 +8,6 @@ using UnityEngine.InputSystem;
 
 public class Weapon : BaseWeaponHandler
 {
-    public Animator animator;
-
     public Collider2D hitbox;
 
     float attackTimer = 0f;

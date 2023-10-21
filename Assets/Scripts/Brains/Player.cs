@@ -167,7 +167,6 @@ public class Player : BaseBrain
                 if (InputManager.GetInstance().GetLeftMousePressed()) {
                     rightMousePressedBefore = true;
                     // Attack with ranged weapon
-                    //Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
                     if (character.currentStamina >= weapon.AttackHoldCost()) {
                         cost = weapon.AttackHold();
                         if (cost != 0f) {

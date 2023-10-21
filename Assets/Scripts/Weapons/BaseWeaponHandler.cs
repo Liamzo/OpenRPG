@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(ItemHandler))]
 public abstract class BaseWeaponHandler : MonoBehaviour
 {
+    public Animator animator;
     public Transform _handle;
 
     public ItemHandler item {get; private set;}
