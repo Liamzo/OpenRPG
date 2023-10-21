@@ -20,9 +20,15 @@ public class HandSpot : MonoBehaviour
             SpriteRenderer sprite = weapon.item.objectHandler.spriteRenderer;
 
 
-            if (transform.localPosition.y > 0) {
+            // if (transform.localPosition.y > 0) {
+            //     sprite.sortingOrder = -1;
+            // } else if (transform.localPosition.y < 0) {
+            //     sprite.sortingOrder = 1;
+            // }
+
+            if (sprite.transform.position.y > transform.parent.position.y) {
                 sprite.sortingOrder = -1;
-            } else if (transform.localPosition.y < 0) {
+            } else if (sprite.transform.position.y < transform.parent.position.y) {
                 sprite.sortingOrder = 1;
             }
         }
