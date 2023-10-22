@@ -14,8 +14,11 @@ public class Player : BaseBrain
 
     bool _pointerOverUI;
 
+    [Header("Interactions")]
     InteractionHandler interactingWith;
+    InteractionHandler interactionHighlighted;
 
+    [Header("Controls")]
     private bool leftMousePressedBefore = false;
     private bool rightMousePressedBefore = false;
 
@@ -53,6 +56,8 @@ public class Player : BaseBrain
     {
         _pointerOverUI = EventSystem.current.IsPointerOverGameObject();
 
+
+        // Dodging
         if (dodgeCDTimer > 0.0f) {
             dodgeCDTimer -= Time.deltaTime;
         }
@@ -113,6 +118,36 @@ public class Player : BaseBrain
             }
         }
 
+
+        // Interactions
+        float closest = 3f;
+        InteractionHandler closestObject = null;
+        foreach (Collider2D col in Physics2D.OverlapCircleAll(transform.position, 2f)) {
+            InteractionHandler interactionHandler = col.GetComponentInParent<InteractionHandler>();
+
+            if (interactionHandler == null) continue;
+
+            ItemHandler item = col.GetComponentInParent<ItemHandler>();
+            if (item?.owner != null) continue;
+            
+
+            float distance = Vector3.Distance(interactionHandler.transform.position, transform.position);
+
+            if (distance < closest) {
+                closest = distance;
+                closestObject = interactionHandler;
+            }
+        }
+
+        if (closestObject != interactionHighlighted) {
+            interactionHighlighted?.Unhighlight();
+            closestObject?.Highlight();
+
+            interactionHighlighted = closestObject;
+        }
+
+
+        // Controls
         if (character.objectStatusHandler.HasMovementControls())
             MovementControls();
 
@@ -266,15 +301,8 @@ public class Player : BaseBrain
     }
 
     void OnInteract() {
-        Collider2D[] objects = Physics2D.OverlapCircleAll(transform.position, 2f);
-
-        foreach (Collider2D col in objects) {
-            InteractionHandler interactionHandler = col.GetComponent<InteractionHandler>();
-            if (interactionHandler != null) {
-                interactingWith = interactionHandler;
-                interactionHandler.Use(character);
-            }
-        }
+        interactingWith = interactionHighlighted;
+        interactionHighlighted?.Use(character);
     }
 
     void OnTab() {

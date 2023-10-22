@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4328129691896571673}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1592960810812754743
 MonoBehaviour:
@@ -100,7 +100,7 @@ Transform:
   m_Children:
   - {fileID: 4328129691485564192}
   m_Father: {fileID: 4328129691896571673}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4328129691485564195
 GameObject:
@@ -195,13 +195,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4328129691896571673}
+  - component: {fileID: 3201069259969167772}
   - component: {fileID: 4328129691896571671}
   - component: {fileID: 4328129691896571668}
   - component: {fileID: 4953462623201469145}
   - component: {fileID: 324370988868330165}
   - component: {fileID: 5311003981422222261}
   - component: {fileID: 5311003981422222266}
-  - component: {fileID: 3201069259969167772}
+  - component: {fileID: 8203947813675130470}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Untagged
@@ -221,12 +222,34 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5781637417814922562}
   - {fileID: 1592960810812754742}
   - {fileID: 5334118679488976819}
   - {fileID: 5781637417171694065}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &3201069259969167772
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4328129691896571672}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &4328129691896571671
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -335,27 +358,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343b98f1b6060e548a1166dd68c6a4b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!50 &3201069259969167772
-Rigidbody2D:
-  serializedVersion: 4
+--- !u!114 &8203947813675130470
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4328129691896571672}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af29277c85099ec4c997a3415db8a3f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5781637417171694078
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,7 +380,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5781637417171694065}
   - component: {fileID: 5781637417171694064}
-  - component: {fileID: 5781637417705882264}
   m_Layer: 6
   m_Name: ItemHitbox
   m_TagString: Untagged
@@ -385,10 +398,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5781637417814922562}
+  m_Children: []
   m_Father: {fileID: 4328129691896571673}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &5781637417171694064
 CircleCollider2D:
@@ -406,18 +418,6 @@ CircleCollider2D:
   m_Offset: {x: -0.2, y: 0.2}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &5781637417705882264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5781637417171694078}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af29277c85099ec4c997a3415db8a3f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5781637417814922563
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,7 +447,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5781637417171694065}
+  m_Father: {fileID: 4328129691896571673}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5781637417814922565

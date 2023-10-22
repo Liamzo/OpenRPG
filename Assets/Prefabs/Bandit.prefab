@@ -239,14 +239,14 @@ GameObject:
   - component: {fileID: 1154453471690096204}
   - component: {fileID: 1154453471690096205}
   - component: {fileID: 1154453471690096196}
+  - component: {fileID: 837920783156164016}
   - component: {fileID: 1154453471690096197}
   - component: {fileID: 2883755834010546419}
   - component: {fileID: 8463640423895685246}
   - component: {fileID: 5344530659509252465}
-  - component: {fileID: 1154453471690096198}
   - component: {fileID: 597049897}
   - component: {fileID: 5229496855607910826}
-  - component: {fileID: 837920783156164016}
+  - component: {fileID: 1154453471690096198}
   - component: {fileID: 4635434019260541824}
   m_Layer: 0
   m_Name: Bandit
@@ -254,7 +254,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1154453471690096202
 Transform:
   m_ObjectHideFlags: 0
@@ -333,6 +333,17 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!210 &837920783156164016
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154453471690096199}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!114 &1154453471690096197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,19 +415,6 @@ MonoBehaviour:
   currentEquipment: []
   rightMeleeSpot: {fileID: 2429620863195684732}
   leftMeleeSpot: {fileID: 7103501921150379070}
---- !u!114 &1154453471690096198
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1154453471690096199}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1af9bcb32468dde4bae9d5fc0114245e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseKnockDuration: 0.25
 --- !u!114 &597049897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -443,17 +441,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343b98f1b6060e548a1166dd68c6a4b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!210 &837920783156164016
-SortingGroup:
+--- !u!114 &1154453471690096198
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1154453471690096199}
   m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1af9bcb32468dde4bae9d5fc0114245e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseKnockDuration: 0.25
 --- !u!114 &4635434019260541824
 MonoBehaviour:
   m_ObjectHideFlags: 0

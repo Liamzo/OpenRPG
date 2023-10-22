@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8686579915277826899}
+  m_Father: {fileID: 1486458305870933435}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &812625208135904762
@@ -54,12 +54,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1486458305870933435}
+  - component: {fileID: 6157572692197873295}
   - component: {fileID: 1486458305870933430}
   - component: {fileID: 2942737818077056421}
   - component: {fileID: 3184057323160938519}
   - component: {fileID: 7171399445117099099}
   - component: {fileID: 7595306029146518193}
-  - component: {fileID: 6157572692197873295}
+  - component: {fileID: 5721819381770658313}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -79,12 +80,34 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 812625208135904765}
   - {fileID: 7045684467092217508}
   - {fileID: 1676611449664313758}
   - {fileID: 8686579915277826899}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &6157572692197873295
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486458305870933434}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!95 &1486458305870933430
 Animator:
   serializedVersion: 5
@@ -118,7 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7310db108acaa224a9b60105e4db0ba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leavesCorpse: 0
   baseStats: {fileID: 11400000, guid: c5a0ab9a93dcb27498238727931d872f, type: 2}
   objectName: 
   objectType: 0
@@ -169,27 +191,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343b98f1b6060e548a1166dd68c6a4b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!50 &6157572692197873295
-Rigidbody2D:
-  serializedVersion: 4
+--- !u!114 &5721819381770658313
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486458305870933434}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af29277c85099ec4c997a3415db8a3f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6883368801639130583
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,7 +235,7 @@ Transform:
   - {fileID: 4330748051512270447}
   - {fileID: 1177882325860369}
   m_Father: {fileID: 1486458305870933435}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 90}
 --- !u!212 &6192601639423175143
 SpriteRenderer:
@@ -244,7 +257,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 02e09a90ebf27cb419d10612bb5d12b8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -311,7 +324,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1486458305870933435}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7045684467092217529
 MonoBehaviour:
@@ -430,7 +443,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8686579915277826899}
   - component: {fileID: 8686579915277826898}
-  - component: {fileID: 812625207798086517}
   m_Layer: 6
   m_Name: ItemHitbox
   m_TagString: Untagged
@@ -449,10 +461,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 812625208135904765}
+  m_Children: []
   m_Father: {fileID: 1486458305870933435}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &8686579915277826898
 CircleCollider2D:
@@ -470,18 +481,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &812625207798086517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8686579915277826908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af29277c85099ec4c997a3415db8a3f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &9024930019303568738
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -49,7 +49,6 @@ public abstract class BaseWeaponHandler : MonoBehaviour
         prevAngle = 0.0f;
 
         item.objectHandler.spriteRenderer.enabled = false;
-        item.itemHitbox.transform.gameObject.SetActive(false);
     }
     public void Unholster() {
         transform.localPosition = new Vector3(0,0,0);
@@ -58,7 +57,6 @@ public abstract class BaseWeaponHandler : MonoBehaviour
         prevAngle = 0.0f;
 
         item.objectHandler.spriteRenderer.enabled = true;
-        item.itemHitbox.transform.gameObject.SetActive(true);
     }
 
     public abstract float AttackHoldCost();

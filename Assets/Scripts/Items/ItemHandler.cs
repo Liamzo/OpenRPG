@@ -47,6 +47,7 @@ public class ItemHandler : MonoBehaviour
     public bool PickUp(ObjectHandler owner) {
         if (owner.GetComponent<InventoryHandler>().Add(this)) {
             itemHitbox.enabled = false;
+            itemHitbox.transform.gameObject.SetActive(false);
             gameObject.SetActive(false);
             this.owner = owner;
             return true;
@@ -58,6 +59,9 @@ public class ItemHandler : MonoBehaviour
         owner.GetComponent<InventoryHandler>().Remove(this);
         transform.position = owner.transform.position;
         itemHitbox.enabled = true;
+        itemHitbox.gameObject.SetActive(true);
+        objectHandler.spriteRenderer.enabled = true;
+        objectHandler.spriteRenderer.sortingOrder = 0;
         gameObject.SetActive(true);
         owner = null;
     }
