@@ -87,7 +87,7 @@ public class MeleeWeapon : BaseWeaponHandler
         float timer = 0f;
         while (timer <= 1f) {
             timer += Time.deltaTime * 5f; // 0.2 secs
-            item.objectHandler.spriteRenderer.material.SetFloat("_Sheen", Mathf.Lerp(-1.48f, -1.9f, timer));
+            item.objectHandler.spriteRenderer.material.SetFloat("_Sheen", Mathf.Lerp(0f, -2f, timer));
             yield return null;
         }
 

@@ -97,7 +97,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 02e09a90ebf27cb419d10612bb5d12b8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -257,7 +257,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7310db108acaa224a9b60105e4db0ba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leavesCorpse: 0
   baseStats: {fileID: 11400000, guid: 95de858976419614e84657b179246d3b, type: 2}
   objectName: 
   objectType: 0
@@ -290,7 +289,7 @@ MonoBehaviour:
   - {x: 0.3866886, y: -0.34456444, z: 0}
   m_ShapePathHash: -379617039
   m_Mesh: {fileID: 0}
-  m_InstanceId: 28928
+  m_InstanceId: -124458
   m_LocalBounds:
     m_Center: {x: 0.018535197, y: 0.04640627, z: 0}
     m_Extent: {x: 0.3681534, y: 0.40742302, z: 0}
