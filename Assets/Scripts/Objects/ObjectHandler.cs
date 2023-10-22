@@ -10,8 +10,6 @@ public class ObjectHandler : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer{get; private set;}
 
-    public bool leavesCorpse;
-
     public BaseStats baseStats;
 
     public string objectName;
@@ -100,13 +98,6 @@ public class ObjectHandler : MonoBehaviour
     }
     IEnumerator CompleteDeath () {
         yield return new WaitForSeconds(1f);
-
-        if (leavesCorpse == true) {
-            GameObject go = ObjectPoolManager.instance.GetPooledObject(PoolIdentifiers.Corpse);
-            go.transform.position = transform.position;
-            go.GetComponent<Corpse>().SetVars(GetComponent<ObjectHandler>().spriteRenderer.sprite, GetComponent<InventoryHandler>().inventory);
-            go.SetActive(true);
-        }
         
         Destroy(gameObject);
     }

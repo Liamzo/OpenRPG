@@ -238,6 +238,7 @@ GameObject:
   - component: {fileID: 6532802337708426476}
   - component: {fileID: 2736253971471747455}
   - component: {fileID: 1839862152}
+  - component: {fileID: 3139969052742268801}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -354,7 +355,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7e546a71ad611c459aa7330ee46cefa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leavesCorpse: 1
   baseStats: {fileID: 11400000, guid: 95de858976419614e84657b179246d3b, type: 2}
   objectName: 
   objectType: 0
@@ -445,6 +445,19 @@ SortingGroup:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &3139969052742268801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3161783212397411800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8790f95797903e844b5f5cb46cde4dd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  corpseSprite: {fileID: 0}
 --- !u!1 &5885145032520518140
 GameObject:
   m_ObjectHideFlags: 0
