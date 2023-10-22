@@ -128,7 +128,7 @@ Transform:
   m_GameObject: {fileID: 4328129691485564195}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1, y: 1.25, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5334118679488976819}
@@ -175,7 +175,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1104212617, guid: da863b26060cc1f41bc27ecf6af15f4f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 37e9fb16acbe38c45815380a7e9eb232, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -324,7 +324,6 @@ MonoBehaviour:
   _handle: {fileID: 5334118679488976819}
   strategies: {fileID: 1592960810812754746}
   baseWeaponStats: {fileID: 11400000, guid: 5a53fc5cc1a32304c92e323710c06f3c, type: 2}
-  hitbox: {fileID: 4328129691896571671}
 --- !u!114 &5311003981422222266
 MonoBehaviour:
   m_ObjectHideFlags: 0

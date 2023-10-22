@@ -83,8 +83,10 @@ public abstract class BaseWeaponHandler : MonoBehaviour
             // Direction of movement
             Vector3 idealDir = -(movePos - prevPosition).normalized;
 
-            float idealExtraRotation = Vector3.Angle(idealDir, Quaternion.Euler(_handle.eulerAngles + item.objectHandler.spriteRenderer.transform.localEulerAngles) * Vector3.up);
-            float side = -Mathf.Sign(Vector3.Cross(idealDir, Quaternion.Euler(_handle.eulerAngles + item.objectHandler.spriteRenderer.transform.localEulerAngles) * Vector3.up).z);
+            Vector3 spriteRotation = new Vector3(0f, 0f, item.objectHandler.spriteRenderer.transform.localEulerAngles.z - 45f); // -45 due to sprite being at an angle rather than straight in source image
+
+            float idealExtraRotation = Vector3.Angle(idealDir, Quaternion.Euler(_handle.eulerAngles + spriteRotation) * Vector3.up);
+            float side = -Mathf.Sign(Vector3.Cross(idealDir, Quaternion.Euler(_handle.eulerAngles + spriteRotation) * Vector3.up).z);
 
             targetRotation = Mathf.Clamp(idealExtraRotation * side, -25f, 25f);
         }
