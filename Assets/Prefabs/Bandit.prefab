@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a71790b28c960f847aa9f305ce45400e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radiusMax: 0
+  radiusMax: 4
   pauseDuration: 2
   minPauseWait: 1
   maxPauseWait: 3
@@ -253,7 +253,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1154453471690096202
 Transform:
   m_ObjectHideFlags: 0

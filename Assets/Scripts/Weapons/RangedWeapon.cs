@@ -6,12 +6,13 @@ public class RangedWeapon : BaseWeaponHandler
 {
     public Transform attackPoint;
 
-    public GameObject strategies;
     public ITrigger trigger;
     public IAttackType attackType;
     public IAmmo ammo;
     public IReload reload;
     public IFireRate fireRate;
+    public IDamageType damageType;
+
 
     // Events
     public event System.Action OnAttack = delegate { };
@@ -30,6 +31,7 @@ public class RangedWeapon : BaseWeaponHandler
         ammo = strategies.GetComponent<IAmmo>();
         reload = strategies.GetComponent<IReload>();
         fireRate = strategies.GetComponent<IFireRate>();
+        damageType = strategies.GetComponent<IDamageType>();
     }
 
     // Update is called once per frame

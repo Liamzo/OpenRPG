@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equipment:
   - slot: 6
-    equipment: {fileID: 7794635414972195345, guid: f539692fdc607964ab48915ebf110156, type: 3}
+    equipment: {fileID: 4328129691896571672, guid: c2c826d08684ae7438b6605db6557142, type: 3}
   - slot: 8
     equipment: {fileID: 1384521666624074638, guid: 38c2e887786783046913a9685f9a8f5b, type: 3}

@@ -8,7 +8,7 @@ public class AmmoStandard : BaseStrategy, IAmmo
     public int useCost;
 
     void Start() {
-        currentAmmo = (int)weapon.statsWeapon[WeaponStatNames.ClipSize].GetValue();
+        currentAmmo = (int)rangedWeapon.statsWeapon[WeaponStatNames.ClipSize].GetValue();
     }
 
     public int GetCurrentAmmo()
@@ -18,7 +18,7 @@ public class AmmoStandard : BaseStrategy, IAmmo
 
     public int GetMaxAmmo()
     {
-        return (int)weapon.statsWeapon[WeaponStatNames.ClipSize].GetValue();
+        return (int)rangedWeapon.statsWeapon[WeaponStatNames.ClipSize].GetValue();
     }
 
     public int GetUseCost()
@@ -28,11 +28,11 @@ public class AmmoStandard : BaseStrategy, IAmmo
 
     public void Reload(int amount)
     {
-        currentAmmo = Mathf.Clamp(currentAmmo + amount, 0, (int)weapon.statsWeapon[WeaponStatNames.ClipSize].GetValue());
+        currentAmmo = Mathf.Clamp(currentAmmo + amount, 0, (int)rangedWeapon.statsWeapon[WeaponStatNames.ClipSize].GetValue());
     }
 
     public void UseAmmo()
     {
-        currentAmmo = Mathf.Clamp(currentAmmo - useCost, 0, (int)weapon.statsWeapon[WeaponStatNames.ClipSize].GetValue());
+        currentAmmo = Mathf.Clamp(currentAmmo - useCost, 0, (int)rangedWeapon.statsWeapon[WeaponStatNames.ClipSize].GetValue());
     }
 }

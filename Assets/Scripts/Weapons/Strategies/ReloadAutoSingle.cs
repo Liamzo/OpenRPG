@@ -9,7 +9,7 @@ public class ReloadAutoSingle : BaseStrategy, IReload
     protected override void Awake() {
         base.Awake();
         
-        weapon.OnAttack += ResetReloadTimer;
+        rangedWeapon.OnAttack += ResetReloadTimer;
     }
 
     public void ReloadUpdate()
@@ -20,9 +20,9 @@ public class ReloadAutoSingle : BaseStrategy, IReload
             if (reloadTimer <= 0f) {
                 // Reload
                 reloadTimer = 0f;
-                weapon.ammo.Reload(1);
+                rangedWeapon.ammo.Reload(1);
 
-                if (weapon.ammo.GetCurrentAmmo() < weapon.ammo.GetMaxAmmo()) {
+                if (rangedWeapon.ammo.GetCurrentAmmo() < rangedWeapon.ammo.GetMaxAmmo()) {
                     ResetReloadTimer();
                 }
             }
@@ -34,10 +34,10 @@ public class ReloadAutoSingle : BaseStrategy, IReload
             return 1f;
         }
 
-        return (weapon.statsWeapon[WeaponStatNames.ReloadDuration].GetValue() - reloadTimer) / weapon.statsWeapon[WeaponStatNames.ReloadDuration].GetValue();
+        return (rangedWeapon.statsWeapon[WeaponStatNames.ReloadDuration].GetValue() - reloadTimer) / rangedWeapon.statsWeapon[WeaponStatNames.ReloadDuration].GetValue();
     }
 
     void ResetReloadTimer() {
-        reloadTimer = weapon.statsWeapon[WeaponStatNames.ReloadDuration].GetValue();
+        reloadTimer = rangedWeapon.statsWeapon[WeaponStatNames.ReloadDuration].GetValue();
     }
 }

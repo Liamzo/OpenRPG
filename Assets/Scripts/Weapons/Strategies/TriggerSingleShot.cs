@@ -8,8 +8,8 @@ public class TriggerSingleShot : BaseStrategy, ITrigger
 
     public float AttackHoldCost()
     {
-        if (canFire && (weapon.ammo.GetCurrentAmmo() >= weapon.ammo.GetUseCost()) && weapon.fireRate.CanFire()) {
-            return weapon.statsWeapon[WeaponStatNames.StaminaCostHold].GetValue();
+        if (canFire && (rangedWeapon.ammo.GetCurrentAmmo() >= rangedWeapon.ammo.GetUseCost()) && rangedWeapon.fireRate.CanFire()) {
+            return rangedWeapon.statsWeapon[WeaponStatNames.StaminaCostHold].GetValue();
         }
 
         return 0f;
@@ -17,30 +17,29 @@ public class TriggerSingleShot : BaseStrategy, ITrigger
 
     public float AttackHold()
     {
-        if (canFire && (weapon.ammo.GetCurrentAmmo() >= weapon.ammo.GetUseCost()) && weapon.fireRate.CanFire()) {
+        if (canFire && (rangedWeapon.ammo.GetCurrentAmmo() >= rangedWeapon.ammo.GetUseCost()) && rangedWeapon.fireRate.CanFire()) {
             canFire = false;
             GameManager.instance.ShakeCamera(3.0f, 0.15f);
 
-            weapon.attackType.DoAttack();
-            weapon.ammo.UseAmmo();
-            weapon.fireRate.FiredShot();
-            weapon.CallOnAttack();
-            weapon.item.owner.GetComponent<Physicsable>().Knock(transform.up, weapon.statsWeapon[WeaponStatNames.SelfKnockForce].GetValue());
+            rangedWeapon.attackType.DoAttack();
+            rangedWeapon.ammo.UseAmmo();
+            rangedWeapon.fireRate.FiredShot();
+            rangedWeapon.item.owner.GetComponent<Physicsable>().Knock(transform.up, rangedWeapon.statsWeapon[WeaponStatNames.SelfKnockForce].GetValue());
 
-            return weapon.statsWeapon[WeaponStatNames.StaminaCostHold].GetValue();
+            return rangedWeapon.statsWeapon[WeaponStatNames.StaminaCostHold].GetValue();
         }
         return 0f;
     }
 
     public float AttackReleaseCost()
     {
-         return weapon.statsWeapon[WeaponStatNames.StaminaCostEnd].GetValue();
+         return rangedWeapon.statsWeapon[WeaponStatNames.StaminaCostEnd].GetValue();
     }
 
     public float AttackRelease()
     {
         canFire = true;
-        return weapon.statsWeapon[WeaponStatNames.StaminaCostEnd].GetValue();
+        return rangedWeapon.statsWeapon[WeaponStatNames.StaminaCostEnd].GetValue();
     }
 
     public void AttackCancel()

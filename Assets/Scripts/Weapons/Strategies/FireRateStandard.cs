@@ -23,6 +23,6 @@ public class FireRateStandard : BaseStrategy, IFireRate
 
     public void FiredShot()
     {
-        fireTimer = weapon.statsWeapon[WeaponStatNames.AttackTimer].GetValue();
+        fireTimer = rangedWeapon.statsWeapon[WeaponStatNames.AttackTimer].GetValue();
     }
 }
