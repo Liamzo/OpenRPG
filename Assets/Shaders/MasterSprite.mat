@@ -39,7 +39,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _DoOutline: 0
-    - _Sheen: 0
+    - _Sheen: 1.39
     m_Colors:
     - _Outline_Colour: {r: 0.9716981, g: 0.9209129, b: 0.041251317, a: 1}
   m_BuildTextureStacks: []
