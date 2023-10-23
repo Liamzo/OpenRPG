@@ -13,7 +13,8 @@ public class Building : MonoBehaviour
     float targetAlpha = 1.0f;
 
 
-    public ShadowCaster2D shadowCaster2D;
+    public ShadowCaster2D shadowCaster2Dext;
+    public ShadowCaster2D shadowCaster2Dint;
 
     private void Update() {
         if (targetAlpha != spriteExt.color.a) {
@@ -44,7 +45,8 @@ public class Building : MonoBehaviour
         if (other.transform.tag == "Player") {
             targetAlpha = 0.0f;
             startingAlpha = 1.0f;
-            shadowCaster2D.enabled = true;
+            shadowCaster2Dext.enabled = false;
+            shadowCaster2Dint.enabled = true;
         }
     }
 
@@ -52,7 +54,8 @@ public class Building : MonoBehaviour
         if (other.transform.tag == "Player") {
             targetAlpha = 1.0f;
             startingAlpha = 0.0f;
-            shadowCaster2D.enabled = false;
+            shadowCaster2Dext.enabled = true;
+            shadowCaster2Dint.enabled = false;
         }
     }
 }

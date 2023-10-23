@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="8" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="1">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="8" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="1">
  <tileset firstgid="1" source="../PALands_DEMO/Tiler_Sets/PA_Buildings.tsx"/>
  <tileset firstgid="2605" source="../PALands_DEMO/Tiler_Sets/PA_Floors.tsx"/>
  <tileset firstgid="2825" source="../PALands_DEMO/Tiler_Sets/PA_Roofs.tsx"/>
- <layer id="8" name="shadow" width="8" height="12">
+ <layer id="8" name="shadow" width="8" height="12" visible="0">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,
@@ -19,23 +19,39 @@
 1165,1165,1165,1165,1165,1165,1165,1165
 </data>
  </layer>
- <layer id="6" name="collider" width="8" height="12">
+ <layer id="6" name="collider" width="8" height="12" visible="0">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,
-0,1228,1228,1228,1228,1228,1228,0,
-127,0,0,0,0,0,0,146,
-127,0,0,0,0,0,0,146,
-127,0,0,0,0,0,0,146,
-127,0,0,0,0,0,0,146,
-127,0,0,0,0,0,0,146,
-127,0,0,0,0,0,0,146,
-0,1875,1875,0,0,1875,1875,0
+0,1292,1292,1292,1292,1292,1292,0,
+1291,0,0,0,0,0,0,1354,
+1291,0,0,0,0,0,0,1354,
+1291,0,0,0,0,0,0,1354,
+1291,0,0,0,0,0,0,1354,
+1291,0,0,0,0,0,0,1354,
+1291,1292,1292,0,0,1292,1292,1354,
+0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="5" name="floor" width="8" height="12">
+ <layer id="11" name="collider_02" width="8" height="12">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,
+1291,1353,1353,1353,1353,1353,1353,1354,
+1291,0,0,0,0,0,0,1354,
+1291,0,0,0,0,0,0,1354,
+1291,0,0,0,0,0,0,1354,
+1291,0,0,0,0,0,0,1354,
+1291,0,0,0,0,0,0,1354,
+1291,0,0,0,0,0,0,1354,
+1291,0,0,0,0,0,0,1354,
+1291,0,0,0,0,0,0,1354,
+1291,1292,1292,0,0,1292,1292,1354,
+0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="5" name="floor" width="8" height="12" visible="0">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,
@@ -51,7 +67,23 @@
 0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="2" name="ext_walls" width="8" height="12">
+ <layer id="10" name="int" width="8" height="12" visible="0">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,
+0,1228,1228,0,0,1228,1228,0,
+0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="2" name="ext_walls" width="8" height="12" visible="0">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,
 41,42,43,42,43,42,43,62,
@@ -64,10 +96,10 @@
 103,0,0,0,0,0,0,248,
 165,0,0,0,0,0,0,186,
 227,0,0,0,0,0,0,248,
-1305,538,539,1503,1503,538,539,1328
+0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="1" name="ext_front" width="8" height="12">
+ <layer id="1" name="ext_front" width="8" height="12" visible="0">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,
@@ -83,7 +115,7 @@
 537,538,539,853,854,538,539,558
 </data>
  </layer>
- <layer id="3" name="top" width="8" height="12">
+ <layer id="3" name="top" width="8" height="12" visible="0">
   <data encoding="csv">
 3106,3107,3108,3107,3108,3109,3108,3110,
 3135,3136,3137,3138,3136,3137,3138,3139,
@@ -99,7 +131,7 @@
 0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="4" name="top2" width="8" height="12">
+ <layer id="4" name="top2" width="8" height="12" visible="0">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,
 0,3198,3199,0,0,0,0,0,
