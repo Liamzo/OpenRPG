@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Building : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class Building : MonoBehaviour
     float switchingTimer = 1.0f;
     float startingAlpha = 1.0f;
     float targetAlpha = 1.0f;
+
+
+    public ShadowCaster2D shadowCaster2D;
 
     private void Update() {
         if (targetAlpha != spriteExt.color.a) {
@@ -40,6 +44,7 @@ public class Building : MonoBehaviour
         if (other.transform.tag == "Player") {
             targetAlpha = 0.0f;
             startingAlpha = 1.0f;
+            shadowCaster2D.enabled = true;
         }
     }
 
@@ -47,6 +52,7 @@ public class Building : MonoBehaviour
         if (other.transform.tag == "Player") {
             targetAlpha = 1.0f;
             startingAlpha = 0.0f;
+            shadowCaster2D.enabled = false;
         }
     }
 }
