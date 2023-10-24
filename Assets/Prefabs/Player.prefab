@@ -312,7 +312,6 @@ GameObject:
   - component: {fileID: 1479582194}
   - component: {fileID: 1479582195}
   - component: {fileID: 1479582196}
-  - component: {fileID: 1479582197}
   - component: {fileID: 1479582198}
   - component: {fileID: 5729023158561328753}
   - component: {fileID: 5422852137260935271}
@@ -486,36 +485,6 @@ MonoBehaviour:
   staminaBar: {fileID: 0}
   healthText: {fileID: 0}
   staminaText: {fileID: 0}
---- !u!114 &1479582197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6498385307091005126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShadowGroup: 0
-  m_ComponentVersion: 1
-  m_HasRenderer: 0
-  m_UseRendererSilhouette: 1
-  m_CastsShadows: 1
-  m_SelfShadows: 0
-  m_ApplyToSortingLayers: fb2be1dd00000000c9b442a7
-  m_ShapePath:
-  - {x: -0.33319834, y: -0.44789338, z: 0}
-  - {x: -0.33319834, y: 0.44789338, z: 0}
-  - {x: 0.33319828, y: 0.44789338, z: 0}
-  - {x: 0.33319828, y: -0.44789338, z: 0}
-  m_ShapePathHash: 0
-  m_Mesh: {fileID: 0}
-  m_InstanceId: -124856
-  m_LocalBounds:
-    m_Center: {x: -0.000000029802322, y: 0, z: 0}
-    m_Extent: {x: 0.3331983, y: 0.44789338, z: 0}
 --- !u!114 &1479582198
 MonoBehaviour:
   m_ObjectHideFlags: 0

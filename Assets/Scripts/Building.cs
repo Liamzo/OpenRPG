@@ -5,8 +5,7 @@ using UnityEngine.Rendering.Universal;
 
 public class Building : MonoBehaviour
 {
-    public SpriteRenderer spriteExt;
-    public SpriteRenderer spriteTop;
+    public List<SpriteRenderer> spritesToHide;
 
     float switchingTimer = 1.0f;
     float startingAlpha = 1.0f;
@@ -17,27 +16,30 @@ public class Building : MonoBehaviour
     public ShadowCaster2D shadowCaster2Dint;
 
     private void Update() {
-        if (targetAlpha != spriteExt.color.a) {
-            Color newColorAlpha = spriteExt.color;
+        if (spritesToHide.Count == 0) { return ; }
 
+        Color targetColour = spritesToHide[0].color;
+
+        if (targetAlpha != targetColour.a) {
             if (startingAlpha > targetAlpha) {
                 switchingTimer -= Time.deltaTime * 3f;
 
                 if (switchingTimer < 0.0f)
                     switchingTimer = 0.0f;
 
-                newColorAlpha.a = Mathf.Lerp(startingAlpha, targetAlpha, 1 - switchingTimer);
+                targetColour.a = Mathf.Lerp(startingAlpha, targetAlpha, 1 - switchingTimer);
             } else {
                 switchingTimer += Time.deltaTime * 4f;
 
                 if (switchingTimer > 1.0f)
                     switchingTimer = 1.0f;
 
-                newColorAlpha.a = Mathf.Lerp(startingAlpha, targetAlpha, switchingTimer);
+                targetColour.a = Mathf.Lerp(startingAlpha, targetAlpha, switchingTimer);
             }
 
-            spriteExt.color = newColorAlpha;
-            spriteTop.color = newColorAlpha;
+            foreach (SpriteRenderer spriteToHide in spritesToHide) {
+                spriteToHide.color = targetColour;
+            }
         }
     }
 
@@ -45,8 +47,12 @@ public class Building : MonoBehaviour
         if (other.transform.tag == "Player") {
             targetAlpha = 0.0f;
             startingAlpha = 1.0f;
-            shadowCaster2Dext.enabled = false;
-            shadowCaster2Dint.enabled = true;
+            
+            if (shadowCaster2Dext != null)
+                shadowCaster2Dext.enabled = false;
+
+            if (shadowCaster2Dint != null)
+                shadowCaster2Dint.enabled = true;
         }
     }
 
@@ -54,8 +60,12 @@ public class Building : MonoBehaviour
         if (other.transform.tag == "Player") {
             targetAlpha = 1.0f;
             startingAlpha = 0.0f;
-            shadowCaster2Dext.enabled = true;
-            shadowCaster2Dint.enabled = false;
+            
+            if (shadowCaster2Dext != null)
+                shadowCaster2Dext.enabled = true;
+
+            if (shadowCaster2Dint != null)
+                shadowCaster2Dint.enabled = false;
         }
     }
 }

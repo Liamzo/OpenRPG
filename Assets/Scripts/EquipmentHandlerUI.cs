@@ -21,9 +21,10 @@ public class EquipmentHandlerUI : EquipmentHandler
     // Update is called once per frame
     void Update()
     {
-        if (currentRangedWeapon != null) {
-            UpdatedReloadSlider();
-        }
+        if (currentRangedWeapon == null) { return; }
+        
+        UpdatedReloadSlider();
+        
 
         if (rangedWeaponPrevAmmo != currentRangedWeapon.ammo.GetCurrentAmmo()) {
             UpdateAmmoCount();
