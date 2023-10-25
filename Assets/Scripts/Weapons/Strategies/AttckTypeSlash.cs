@@ -24,4 +24,16 @@ public class AttckTypeSlash : BaseStrategy, IAttackType
 
         go.SetActive(true);
     }
+
+    // private void OnTriggerEnter2D(Collider2D other) {
+    //     if (other.gameObject.layer != LayerMask.NameToLayer("Default")) return;
+
+    //     ObjectHandler otherObjectHandler;
+
+    //     if (other.TryGetComponent<ObjectHandler>(out otherObjectHandler)) {
+    //         if (otherObjectHandler == meleeWeapon.item.owner) return;
+            
+    //         meleeWeapon.damageType.DealDamage(otherObjectHandler);
+    //     }
+    // }
 }

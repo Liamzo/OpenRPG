@@ -12,7 +12,7 @@ public class ReloadAutoSingle : BaseStrategy, IReload
         rangedWeapon.OnAttack += ResetReloadTimer;
     }
 
-    public void ReloadUpdate()
+    public void Update()
     {
         if (reloadTimer > 0f) {
             reloadTimer -= Time.deltaTime;
@@ -27,6 +27,11 @@ public class ReloadAutoSingle : BaseStrategy, IReload
                 }
             }
         }
+    }
+
+    public void ReloadUpdate()
+    {
+        
     }
 
     public float ReloadPercentage() {

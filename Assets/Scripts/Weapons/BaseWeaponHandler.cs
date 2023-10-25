@@ -6,19 +6,19 @@ using UnityEngine;
 [RequireComponent(typeof(ItemHandler))]
 public abstract class BaseWeaponHandler : MonoBehaviour
 {
-    public Animator animator;
-    public Transform _handle;
-    public GameObject strategies;
-
     public ItemHandler item {get; private set;}
 
     public BaseWeaponStats baseWeaponStats;
     public Dictionary<WeaponStatNames, Stat> statsWeapon = new Dictionary<WeaponStatNames, Stat>();
 
+    public Animator animator; // Probably used by everything when fully implemented
+    public Transform _handle; // Just for IdleFollow
+    public GameObject strategies;
+
     bool holestered;
 
 
-    // For smooth motion
+    // For IdleFollow
     Vector3 prevPosition;
     float prevAngle;
     float smoothTimeDist = 0.05f;
@@ -27,10 +27,15 @@ public abstract class BaseWeaponHandler : MonoBehaviour
     float angleVelocity = 0.0f;
 
     // Events
+    public event System.Action OnTrigger = delegate { };
+    public void CallOnTrigger() { OnAttack(); }
+    
+
+    public event System.Action OnReload = delegate { };
+    public void CallOnReload() { OnAttack(); }
+
     public event System.Action OnAttack = delegate { };
-    public void CallOnAttack() {
-        OnAttack();
-    }
+    public void CallOnAttack() { OnAttack(); }
 
     public ITrigger trigger;
     public IAttackType attackType;
@@ -44,6 +49,12 @@ public abstract class BaseWeaponHandler : MonoBehaviour
         foreach (WeaponStatValue sv in baseWeaponStats.stats) {
             statsWeapon.Add(sv.statName, new Stat(sv.value));
         }
+
+
+        // Handle cases where no Strategy is assigned
+        trigger = strategies.GetComponent<ITrigger>();
+        attackType = strategies.GetComponent<IAttackType>();
+        damageType = strategies.GetComponent<IDamageType>();
     }
 
     protected virtual void Update() {
@@ -71,11 +82,25 @@ public abstract class BaseWeaponHandler : MonoBehaviour
         item.objectHandler.spriteRenderer.enabled = true;
     }
 
-    public abstract float AttackHoldCost();
-    public abstract float AttackHold();
-    public abstract float AttackReleaseCost();
-    public abstract float AttackRelease();
-    public abstract void AttackCancel();
+    public float AttackHoldCost()
+    {
+        return trigger.AttackHoldCost();
+    }
+    public float AttackHold() {
+        return trigger.AttackHold();
+    }
+
+    public float AttackReleaseCost()
+    {
+        return trigger.AttackReleaseCost();
+    }
+    public float AttackRelease() {
+        return trigger.AttackRelease();
+    }
+
+    public void AttackCancel() {
+        trigger.AttackCancel();
+    }
 
     public abstract void AttackAnticipation();
 

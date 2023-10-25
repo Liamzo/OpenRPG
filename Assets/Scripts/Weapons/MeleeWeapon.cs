@@ -8,23 +8,6 @@ using UnityEngine.InputSystem;
 
 public class MeleeWeapon : BaseWeaponHandler
 {
-    protected override void Awake()
-    {
-        base.Awake();
-
-        // Handle cases where no Strategy is assigned
-        trigger = strategies.GetComponent<ITrigger>();
-        attackType = strategies.GetComponent<IAttackType>();
-        damageType = strategies.GetComponent<IDamageType>();
-    }
-
-
-    // Update is called once per frame
-    protected override void Update()
-    {
-        base.Update();
-    }
-
     protected override void LateUpdate() {
         if (item.owner is null)
             return;
@@ -32,26 +15,6 @@ public class MeleeWeapon : BaseWeaponHandler
         base.LateUpdate();
 
         IdleFollow();
-    }
-
-    public override float AttackHoldCost()
-    {
-        return trigger.AttackHoldCost();
-    }
-    public override float AttackHold() {
-        return trigger.AttackHold();
-    }
-
-    public override float AttackReleaseCost()
-    {
-        return trigger.AttackReleaseCost();
-    }
-    public override float AttackRelease() {
-        return trigger.AttackRelease();
-    }
-
-    public override void AttackCancel() {
-        trigger.AttackCancel();
     }
 
     private void OnTriggerEnter2D(Collider2D other) {

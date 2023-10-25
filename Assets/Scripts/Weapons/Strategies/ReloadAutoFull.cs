@@ -12,7 +12,7 @@ public class ReloadAutoFull : BaseStrategy, IReload
         rangedWeapon.OnAttack += ResetReloadTimer;
     }
 
-    public void ReloadUpdate()
+    public void Update()
     {
         if (reloadTimer > 0f) {
             reloadTimer -= Time.deltaTime;
@@ -23,6 +23,11 @@ public class ReloadAutoFull : BaseStrategy, IReload
                 rangedWeapon.ammo.Reload((int)rangedWeapon.statsWeapon[WeaponStatNames.ClipSize].GetValue());
             }
         }
+    }
+
+    public void ReloadUpdate()
+    {
+        
     }
 
     public float ReloadPercentage() {

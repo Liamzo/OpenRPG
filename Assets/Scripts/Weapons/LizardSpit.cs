@@ -20,34 +20,6 @@ public class LizardSpit : BaseWeaponHandler
         }
     }
 
-    public override float AttackHoldCost()
-    {
-        return 0f;
-    }
-    public override float AttackHold() {
-        if (attackTimer <= 0) {
-            //animator.SetTrigger("Attack");
-            GameObject go = Instantiate(bulletPrefab, bulletSpawn);
-            LizardBullet bullet = go.GetComponent<LizardBullet>();
-            bullet.weapon = this;
-            bullet.bulletSpeed = bulletSpeed;
-            bullet.direction = (transform.forward - bulletSpawn.position).normalized;
-            attackTimer = statsWeapon[WeaponStatNames.AttackTimer].GetValue();
-        }
-        return 0f;
-    }
-
-    public override float AttackReleaseCost()
-    {
-        return 0f;
-    }
-    public override float AttackRelease() {
-        return 0f;
-    }
-
-    public override void AttackCancel() {
-    }
-
 
     public override void AttackAnticipation() {
     }
