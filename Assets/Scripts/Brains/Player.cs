@@ -208,7 +208,7 @@ public class Player : BaseBrain
                             character.ChangeStamina(-cost);
                             character.objectStatusHandler.BlockRegainStamina(0.2f);
                         }
-                    } else if (leftMousePressedBefore) {
+                    } else if (rightMousePressedBefore) {
                         weapon.AttackCancel();
                         leftMousePressedBefore = false;
                     }
