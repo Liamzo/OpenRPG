@@ -9,7 +9,7 @@ public class FireRateNone : BaseStrategy, IFireRate
         return true;
     }
 
-    public void FiredShot()
+    public void DidAttack()
     {
         
     }

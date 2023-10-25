@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(ObjectHandler))]
 [RequireComponent(typeof(ItemHandler))]
-public abstract class BaseWeaponHandler : MonoBehaviour
+public class WeaponHandler : MonoBehaviour
 {
     public ItemHandler item {get; private set;}
 
@@ -15,15 +15,13 @@ public abstract class BaseWeaponHandler : MonoBehaviour
     public Transform _handle;
     public GameObject strategies;
 
-    bool holestered;
 
     // Events
     public event System.Action OnTrigger = delegate { };
-    public void CallOnTrigger() { OnAttack(); }
+    public void CallOnTrigger() { OnTrigger(); }
     
-
-    public event System.Action OnReload = delegate { };
-    public void CallOnReload() { OnAttack(); }
+    public event System.Action<int> OnReload = delegate { };
+    public void CallOnReload(int amount) { OnReload(amount); }
 
     public event System.Action OnAttack = delegate { };
     public void CallOnAttack() { OnAttack(); }
@@ -31,9 +29,11 @@ public abstract class BaseWeaponHandler : MonoBehaviour
     public ITrigger trigger;
     public IAttackType attackType;
     public IDamageType damageType;
-    public IAnticipation anticipation;
+    public IAnticipation anticipation {get; private set;}
 
     public Transform attackPoint;
+
+    public int _canAttack = 0; // 0 = Can Attack. Add 1 when blocking, -1 when allowing
 
     protected virtual void Awake() {
         item = GetComponent<ItemHandler>();
@@ -51,20 +51,33 @@ public abstract class BaseWeaponHandler : MonoBehaviour
     }
 
     public void Holster() {
-        holestered = true;
-        
         transform.localPosition = new Vector3(0,0,0);
         transform.localRotation = Quaternion.identity;
 
         item.objectHandler.spriteRenderer.enabled = false;
     }
     public void Unholster() {
-        holestered = false;
-
         transform.localPosition = new Vector3(0,0,0);
         transform.localRotation = Quaternion.identity;
 
         item.objectHandler.spriteRenderer.enabled = true;
+    }
+
+
+    public bool CanAttack() {
+        return _canAttack == 0;
+    }
+
+    public bool CanReload() {
+        IAmmo ammo = strategies.GetComponent<IAmmo>();
+
+        if (ammo == null) { return false; }
+
+        if (ammo.GetCurrentAmmo() < ammo.GetMaxAmmo()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public float AttackHoldCost()

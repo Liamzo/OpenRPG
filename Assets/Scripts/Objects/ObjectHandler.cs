@@ -27,8 +27,8 @@ public class ObjectHandler : MonoBehaviour
 
 
     // Events
-    public event System.Action<BaseWeaponHandler, CharacterHandler> OnGetHit = delegate { };
-    public event System.Action<float, BaseWeaponHandler, CharacterHandler> OnTakeDamage = delegate { };
+    public event System.Action<WeaponHandler, CharacterHandler> OnGetHit = delegate { };
+    public event System.Action<float, WeaponHandler, CharacterHandler> OnTakeDamage = delegate { };
     public event System.Action<ObjectHandler> OnDeath = delegate { };
 
 
@@ -65,7 +65,7 @@ public class ObjectHandler : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth + amount, 0f, statsObject[ObjectStatNames.Health].GetValue());
     }
 
-    public virtual void TakeDamge (float damage, BaseWeaponHandler weapon, CharacterHandler damageDealer) {
+    public virtual void TakeDamge (float damage, WeaponHandler weapon, CharacterHandler damageDealer) {
         currentHealth = Mathf.Clamp(currentHealth - damage, 0f, statsObject[ObjectStatNames.Health].GetValue());
 
         GameObject go = ObjectPoolManager.instance.GetPooledObject(PoolIdentifiers.DamageNumber);
@@ -102,7 +102,7 @@ public class ObjectHandler : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void GetHit(BaseWeaponHandler weapon, CharacterHandler damageDealer) {
+    public void GetHit(WeaponHandler weapon, CharacterHandler damageDealer) {
         // // Check for Dodge
         // Stat dodgeChance;
         // if (statsObject.TryGetValue(StatNames.DodgeValue, out dodgeChance)) {

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IFireRate {
     public bool CanFire();
-    public void FiredShot();
+    public void DidAttack();
 }

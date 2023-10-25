@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LizardSpit : BaseWeaponHandler
+public class LizardSpit : WeaponHandler
 {
     float attackTimer = 0f;
 

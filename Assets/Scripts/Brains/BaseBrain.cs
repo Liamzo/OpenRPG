@@ -32,7 +32,7 @@ public class BaseBrain : MonoBehaviour
 
     }
 
-    protected virtual void OnTakeDamage(float damage, BaseWeaponHandler weapon, CharacterHandler damageDealer) {
+    protected virtual void OnTakeDamage(float damage, WeaponHandler weapon, CharacterHandler damageDealer) {
         _animator.SetTrigger("Hit");
         GameObject bloodEffect = ObjectPoolManager.instance.GetPooledObject(PoolIdentifiers.BloodEffect);
         bloodEffect.transform.position = transform.position;

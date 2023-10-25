@@ -12,10 +12,10 @@ public class AnticipationSheen : IAnticipation
         float timer = 0f;
         while (timer <= 1f) {
             timer += Time.deltaTime * 5f; // 0.2 secs
-            meleeWeapon.item.objectHandler.spriteRenderer.material.SetFloat("_Sheen", Mathf.Lerp(0f, -2f, timer));
+            weapon.item.objectHandler.spriteRenderer.material.SetFloat("_Sheen", Mathf.Lerp(0f, -2f, timer));
             yield return null;
         }
 
-        meleeWeapon.item.objectHandler.spriteRenderer.material.SetFloat("_Sheen", 0f);
+        weapon.item.objectHandler.spriteRenderer.material.SetFloat("_Sheen", 0f);
     }
 }

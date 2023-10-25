@@ -6,8 +6,8 @@ public class TriggerFullAuto : BaseStrategy, ITrigger
 {
     public float AttackHoldCost()
     {
-        if ((rangedWeapon.ammo.GetCurrentAmmo() >= rangedWeapon.ammo.GetUseCost()) && rangedWeapon.fireRate.CanFire()) {
-            return rangedWeapon.statsWeapon[WeaponStatNames.StaminaCostHold].GetValue();
+        if (weapon.CanAttack()) {
+            return weapon.statsWeapon[WeaponStatNames.StaminaCostHold].GetValue();
         }
 
         return 0f;
@@ -15,27 +15,25 @@ public class TriggerFullAuto : BaseStrategy, ITrigger
 
     public float AttackHold()
     {
-        if ((rangedWeapon.ammo.GetCurrentAmmo() >= rangedWeapon.ammo.GetUseCost()) && rangedWeapon.fireRate.CanFire()) {
+        if (weapon.CanAttack()) {
             GameManager.instance.ShakeCamera(3.0f, 0.15f);
 
-            rangedWeapon.attackType.DoAttack();
-            rangedWeapon.ammo.UseAmmo();
-            rangedWeapon.fireRate.FiredShot();
-            rangedWeapon.item.owner.GetComponent<Physicsable>().Knock(transform.up, rangedWeapon.statsWeapon[WeaponStatNames.SelfKnockForce].GetValue());
+            weapon.CallOnTrigger();
+            weapon.item.owner.GetComponent<Physicsable>().Knock(transform.up, weapon.statsWeapon[WeaponStatNames.SelfKnockForce].GetValue());
 
-            return rangedWeapon.statsWeapon[WeaponStatNames.StaminaCostHold].GetValue();
+            return weapon.statsWeapon[WeaponStatNames.StaminaCostHold].GetValue();
         }
         return 0f;
     }
 
     public float AttackReleaseCost()
     {
-         return rangedWeapon.statsWeapon[WeaponStatNames.StaminaCostEnd].GetValue();
+         return weapon.statsWeapon[WeaponStatNames.StaminaCostEnd].GetValue();
     }
 
     public float AttackRelease()
     {
-        return rangedWeapon.statsWeapon[WeaponStatNames.StaminaCostEnd].GetValue();
+        return weapon.statsWeapon[WeaponStatNames.StaminaCostEnd].GetValue();
     }
 
     public void AttackCancel()

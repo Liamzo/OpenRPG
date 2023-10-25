@@ -6,6 +6,6 @@ public class DamageTypeStandard : BaseStrategy, IDamageType
 {
     public void DealDamage(ObjectHandler target)
     {
-        target.GetHit(meleeWeapon, (CharacterHandler) meleeWeapon.item.owner);
+        target.GetHit(weapon, (CharacterHandler) weapon.item.owner);
     }
 }

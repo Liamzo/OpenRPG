@@ -4,23 +4,22 @@ using UnityEngine;
 
 public class AttckTypeSlash : BaseStrategy, IAttackType
 {
-    protected override void Awake() {
-        base.Awake();
-        
-        meleeWeapon.OnAttack += SpawnSlashAnimEvent;
+    private void Start() {
+        weapon.OnTrigger += DoAttack;
+        weapon.OnAttack += SpawnSlashAnimEvent;
     }
 
     public void DoAttack()
     {
-        meleeWeapon.animator.SetTrigger("Attack");
+        weapon.animator.SetTrigger("Attack");
         //attackTimer = statsWeapon[WeaponStatNames.AttackTimer].GetValue(); // Do fire rate for melee
     }
 
     public void SpawnSlashAnimEvent() {
         GameObject go = ObjectPoolManager.instance.GetPooledObject(PoolIdentifiers.WeaponSwing);
-        go.transform.position = meleeWeapon.attackPoint.transform.position;
+        go.transform.position = weapon.attackPoint.transform.position;
         //go.transform.parent = meleeWeapon.attackPoint; // Decide which feels better. Stay in place or follow sword
-        go.transform.up = meleeWeapon.item.owner.GetComponent<BaseBrain>().lookingDirection;
+        go.transform.up = weapon.item.owner.GetComponent<BaseBrain>().lookingDirection;
 
         go.SetActive(true);
     }

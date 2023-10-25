@@ -6,7 +6,7 @@ public class BasicBullet : MonoBehaviour
 {
     public float bulletSpeed;
     public Vector3 direction;
-    public BaseWeaponHandler weapon;
+    public WeaponHandler weapon;
 
     public float bulletLifeTime;
     float bulletLifeTimer;

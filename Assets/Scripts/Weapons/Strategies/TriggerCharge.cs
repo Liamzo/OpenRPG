@@ -14,7 +14,7 @@ public class TriggerCharge : BaseStrategy, ITrigger
             chargeTimer += Time.deltaTime;
 
             if (chargeTimer > 1f) {
-                meleeWeapon.AttackAnticipation();
+                weapon.AttackAnticipation();
                 fullyCharged = true;
             }
         }
@@ -23,38 +23,38 @@ public class TriggerCharge : BaseStrategy, ITrigger
 
     public float AttackHoldCost()
     {
-        return meleeWeapon.statsWeapon[WeaponStatNames.StaminaCostHold].GetValue() * Time.deltaTime;
+        return weapon.statsWeapon[WeaponStatNames.StaminaCostHold].GetValue() * Time.deltaTime;
     }
 
     public float AttackHold()
     {
         isCharging = true;
-        meleeWeapon.animator.SetBool("Charging", true);
+        weapon.animator.SetBool("Charging", true);
         return AttackHoldCost();
     }
 
     public float AttackReleaseCost()
     {
-         return meleeWeapon.statsWeapon[WeaponStatNames.StaminaCostEnd].GetValue();
+         return weapon.statsWeapon[WeaponStatNames.StaminaCostEnd].GetValue();
     }
 
     public float AttackRelease()
     {
-        meleeWeapon.animator.SetBool("Charging", false);
+        weapon.animator.SetBool("Charging", false);
         isCharging = false;
         fullyCharged = false;
         chargeTimer = 0f;
         
-        meleeWeapon.attackType.DoAttack();
+        weapon.CallOnTrigger();
 
-        meleeWeapon.item.owner.GetComponent<Physicsable>().Knock(-transform.up, meleeWeapon.statsWeapon[WeaponStatNames.SelfKnockForce].GetValue());
+        weapon.item.owner.GetComponent<Physicsable>().Knock(-transform.up, weapon.statsWeapon[WeaponStatNames.SelfKnockForce].GetValue());
 
         return AttackReleaseCost();
     }
 
     public void AttackCancel()
     {
-        meleeWeapon.animator.SetBool("Charging", false);
+        weapon.animator.SetBool("Charging", false);
         isCharging = false;
         fullyCharged = false;
         chargeTimer = 0f;

@@ -6,7 +6,7 @@ public class LizardBullet : MonoBehaviour
 {
     public float bulletSpeed;
     public Vector3 direction;
-    public BaseWeaponHandler weapon;
+    public WeaponHandler weapon;
 
     public float bulletLifeTime;
     float bulletLifeTimer;
@@ -28,6 +28,8 @@ public class LizardBullet : MonoBehaviour
         ObjectHandler objectHandler;
 
         if (other.TryGetComponent<ObjectHandler>(out objectHandler)) {
+            if (objectHandler == weapon.item.owner) return;
+
             objectHandler.GetHit(weapon, (CharacterHandler)weapon.item.owner);
         }
 

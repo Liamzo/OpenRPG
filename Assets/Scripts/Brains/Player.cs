@@ -166,7 +166,7 @@ public class Player : BaseBrain
     void WeaponControls() {
         if (_pointerOverUI == true) return;
 
-        BaseWeaponHandler weapon = equipmentHandler.rightMeleeSpot.weapon;
+        WeaponHandler weapon = equipmentHandler.rightMeleeSpot.weapon;
 
         if (InputManager.GetInstance().GetRightMousePressed()) {
             // Ranged

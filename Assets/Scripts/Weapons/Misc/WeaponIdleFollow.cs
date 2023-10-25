@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeaponIdleFollow : MonoBehaviour
 {
-    BaseWeaponHandler weaponHandler;
+    WeaponHandler weaponHandler;
 
     Vector3 prevPosition;
     float prevAngle;
@@ -14,7 +14,7 @@ public class WeaponIdleFollow : MonoBehaviour
     float angleVelocity = 0.0f;
 
     private void Start() {
-        weaponHandler = GetComponent<BaseWeaponHandler>();
+        weaponHandler = GetComponent<WeaponHandler>();
     }
 
     void LateUpdate() {

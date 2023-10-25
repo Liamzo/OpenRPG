@@ -39,7 +39,7 @@ public class CharacterHandlerUI : CharacterHandler
     }
 
 
-    public override void TakeDamge (float damage, BaseWeaponHandler weapon, CharacterHandler damageDealer) {
+    public override void TakeDamge (float damage, WeaponHandler weapon, CharacterHandler damageDealer) {
         base.TakeDamge(damage, weapon, damageDealer);
 
         UpdateHealthUI();

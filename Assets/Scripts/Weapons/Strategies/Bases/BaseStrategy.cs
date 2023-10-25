@@ -5,13 +5,11 @@ using UnityEngine;
 
 public abstract class BaseStrategy : MonoBehaviour
 {
-    protected RangedWeapon rangedWeapon;
-    protected MeleeWeapon meleeWeapon;
+    protected WeaponHandler weapon;
 
     // Start is called before the first frame update
     protected virtual void Awake()
     {
-        transform.parent.TryGetComponent<RangedWeapon>(out rangedWeapon);
-        transform.parent.TryGetComponent<MeleeWeapon>(out meleeWeapon);
+        weapon = transform.parent.GetComponent<WeaponHandler>();
     }
 }

@@ -8,7 +8,11 @@ public class EquipmentHandlerUI : EquipmentHandler
     public GameObject bulletUIPrefab;
     List<GameObject> bulletUIs = new List<GameObject>();
     public RectTransform bulletUIHolder;
-    public RangedWeapon currentRangedWeapon;
+
+    public WeaponHandler currentRangedWeapon;
+    IAmmo currentRangedAmmo;
+    IReload currentRangedReload;
+
     float rangedWeaponPrevAmmo;
     Color usedAmmoColor = new Color(1,1,1,0.5f);
     public Slider reloadBar;
@@ -21,12 +25,12 @@ public class EquipmentHandlerUI : EquipmentHandler
     // Update is called once per frame
     void Update()
     {
-        if (currentRangedWeapon == null) { return; }
+        if (currentRangedWeapon == null || reloadBarTransform.gameObject.activeSelf == false) { return; }
         
         UpdatedReloadSlider();
         
 
-        if (rangedWeaponPrevAmmo != currentRangedWeapon.ammo.GetCurrentAmmo()) {
+        if (rangedWeaponPrevAmmo != currentRangedAmmo.GetCurrentAmmo()) {
             UpdateAmmoCount();
         }
     }
@@ -44,7 +48,16 @@ public class EquipmentHandlerUI : EquipmentHandler
                 return;
             }
 
-            currentRangedWeapon = newItem.GetComponent<RangedWeapon>();
+            currentRangedWeapon = newItem.GetComponent<WeaponHandler>();
+            currentRangedAmmo = currentRangedWeapon.strategies.GetComponent<IAmmo>();
+            currentRangedReload = currentRangedWeapon.strategies.GetComponent<IReload>();
+
+            if (currentRangedAmmo == null) {
+                reloadBarTransform.gameObject.SetActive(false);
+                return;
+            } else {
+                reloadBarTransform.gameObject.SetActive(true);
+            }
 
             for (int i = 0; i < currentRangedWeapon.statsWeapon[WeaponStatNames.ClipSize].GetValue(); i++) {
                 GameObject go = Instantiate(bulletUIPrefab, bulletUIHolder);
@@ -54,31 +67,31 @@ public class EquipmentHandlerUI : EquipmentHandler
 
             UpdatedReloadSlider();
 
-            rangedWeaponPrevAmmo = currentRangedWeapon.ammo.GetCurrentAmmo();
+            rangedWeaponPrevAmmo = currentRangedAmmo.GetCurrentAmmo();
         }
     }
 
     void UpdatedReloadSlider() {
         reloadBarTransform.sizeDelta = new Vector2(bulletUIHolder.sizeDelta.x, reloadBarTransform.sizeDelta.y);
 
-        if (currentRangedWeapon.reload.ReloadPercentage() == 1f) {
+        if (currentRangedReload.ReloadPercentage() == 1f) {
             reloadBar.value = 0f;
         } else {
-            reloadBar.value = currentRangedWeapon.reload.ReloadPercentage();
+            reloadBar.value = currentRangedReload.ReloadPercentage();
         }
     }
 
     void UpdateAmmoCount() {
-        if (rangedWeaponPrevAmmo < currentRangedWeapon.ammo.GetCurrentAmmo()) {
-            for (int i = Mathf.Max((int)rangedWeaponPrevAmmo - 1, 0); i < currentRangedWeapon.ammo.GetCurrentAmmo(); i++) {
+        if (rangedWeaponPrevAmmo < currentRangedAmmo.GetCurrentAmmo()) {
+            for (int i = Mathf.Max((int)rangedWeaponPrevAmmo - 1, 0); i < currentRangedAmmo.GetCurrentAmmo(); i++) {
                 bulletUIs[i].GetComponent<Image>().color = Color.white;
             }
         } else {
-            for (int i = (int)rangedWeaponPrevAmmo - 1; i >= currentRangedWeapon.ammo.GetCurrentAmmo(); i--) {
+            for (int i = (int)rangedWeaponPrevAmmo - 1; i >= currentRangedAmmo.GetCurrentAmmo(); i--) {
                 bulletUIs[i].GetComponent<Image>().color = usedAmmoColor;
             }
         }
 
-        rangedWeaponPrevAmmo = currentRangedWeapon.ammo.GetCurrentAmmo();
+        rangedWeaponPrevAmmo = currentRangedAmmo.GetCurrentAmmo();
     }
 }

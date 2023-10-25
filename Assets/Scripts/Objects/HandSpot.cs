@@ -7,7 +7,7 @@ public class HandSpot : MonoBehaviour
 {
     Transform owner;
     public float offset;
-    public BaseWeaponHandler weapon;
+    public WeaponHandler weapon;
 
     // Start is called before the first frame update
     void Start()

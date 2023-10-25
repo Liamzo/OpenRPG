@@ -37,7 +37,7 @@ public class Physicsable : MonoBehaviour
         }
     }
 
-    public void KnockBack(float damage, BaseWeaponHandler weapon, CharacterHandler damageDealer) {
+    public void KnockBack(float damage, WeaponHandler weapon, CharacterHandler damageDealer) {
         Vector3 dir = (transform.position - weapon.item.owner.transform.position).normalized;
 
         // Calculate KnockBack Force

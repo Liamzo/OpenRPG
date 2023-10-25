@@ -63,7 +63,7 @@ public class EquipmentHandler : MonoBehaviour
 
         if (equipmentSlot == EquipmentSlot.RightHand || equipmentSlot == EquipmentSlot.RightRangedWeapon) {
             newItem.transform.parent = rightMeleeSpot.transform;
-            BaseWeaponHandler weapon = newItem.GetComponent<BaseWeaponHandler>();
+            WeaponHandler weapon = newItem.GetComponent<WeaponHandler>();
 
             if ((meleeDrawn && equipmentSlot == EquipmentSlot.RightHand) || (!meleeDrawn && equipmentSlot == EquipmentSlot.RightRangedWeapon)) {
                 rightMeleeSpot.weapon = weapon;
@@ -73,7 +73,7 @@ public class EquipmentHandler : MonoBehaviour
             }
         } else if (equipmentSlot == EquipmentSlot.LeftHand || equipmentSlot == EquipmentSlot.LeftRangedWeapon) {
             newItem.transform.parent = leftMeleeSpot.transform;
-            BaseWeaponHandler weapon = newItem.GetComponent<BaseWeaponHandler>();
+            WeaponHandler weapon = newItem.GetComponent<WeaponHandler>();
             
             if ((meleeDrawn && equipmentSlot == EquipmentSlot.LeftHand) || (!meleeDrawn && equipmentSlot == EquipmentSlot.LeftRangedWeapon)) {
                 leftMeleeSpot.weapon = weapon;
@@ -151,42 +151,42 @@ public class EquipmentHandler : MonoBehaviour
         if (melee == true) {
             ItemHandler weapon = currentEquipment[(int)EquipmentSlot.RightHand];
             if (weapon != null) {
-                rightMeleeSpot.weapon = weapon.GetComponent<BaseWeaponHandler>();
+                rightMeleeSpot.weapon = weapon.GetComponent<WeaponHandler>();
                 rightMeleeSpot.weapon.Unholster();
             }
             weapon = currentEquipment[(int)EquipmentSlot.LeftHand];
             if (weapon != null) {
-                leftMeleeSpot.weapon = weapon.GetComponent<BaseWeaponHandler>();
+                leftMeleeSpot.weapon = weapon.GetComponent<WeaponHandler>();
                 leftMeleeSpot.weapon.Unholster();
             }
 
             weapon = currentEquipment[(int)EquipmentSlot.RightRangedWeapon];
             if (weapon != null) {
-                weapon.GetComponent<BaseWeaponHandler>().Holster();
+                weapon.GetComponent<WeaponHandler>().Holster();
             }
             weapon = currentEquipment[(int)EquipmentSlot.LeftRangedWeapon];
             if (weapon != null) {
-                weapon.GetComponent<BaseWeaponHandler>().Holster();
+                weapon.GetComponent<WeaponHandler>().Holster();
             }
         } else {
             ItemHandler weapon = currentEquipment[(int)EquipmentSlot.RightRangedWeapon];
             if (weapon != null) {
-                rightMeleeSpot.weapon = weapon.GetComponent<BaseWeaponHandler>();
+                rightMeleeSpot.weapon = weapon.GetComponent<WeaponHandler>();
                 rightMeleeSpot.weapon.Unholster();
             }
             weapon = currentEquipment[(int)EquipmentSlot.LeftRangedWeapon];
             if (weapon != null) {
-                leftMeleeSpot.weapon = weapon.GetComponent<BaseWeaponHandler>();
+                leftMeleeSpot.weapon = weapon.GetComponent<WeaponHandler>();
                 leftMeleeSpot.weapon.Unholster();
             }
 
             weapon = currentEquipment[(int)EquipmentSlot.RightHand];
             if (weapon != null) {
-                weapon.GetComponent<BaseWeaponHandler>().Holster();
+                weapon.GetComponent<WeaponHandler>().Holster();
             }
             weapon = currentEquipment[(int)EquipmentSlot.LeftHand];
             if (weapon != null) {
-                weapon.GetComponent<BaseWeaponHandler>().Holster();
+                weapon.GetComponent<WeaponHandler>().Holster();
             }
         }
     }
