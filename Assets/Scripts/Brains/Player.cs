@@ -19,8 +19,6 @@ public class Player : BaseBrain
     InteractionHandler interactionHighlighted;
 
     [Header("Controls")]
-    private bool leftMousePressedBefore = false;
-    private bool rightMousePressedBefore = false;
     private bool wasAttacking = false;
 
 

@@ -8,17 +8,6 @@ using UnityEngine.InputSystem;
 
 public class MeleeWeapon : BaseWeaponHandler
 {
-    public ITrigger trigger;
-    public IAttackType attackType;
-    public IDamageType damageType;
-
-
-    // Events
-    public event System.Action OnAttack = delegate { };
-    public void CallOnAttack() {
-        OnAttack();
-    }
-
     protected override void Awake()
     {
         base.Awake();

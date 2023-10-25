@@ -4,21 +4,9 @@ using UnityEngine;
 
 public class RangedWeapon : BaseWeaponHandler
 {
-    public Transform attackPoint;
-
-    public ITrigger trigger;
-    public IAttackType attackType;
     public IAmmo ammo;
     public IReload reload;
     public IFireRate fireRate;
-    public IDamageType damageType;
-
-
-    // Events
-    public event System.Action OnAttack = delegate { };
-    public void CallOnAttack() {
-        OnAttack();
-    }
 
 
     protected override void Awake()

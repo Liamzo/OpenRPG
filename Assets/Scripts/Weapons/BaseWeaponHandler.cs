@@ -26,6 +26,18 @@ public abstract class BaseWeaponHandler : MonoBehaviour
     float smoothTimeAngle = 0.2f;
     float angleVelocity = 0.0f;
 
+    // Events
+    public event System.Action OnAttack = delegate { };
+    public void CallOnAttack() {
+        OnAttack();
+    }
+
+    public ITrigger trigger;
+    public IAttackType attackType;
+    public IDamageType damageType;
+
+    public Transform attackPoint;
+
     protected virtual void Awake() {
         item = GetComponent<ItemHandler>();
 
