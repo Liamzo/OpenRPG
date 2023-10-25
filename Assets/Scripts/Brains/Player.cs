@@ -56,104 +56,24 @@ public class Player : BaseBrain
     {
         _pointerOverUI = EventSystem.current.IsPointerOverGameObject();
 
-
-        // Dodging
         if (dodgeCDTimer > 0.0f) {
             dodgeCDTimer -= Time.deltaTime;
         }
 
-        if (InputManager.GetInstance().GetDashPressed() && dodgeTimer <= 0.0f && dodgeCDTimer <= 0.0f && character.currentStamina >= dodgeStaminaCost) {
-            // Start dodge
-            wasDodging = true;
-
-            MovementControls();
-
-            if (movement == Vector3.zero) {
-                movement = ((Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - (Vector2)transform.position).normalized * character.statsCharacter[CharacterStatNames.MovementSpeed].GetValue();
-            }
-
-            movement *= dodgeSpeedMulti;
-
-            _animator.SetBool("Rolling", true);
-            _animator.SetTrigger("Roll");
-
-            character.objectStatusHandler.hasMovementControls = false;
-            character.objectStatusHandler.isDodging = true;
-            character.ChangeStamina(-dodgeStaminaCost);
-            character.objectStatusHandler.BlockRegainStamina(0.5f);
-
-            footSteps.Emit(25);
-        } 
-        
-        if (dodgeTimer > 0.0f || wasDodging == true) {
-            // Do: Lerp between cur and max speed and back again
-            // Too hard to make feel better than simple option for now
-            // if (dodgeTimer < dodgeDuration / 2.0f) {
-            //     movement = dodgeStartingMovement * Mathf.Lerp(1f, dodgeSpeedMulti, dodgeTimer*2);
-            // } else {
-            //     movement = dodgeStartingMovement * Mathf.Lerp(dodgeSpeedMulti, 1f, (dodgeTimer - (dodgeDuration / 2.0f)) * 2);
-            // }
-
-            if (wasDodging) {
-                if (InputManager.GetInstance().GetDashPressed()) {
-                    dodgeTimer += Time.deltaTime * 0.5f;
-                } else {
-                    wasDodging = false;
-                    dodgeTimer += Time.deltaTime;
-                }
-            } else {
-                dodgeTimer += Time.deltaTime;
-            }
-
-            if (dodgeTimer >= dodgeDuration) {
-                wasDodging = false;
-                dodgeTimer = 0.0f;
-                _animator.SetBool("Rolling", false);
-                character.objectStatusHandler.hasMovementControls = true;
-                character.objectStatusHandler.isDodging = false;
-
-                dodgeCDTimer = dodgeCDDuration;
-
-                footSteps.Emit(25);
-            }
-        }
-
-
-        // Interactions
-        float closest = 3f;
-        InteractionHandler closestObject = null;
-        foreach (Collider2D col in Physics2D.OverlapCircleAll(transform.position, 2f)) {
-            InteractionHandler interactionHandler = col.GetComponentInParent<InteractionHandler>();
-
-            if (interactionHandler == null) continue;
-
-            ItemHandler item = col.GetComponentInParent<ItemHandler>();
-            if (item?.owner != null) continue;
-            
-
-            float distance = Vector3.Distance(interactionHandler.transform.position, transform.position);
-
-            if (distance < closest) {
-                closest = distance;
-                closestObject = interactionHandler;
-            }
-        }
-
-        if (closestObject != interactionHighlighted) {
-            interactionHighlighted?.Unhighlight();
-            closestObject?.Highlight();
-
-            interactionHighlighted = closestObject;
-        }
-
-
         // Controls
+        if (character.objectStatusHandler.HasMovementControls())
+            DodgeControls();
+
         if (character.objectStatusHandler.HasMovementControls())
             MovementControls();
 
         if (character.objectStatusHandler.HasControls()) {
+            FindClosestInteractable();
             InteractionControls();
         }
+
+        if (dodgeTimer > 0.0f || wasDodging == true)
+            DodgeUpdate();
     }
 
     void MovementControls() {
@@ -176,6 +96,62 @@ public class Player : BaseBrain
         SetLookingDirection(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()));
     }
 
+    void DodgeControls() {
+        if (InputManager.GetInstance().GetDashPressed() && dodgeTimer <= 0.0f && dodgeCDTimer <= 0.0f && character.currentStamina >= dodgeStaminaCost) {
+            // Start dodge
+            wasDodging = true;
+
+            MovementControls();
+
+            if (movement == Vector3.zero) {
+                movement = ((Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - (Vector2)transform.position).normalized * character.statsCharacter[CharacterStatNames.MovementSpeed].GetValue();
+            }
+
+            movement *= dodgeSpeedMulti;
+
+            _animator.SetBool("Rolling", true);
+            _animator.SetTrigger("Roll");
+
+            character.objectStatusHandler.hasMovementControls = false;
+            character.objectStatusHandler.isDodging = true;
+            character.ChangeStamina(-dodgeStaminaCost);
+            character.objectStatusHandler.BlockRegainStamina(0.5f);
+
+            footSteps.Emit(25);
+        } 
+    }
+    void DodgeUpdate() {
+        // Do: Lerp between cur and max speed and back again
+        // Too hard to make feel better than simple option for now
+        // if (dodgeTimer < dodgeDuration / 2.0f) {
+        //     movement = dodgeStartingMovement * Mathf.Lerp(1f, dodgeSpeedMulti, dodgeTimer*2);
+        // } else {
+        //     movement = dodgeStartingMovement * Mathf.Lerp(dodgeSpeedMulti, 1f, (dodgeTimer - (dodgeDuration / 2.0f)) * 2);
+        // }
+
+        if (wasDodging) {
+            if (InputManager.GetInstance().GetDashPressed()) {
+                dodgeTimer += Time.deltaTime * 0.5f;
+            } else {
+                wasDodging = false;
+                dodgeTimer += Time.deltaTime;
+            }
+        } else {
+            dodgeTimer += Time.deltaTime;
+        }
+
+        if (dodgeTimer >= dodgeDuration) {
+            wasDodging = false;
+            dodgeTimer = 0.0f;
+            _animator.SetBool("Rolling", false);
+            character.objectStatusHandler.hasMovementControls = true;
+            character.objectStatusHandler.isDodging = false;
+
+            dodgeCDTimer = dodgeCDDuration;
+
+            footSteps.Emit(25);
+        }
+    }
 
     void InteractionControls() {
         if (_pointerOverUI == false) {
@@ -297,6 +273,34 @@ public class Player : BaseBrain
             footEmission.rateOverTime = 0f;
         } else {
             footEmission.rateOverTime = 20f;
+        }
+    }
+
+    void FindClosestInteractable() {
+        float closest = 3f;
+        InteractionHandler closestObject = null;
+        foreach (Collider2D col in Physics2D.OverlapCircleAll(transform.position, 2f)) {
+            InteractionHandler interactionHandler = col.GetComponentInParent<InteractionHandler>();
+
+            if (interactionHandler == null) continue;
+
+            ItemHandler item = col.GetComponentInParent<ItemHandler>();
+            if (item?.owner != null) continue;
+            
+
+            float distance = Vector3.Distance(interactionHandler.transform.position, transform.position);
+
+            if (distance < closest) {
+                closest = distance;
+                closestObject = interactionHandler;
+            }
+        }
+
+        if (closestObject != interactionHighlighted) {
+            interactionHighlighted?.Unhighlight();
+            closestObject?.Highlight();
+
+            interactionHighlighted = closestObject;
         }
     }
 
