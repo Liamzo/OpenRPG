@@ -10,9 +10,9 @@ public class Player : BaseBrain
 {
     private static Player instance; // Can be only 1 player
 
-    EquipmentHandler equipmentHandler;
+    private EquipmentHandler equipmentHandler;
 
-    bool _pointerOverUI;
+    private bool _pointerOverUI;
 
     [Header("Interactions")]
     InteractionHandler interactingWith;
