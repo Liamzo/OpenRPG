@@ -21,6 +21,7 @@ public class Player : BaseBrain
     [Header("Controls")]
     private bool leftMousePressedBefore = false;
     private bool rightMousePressedBefore = false;
+    private bool wasAttacking = false;
 
 
     [Header("Dodging")]
@@ -68,6 +69,7 @@ public class Player : BaseBrain
             MovementControls();
 
         if (character.objectStatusHandler.HasControls()) {
+            WeaponControls();
             FindClosestInteractable();
             InteractionControls();
         }
@@ -154,101 +156,6 @@ public class Player : BaseBrain
     }
 
     void InteractionControls() {
-        if (_pointerOverUI == false) {
-            // Attacking
-            if (InputManager.GetInstance().GetRightMousePressed()) {
-                // Ranged
-                equipmentHandler.ToggleMeleeRanged(false);
-
-                if (transform.position.x > Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()).x) {
-                    character.spriteRenderer.flipX = true;
-                } else {
-                    character.spriteRenderer.flipX = false;
-                }
-
-                BaseWeaponHandler weapon = character.GetComponent<EquipmentHandler>().rightMeleeSpot.weapon;
-
-                if (weapon == null) return;
-
-                float cost = weapon.statsWeapon[WeaponStatNames.StaminaCostAim].GetValue() * Time.deltaTime;
-                character.ChangeStamina(-cost);
-                character.objectStatusHandler.BlockRegainStamina(0f);
-                movement *= 0.5f; // TODO: Replace with weapon stat
-
-                if (InputManager.GetInstance().GetLeftMousePressed()) {
-                    rightMousePressedBefore = true;
-                    // Attack with ranged weapon
-                    if (character.currentStamina >= weapon.AttackHoldCost()) {
-                        cost = weapon.AttackHold();
-                        if (cost != 0f) {
-                            character.ChangeStamina(-cost);
-                            character.objectStatusHandler.BlockRegainStamina(0.2f);
-                        }
-                    } else if (rightMousePressedBefore) {
-                        weapon.AttackCancel();
-                        leftMousePressedBefore = false;
-                    }
-                } else {
-                    if (rightMousePressedBefore) {
-                        if (character.currentStamina >= weapon.AttackReleaseCost()) {
-                            cost = weapon.AttackRelease();
-                            if (cost != 0f) {
-                                character.ChangeStamina(-cost);
-                                character.objectStatusHandler.BlockRegainStamina(0.2f);
-                            }
-                        } else {
-                            weapon.AttackCancel();
-                        }
-                    }
-
-                    rightMousePressedBefore = false;
-                }
-            } else {
-                // Melee
-                equipmentHandler.ToggleMeleeRanged(true);
-
-                BaseWeaponHandler weapon = character.GetComponent<EquipmentHandler>().rightMeleeSpot.weapon;
-
-                if (weapon == null) return;
-
-                if (InputManager.GetInstance().GetLeftMousePressed()) {
-                    if (character.currentStamina >= weapon.AttackHoldCost()) {
-                        leftMousePressedBefore = true;
-
-                        float cost = weapon.AttackHold();
-                        if (cost != 0f) {
-                            character.ChangeStamina(-cost);
-                            character.objectStatusHandler.BlockRegainStamina(0.2f);
-                        }
-                    } else if (leftMousePressedBefore) {
-                        weapon.AttackCancel();
-                        leftMousePressedBefore = false;
-                    }
-                } else {
-                    if (leftMousePressedBefore == true) {
-                        if (character.currentStamina >= weapon.AttackReleaseCost()) {
-                            float cost = weapon.AttackRelease();
-                            if (cost != 0f) {
-                                character.ChangeStamina(-cost);
-                                character.objectStatusHandler.BlockRegainStamina(0.2f);
-                            }
-
-                            if (transform.position.x > Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()).x) {
-                                character.spriteRenderer.flipX = true;
-                            } else {
-                                character.spriteRenderer.flipX = false;
-                            }
-                        } else {
-                            weapon.AttackCancel();
-                        }
-                    }
-
-                    leftMousePressedBefore = false;
-                }
-            }
-        }
-
-        
         if (InputManager.GetInstance().GetInteractPressed()) {
             OnInteract();
         }
@@ -256,6 +163,91 @@ public class Player : BaseBrain
         if (InputManager.GetInstance().GetTabPressed()) {
             OnTab();
         }
+    }
+
+    void WeaponControls() {
+        if (_pointerOverUI == true) return;
+
+        BaseWeaponHandler weapon = equipmentHandler.rightMeleeSpot.weapon;
+
+        if (InputManager.GetInstance().GetRightMousePressed()) {
+            // Ranged
+            // If switching equipment and previously attacking, cancel that attack
+            if (equipmentHandler.wasMeleeDrawn && wasAttacking) {
+                weapon.AttackCancel();
+            }
+
+            equipmentHandler.ToggleMeleeRanged(false);
+
+            if (transform.position.x > Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()).x) {
+                character.spriteRenderer.flipX = true;
+            } else {
+                character.spriteRenderer.flipX = false;
+            }
+
+            weapon = equipmentHandler.rightMeleeSpot.weapon;
+
+            if (weapon == null) return;
+
+            float cost = weapon.statsWeapon[WeaponStatNames.StaminaCostAim].GetValue() * Time.deltaTime;
+            character.ChangeStamina(-cost);
+            character.objectStatusHandler.BlockRegainStamina(0f);
+            movement *= 0.5f; // TODO: Replace with weapon stat
+
+        } else {
+            // Melee
+            if (equipmentHandler.wasMeleeDrawn == false && wasAttacking) {
+                weapon.AttackCancel();
+            }
+            equipmentHandler.ToggleMeleeRanged(true);
+
+            weapon = equipmentHandler.rightMeleeSpot.weapon;
+
+            if (weapon == null) return;
+        }
+
+        if (InputManager.GetInstance().GetLeftMousePressed()) {
+            if (character.currentStamina >= weapon.AttackHoldCost()) {
+                wasAttacking = true;
+
+                float cost = weapon.AttackHold();
+                if (cost != 0f) {
+                    character.ChangeStamina(-cost);
+                    character.objectStatusHandler.BlockRegainStamina(0.2f);
+                }
+
+                if (transform.position.x > Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()).x) {
+                    character.spriteRenderer.flipX = true;
+                } else {
+                    character.spriteRenderer.flipX = false;
+                }
+            } else if (wasAttacking) {
+                weapon.AttackCancel();
+                wasAttacking = false;
+            }
+        } else {
+            if (wasAttacking) {
+                if (character.currentStamina >= weapon.AttackReleaseCost()) {
+                    float cost = weapon.AttackRelease();
+                    if (cost != 0f) {
+                        character.ChangeStamina(-cost);
+                        character.objectStatusHandler.BlockRegainStamina(0.2f);
+                    }
+
+                    if (transform.position.x > Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()).x) {
+                        character.spriteRenderer.flipX = true;
+                    } else {
+                        character.spriteRenderer.flipX = false;
+                    }
+                } else {
+                    weapon.AttackCancel();
+                }
+            }
+
+            wasAttacking = false;
+        }
+
+
     }
 
 

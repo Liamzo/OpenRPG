@@ -239,13 +239,14 @@ GameObject:
   - component: {fileID: 2736253971471747455}
   - component: {fileID: 1839862152}
   - component: {fileID: 3139969052742268801}
+  - component: {fileID: 865211563249040351}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3161783212397411797
 Transform:
   m_ObjectHideFlags: 0
@@ -396,6 +397,7 @@ MonoBehaviour:
   currentEquipment: []
   rightMeleeSpot: {fileID: 4353382604346183704}
   leftMeleeSpot: {fileID: 6353194819935669052}
+  wasMeleeDrawn: 1
 --- !u!114 &3161783212397411803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,6 +460,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   corpseSprite: {fileID: 0}
+--- !u!114 &865211563249040351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3161783212397411800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1af9bcb32468dde4bae9d5fc0114245e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseKnockDuration: 0.25
 --- !u!1 &5885145032520518140
 GameObject:
   m_ObjectHideFlags: 0

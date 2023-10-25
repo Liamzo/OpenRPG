@@ -19,6 +19,7 @@ public class EquipmentHandler : MonoBehaviour
     public HandSpot leftMeleeSpot;
 
     bool meleeDrawn = true;
+    public bool wasMeleeDrawn = true;
 
     // Start is called before the first frame update
     void Start()
@@ -141,7 +142,9 @@ public class EquipmentHandler : MonoBehaviour
     }
 
     public void ToggleMeleeRanged(bool melee) {
-        if (melee == meleeDrawn) return;
+        wasMeleeDrawn = meleeDrawn;
+
+        if (meleeDrawn == melee) return;
 
         meleeDrawn = melee;
 
