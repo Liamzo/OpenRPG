@@ -61,6 +61,7 @@ GameObject:
   - component: {fileID: 7211343988178764399}
   - component: {fileID: 7994391254223891589}
   - component: {fileID: 5735838055761432642}
+  - component: {fileID: 6332987556230299016}
   m_Layer: 0
   m_Name: Shotgun
   m_TagString: Untagged
@@ -174,10 +175,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d47d2e2c1e5068945b53e56ffa1cd665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseWeaponStats: {fileID: 11400000, guid: af52599889b18c94e89dc7aea6d1d0d8, type: 2}
   animator: {fileID: 0}
   _handle: {fileID: 0}
   strategies: {fileID: 7372804200891990163}
-  baseWeaponStats: {fileID: 11400000, guid: af52599889b18c94e89dc7aea6d1d0d8, type: 2}
   attackPoint: {fileID: 4291880427879301211}
 --- !u!114 &7994391254223891589
 MonoBehaviour:
@@ -201,6 +202,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af29277c85099ec4c997a3415db8a3f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6332987556230299016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384521666624074638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8f3160b976d5e488784e14f8b5a41c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2715419685453167537

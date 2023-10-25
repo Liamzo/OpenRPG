@@ -234,6 +234,7 @@ GameObject:
   - component: {fileID: 5311003981422222261}
   - component: {fileID: 5311003981422222266}
   - component: {fileID: 8203947813675130470}
+  - component: {fileID: 404624206567413348}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Untagged
@@ -374,10 +375,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 943a0011873797c4684ae670ec0e7bb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseWeaponStats: {fileID: 11400000, guid: 5a53fc5cc1a32304c92e323710c06f3c, type: 2}
   animator: {fileID: 4328129691896571668}
   _handle: {fileID: 5334118679488976819}
   strategies: {fileID: 1592960810812754746}
-  baseWeaponStats: {fileID: 11400000, guid: 5a53fc5cc1a32304c92e323710c06f3c, type: 2}
   attackPoint: {fileID: 8183562702466392682}
 --- !u!114 &5311003981422222266
 MonoBehaviour:
@@ -401,6 +402,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af29277c85099ec4c997a3415db8a3f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &404624206567413348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4328129691896571672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7f2ae3f4ae79754fa16421477e4aef4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5781637417171694078

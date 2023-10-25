@@ -11,16 +11,10 @@ public class LizardSpit : BaseWeaponHandler
     public float bulletSpeed;
 
     // Update is called once per frame
-    protected override void Update()
+    protected void Update()
     {
-        base.Update();
-        
         if (attackTimer > 0f) {
             attackTimer -= Time.deltaTime;
         }
-    }
-
-
-    public override void AttackAnticipation() {
     }
 }
