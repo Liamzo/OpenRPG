@@ -76,10 +76,6 @@ public class NonPlayerBrain : BaseBrain
         if (bestThought != null) {
             bestThought.Execute();
         }
-
-        // Do whatever movement we have
-        // transform.position += movement * character.statsCharacter[CharacterStatNames.MovementSpeed].GetValue() * Time.deltaTime;
-        // _animator.SetFloat("Movement", movement.magnitude);
     }
 
     private void FixedUpdate() {
