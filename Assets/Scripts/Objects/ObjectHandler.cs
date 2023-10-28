@@ -9,6 +9,7 @@ using UnityEngine.Events;
 public class ObjectHandler : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer{get; private set;}
+    public Rigidbody2D rigidBody{get; private set;}
 
     public BaseStats baseStats;
 
@@ -35,6 +36,7 @@ public class ObjectHandler : MonoBehaviour
     protected virtual void Awake()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        rigidBody = GetComponentInChildren<Rigidbody2D>();
         
         objectName = baseStats.objectName;
         objectType = baseStats.type;
@@ -53,10 +55,12 @@ public class ObjectHandler : MonoBehaviour
     }
 
     private void FixedUpdate() {
+        rigidBody.velocity = Vector2.zero;
+        
         if (movement == Vector3.zero || !objectStatusHandler.HasMovement())
             return;
 
-        GetComponent<Rigidbody2D>().MovePosition(GetComponent<Rigidbody2D>().position + (Vector2)movement);
+        rigidBody.MovePosition(rigidBody.position + (Vector2)movement);
 
         movement = Vector3.zero;
     }

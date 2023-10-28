@@ -36,6 +36,8 @@ public class DialogueHandler : MonoBehaviour
     private DialogueVariables dialogueVariables;
     private InkExternalFunctions inkExternalFunctions;
 
+    private bool trading = false;
+
     private void Awake() 
     {
         if (instance != null)
@@ -91,6 +93,7 @@ public class DialogueHandler : MonoBehaviour
                 // Trade
                 StartCoroutine(ExitDialogueMode());
                 TradingManager.GetInstance().EnterTrade(currentTalker);
+                trading = true;
             }
         }
     }
@@ -122,6 +125,11 @@ public class DialogueHandler : MonoBehaviour
     public void ExitDialogue() {
         if (dialogueIsPlaying)
             StartCoroutine(ExitDialogueMode());
+
+        if (trading) {
+            TradingManager.GetInstance().ExitTrade();
+            trading = false;
+        }
     }
 
     private void ContinueStory() 
@@ -137,7 +145,7 @@ public class DialogueHandler : MonoBehaviour
             // handle case where the last line is an external function
             if (nextLine.Equals("") && !currentStory.canContinue)
             {
-                StartCoroutine(ExitDialogueMode());
+                Player.instance.CancelInteraction();
             }
             // otherwise, handle the normal case for continuing the story
             else 
@@ -149,7 +157,7 @@ public class DialogueHandler : MonoBehaviour
         }
         else 
         {
-            StartCoroutine(ExitDialogueMode());
+            Player.instance.CancelInteraction();
         }
     }
 

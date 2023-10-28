@@ -14,4 +14,9 @@ public class PickUp : BaseInteraction
     public override void Interact(CharacterHandler character) {
         GetComponentInParent<ItemHandler>().PickUp(character);
     }
+
+    public override void Cancel()
+    {
+        
+    }
 }

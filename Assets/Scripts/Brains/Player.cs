@@ -8,14 +8,16 @@ using UnityEngine.EventSystems;
 
 public class Player : BaseBrain
 {
-    private static Player instance; // Can be only 1 player
+    public static Player instance; // Can be only 1 player
 
     private EquipmentHandler equipmentHandler;
 
     private bool _pointerOverUI;
 
     [Header("Interactions")]
-    InteractionHandler interactingWith;
+    public float interactionDistance = 2f;
+    public InteractionHandler interactingWith;
+    BaseInteraction interactionDoing;
     InteractionHandler interactionHighlighted;
 
     [Header("Controls")]
@@ -48,6 +50,8 @@ public class Player : BaseBrain
         base.Start();
         
         equipmentHandler = GetComponent<EquipmentHandler>();
+
+        character.OnTakeDamage += InteruptInteractionDamage;
     }
 
     // Update is called once per frame
@@ -74,6 +78,19 @@ public class Player : BaseBrain
 
         if (dodgeTimer > 0.0f || wasDodging == true)
             DodgeUpdate();
+
+        if (InputManager.GetInstance().GetTabPressed())
+            OnTab();
+
+        // Check if too far away for object interaction
+        if (interactingWith != null) {
+            float distance = Vector3.Distance(interactingWith.transform.position, transform.position);
+
+            if (distance > interactionDistance + 1f) {
+                CancelInteraction();
+            }
+        }
+        
     }
 
     void MovementControls() {
@@ -112,7 +129,7 @@ public class Player : BaseBrain
             _animator.SetBool("Rolling", true);
             _animator.SetTrigger("Roll");
 
-            character.objectStatusHandler.hasMovementControls = false;
+            character.objectStatusHandler.BlockMovementControls();
             character.objectStatusHandler.isDodging = true;
             character.ChangeStamina(-dodgeStaminaCost);
             character.objectStatusHandler.BlockRegainStamina(0.5f);
@@ -144,7 +161,7 @@ public class Player : BaseBrain
             wasDodging = false;
             dodgeTimer = 0.0f;
             _animator.SetBool("Rolling", false);
-            character.objectStatusHandler.hasMovementControls = true;
+            character.objectStatusHandler.UnblockMovementControls();
             character.objectStatusHandler.isDodging = false;
 
             dodgeCDTimer = dodgeCDDuration;
@@ -156,10 +173,6 @@ public class Player : BaseBrain
     void InteractionControls() {
         if (InputManager.GetInstance().GetInteractPressed()) {
             OnInteract();
-        }
-
-        if (InputManager.GetInstance().GetTabPressed()) {
-            OnTab();
         }
     }
 
@@ -269,10 +282,10 @@ public class Player : BaseBrain
     void FindClosestInteractable() {
         float closest = 3f;
         InteractionHandler closestObject = null;
-        foreach (Collider2D col in Physics2D.OverlapCircleAll(transform.position, 2f)) {
+        foreach (Collider2D col in Physics2D.OverlapCircleAll(transform.position, interactionDistance)) {
             InteractionHandler interactionHandler = col.GetComponentInParent<InteractionHandler>();
 
-            if (interactionHandler == null) continue;
+            if (interactionHandler == null || interactionHandler == interactingWith) continue;
 
             ItemHandler item = col.GetComponentInParent<ItemHandler>();
             if (item?.owner != null) continue;
@@ -295,16 +308,50 @@ public class Player : BaseBrain
     }
 
     void OnInteract() {
-        interactingWith = interactionHighlighted;
-        interactionHighlighted?.Use(character);
+        if (interactionHighlighted == null) { return; }
+
+        BaseInteraction interaction = interactionHighlighted.GetInteraction(character);
+
+        if (interaction.Continuous) {
+            CancelInteraction(); // Cancel current interaction
+            interactingWith = interactionHighlighted;
+            interactionDoing = interaction;
+        }
+
+        if (interaction.Blocking) {
+            character.objectStatusHandler.BlockControls();
+            character.objectStatusHandler.BlockMovementControls();
+
+        }
+
+        interaction.Interact(character);
+    }
+
+    public void CancelInteraction() {
+        if (interactionDoing == null) { return; }
+
+        interactionDoing.Cancel();
+
+        if (interactionDoing.Blocking) {
+            character.objectStatusHandler.UnblockControls();
+            character.objectStatusHandler.UnblockMovementControls();
+
+        }
+
+        interactingWith = null;
+        interactionDoing = null;
+    }
+
+    void InteruptInteractionDamage(float damage, WeaponHandler weapon, CharacterHandler attacker) {
+        CancelInteraction();
     }
 
     void OnTab() {
         // Pause or close down menus
         InventoryHandlerUI.instance.CloseInventory();
-        ContainerHandler.instance.CloseContainer();
-        DialogueHandler.GetInstance().ExitDialogue();
-        TradingManager.GetInstance().ExitTrade();
+        //TradingManager.GetInstance().ExitTrade(); // Find best place to do this
+
+        CancelInteraction();
     }
 
 }

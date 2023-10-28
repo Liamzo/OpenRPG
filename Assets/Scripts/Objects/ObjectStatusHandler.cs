@@ -10,10 +10,10 @@ public class ObjectStatusHandler : MonoBehaviour
         gameManager = GameManager.instance;
     }
 
-    public bool hasMovementControls {get; set;} = true;
+    public int hasMovementControls {get; set;} = 0;
     public bool hasMovement {get; set;} = true;
 
-    public bool hasControls {get; set;} = true;
+    public int hasControls {get; set;} = 0;
 
 
     public bool isDodging  {get; set;} = false;
@@ -38,10 +38,16 @@ public class ObjectStatusHandler : MonoBehaviour
 
 
     public bool HasMovementControls() {
-        if (gameManager.gamePaused || gameManager.waitingHitStop || !hasMovementControls)
+        if (gameManager.gamePaused || gameManager.waitingHitStop || hasMovementControls > 0)
             return false;
         
         return true;
+    }
+    public void BlockMovementControls() {
+        hasMovementControls += 1;
+    }
+    public void UnblockMovementControls() {
+        hasMovementControls -= 1;
     }
 
     public bool HasMovement() {
@@ -52,9 +58,15 @@ public class ObjectStatusHandler : MonoBehaviour
     }
 
     public bool HasControls() {
-        if (gameManager.gamePaused || gameManager.waitingHitStop || !hasControls)
+        if (gameManager.gamePaused || gameManager.waitingHitStop || hasControls > 0)
             return false;
         
         return true;
+    }
+    public void BlockControls() {
+        hasControls += 1;
+    }
+    public void UnblockControls() {
+        hasControls -= 1;
     }
 }

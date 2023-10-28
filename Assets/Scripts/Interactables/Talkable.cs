@@ -6,20 +6,26 @@ using UnityEngine.UI;
 public class Talkable : BaseInteraction
 {
     [SerializeField] private TextAsset inkJSON;
+    ObjectHandler objectHandler;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private void Awake() {
+        Continuous = true;
+        Blocking = true;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        objectHandler = GetComponentInParent<ObjectHandler>();
     }
 
     public override void Interact(CharacterHandler character) {
-        DialogueHandler.GetInstance().EnterDialogueMode(inkJSON, GetComponentInParent<ObjectHandler>());
+        DialogueHandler.GetInstance().EnterDialogueMode(inkJSON, objectHandler);
+        objectHandler.objectStatusHandler.BlockControls();
+        objectHandler.objectStatusHandler.BlockMovementControls();
+
+    }
+
+    public override void Cancel()
+    {
+        DialogueHandler.GetInstance().ExitDialogue();
+        objectHandler.objectStatusHandler.UnblockControls();
+        objectHandler.objectStatusHandler.UnblockMovementControls();
     }
 }

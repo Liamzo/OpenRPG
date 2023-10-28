@@ -16,21 +16,9 @@ public class InteractionHandler : MonoBehaviour
         objectHandler = GetComponent<ObjectHandler>();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void Use(CharacterHandler character) {
+    public BaseInteraction GetInteraction(CharacterHandler character) {
         // For now just use the first interaction given
-        interactions[0].Interact(character);
+        return interactions[0];
     }
 
     public void Highlight() {

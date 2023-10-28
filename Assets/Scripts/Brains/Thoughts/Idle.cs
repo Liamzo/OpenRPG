@@ -31,6 +31,10 @@ public class Idle : BaseThought
 
     public override float Evaluate()
     {
+        if (!brain.character.objectStatusHandler.HasMovementControls()) {
+            return 0f;
+        }
+
         if (brain.threatHandler.targetLastSeen == null) {
             return 100f;
         } else {

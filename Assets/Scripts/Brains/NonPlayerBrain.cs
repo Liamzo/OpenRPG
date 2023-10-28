@@ -83,12 +83,14 @@ public class NonPlayerBrain : BaseBrain
     }
 
     private void FixedUpdate() {
-        if (!character.objectStatusHandler.HasMovement()) {
+        if (!character.objectStatusHandler.HasMovement() || !character.objectStatusHandler.HasMovementControls()) {
+            _animator.SetFloat("Movement", 0f);
             footEmission.rateOverTime = 0f;
             return;
         }
 
         // Just for now
+
         if (movement.x < 0) {
             character.spriteRenderer.flipX = true;
         } else if (movement.x > 0) {
