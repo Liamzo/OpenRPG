@@ -347,10 +347,8 @@ public class Player : BaseBrain
     }
 
     void OnTab() {
-        // Pause or close down menus
+        // Close down menus
         InventoryHandlerUI.instance.CloseInventory();
-        //TradingManager.GetInstance().ExitTrade(); // Find best place to do this
-
         CancelInteraction();
     }
 
