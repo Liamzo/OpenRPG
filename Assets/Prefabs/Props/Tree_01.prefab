@@ -150,16 +150,16 @@ MonoBehaviour:
   m_SelfShadows: 0
   m_ApplyToSortingLayers: fb2be1dd00000000
   m_ShapePath:
-  - {x: -1.4844398, y: 0.5081215, z: 0}
-  - {x: -1.4310913, y: 1.9204941, z: 0}
-  - {x: 1.4036446, y: 1.9230213, z: 0}
-  - {x: 1.3474236, y: 0.47353172, z: 0}
-  m_ShapePathHash: -414666763
+  - {x: -0.82390976, y: 1.136034, z: 0}
+  - {x: -0.8031807, y: 1.993887, z: 0}
+  - {x: 0.9469795, y: 1.9882584, z: 0}
+  - {x: 0.94784164, y: 1.1259079, z: 0}
+  m_ShapePathHash: -1396770539
   m_Mesh: {fileID: 0}
   m_InstanceId: -1292788
   m_LocalBounds:
-    m_Center: {x: -0.040397644, y: 1.1982765, z: 0}
-    m_Extent: {x: 1.4440422, y: 0.7247448, z: 0}
+    m_Center: {x: 0.061965942, y: 1.5598974, z: 0}
+    m_Extent: {x: 0.8858757, y: 0.43398952, z: 0}
 --- !u!1 &1307998372530817856
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,7 +190,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1307998372530817856}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 49.2, y: 26, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
