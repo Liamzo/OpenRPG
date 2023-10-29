@@ -13,6 +13,7 @@ public class QuestStepUI : MonoBehaviour
     public Sprite activeIcon;
     public Sprite completedIcon;
     public TextMeshProUGUI nameText;
+    public TextMeshProUGUI progressText;
 
     public QuestStep questStep {get; private set;}
 
@@ -23,8 +24,19 @@ public class QuestStepUI : MonoBehaviour
         icon.sprite = completed ? completedIcon : activeIcon;
         icon.enabled = true;
 
-        nameText.SetText(newQuestStep.name);
+        // List<string> questText = newQuestStep.GetText();
+        (string name, string progress) questText = newQuestStep.GetText();
+
+        nameText.SetText(questText.name);
         nameText.enabled = true;
+
+        if (questText.progress != null) {
+            progressText.SetText(questText.progress);
+            progressText.enabled = true;
+        } else {
+            progressText.SetText("");
+            progressText.enabled = false;
+        }
     }
 
     public void ClearQuestStep () {
@@ -35,5 +47,8 @@ public class QuestStepUI : MonoBehaviour
 
         nameText.SetText("");
         nameText.enabled = false;
+
+        progressText.SetText("");
+        progressText.enabled = false;
     }
 }

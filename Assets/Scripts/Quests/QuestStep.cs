@@ -21,4 +21,8 @@ public abstract class QuestStep
     public virtual void Complete() {
         parentQuest.CompleteStep(this);
     }
+    
+    public virtual (string, string) GetText() {
+        return (name, null);
+    }
 }

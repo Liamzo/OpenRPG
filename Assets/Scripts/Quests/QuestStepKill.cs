@@ -23,6 +23,11 @@ public class QuestStepKill : QuestStep
         QuestManager.GetInstance().OnPlayerKill += CheckKill;
     }
 
+    public override (string, string) GetText()
+    {
+        return (name, $"{currentAmount}/{neededAmount}");
+    }
+
     void CheckKill(ObjectHandler obj) {
         if (obj.objectType == target) {
             currentAmount += 1;
