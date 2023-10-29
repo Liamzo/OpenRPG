@@ -170,6 +170,13 @@ public class QuestManager : MonoBehaviour
 
     public void OnPointerClick(QuestEntryUI slot, PointerEventData eventData)
     {
+        if (slot == selectQuestEntry) {
+            selectQuestEntry.background.color = unmarkedColor;
+            selectQuestEntry = null;
+            UpdateQuestDetails();
+            return;
+        }
+
         if (selectQuestEntry != null)
             selectQuestEntry.background.color = unmarkedColor;
 
@@ -221,22 +228,22 @@ public class QuestManager : MonoBehaviour
             questEntriesActiveParent.SetActive(true);
             questEntriesCompletedParent.SetActive(false);
 
-            if (selectQuestEntry != null){
-                selectQuestEntry.background.color = unmarkedColor;
-                selectQuestEntry = null;
-                UpdateQuestDetails();
-            }
+            // if (selectQuestEntry != null){
+            //     selectQuestEntry.background.color = unmarkedColor;
+            //     selectQuestEntry = null;
+            //     UpdateQuestDetails();
+            // }
         }
         
         if (!showActive && questEntriesActiveParent.activeSelf == true) {
             questEntriesActiveParent.SetActive(false);
             questEntriesCompletedParent.SetActive(true);
 
-            if (selectQuestEntry != null){
-                selectQuestEntry.background.color = unmarkedColor;
-                selectQuestEntry = null;
-                UpdateQuestDetails();
-            }
+            // if (selectQuestEntry != null){
+            //     selectQuestEntry.background.color = unmarkedColor;
+            //     selectQuestEntry = null;
+            //     UpdateQuestDetails();
+            // }
         }
 
     }
