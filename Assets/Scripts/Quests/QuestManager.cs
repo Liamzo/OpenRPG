@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SimpleJSON;
+using UnityEngine.UI;
+using TMPro;
+using UnityEngine.EventSystems;
 
 public class QuestManager : MonoBehaviour
 {
@@ -18,6 +21,22 @@ public class QuestManager : MonoBehaviour
     public event System.Action<string, int> OnQuestProgress = delegate { };
 
 
+    [Header("UI")]
+    public GameObject jounralUI;
+    public GameObject questEntriesActiveParent;
+    public GameObject questEntriesCompletedParent;
+    public GameObject questEntryPrefab;
+    public GameObject questDetailsUI;
+    public TextMeshProUGUI questNameText;
+    public TextMeshProUGUI questDescriptionText;
+    public GameObject questStepsParent;
+    List<QuestEntryUI> questsActiveUI = new List<QuestEntryUI>();
+    List<QuestEntryUI> questsCompleteUI = new List<QuestEntryUI>();
+    QuestEntryUI selectQuestEntry;
+    [SerializeField] private Color unmarkedColor;
+    [SerializeField] private Color markedColor;
+
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -30,30 +49,70 @@ public class QuestManager : MonoBehaviour
             Quest quest = new Quest(questData);
             questsAll.Add(quest);
         }
+
+        UpdateQuestDetails();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            //BeingQuest("Slay the Orcs");
+        if (InputManager.GetInstance().GetJournalPressed()) {
+            OnJournal();
         }
     }
 
-    public void BeingQuest(string name) {
+    Quest FindQuest(string name) {
         foreach(Quest quest in questsAll) {
             if (quest.name == name) {
-                quest.BeingQuest();
-                questsActive.Add(quest);
-                return;
+                return quest;
             }
         }
 
         Debug.LogError("No quest found with that name");
+
+        return null;
+    }
+
+    // UI
+    QuestEntryUI FindQuestEntry(Quest quest) {
+        foreach(QuestEntryUI questEntryUI in questsActiveUI) {
+            if (questEntryUI.quest == quest) {
+                return questEntryUI;
+            }
+        }
+
+        Debug.LogError("No quest entry found with that quest");
+
+        return null;
+    }
+
+    public void BeingQuest(string name) {
+        Quest quest = FindQuest(name);
+        quest.BeingQuest();
+        questsActive.Add(quest);
+
+
+        // UI
+        QuestEntryUI questEntry = Instantiate(questEntryPrefab, questEntriesActiveParent.transform).GetComponent<QuestEntryUI>();
+        questEntry.AddItem(quest);
+        questsActiveUI.Add(questEntry);
+        questEntry.OnClick += OnPointerClick;
     }
 
     public void QuestProgress(string name, int step) {
         OnQuestProgress(name, step);
+    }
+
+    public void QuestComplete(string name) {
+        Quest quest = FindQuest(name);
+
+        questsActive.Remove(quest);
+        questsComplete.Add(quest);
+
+
+        // UI
+        QuestEntryUI questEntryUI = FindQuestEntry(quest);
+        questEntryUI.transform.SetParent(questEntriesCompletedParent.transform);
     }
 
 
@@ -78,6 +137,81 @@ public class QuestManager : MonoBehaviour
 
     public static QuestManager GetInstance() {
         return instance;
+    }
+
+
+
+    // UI
+    void OnJournal() {
+        if (jounralUI.activeSelf == true) {
+            CloseJournal();
+        } else {
+            OpenJournal();
+        }
+    }
+
+    public void OpenJournal() {
+        if (jounralUI.activeSelf == false) {
+            jounralUI.SetActive(true);
+        }
+
+        UpdateJournalUI();
+    }
+    public void CloseJournal() {
+        if (jounralUI.activeSelf == true) {
+            jounralUI.SetActive(false);
+        }
+    }
+
+    void UpdateJournalUI() {
+        UpdateQuestDetails();
+    }
+
+    public void OnPointerClick(QuestEntryUI slot, PointerEventData eventData)
+    {
+        if (selectQuestEntry != null)
+            selectQuestEntry.background.color = unmarkedColor;
+
+        selectQuestEntry = slot;
+        selectQuestEntry.background.color = markedColor;
+
+        UpdateQuestDetails();
+    }
+
+    void UpdateQuestDetails() {
+        if (selectQuestEntry == null) {
+            questDetailsUI.SetActive(false);
+        } else {
+            questDetailsUI.SetActive(true);
+            questNameText.text = selectQuestEntry.quest.name;
+            questDescriptionText.text = selectQuestEntry.quest.description;
+        }
+
+    }
+
+    public void ShowActiveQuests(bool showActive) {
+        if (showActive && questEntriesActiveParent.activeSelf == false) {
+            questEntriesActiveParent.SetActive(true);
+            questEntriesCompletedParent.SetActive(false);
+
+            if (selectQuestEntry != null){
+                selectQuestEntry.background.color = unmarkedColor;
+                selectQuestEntry = null;
+                UpdateQuestDetails();
+            }
+        }
+        
+        if (!showActive && questEntriesActiveParent.activeSelf == true) {
+            questEntriesActiveParent.SetActive(false);
+            questEntriesCompletedParent.SetActive(true);
+
+            if (selectQuestEntry != null){
+                selectQuestEntry.background.color = unmarkedColor;
+                selectQuestEntry = null;
+                UpdateQuestDetails();
+            }
+        }
+
     }
 }
 

@@ -5,7 +5,7 @@
             "description": "Keep the village safe and stop the nearby bandits.",
             "steps": [
                 {
-                    "name": "Kill 5 orcs",
+                    "name": "Kill 5 bandits",
                     "type": "Kill",
                     "amount": 1,
                     "target": "Orc",

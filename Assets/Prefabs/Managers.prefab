@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7547779233427188595}
   - component: {fileID: 7547779233427188601}
   - component: {fileID: 7547779233427188600}
+  - component: {fileID: 1992593265}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -279,6 +280,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: cc8834c3-8e62-47bb-8f23-739997d5a3f4
     m_ActionName: Player/Tab[/Keyboard/tab]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7547779233427188594}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: JournalPressed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 41003b9f-67b7-4161-9696-46a16a85b684
+    m_ActionName: Player/Journal[/Keyboard/j]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -365,6 +382,15 @@ MonoBehaviour:
   questsAll: []
   questsActive: []
   questsComplete: []
+  jounralUI: {fileID: 0}
+  questEntriesActiveParent: {fileID: 0}
+  questEntriesCompletedParent: {fileID: 0}
+  questEntryPrefab: {fileID: 4241683194879601882, guid: 7be0b00a65547a24a83c00741cad861c, type: 3}
+  questNameText: {fileID: 0}
+  questDescriptionText: {fileID: 0}
+  questStepsParent: {fileID: 0}
+  unmarkedColor: {r: 0.21960784, g: 0.21960784, b: 0.21960784, a: 0.3529412}
+  markedColor: {r: 0.8018868, g: 0.62983626, b: 0.3063813, a: 0.627451}
 --- !u!114 &7547779233427188601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,3 +430,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cinemachineVirtualCamera: {fileID: 0}
+--- !u!114 &1992593265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7547779233427188592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2ab27c58ac2a2d4db15c4083640812d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  containerParent: {fileID: 0}
+  inventorySlotsParent: {fileID: 0}
+  openedContainer: {fileID: 0}

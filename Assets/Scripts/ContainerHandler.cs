@@ -7,6 +7,7 @@ public class ContainerHandler : MonoBehaviour
 {
     public static ContainerHandler instance;
 
+    public GameObject containerParent;
     public GameObject inventorySlotsParent;
     List<InventorySlotUI> itemSlots = new List<InventorySlotUI>();
 
@@ -14,8 +15,6 @@ public class ContainerHandler : MonoBehaviour
 
     private void Awake() {
         instance = this;
-
-        gameObject.SetActive(false);
     }
 
     // Start is called before the first frame update
@@ -26,13 +25,13 @@ public class ContainerHandler : MonoBehaviour
 
     public void OpenContainer(InventoryHandler container) {
         openedContainer = container;
-        gameObject.SetActive(true);
+        containerParent.SetActive(true);
         UpdateContainerUI();
     }
 
     public void CloseContainer() {
         openedContainer = null;
-        gameObject.SetActive(false);
+        containerParent.SetActive(false);
 
         foreach (InventorySlotUI slot in itemSlots) {
             slot.ClearSlot();

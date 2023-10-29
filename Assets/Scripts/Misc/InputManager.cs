@@ -22,6 +22,7 @@ public class InputManager : MonoBehaviour
     private bool offerTradePressed = false;
     private bool dashPressed = false;
     private bool tabPressed = false;
+    private bool journalPressed = false;
 
     private static InputManager instance;
 
@@ -163,6 +164,17 @@ public class InputManager : MonoBehaviour
         } 
     }
 
+    public void JournalPressed(InputAction.CallbackContext context) {
+        if (context.performed)
+        {
+            journalPressed = true;
+        }
+        else if (context.canceled)
+        {
+            journalPressed = false;
+        } 
+    }
+
     public Vector2 GetMoveDirection() 
     {
         return moveDirection;
@@ -230,6 +242,13 @@ public class InputManager : MonoBehaviour
     {
         bool result = tabPressed;
         tabPressed = false;
+        return result;
+    }
+
+    public bool GetJournalPressed() 
+    {
+        bool result = journalPressed;
+        journalPressed = false;
         return result;
     }
 

@@ -111,7 +111,7 @@ MonoBehaviour:
   - {x: 0.94784164, y: 1.1259079, z: 0}
   m_ShapePathHash: -1396770539
   m_Mesh: {fileID: 0}
-  m_InstanceId: 269606
+  m_InstanceId: -1301126
   m_LocalBounds:
     m_Center: {x: 0.061965942, y: 1.5598974, z: 0}
     m_Extent: {x: 0.8858757, y: 0.43398952, z: 0}
@@ -159,9 +159,9 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1307998372530817856}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 10
   m_LinearDrag: 0

@@ -85,5 +85,7 @@ public class Quest
 
     void CompleteQuest() {
         Debug.Log("Complete Quest: " + name);
+
+        QuestManager.GetInstance().QuestComplete(name);
     }
 }
