@@ -143,9 +143,9 @@ GameObject:
   - component: {fileID: 5921364653110771088}
   - component: {fileID: 5921364653110771087}
   - component: {fileID: 5921364653110771094}
-  - component: {fileID: 5921364653110771095}
   - component: {fileID: 5921364653110771096}
   - component: {fileID: 5921364653110771097}
+  - component: {fileID: 9027132522178895289}
   m_Layer: 0
   m_Name: Safe_01
   m_TagString: Untagged
@@ -178,7 +178,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5921364653110771086}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -263,36 +263,6 @@ MonoBehaviour:
   movement: {x: 0, y: 0, z: 0}
   currentHealth: 0
   objectStatusHandler: {fileID: 0}
---- !u!114 &5921364653110771095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5921364653110771086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShadowGroup: 0
-  m_ComponentVersion: 1
-  m_HasRenderer: 0
-  m_UseRendererSilhouette: 1
-  m_CastsShadows: 1
-  m_SelfShadows: 1
-  m_ApplyToSortingLayers: fb2be1dd00000000c9b442a7
-  m_ShapePath:
-  - {x: -0.3496182, y: -0.36101675, z: 0}
-  - {x: -0.3451388, y: 0.4538293, z: 0}
-  - {x: 0.36443353, y: 0.42681313, z: 0}
-  - {x: 0.3866886, y: -0.34456444, z: 0}
-  m_ShapePathHash: -379617039
-  m_Mesh: {fileID: 0}
-  m_InstanceId: -124458
-  m_LocalBounds:
-    m_Center: {x: 0.018535197, y: 0.04640627, z: 0}
-    m_Extent: {x: 0.3681534, y: 0.40742302, z: 0}
 --- !u!114 &5921364653110771096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,3 +288,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343b98f1b6060e548a1166dd68c6a4b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &9027132522178895289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5921364653110771086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 0
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: fb2be1dd00000000
+  m_ShapePath:
+  - {x: -0.375, y: 0.39999962, z: 0}
+  - {x: -0.375, y: 1.1999989, z: 0}
+  - {x: 0.375, y: 1.1999989, z: 0}
+  - {x: 0.375, y: 0.39999962, z: 0}
+  m_ShapePathHash: 0
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -1144338
+  m_LocalBounds:
+    m_Center: {x: 0, y: 0.79999924, z: 0}
+    m_Extent: {x: 0.375, y: 0.39999962, z: 0}

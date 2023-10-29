@@ -2,7 +2,7 @@
     "Quests" : [
         {
             "name" : "Slay the Orcs",
-            "description": "Keep the village safe and stop the nearby orcs.",
+            "description": "Keep the village safe and stop the nearby bandits.",
             "steps": [
                 {
                     "name": "Kill 5 orcs",
@@ -21,7 +21,7 @@
         },
         {
             "name" : "Gather Swords",
-            "description": "The village needs swords to fend off the orcs.",
+            "description": "The village needs swords to fend off the bandits.",
             "steps": [
                 {
                     "name": "Gather 5 swords",
