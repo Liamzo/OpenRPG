@@ -28,7 +28,7 @@ What can I do for you?
                 -> opts
             + +     [No thanks]
                 -> opts
-    *   { slay_the_bandits_stage == 1 } [I've slain the orcs]
+    *   { slay_the_bandits_stage == 1 } [I've slain the bandits]
         You have my thanks. Here, please take this as a reward
         ~slay_the_bandits_stage = 2
         ~dialogueChoiceMade("Slay the Bandits", "Return to Bob", 0)
