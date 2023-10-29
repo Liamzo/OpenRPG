@@ -39,7 +39,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 176998616127806269}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
   m_Name: 
@@ -143,7 +143,7 @@ MonoBehaviour:
   - {x: -2.4375, y: 2, z: 0}
   m_ShapePathHash: 1346335960
   m_Mesh: {fileID: 0}
-  m_InstanceId: -584014
+  m_InstanceId: -705192
   m_LocalBounds:
     m_Center: {x: 0, y: 10.5625, z: 0}
     m_Extent: {x: 10.8125, y: 9.5625, z: 0}
@@ -186,7 +186,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1421608302530760678}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
   m_Name: 
@@ -299,7 +299,7 @@ MonoBehaviour:
   - {x: -4.5, y: 2, z: 0}
   m_ShapePathHash: -1002698843
   m_Mesh: {fileID: 0}
-  m_InstanceId: -576372
+  m_InstanceId: -705198
   m_LocalBounds:
     m_Center: {x: 0, y: 10.5625, z: 0}
     m_Extent: {x: 10.8125, y: 9.5625, z: 0}
@@ -1072,8 +1072,8 @@ MonoBehaviour:
   spritesToHide:
   - {fileID: 7239146473823345268}
   - {fileID: 6273816817183381183}
-  shadowCaster2Dext: {fileID: 931788705025475376}
-  shadowCaster2Dint: {fileID: 5494949976680113458}
+  shadowCaster2Dext: {fileID: 8721416426422919840}
+  shadowCaster2Dint: {fileID: 931788705025475376}
 --- !u!1 &4499366560096511209
 GameObject:
   m_ObjectHideFlags: 0
@@ -1426,7 +1426,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7239146473823345269
 Transform:
   m_ObjectHideFlags: 0
@@ -1581,7 +1581,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spritesToHide:
   - {fileID: 2986981219486591266}
-  shadowCaster2Dext: {fileID: 0}
+  shadowCaster2Dext: {fileID: 931788705025475376}
   shadowCaster2Dint: {fileID: 5494949976680113458}
 --- !u!1 &7557754934783859981
 GameObject:
@@ -1625,7 +1625,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7557754934783859981}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
@@ -2158,7 +2158,7 @@ MonoBehaviour:
   m_UseRendererSilhouette: 1
   m_CastsShadows: 1
   m_SelfShadows: 1
-  m_ApplyToSortingLayers: fb2be1dd00000000c9b442a7
+  m_ApplyToSortingLayers: fb2be1dd
   m_ShapePath:
   - {x: -2.4375, y: 2.3125, z: 0}
   - {x: -4.5, y: 2.3125, z: 0}
@@ -2230,7 +2230,7 @@ MonoBehaviour:
   - {x: -2.4375, y: 2, z: 0}
   m_ShapePathHash: 1896934819
   m_Mesh: {fileID: 0}
-  m_InstanceId: -587160
+  m_InstanceId: -705186
   m_LocalBounds:
     m_Center: {x: 0, y: 8.15625, z: 0}
     m_Extent: {x: 10.8125, y: 7.15625, z: 0}
