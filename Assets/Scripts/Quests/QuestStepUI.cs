@@ -10,17 +10,30 @@ public class QuestStepUI : MonoBehaviour
 {
     public Image background;
     public Image icon;
+    public Sprite activeIcon;
+    public Sprite completedIcon;
     public TextMeshProUGUI nameText;
 
     public QuestStep questStep {get; private set;}
 
 
-    public void AddItem (QuestStep newQuestStep) {
+    public void AddItem (QuestStep newQuestStep, bool completed) {
         questStep = newQuestStep;
 
+        icon.sprite = completed ? completedIcon : activeIcon;
         icon.enabled = true;
 
         nameText.SetText(newQuestStep.name);
         nameText.enabled = true;
+    }
+
+    public void ClearQuestStep () {
+        questStep = null;
+
+        icon.sprite = null;
+        icon.enabled = false;
+
+        nameText.SetText("");
+        nameText.enabled = false;
     }
 }

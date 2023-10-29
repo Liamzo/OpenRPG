@@ -76,5 +76,6 @@ public enum PoolIdentifiers {
     Corpse,
     ItemSlotUI,
     WeaponSwing,
-    BloodEffect
+    BloodEffect,
+    QuestStepUI
 }

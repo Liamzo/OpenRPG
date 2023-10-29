@@ -341,6 +341,9 @@ MonoBehaviour:
   - identifier: 5
     prefab: {fileID: 1724470355634153261, guid: 87551ee5aa0100341a4c942e6c8ab833, type: 3}
     poolSize: 10
+  - identifier: 6
+    prefab: {fileID: 4241683194879601882, guid: c5999b9184902da4fb3c438501f03fd4, type: 3}
+    poolSize: 10
 --- !u!114 &7547779233427188604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,6 +389,7 @@ MonoBehaviour:
   questEntriesActiveParent: {fileID: 0}
   questEntriesCompletedParent: {fileID: 0}
   questEntryPrefab: {fileID: 4241683194879601882, guid: 7be0b00a65547a24a83c00741cad861c, type: 3}
+  questDetailsUI: {fileID: 0}
   questNameText: {fileID: 0}
   questDescriptionText: {fileID: 0}
   questStepsParent: {fileID: 0}

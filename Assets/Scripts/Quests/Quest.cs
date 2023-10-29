@@ -12,7 +12,7 @@ public class Quest
     public string description;
     public ObjectHandler giver;
 
-    private int stepOn = -1;
+    public int stepOn {get; private set;} = -1;
     private int finalStage = 0;
 
     [SerializeField] public List<QuestStep> questSteps = new List<QuestStep>();

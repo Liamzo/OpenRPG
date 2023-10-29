@@ -27,12 +27,13 @@ public class QuestManager : MonoBehaviour
     public GameObject questEntriesCompletedParent;
     public GameObject questEntryPrefab;
     public GameObject questDetailsUI;
-    public TextMeshProUGUI questNameText;
-    public TextMeshProUGUI questDescriptionText;
-    public GameObject questStepsParent;
     List<QuestEntryUI> questsActiveUI = new List<QuestEntryUI>();
     List<QuestEntryUI> questsCompleteUI = new List<QuestEntryUI>();
     QuestEntryUI selectQuestEntry;
+    public TextMeshProUGUI questNameText;
+    public TextMeshProUGUI questDescriptionText;
+    public GameObject questStepsParent;
+    List<QuestStepUI> questSteps = new List<QuestStepUI>();
     [SerializeField] private Color unmarkedColor;
     [SerializeField] private Color markedColor;
 
@@ -181,12 +182,38 @@ public class QuestManager : MonoBehaviour
     void UpdateQuestDetails() {
         if (selectQuestEntry == null) {
             questDetailsUI.SetActive(false);
-        } else {
-            questDetailsUI.SetActive(true);
-            questNameText.text = selectQuestEntry.quest.name;
-            questDescriptionText.text = selectQuestEntry.quest.description;
+            return;
         }
 
+        questDetailsUI.SetActive(true);
+        questNameText.text = selectQuestEntry.quest.name;
+        questDescriptionText.text = selectQuestEntry.quest.description;
+        
+        foreach (QuestStepUI questStepUI in questSteps) {
+            questStepUI.ClearQuestStep();
+            questStepUI.gameObject.SetActive(false);
+        }
+
+        questSteps.Clear();
+
+        foreach (QuestStep questStep in selectQuestEntry.quest.questSteps) {
+            if (questStep.stepNum < selectQuestEntry.quest.stepOn) {
+                QuestStepUI questStepUI = ObjectPoolManager.instance.GetPooledObject(PoolIdentifiers.QuestStepUI).GetComponent<QuestStepUI>();
+                questStepUI.transform.SetParent(questStepsParent.transform, false);
+                questStepUI.AddItem(questStep, true);
+                questSteps.Add(questStepUI);
+                questStepUI.gameObject.SetActive(true);
+            } else if (questStep.stepNum == selectQuestEntry.quest.stepOn) {
+                QuestStepUI questStepUI = ObjectPoolManager.instance.GetPooledObject(PoolIdentifiers.QuestStepUI).GetComponent<QuestStepUI>();
+                questStepUI.transform.SetParent(questStepsParent.transform, false);
+                questStepUI.AddItem(questStep, false);
+                questSteps.Add(questStepUI);
+                questStepUI.gameObject.SetActive(true);
+            } else {
+                // Step not started yet so don't show
+                break;
+            }
+        }
     }
 
     public void ShowActiveQuests(bool showActive) {
