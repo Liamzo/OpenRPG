@@ -28,7 +28,7 @@ public class LeaveCorpse : MonoBehaviour
 
         GameObject go = ObjectPoolManager.instance.GetPooledObject(PoolIdentifiers.Corpse);
         go.transform.position = transform.position;
-        go.GetComponent<Corpse>().SetVars(objectHandler.spriteRenderer.sprite, GetComponent<InventoryHandler>().inventory);
+        go.GetComponent<Corpse>().SetVars(objectHandler.spriteRenderer, GetComponent<InventoryHandler>().inventory);
         go.SetActive(true);
     }
 }

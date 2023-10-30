@@ -28,7 +28,7 @@ public class MeleeAttackTarget : BaseThought
 
     public override void Execute()
     {
-        WeaponHandler weapon = brain.GetComponent<EquipmentHandler>().GetEquipment(EquipmentSlot.RightHand).GetComponent<WeaponHandler>();
+        WeaponHandler weapon = brain.equipmentHandler.rightMeleeSpot.weapon;
 
         if (attacking) {
             delayTimer += Time.deltaTime;

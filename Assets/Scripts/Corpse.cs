@@ -8,8 +8,9 @@ public class Corpse : MonoBehaviour
     public InventoryHandler inventoryHandler;
 
     // Start is called before the first frame update
-    public void SetVars(Sprite sprite, List<ItemHandler> items) {
-        spriteRenderer.sprite = sprite;
+    public void SetVars(SpriteRenderer renderer, List<ItemHandler> items) {
+        spriteRenderer.sprite = renderer.sprite;
+        spriteRenderer.flipX = renderer.flipX;
         inventoryHandler.inventory = items;
 
         ObjectHandler owner = GetComponent<ObjectHandler>();

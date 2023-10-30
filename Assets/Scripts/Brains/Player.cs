@@ -10,8 +10,6 @@ public class Player : BaseBrain
 {
     public static Player instance; // Can be only 1 player
 
-    private EquipmentHandler equipmentHandler;
-
     private bool _pointerOverUI;
 
     [Header("Interactions")]
@@ -48,8 +46,6 @@ public class Player : BaseBrain
     protected override void Start()
     {
         base.Start();
-        
-        equipmentHandler = GetComponent<EquipmentHandler>();
 
         character.OnTakeDamage += InteruptInteractionDamage;
     }

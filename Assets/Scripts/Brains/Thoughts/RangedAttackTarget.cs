@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class RangedAttackTarget : BaseThought
 {
+    bool attacking;
+    float delayTimer = 0f;
+    
     protected override void Start() {
         base.Start();
     }
@@ -27,12 +30,29 @@ public class RangedAttackTarget : BaseThought
 
     public override void Execute()
     {
-        //float dist = Vector2.Distance(threatHandler.targetLastSeen.transform.position, transform.position);
+        brain.equipmentHandler.ToggleMeleeRanged(false);
 
-        // Do Attack
-        //Vector3 dir = (brain.threatHandler.target.transform.position - transform.position).normalized;
-        brain.GetComponent<LizardSpit>().AttackHold();
+        WeaponHandler weapon = brain.equipmentHandler.rightMeleeSpot.weapon;
 
-        brain.attackTimer = brain.attackCoolDown;
+        if (attacking) {
+            delayTimer += Time.deltaTime;
+
+            if (delayTimer >= 0.2f) {
+                // Do the attack
+                if (weapon != null) {
+                    weapon.AttackHold();
+                    weapon.AttackRelease();
+                }
+
+                brain.attackTimer = brain.attackCoolDown;
+                delayTimer = 0f;
+                attacking = false;
+                brain.thoughtLocked = null;
+            }
+        } else {
+            attacking = true;
+            brain.thoughtLocked = this;
+            weapon.AttackAnticipation();
+        }
     }
 }

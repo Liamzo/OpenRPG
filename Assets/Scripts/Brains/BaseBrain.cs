@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class BaseBrain : MonoBehaviour
 {
     public CharacterHandler character {get; private set;}
+    public EquipmentHandler equipmentHandler {get; private set;}
 
     protected Animator _animator;
     
@@ -29,7 +30,7 @@ public class BaseBrain : MonoBehaviour
     }
 
     protected virtual void Start() {
-
+        equipmentHandler = GetComponent<EquipmentHandler>();
     }
 
     protected virtual void OnTakeDamage(float damage, WeaponHandler weapon, CharacterHandler damageDealer) {
