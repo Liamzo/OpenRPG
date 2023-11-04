@@ -355,7 +355,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.6663966, y: 0.89578676}
+  m_Size: {x: 0.7, y: 0.9}
   m_Direction: 0
 --- !u!50 &6498385307091005132
 Rigidbody2D:
@@ -393,6 +393,8 @@ MonoBehaviour:
   footSteps: {fileID: 6810354008099187342}
   movement: {x: 0, y: 0, z: 0}
   lookingDirection: {x: 0, y: 0, z: 0}
+  interactionDistance: 2
+  interactingWith: {fileID: 0}
   wasDodging: 0
   dodgeTimer: 0
   dodgeDuration: 0.4
@@ -501,6 +503,7 @@ MonoBehaviour:
   currentEquipment: []
   rightMeleeSpot: {fileID: 5185528332149784036}
   leftMeleeSpot: {fileID: 8216754118719115536}
+  wasMeleeDrawn: 1
   bulletUIPrefab: {fileID: 3231775640795351773, guid: e0f5cb642d9a1b34baaa0295eea49c3e, type: 3}
   bulletUIHolder: {fileID: 0}
   currentRangedWeapon: {fileID: 0}

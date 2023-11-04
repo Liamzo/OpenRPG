@@ -13,8 +13,6 @@ public class StayAtRange : BaseThought
 
     public override float Evaluate()
     {
-        float value = 0f;
-
         if (brain.threatHandler.targetLastSeen == null ) {
             return 0f;
         }
@@ -22,19 +20,20 @@ public class StayAtRange : BaseThought
         if (brain.threatHandler.target == null) {
             return 0f;
         }
-
-        // min range = 80
-        // max range = 0
-
-        float normalizedValue = 1 - ((brain.distToTarget - minRange) / (maxRange - minRange));
-
-        value += Mathf.Clamp(70 * normalizedValue, 0f, 90f);
         
-        return value;
+        return 65f;
     }
 
     public override void Execute()
     {
+        // If within min and max distance then hold position
+        // Else, try and move towards to middle on min and max distance
+        if (brain.distToTarget >= minRange && brain.distToTarget <= maxRange) {
+            // We know we already have line of sight, so just wait
+            return;
+        }
+
+
         // Find ideal direction
         // Sweep in all directions in 20o
         // Find best direction to move, go that way
@@ -47,7 +46,6 @@ public class StayAtRange : BaseThought
 
         float score = 10f;
 
-        //Debug.DrawLine(transform.position, transform.position + (idealDir * 5), Color.blue, 0.1f);
         RaycastHit2D hit = Physics2D.Raycast(transform.position, idealDir, 5f);
         if (hit.collider != null) {
             score += hit.distance * 2;
@@ -68,7 +66,6 @@ public class StayAtRange : BaseThought
                 Vector3 tryDir = Quaternion.AngleAxis(i * j, Vector3.forward) * idealDir;
                 score = 10 * Vector3.Dot(idealDir, tryDir);
 
-                //Debug.DrawLine(transform.position, transform.position + (tryDir * 5), Color.red, 0.1f);
                 hit = Physics2D.Raycast(transform.position, tryDir, 5f);
                 if (hit.collider != null) {
                     score += hit.distance * 2;
@@ -83,8 +80,6 @@ public class StayAtRange : BaseThought
             }
         }
 
-        brain.movement += bestDir.normalized;
-
-        Debug.DrawLine(transform.position, transform.position + (bestDir * 5), Color.yellow, 0.1f);
+        brain.movement += bestDir.normalized * brain.character.statsCharacter[CharacterStatNames.MovementSpeed].GetValue() * 0.75f;
     }
 }
