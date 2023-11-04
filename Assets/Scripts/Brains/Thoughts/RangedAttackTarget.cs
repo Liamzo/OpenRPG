@@ -23,8 +23,7 @@ public class RangedAttackTarget : BaseThought
             value += 100f;
         }
 
-        // Need to add check for In Range. Probably in FindSightLine too
-
+        // Need to add check for In Range
         return value;
     }
 
