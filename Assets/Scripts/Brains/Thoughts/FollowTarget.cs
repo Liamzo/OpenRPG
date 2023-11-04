@@ -31,6 +31,11 @@ public class FollowTarget : BaseThought
 
     public override void Execute()
     {
+        if (Vector3.Distance(transform.position, brain.threatHandler.targetLastSeen.Value) < 0.5f) {
+            // Close enough to last seen point, so just wait
+            return;
+        }    
+
         brain.movement += brain.GetDirectionFromPath() * brain.character.statsCharacter[CharacterStatNames.MovementSpeed].GetValue() * 0.9f; // 90% speed
     }
 }
