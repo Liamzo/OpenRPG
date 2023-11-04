@@ -17,7 +17,7 @@ public class FindSightLine : BaseThought
         }
 
         if (brain.threatHandler.target == null && brain.attackTimer <= 0f) {
-            value += 75f;
+            value += 60f;
         }
 
         return value;

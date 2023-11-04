@@ -20,8 +20,14 @@ public class StayAtRange : BaseThought
         if (brain.threatHandler.target == null) {
             return 0f;
         }
-        
-        return 65f;
+
+
+        if (brain.distToTarget >= minRange && brain.distToTarget <= maxRange) {
+            // We know we already have line of sight, so just wait
+            return 55f;
+        } else {
+            return 65f;
+        }
     }
 
     public override void Execute()
