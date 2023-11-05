@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14dfb5b2d041b3549a682e8c4b648a0c, type: 3}
   m_Name: SwordItemStats
   m_EditorClassIdentifier: 
-  icon: {fileID: -1104212617, guid: da863b26060cc1f41bc27ecf6af15f4f, type: 3}
+  icon: {fileID: 21300000, guid: 37e9fb16acbe38c45815380a7e9eb232, type: 3}
   itemActions:
   - {fileID: 11400000, guid: 394bdde43074ad04ca06c57e06a485a1, type: 2}
   - {fileID: 11400000, guid: fdd49667933645f44b86c89802be93ec, type: 2}
@@ -21,4 +21,3 @@ MonoBehaviour:
   defaultAction: {fileID: 11400000, guid: fdd49667933645f44b86c89802be93ec, type: 2}
   possibleSlots: 0600000007000000
   baseValue: 30
-  baseWeight: 5

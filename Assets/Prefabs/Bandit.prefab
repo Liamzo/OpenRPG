@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2021465407}
   - component: {fileID: 2021465409}
+  - component: {fileID: 2021465411}
   - component: {fileID: 2021465408}
   - component: {fileID: 2021465410}
-  - component: {fileID: 2021465411}
   m_Layer: 0
   m_Name: Thoughts
   m_TagString: Untagged
@@ -51,33 +51,6 @@ MonoBehaviour:
   pauseDuration: 2
   minPauseWait: 1
   maxPauseWait: 3
---- !u!114 &2021465408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2021465406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff6b089bf1b01e2489084be41ee126db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minChaseDistance: 5
---- !u!114 &2021465410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2021465406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 976fe1e9848ab1445a5994b5df914cdc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  circleDistance: 4
-  circleDirection: 1
 --- !u!114 &2021465411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,6 +63,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fa123fc322bb404b9275c72c034b42d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxMeleeRange: 8
+--- !u!114 &2021465408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2021465406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff6b089bf1b01e2489084be41ee126db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minChaseDistance: 7
+--- !u!114 &2021465410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2021465406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 976fe1e9848ab1445a5994b5df914cdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  circleDistance: 6
+  circleDirection: 1
 --- !u!1 &1154453470631134197
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,6 +416,7 @@ MonoBehaviour:
   currentEquipment: []
   rightMeleeSpot: {fileID: 2429620863195684732}
   leftMeleeSpot: {fileID: 7103501921150379070}
+  wasMeleeDrawn: 1
 --- !u!114 &597049897
 MonoBehaviour:
   m_ObjectHideFlags: 0

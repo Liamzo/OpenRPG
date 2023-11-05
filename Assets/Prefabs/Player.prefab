@@ -306,15 +306,15 @@ GameObject:
   - component: {fileID: 6498385307091005131}
   - component: {fileID: 6498385307091005133}
   - component: {fileID: 6498385307091005132}
+  - component: {fileID: 5422852137260935271}
   - component: {fileID: 6498385307091005130}
-  - component: {fileID: 1479582193}
+  - component: {fileID: 1479582196}
+  - component: {fileID: 5729023158561328753}
   - component: {fileID: 2030974071724324993}
   - component: {fileID: 1479582194}
-  - component: {fileID: 1479582195}
-  - component: {fileID: 1479582196}
+  - component: {fileID: 1479582193}
   - component: {fileID: 1479582198}
-  - component: {fileID: 5729023158561328753}
-  - component: {fileID: 5422852137260935271}
+  - component: {fileID: 1479582195}
   - component: {fileID: 8423526764750414053}
   m_Layer: 0
   m_Name: Player
@@ -378,6 +378,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!210 &5422852137260935271
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6498385307091005126}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!114 &6498385307091005130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -400,7 +411,7 @@ MonoBehaviour:
   dodgeDuration: 0.4
   dodgeSpeedMulti: 1.5
   dodgeStaminaCost: 25
---- !u!114 &1479582193
+--- !u!114 &1479582196
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -409,15 +420,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 6498385307091005126}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7c94081f4d20754da02acefb04e1ed6, type: 3}
+  m_Script: {fileID: 11500000, guid: 61a8a8adbe3d61a489486d5d59195de8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slots: 20
-  startingInventory: {fileID: 11400000, guid: 9368a51a623a6d8408101479dc10c548, type: 2}
-  inventory: []
-  coins: 0
-  inventoryUI: {fileID: 0}
-  inventorySlotsParent: {fileID: 0}
+  baseStats: {fileID: 11400000, guid: 95de858976419614e84657b179246d3b, type: 2}
+  objectName: 
+  objectType: 0
+  movement: {x: 0, y: 0, z: 0}
+  currentHealth: 0
+  objectStatusHandler: {fileID: 0}
+  baseCharacterStats: {fileID: 11400000, guid: 8221420ade17c174d8079dd656f2ebdf, type: 2}
+  currentStamina: 0
+  staminaRecPerSec: 20
+  healthBar: {fileID: 0}
+  staminaBar: {fileID: 0}
+  healthText: {fileID: 0}
+  staminaText: {fileID: 0}
+--- !u!114 &5729023158561328753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6498385307091005126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 343b98f1b6060e548a1166dd68c6a4b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2030974071724324993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,7 +479,7 @@ MonoBehaviour:
   levelScalingBase: 5
   levelScaling: 5
   levelIncrement: 10
---- !u!114 &1479582195
+--- !u!114 &1479582193
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -458,35 +488,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6498385307091005126}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1af9bcb32468dde4bae9d5fc0114245e, type: 3}
+  m_Script: {fileID: 11500000, guid: a7c94081f4d20754da02acefb04e1ed6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseKnockDuration: 0.25
---- !u!114 &1479582196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6498385307091005126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61a8a8adbe3d61a489486d5d59195de8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseStats: {fileID: 11400000, guid: 95de858976419614e84657b179246d3b, type: 2}
-  objectName: 
-  objectType: 0
-  movement: {x: 0, y: 0, z: 0}
-  currentHealth: 0
-  objectStatusHandler: {fileID: 0}
-  baseCharacterStats: {fileID: 11400000, guid: 8221420ade17c174d8079dd656f2ebdf, type: 2}
-  currentStamina: 0
-  staminaRecPerSec: 20
-  healthBar: {fileID: 0}
-  staminaBar: {fileID: 0}
-  healthText: {fileID: 0}
-  staminaText: {fileID: 0}
+  slots: 20
+  startingInventory: {fileID: 11400000, guid: 9368a51a623a6d8408101479dc10c548, type: 2}
+  inventory: []
+  coins: 0
+  inventoryUI: {fileID: 0}
+  inventorySlotsParent: {fileID: 0}
 --- !u!114 &1479582198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -509,7 +519,7 @@ MonoBehaviour:
   currentRangedWeapon: {fileID: 0}
   reloadBar: {fileID: 0}
   reloadBarTransform: {fileID: 0}
---- !u!114 &5729023158561328753
+--- !u!114 &1479582195
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -518,20 +528,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6498385307091005126}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 343b98f1b6060e548a1166dd68c6a4b1, type: 3}
+  m_Script: {fileID: 11500000, guid: 1af9bcb32468dde4bae9d5fc0114245e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!210 &5422852137260935271
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6498385307091005126}
-  m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  baseKnockDuration: 0.25
 --- !u!114 &8423526764750414053
 MonoBehaviour:
   m_ObjectHideFlags: 0

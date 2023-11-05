@@ -6,6 +6,8 @@ public class RangedAttackTarget : BaseThought
 {
     bool attacking;
     float delayTimer = 0f;
+
+    public float minAttackRange;
     
     protected override void Start() {
         base.Start();
@@ -19,7 +21,7 @@ public class RangedAttackTarget : BaseThought
             return 0f;
         }
 
-        if (brain.attackTimer <= 0f) {
+        if (brain.attackTimer <= 0f && brain.distToTarget >= minAttackRange) {
             value += 100f;
         }
 

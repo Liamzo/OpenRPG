@@ -7,6 +7,8 @@ public class MeleeAttackTarget : BaseThought
     bool attacking;
     float delayTimer = 0f;
 
+    public float maxMeleeRange;
+
     protected override void Start() {
         base.Start();
     }
@@ -19,7 +21,7 @@ public class MeleeAttackTarget : BaseThought
             return 0f;
         }
 
-        if (brain.attackTimer <= 0) {
+        if (brain.attackTimer <= 0 && brain.distToTarget <= maxMeleeRange) {
             value += 100f;
         }
 
@@ -28,6 +30,8 @@ public class MeleeAttackTarget : BaseThought
 
     public override void Execute()
     {
+        brain.equipmentHandler.ToggleMeleeRanged(true);
+
         WeaponHandler weapon = brain.equipmentHandler.rightMeleeSpot.weapon;
 
         if (attacking) {
