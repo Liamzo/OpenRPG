@@ -19,7 +19,7 @@ public class TriggerSingleShot : BaseStrategy, ITrigger
     {
         if (canAttack && weapon.CanAttack()) {
             canAttack = false;
-            GameManager.instance.ShakeCamera(3.0f, 0.15f);
+            GameManager.instance.ShakeCamera(3.0f, 0.15f); // Probably move elsewhere
 
             weapon.CallOnTrigger();
             weapon.item.owner.GetComponent<Physicsable>().Knock(transform.up, weapon.statsWeapon[WeaponStatNames.SelfKnockForce].GetValue());

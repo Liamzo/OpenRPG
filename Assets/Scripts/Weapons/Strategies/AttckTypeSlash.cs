@@ -12,7 +12,6 @@ public class AttckTypeSlash : BaseStrategy, IAttackType
     public void DoAttack()
     {
         weapon.animator.SetTrigger("Attack");
-        //attackTimer = statsWeapon[WeaponStatNames.AttackTimer].GetValue(); // Do fire rate for melee
     }
 
     public void SpawnSlashAnimEvent() {

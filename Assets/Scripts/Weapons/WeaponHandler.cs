@@ -34,6 +34,13 @@ public class WeaponHandler : MonoBehaviour
     public Transform attackPoint;
 
     public int _canAttack = 0; // 0 = Can Attack. Add 1 when blocking, -1 when allowing
+    bool _animationAttackLock = false;
+    public void animationBlockAttack() {
+        _animationAttackLock = true;
+    }
+    public void animationUnblockAttack() {
+        _animationAttackLock = false;
+    }
 
     protected virtual void Awake() {
         item = GetComponent<ItemHandler>();
@@ -65,7 +72,7 @@ public class WeaponHandler : MonoBehaviour
 
 
     public bool CanAttack() {
-        return _canAttack == 0;
+        return _canAttack == 0 && !_animationAttackLock;
     }
 
     public bool CanReload() {

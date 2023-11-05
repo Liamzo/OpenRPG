@@ -183,14 +183,9 @@ public class Player : BaseBrain
             if (equipmentHandler.wasMeleeDrawn && wasAttacking) {
                 weapon.AttackCancel();
             }
-
             equipmentHandler.ToggleMeleeRanged(false);
 
-            if (transform.position.x > Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()).x) {
-                character.spriteRenderer.flipX = true;
-            } else {
-                character.spriteRenderer.flipX = false;
-            }
+            SpriteLookAtMouse();
 
             weapon = equipmentHandler.rightMeleeSpot.weapon;
 
@@ -223,11 +218,8 @@ public class Player : BaseBrain
                     character.objectStatusHandler.BlockRegainStamina(0.2f);
                 }
 
-                if (transform.position.x > Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()).x) {
-                    character.spriteRenderer.flipX = true;
-                } else {
-                    character.spriteRenderer.flipX = false;
-                }
+                SpriteLookAtMouse();
+
             } else if (wasAttacking) {
                 weapon.AttackCancel();
                 wasAttacking = false;
@@ -241,11 +233,8 @@ public class Player : BaseBrain
                         character.objectStatusHandler.BlockRegainStamina(0.2f);
                     }
 
-                    if (transform.position.x > Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()).x) {
-                        character.spriteRenderer.flipX = true;
-                    } else {
-                        character.spriteRenderer.flipX = false;
-                    }
+                    SpriteLookAtMouse();
+
                 } else {
                     weapon.AttackCancel();
                 }
@@ -253,8 +242,14 @@ public class Player : BaseBrain
 
             wasAttacking = false;
         }
+    }
 
-
+    void SpriteLookAtMouse() {
+        if (transform.position.x > Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()).x) {
+            character.spriteRenderer.flipX = true;
+        } else {
+            character.spriteRenderer.flipX = false;
+        }
     }
 
 
