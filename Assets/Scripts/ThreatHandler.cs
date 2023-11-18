@@ -27,13 +27,15 @@ public class ThreatHandler : MonoBehaviour
         }
 
         // Raycast to the target within Sight range and see if clear path
-        Vector3 targetDir = (targetToFind.transform.position - transform.position).normalized;
+        Vector3 targetDir = ((targetToFind.transform.position + new Vector3(0,0.6f,0)) - (transform.position + new Vector3(0,0.6f,0))).normalized;
 
         LayerMask mask = LayerMask.GetMask("Default");
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), mask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0,0.6f,0), targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), mask);
+        Debug.DrawLine(transform.position + new Vector3(0,0.6f,0), transform.position + new Vector3(0,0.6f,0) + (targetDir*7));
 
         if (hit.collider != null) {
+            Debug.Log(hit.transform.name);
             if (hit.collider.gameObject == targetToFind) {
                 // Found the target
                 target = targetToFind;
