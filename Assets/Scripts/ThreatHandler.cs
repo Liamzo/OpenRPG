@@ -32,10 +32,8 @@ public class ThreatHandler : MonoBehaviour
         LayerMask mask = LayerMask.GetMask("Default");
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0,0.6f,0), targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), mask);
-        Debug.DrawLine(transform.position + new Vector3(0,0.6f,0), transform.position + new Vector3(0,0.6f,0) + (targetDir*7));
 
         if (hit.collider != null) {
-            Debug.Log(hit.transform.name);
             if (hit.collider.gameObject == targetToFind) {
                 // Found the target
                 target = targetToFind;
