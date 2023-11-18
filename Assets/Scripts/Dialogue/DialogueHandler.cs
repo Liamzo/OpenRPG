@@ -46,7 +46,6 @@ public class DialogueHandler : MonoBehaviour
         }
         instance = this;
 
-        dialogueVariables = new DialogueVariables(loadGlobalsJSON);
         inkExternalFunctions = new InkExternalFunctions();
     }
 
@@ -57,6 +56,8 @@ public class DialogueHandler : MonoBehaviour
 
     private void Start() 
     {
+        dialogueVariables = new DialogueVariables(loadGlobalsJSON);
+        
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
 
