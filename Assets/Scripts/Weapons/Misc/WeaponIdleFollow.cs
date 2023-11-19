@@ -28,6 +28,7 @@ public class WeaponIdleFollow : MonoBehaviour
         if (pauseTimer > 0f) {
             pauseTimer -= Time.deltaTime;
             doFollow = false;
+            prevPosition = transform.TransformPoint(Vector3.zero);
         } else {
             doFollow = true;
         }
@@ -72,5 +73,8 @@ public class WeaponIdleFollow : MonoBehaviour
 
     void PauseFollow() {
         pauseTimer = pauseDuration;
+        weaponHandler._handle.localRotation = Quaternion.Euler(new Vector3(0f,0f,0f));
+        prevAngle = 0f;
+        weaponHandler._handle.localPosition = Vector3.zero;
     }
 }
