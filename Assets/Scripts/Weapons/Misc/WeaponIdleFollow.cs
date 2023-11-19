@@ -15,7 +15,7 @@ public class WeaponIdleFollow : MonoBehaviour
     float angleVelocity = 0.0f;
 
     bool doFollow = true;
-    private float pauseDuration = 1f;
+    private float pauseDuration = 3f;
     private float pauseTimer = 0f;
 
     private void Start() {
