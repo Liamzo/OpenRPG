@@ -41,7 +41,6 @@ public class WeaponIdleFollow : MonoBehaviour
     protected void IdleFollow() {
         if (doFollow == false) { return; }
         
-
         Vector3 movePos = Vector3.SmoothDamp(prevPosition, transform.TransformPoint(Vector3.zero), ref distVelocity, smoothTimeDist);
 
         weaponHandler._handle.position = movePos;
