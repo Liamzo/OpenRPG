@@ -54,7 +54,7 @@ public class MeleeAttackTarget : BaseThought
 
         float dist = Vector2.Distance(brain.threatHandler.target.transform.position, transform.position);
 
-        if (dist <= weapon.statsWeapon[WeaponStatNames.Range].GetValue() * 0.8f) {
+        if (dist <= weapon.statsWeapon[WeaponStatNames.Range].GetValue() * 1.5f) {
             // Start the attack
             attacking = true;
             brain.thoughtLocked = this;

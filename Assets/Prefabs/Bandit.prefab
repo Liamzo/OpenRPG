@@ -90,7 +90,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circleDistance: 6
+  minPauseDuration: 1
+  maxPauseDuration: 2
+  minPauseWait: 2
+  maxPauseWait: 3
   circleDirection: 1
+  minDirectionDuration: 3
+  maxDirectionDuration: 5
 --- !u!1 &1154453470631134197
 GameObject:
   m_ObjectHideFlags: 0

@@ -33,6 +33,10 @@ public class CharacterHandler : ObjectHandler
     public virtual void ChangeStamina(float changeAmount) {
         currentStamina = Mathf.Clamp(currentStamina + changeAmount, 0f, statsCharacter[CharacterStatNames.Stamina].GetValue());
     }
+
+    public float GetStatValue(CharacterStatNames statName) {
+        return statsCharacter[statName].GetValue();
+    }
 }
 
 [System.Serializable]
