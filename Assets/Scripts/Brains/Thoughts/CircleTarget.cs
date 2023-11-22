@@ -79,6 +79,7 @@ public class CircleTarget : BaseThought
         Vector3 dir = (transform.position - brain.threatHandler.target.transform.position).normalized;
         Vector3 vertPos = dir * circleDistance;
         Vector3 horzPos = Quaternion.AngleAxis(20 * circleDirection, Vector3.forward) * vertPos;
+        
 
 
         Vector3 vertTarget = brain.threatHandler.target.transform.position + vertPos;
