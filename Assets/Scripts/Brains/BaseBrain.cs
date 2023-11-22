@@ -50,7 +50,7 @@ public class BaseBrain : MonoBehaviour
     public void SetLookingDirection(Vector3 target) {
         GetComponent<EquipmentHandler>().SpotLook(target);
 
-        Vector2 diff = target - transform.position;
+        Vector2 diff = target - (transform.position + new Vector3(0,0.7f,0));
 
         lookingDirection = diff.normalized;
     }

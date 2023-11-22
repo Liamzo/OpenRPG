@@ -12,6 +12,6 @@ public class Orc : NonPlayerBrain
         
         // Look at target
         if (threatHandler.targetLastSeen != null)
-            SetLookingDirection(threatHandler.targetLastSeen.Value + new Vector3(0,0.6f,0));
+            SetLookingDirection(threatHandler.targetLastSeen.Value);
     }
 }
