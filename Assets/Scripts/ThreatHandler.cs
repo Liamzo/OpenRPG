@@ -27,7 +27,7 @@ public class ThreatHandler : MonoBehaviour
         }
 
         // Raycast to the target within Sight range and see if clear path
-        Vector3 targetDir = ((targetToFind.transform.position + new Vector3(0,0.6f,0)) - (transform.position + new Vector3(0,0.6f,0))).normalized;
+        Vector3 targetDir = (targetToFind.transform.position - transform.position).normalized;
 
         LayerMask mask = LayerMask.GetMask("Default");
 
@@ -37,7 +37,7 @@ public class ThreatHandler : MonoBehaviour
             if (hit.collider.gameObject == targetToFind) {
                 // Found the target
                 target = targetToFind;
-                targetLastSeen = target.transform.position;
+                targetLastSeen = hit.collider.bounds.center; // Collider is offset, this way the aim for the centre of the target
                 return;
             }
         }

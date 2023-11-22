@@ -89,11 +89,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 976fe1e9848ab1445a5994b5df914cdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  circleDistance: 6
+  circleDistance: 7
+  circleDistanceRange: 1
+  minCircleDistance: 3
   minPauseDuration: 1
   maxPauseDuration: 2
-  minPauseWait: 2
-  maxPauseWait: 3
+  minPauseWait: 4
+  maxPauseWait: 8
   circleDirection: 1
   minDirectionDuration: 3
   maxDirectionDuration: 5
@@ -294,8 +296,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.6}
-  m_Size: {x: 0.7, y: 0.9}
+  m_Offset: {x: 0, y: 0.7}
+  m_Size: {x: 0.8, y: 1}
   m_Direction: 0
 --- !u!50 &1154453471690096205
 Rigidbody2D:
@@ -367,7 +369,7 @@ MonoBehaviour:
   movement: {x: 0, y: 0, z: 0}
   lookingDirection: {x: 0, y: 0, z: 0}
   thoughtLocked: {fileID: 0}
-  attackCoolDown: 3
+  attackCoolDown: 7
   attackTimer: 0
 --- !u!114 &2883755834010546419
 MonoBehaviour:

@@ -6,6 +6,8 @@ using UnityEngine.AI;
 public class CircleTarget : BaseThought
 {
     public float circleDistance;
+    public float circleDistanceRange;
+    public float minCircleDistance; // Will move faster when in this distance to get away, not pause
 
     [Header("Pause")]
     public float minPauseDuration;
@@ -15,6 +17,7 @@ public class CircleTarget : BaseThought
     public float minPauseWait;
     public float maxPauseWait;
     float _pauseWaitTimer = 1f;
+    float pausedDistance;
 
     
     [Header("Direction")]
@@ -49,21 +52,61 @@ public class CircleTarget : BaseThought
 
     public override void Execute()
     {
-        // Pause
-        if (_pauseTimer > 0f) {
-            // Pause
-            _pauseTimer -= Time.deltaTime;
-            return;
+        float dist = Vector3.Distance(transform.position, brain.threatHandler.target.transform.position);
+
+        // Move Speed
+        float moveSpeed = brain.character.GetStatValue(CharacterStatNames.MovementSpeed);
+
+        if (dist < minCircleDistance) {
+            moveSpeed *= 1.5f;
+        } else {
+            moveSpeed *= 0.7f;
         }
 
-        if (_pauseWaitTimer <= 0) {
-            // Have a pause
-            _pauseTimer = Random.Range(minPauseDuration, maxPauseDuration);
-            _pauseWaitTimer = _pauseTimer + Random.Range(minPauseWait, maxPauseWait);
-            return;
+        // Target
+        Vector3 dir = (transform.position - brain.threatHandler.target.transform.position).normalized;
+        float vertDist = (circleDistance - circleDistanceRange) + (((circleDistance + circleDistanceRange) - (circleDistance - circleDistanceRange)) * Mathf.PerlinNoise(Time.time * 0.15f , 0.0f));
+        Vector3 vertPos = dir * vertDist;
+
+        Vector3 horzPos = Quaternion.AngleAxis(20 * circleDirection, Vector3.forward) * vertPos;
+        
+        Vector3 horzTarget = brain.threatHandler.target.transform.position + horzPos;
+
+        if (dist > minCircleDistance) {
+            // Pause
+            if (_pauseTimer > 0f) {
+                // Pause
+                _pauseTimer -= Time.deltaTime;
+
+                // Maintain distance
+                Vector3 vertTarget = brain.threatHandler.target.transform.position + (dir * pausedDistance);
+                
+                if (Vector3.Distance(transform.position, vertTarget) < 0.1f) {
+                    return;
+                }
+
+                NavMeshPath vertPath = new NavMeshPath();
+                if (NavMesh.CalculatePath(transform.position, vertTarget, NavMesh.AllAreas, vertPath) && vertPath.corners.Length > 1) {
+                    brain.movement += brain.GetDirectionFromPath(vertPath) * moveSpeed; // 70% move speed
+                }
+                
+                return;
+            }
+
+            if (_pauseWaitTimer <= 0) {
+                // Have a pause
+                _pauseTimer = Random.Range(minPauseDuration, maxPauseDuration);
+                _pauseWaitTimer = _pauseTimer + Random.Range(minPauseWait, maxPauseWait);
+                pausedDistance = dist;
+                return;
+            } else {
+                _pauseWaitTimer -= Time.deltaTime;
+            }
         } else {
-            _pauseWaitTimer -= Time.deltaTime;
+            _pauseTimer = 0f;
+            _pauseWaitTimer = _pauseTimer + Random.Range(minPauseWait, maxPauseWait);
         }
+
 
         // Direction
         if (_directionTimer > 0f) {
@@ -74,28 +117,7 @@ public class CircleTarget : BaseThought
             _directionTimer = Random.Range(minDirectionDuration, maxDirectionDuration);
         }
 
-
-        // Vectical Target
-        Vector3 dir = (transform.position - brain.threatHandler.target.transform.position).normalized;
-        Vector3 vertPos = dir * circleDistance;
-        Vector3 horzPos = Quaternion.AngleAxis(20 * circleDirection, Vector3.forward) * vertPos;
-        
-
-
-        Vector3 vertTarget = brain.threatHandler.target.transform.position + vertPos;
-        Vector3 horzTarget = brain.threatHandler.target.transform.position + horzPos;
-
-        // Move Speed
-        float moveSpeed = brain.character.GetStatValue(CharacterStatNames.MovementSpeed);
-
-        if (Vector3.Distance(transform.position, brain.threatHandler.target.transform.position) < 1f) {
-            moveSpeed *= 1.5f;
-        } else {
-            moveSpeed *= 0.7f;
-        }
-
         NavMeshPath path = new NavMeshPath();
-
         if (NavMesh.CalculatePath(transform.position, horzTarget, NavMesh.AllAreas, path) && path.corners.Length > 1) {
             brain.movement += brain.GetDirectionFromPath(path) * moveSpeed; // 70% move speed
         } else {
