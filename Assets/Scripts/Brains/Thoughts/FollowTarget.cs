@@ -14,7 +14,7 @@ public class FollowTarget : BaseThought
     {
         float value = 0f;
 
-        if (brain.threatHandler.targetLastSeen == null) {
+        if (brain.threatHandler.targetLastSeen == null || !brain.character.objectStatusHandler.HasMovementControls()) {
             return 0f;
         }
 

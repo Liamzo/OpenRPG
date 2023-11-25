@@ -26,7 +26,7 @@ MonoBehaviour:
   - statName: 8
     value: 2
   - statName: 9
-    value: 0.5
+    value: 1
   - statName: 10
     value: 0
   - statName: 11
@@ -37,4 +37,6 @@ MonoBehaviour:
     value: 30
   - statName: 6
     value: 10
+  - statName: 4
+    value: 0.5
   restingAngle: 0

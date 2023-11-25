@@ -23,10 +23,14 @@ public class BasicBullet : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        ObjectHandler objectStatsHandler;
+        //if (other.gameObject.layer != LayerMask.NameToLayer("Default")) return;
 
-        if (other.TryGetComponent<ObjectHandler>(out objectStatsHandler)) {
-            objectStatsHandler.GetHit(weapon, (CharacterHandler)weapon.item.owner);
+        ObjectHandler objectHandler;
+
+        if (other.TryGetComponent<ObjectHandler>(out objectHandler)) {
+            if (objectHandler == weapon.item.owner) return;
+
+            objectHandler.GetHit(weapon, (CharacterHandler)weapon.item.owner);
         }
 
         Destroy(gameObject);

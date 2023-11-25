@@ -17,7 +17,11 @@ public class MeleeAttackTarget : BaseThought
     {
         float value = 0f;
 
-        if (brain.threatHandler.target == null) {
+        if (brain.threatHandler.target == null || !brain.character.objectStatusHandler.HasControls()) {
+            return 0f;
+        }
+
+        if (brain.distToTarget > brain.equipmentHandler.rightMeleeSpot.weapon.GetStatValue(WeaponStatNames.Range) && !brain.character.objectStatusHandler.HasMovementControls()) {
             return 0f;
         }
 
@@ -35,6 +39,15 @@ public class MeleeAttackTarget : BaseThought
         WeaponHandler weapon = brain.equipmentHandler.rightMeleeSpot.weapon;
 
         if (attacking) {
+            if (!brain.character.objectStatusHandler.HasControls()) {
+                // If we lose controls during anticipation, cancel the attack thought
+                //brain.attackTimer = brain.attackCoolDown; // Could doing something with this
+                delayTimer = 0f;
+                attacking = false;
+                brain.thoughtLocked = null;
+                return;
+            }
+
             delayTimer += Time.deltaTime;
 
             if (delayTimer >= 0.2f) {
@@ -48,20 +61,18 @@ public class MeleeAttackTarget : BaseThought
                 attacking = false;
                 brain.thoughtLocked = null;
             }
-
-            return;
-        }
-
-        float dist = Vector2.Distance(brain.threatHandler.target.transform.position, transform.position);
-
-        if (dist <= weapon.statsWeapon[WeaponStatNames.Range].GetValue()) {
-            // Start the attack
-            attacking = true;
-            brain.thoughtLocked = this;
-            weapon.AttackAnticipation();
         } else {
-            // Chase target
-            brain.movement += brain.GetDirectionFromPath() * brain.character.statsCharacter[CharacterStatNames.MovementSpeed].GetValue();
+            float dist = Vector2.Distance(brain.threatHandler.target.transform.position, transform.position);
+
+            if (dist <= weapon.statsWeapon[WeaponStatNames.Range].GetValue()) {
+                // Start the attack
+                attacking = true;
+                brain.thoughtLocked = this;
+                weapon.AttackAnticipation();
+            } else {
+                // Chase target
+                brain.movement += brain.GetDirectionFromPath() * brain.character.statsCharacter[CharacterStatNames.MovementSpeed].GetValue();
+            }
         }
     }
 }

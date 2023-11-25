@@ -128,15 +128,18 @@ public class ObjectHandler : MonoBehaviour
         //     return;
         // }
 
-        GameManager.instance.ShakeCamera(5.0f, 0.15f);
-        GameManager.instance.HitStop(0.1f);
-
         // Roll for Damage
         float damage = 0.0f;
 
         for (int i = 0; i < weapon.statsWeapon[WeaponStatNames.DamageRollCount].GetValue(); i++) {
-            damage += Random.Range(1, (int)weapon.statsWeapon[WeaponStatNames.DamageRollValue].GetValue() + 1);
+            damage += Random.Range(1, (int)weapon.GetStatValue(WeaponStatNames.DamageRollValue) + 1);
         }
+
+        GameManager.instance.ShakeCamera(5.0f, 0.15f);
+        GameManager.instance.HitStop(0.2f);
+
+        objectStatusHandler.BlockControls(weapon.GetStatValue(WeaponStatNames.Stagger));
+        objectStatusHandler.BlockMovementControls(weapon.GetStatValue(WeaponStatNames.Stagger));
 
         TakeDamge(damage, weapon, damageDealer);
     }

@@ -32,7 +32,7 @@ public class CircleTarget : BaseThought
 
     public override float Evaluate()
     {
-        if (brain.threatHandler.target == null) {
+        if (brain.threatHandler.target == null || !brain.character.objectStatusHandler.HasMovementControls()) {
             return 0f;
         }
 

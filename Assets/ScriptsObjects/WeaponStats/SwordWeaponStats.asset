@@ -31,4 +31,6 @@ MonoBehaviour:
     value: 20
   - statName: 6
     value: 3
+  - statName: 4
+    value: 2
   restingAngle: 30

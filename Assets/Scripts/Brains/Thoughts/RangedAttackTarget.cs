@@ -17,7 +17,7 @@ public class RangedAttackTarget : BaseThought
     {
         float value = 0f;
 
-        if (brain.threatHandler.target == null) {
+        if (brain.threatHandler.target == null || !brain.character.objectStatusHandler.HasControls()) {
             return 0f;
         }
 
@@ -36,6 +36,15 @@ public class RangedAttackTarget : BaseThought
         WeaponHandler weapon = brain.equipmentHandler.rightMeleeSpot.weapon;
 
         if (attacking) {
+            if (!brain.character.objectStatusHandler.HasControls()) {
+                // If we lose controls during anticipation, cancel the attack thought
+                //brain.attackTimer = brain.attackCoolDown; // Could doing something with this
+                delayTimer = 0f;
+                attacking = false;
+                brain.thoughtLocked = null;
+                return;
+            }
+            
             delayTimer += Time.deltaTime;
 
             if (delayTimer >= 0.2f) {

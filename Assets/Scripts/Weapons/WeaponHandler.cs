@@ -57,6 +57,10 @@ public class WeaponHandler : MonoBehaviour
         anticipation = strategies.GetComponent<IAnticipation>();
     }
 
+    public float GetStatValue(WeaponStatNames statName) {
+        return statsWeapon[statName].GetValue();
+    }
+
     public void Holster() {
         transform.localPosition = new Vector3(0,0,0);
         transform.localRotation = Quaternion.identity;

@@ -15,7 +15,7 @@ public class AttackTypeProjectile : BaseStrategy, IAttackType
     public void DoAttack()
     {
         GameObject go = Instantiate(bulletPrefab, weapon.attackPoint.position, Quaternion.identity);
-        LizardBullet bullet = go.GetComponent<LizardBullet>();
+        BasicBullet bullet = go.GetComponent<BasicBullet>();
         bullet.weapon = weapon;
         bullet.bulletSpeed = bulletSpeed;
         bullet.direction = -transform.up;
