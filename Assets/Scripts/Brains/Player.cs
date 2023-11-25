@@ -118,6 +118,12 @@ public class Player : BaseBrain
 
             if (movement == Vector3.zero) {
                 movement = ((Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - (Vector2)transform.position).normalized * character.statsCharacter[CharacterStatNames.MovementSpeed].GetValue();
+                
+                if (movement.x < 0) {
+                    character.spriteRenderer.flipX = true;
+                } else if (movement.x > 0) {
+                    character.spriteRenderer.flipX = false;
+                }
             }
 
             movement *= dodgeSpeedMulti;
