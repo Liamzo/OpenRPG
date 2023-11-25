@@ -107,20 +107,9 @@ public class ObjectHandler : MonoBehaviour
     }
 
     public void GetHit(WeaponHandler weapon, CharacterHandler damageDealer) {
-        // // Check for Dodge
-        // Stat dodgeChance;
-        // if (statsObject.TryGetValue(StatNames.DodgeValue, out dodgeChance)) {
-        //     int hitChance = Random.Range(0, 100);
-
-        //     if (dodgeChance.GetValue() > hitChance) {
-        //         // Dodge
-        //         Debug.Log("Attack Misses");
-        //         return;
-        //     }
-        // }
+        // Check for Dodge
         if (objectStatusHandler.isDodging) {
             // Dodge
-            Debug.Log("Attack Misses");
             return;
         }
 

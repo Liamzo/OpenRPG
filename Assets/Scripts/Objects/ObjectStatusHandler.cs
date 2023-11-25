@@ -10,8 +10,8 @@ public class ObjectStatusHandler : MonoBehaviour
         gameManager = GameManager.instance;
     }
 
-    public int hasMovementControls {get; set;} = 0;
     public bool hasMovement {get; set;} = true;
+    public int hasMovementControls {get; set;} = 0;
 
     public int hasControls {get; set;} = 0;
 
