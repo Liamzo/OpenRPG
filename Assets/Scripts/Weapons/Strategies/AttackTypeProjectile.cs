@@ -12,7 +12,7 @@ public class AttackTypeProjectile : BaseStrategy, IAttackType
         weapon.OnTrigger += DoAttack;
     }
 
-    public void DoAttack()
+    public void DoAttack(float charge)
     {
         GameObject go = Instantiate(bulletPrefab, weapon.attackPoint.position, Quaternion.identity);
         BasicBullet bullet = go.GetComponent<BasicBullet>();

@@ -15,7 +15,7 @@ public class AttackTypeShotgun : BaseStrategy, IAttackType
         weapon.OnTrigger += DoAttack;
     }
 
-    public void DoAttack()
+    public void DoAttack(float charge)
     {
         List<ObjectHandler> targets = EnemiesInCone();
 

@@ -17,8 +17,8 @@ public class WeaponHandler : MonoBehaviour
 
 
     // Events
-    public event System.Action OnTrigger = delegate { };
-    public void CallOnTrigger() { OnTrigger(); }
+    public event System.Action<float> OnTrigger = delegate { };
+    public void CallOnTrigger(float charge = 1f) { OnTrigger(charge); }
     
     public event System.Action<int> OnReload = delegate { };
     public void CallOnReload(int amount) { OnReload(amount); }

@@ -14,6 +14,7 @@ public class TriggerCharge : BaseStrategy, ITrigger
             chargeTimer += Time.deltaTime;
 
             if (chargeTimer > 1f) {
+                chargeTimer = 1f;
                 weapon.AttackAnticipation();
                 fullyCharged = true;
             }
@@ -50,12 +51,13 @@ public class TriggerCharge : BaseStrategy, ITrigger
     public float AttackRelease()
     {
         if (weapon.CanAttack()) {
+            weapon.CallOnTrigger(chargeTimer);
+
             weapon.animator.SetBool("Charging", false);
             isCharging = false;
             fullyCharged = false;
             chargeTimer = 0f;
             
-            weapon.CallOnTrigger();
 
             weapon.item.owner.GetComponent<Physicsable>().Knock(-transform.up, weapon.statsWeapon[WeaponStatNames.SelfKnockForce].GetValue());
 

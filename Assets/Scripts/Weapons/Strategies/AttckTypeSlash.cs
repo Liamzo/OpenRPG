@@ -9,7 +9,7 @@ public class AttckTypeSlash : BaseStrategy, IAttackType
         weapon.OnAttack += SpawnSlashAnimEvent;
     }
 
-    public void DoAttack()
+    public void DoAttack(float charge)
     {
         weapon.animator.SetTrigger("Attack");
     }

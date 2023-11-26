@@ -3,5 +3,5 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface IAttackType {
-    public void DoAttack();
+    public void DoAttack(float charge);
 }
