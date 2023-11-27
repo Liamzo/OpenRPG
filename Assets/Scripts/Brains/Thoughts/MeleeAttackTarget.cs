@@ -34,7 +34,10 @@ public class MeleeAttackTarget : BaseThought
 
     public override void Execute()
     {
-        brain.SetLookingDirection(brain.threatHandler.targetLastSeen.Value);
+        brain.SetTargetLookingDirection(brain.threatHandler.targetLastSeen.Value);
+
+        if (brain.character.objectStatusHandler.HasMovementControls())
+            brain.SetLookingDirection(brain.threatHandler.targetLastSeen.Value);
         
         brain.equipmentHandler.ToggleMeleeRanged(true);
 

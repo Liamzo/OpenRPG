@@ -17,6 +17,7 @@ public class BaseBrain : MonoBehaviour
 
     public Vector3 movement;
     public Vector3 lookingDirection;
+    public Vector3 targetLookingDirection;
     
 
     protected virtual void Awake() {
@@ -47,11 +48,15 @@ public class BaseBrain : MonoBehaviour
         GetComponent<Collider2D>().enabled = false;
     }
 
-    public void SetLookingDirection(Vector3 target) {
+    public void SetLookingDirection(Vector3 target) { 
         GetComponent<EquipmentHandler>().SpotLook(target);
 
-        Vector2 diff = target - (transform.position + new Vector3(0,0.7f,0));
+        lookingDirection = GetComponent<EquipmentHandler>().rightMeleeSpot.transform.up;
+        targetLookingDirection = lookingDirection;
+    }
+    public void SetTargetLookingDirection(Vector3 target) { 
+        Vector2 diff = target - GetComponent<EquipmentHandler>().rightMeleeSpot.transform.parent.position;// (transform.position + new Vector3(0,0.7f,0));
 
-        lookingDirection = diff.normalized;
+        targetLookingDirection = diff.normalized * -1;
     }
 }

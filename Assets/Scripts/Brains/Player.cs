@@ -56,6 +56,8 @@ public class Player : BaseBrain
     {
         _pointerOverUI = EventSystem.current.IsPointerOverGameObject();
 
+        SetTargetLookingDirection(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()));
+
         if (dodgeCDTimer > 0.0f) {
             dodgeCDTimer -= Time.deltaTime;
         }
