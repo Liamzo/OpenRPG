@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public class AttckTypeSlash : BaseStrategy, IAttackType
+public class AttackTypeSlash : BaseStrategy, IAttackType
 {
     float lastCharge = 1f;
     private void Start() {
