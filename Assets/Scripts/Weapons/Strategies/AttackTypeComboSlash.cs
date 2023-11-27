@@ -21,14 +21,20 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
             weapon.item.owner.objectStatusHandler.UnblockMovementControls();
         } else if (inCombo) {
             // Limit looking rotation
-            Debug.Log(Vector3.Angle(lockedLookingDirection, weapon.item.owner.GetComponent<BaseBrain>().targetLookingDirection));
+            float angleToTarget = Vector3.Angle(lockedLookingDirection, weapon.item.owner.GetComponent<BaseBrain>().targetLookingDirection);
+            float side = Mathf.Sign(Vector3.Cross(lockedLookingDirection, weapon.item.owner.GetComponent<BaseBrain>().targetLookingDirection).z); // Right is negative, Left is positive
 
             // Get new looking direction
-            
-            // Clamp within max aloung rotation
-            //Vector3.Angle(lockedLookingDirection, Quaternion.Euler(weaponHandler._handle.eulerAngles + spriteRotation) * Vector3.up);
+            if (angleToTarget > 20f) {
+                angleToTarget = 20f;
+            }
+
+            angleToTarget *= side;
+
+            Vector3 newDir = Quaternion.AngleAxis(angleToTarget, Vector3.forward) * -lockedLookingDirection;
 
             // Set Looking Direction
+            weapon.item.owner.GetComponent<BaseBrain>().SetLookingDirection(weapon.item.owner.GetComponent<EquipmentHandler>().orbitPoint.position + newDir);
         }
     }
 

@@ -246,7 +246,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3161783212397411797
 Transform:
   m_ObjectHideFlags: 0
@@ -352,6 +352,7 @@ MonoBehaviour:
   footSteps: {fileID: 6766988191163624841}
   movement: {x: 0, y: 0, z: 0}
   lookingDirection: {x: 0, y: 0, z: 0}
+  targetLookingDirection: {x: 0, y: 0, z: 0}
   thoughtLocked: {fileID: 0}
   attackCoolDown: 3
   attackTimer: 0
@@ -418,6 +419,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingEquipment: {fileID: 11400000, guid: 7e9924f84f1ef0747b7b365e1fb3949b, type: 2}
   currentEquipment: []
+  orbitPoint: {fileID: 2727882683445926131}
   rightMeleeSpot: {fileID: 4353382604346183704}
   leftMeleeSpot: {fileID: 6353194819935669052}
   wasMeleeDrawn: 1

@@ -15,6 +15,7 @@ public class EquipmentHandler : MonoBehaviour
     public OnEquipmentChanged onEquipmentChanged;
 
 
+    public Transform orbitPoint;
     public HandSpot rightMeleeSpot;
     public HandSpot leftMeleeSpot;
 
