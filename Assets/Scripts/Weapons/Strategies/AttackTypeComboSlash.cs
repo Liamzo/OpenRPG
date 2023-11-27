@@ -18,6 +18,8 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
             inCombo = false;
 
             weapon.item.owner.objectStatusHandler.UnblockMovementControls();
+        } else if (inCombo) {
+            // Limit looking rotation
         }
     }
 
