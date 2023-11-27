@@ -32,6 +32,8 @@ public class StayAtRange : BaseThought
 
     public override void Execute()
     {
+        brain.SetLookingDirection(brain.threatHandler.targetLastSeen.Value);
+        
         // If within min and max distance then hold position
         // Else, try and move towards to middle on min and max distance
         if (brain.distToTarget >= minRange && brain.distToTarget <= maxRange) {

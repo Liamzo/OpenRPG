@@ -34,6 +34,8 @@ public class MeleeAttackTarget : BaseThought
 
     public override void Execute()
     {
+        brain.SetLookingDirection(brain.threatHandler.targetLastSeen.Value);
+        
         brain.equipmentHandler.ToggleMeleeRanged(true);
 
         WeaponHandler weapon = brain.equipmentHandler.rightMeleeSpot.weapon;

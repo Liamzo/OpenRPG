@@ -31,6 +31,8 @@ public class RangedAttackTarget : BaseThought
 
     public override void Execute()
     {
+        brain.SetLookingDirection(brain.threatHandler.targetLastSeen.Value);
+        
         brain.equipmentHandler.ToggleMeleeRanged(false);
 
         WeaponHandler weapon = brain.equipmentHandler.rightMeleeSpot.weapon;

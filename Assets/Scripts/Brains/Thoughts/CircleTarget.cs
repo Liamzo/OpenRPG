@@ -52,6 +52,8 @@ public class CircleTarget : BaseThought
 
     public override void Execute()
     {
+        brain.SetLookingDirection(brain.threatHandler.targetLastSeen.Value);
+
         float dist = Vector3.Distance(transform.position, brain.threatHandler.target.transform.position);
 
         // Move Speed

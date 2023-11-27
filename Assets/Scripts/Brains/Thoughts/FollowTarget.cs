@@ -31,6 +31,8 @@ public class FollowTarget : BaseThought
 
     public override void Execute()
     {
+        brain.SetLookingDirection(brain.threatHandler.targetLastSeen.Value);
+        
         if (Vector3.Distance(transform.position, brain.threatHandler.targetLastSeen.Value) < 0.5f) {
             // Close enough to last seen point, so just wait
             return;
