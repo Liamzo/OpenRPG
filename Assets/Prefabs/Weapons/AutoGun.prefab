@@ -163,6 +163,8 @@ GameObject:
   - component: {fileID: 3365166156655135163}
   - component: {fileID: 8819093974158804392}
   - component: {fileID: 1340099079311556152}
+  - component: {fileID: 4810846815831808256}
+  - component: {fileID: 5091217813209746608}
   m_Layer: 0
   m_Name: Strategies
   m_TagString: Untagged
@@ -247,6 +249,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3dfeeb96406dd104583915d64f1efd90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4810846815831808256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3365166156655135142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30f3db205c461a14986f2c8967c5daa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5091217813209746608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3365166156655135142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e97ec600dbd8c7940b7fd4cb31942511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4033213245311495261

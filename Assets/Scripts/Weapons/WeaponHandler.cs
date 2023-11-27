@@ -124,7 +124,7 @@ public class WeaponHandler : MonoBehaviour
         if (other.TryGetComponent<ObjectHandler>(out otherObjectHandler)) {
             if (otherObjectHandler == item.owner) return;
             
-            damageType.DealDamage(otherObjectHandler);
+            damageType.DealDamage(otherObjectHandler, 1f);
         }
     }
 

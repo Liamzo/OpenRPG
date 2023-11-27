@@ -5,6 +5,7 @@ using UnityEngine;
 public class BasicBullet : MonoBehaviour
 {
     public float bulletSpeed;
+    public float weaponCharge;
     public Vector3 direction;
     public WeaponHandler weapon;
 
@@ -30,7 +31,7 @@ public class BasicBullet : MonoBehaviour
         if (other.TryGetComponent<ObjectHandler>(out objectHandler)) {
             if (objectHandler == weapon.item.owner) return;
 
-            objectHandler.GetHit(weapon, (CharacterHandler)weapon.item.owner);
+            weapon.damageType.DealDamage(objectHandler, weaponCharge);
         }
 
         Destroy(gameObject);

@@ -18,6 +18,7 @@ public class AttackTypeProjectile : BaseStrategy, IAttackType
         BasicBullet bullet = go.GetComponent<BasicBullet>();
         bullet.weapon = weapon;
         bullet.bulletSpeed = bulletSpeed;
+        bullet.weaponCharge = charge;
         bullet.direction = -transform.up;
         muzzleFlash.Flash();
         weapon.CallOnAttack();

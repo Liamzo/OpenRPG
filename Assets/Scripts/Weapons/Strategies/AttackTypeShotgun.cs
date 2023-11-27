@@ -20,7 +20,7 @@ public class AttackTypeShotgun : BaseStrategy, IAttackType
         List<ObjectHandler> targets = EnemiesInCone();
 
         foreach(ObjectHandler target in targets) {
-            target.GetHit(weapon, (CharacterHandler)weapon.item.owner); // Could potentially delay based on distance
+            weapon.damageType.DealDamage(target, charge); // Could potentially delay based on distance
         }
 
         fireEffect.Play();

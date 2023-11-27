@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IDamageType
 {
-    public void DealDamage(ObjectHandler target);
+    public void DealDamage(ObjectHandler target, float charge);
 }

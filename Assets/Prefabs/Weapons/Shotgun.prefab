@@ -5187,6 +5187,7 @@ GameObject:
   - component: {fileID: 7372804200891990173}
   - component: {fileID: 7372804200891990162}
   - component: {fileID: 7073907862433821761}
+  - component: {fileID: 7309780720511969913}
   m_Layer: 0
   m_Name: Strategies
   m_TagString: Untagged
@@ -5282,6 +5283,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e97ec600dbd8c7940b7fd4cb31942511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7309780720511969913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7372804200891990163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30f3db205c461a14986f2c8967c5daa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7604023079632420970
