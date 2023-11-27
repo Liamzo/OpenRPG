@@ -25,8 +25,8 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
             float side = Mathf.Sign(Vector3.Cross(lockedLookingDirection, weapon.item.owner.GetComponent<BaseBrain>().targetLookingDirection).z); // Right is negative, Left is positive
 
             // Get new looking direction
-            if (angleToTarget > 20f) {
-                angleToTarget = 20f;
+            if (angleToTarget > 30f) {
+                angleToTarget = 30f;
             }
 
             angleToTarget *= side;

@@ -259,6 +259,8 @@ public class Player : BaseBrain
     }
 
     void SpriteLookAtMouse() {
+        if (!character.objectStatusHandler.HasMovementControls()) { return; }
+
         if (transform.position.x > Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()).x) {
             character.spriteRenderer.flipX = true;
         } else {
