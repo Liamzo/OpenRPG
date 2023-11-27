@@ -23,6 +23,7 @@ public class Player : BaseBrain
 
 
     [Header("Dodging")]
+    Vector3 dodgeMovement;
     public bool wasDodging = false;
     public float dodgeTimer = 0.0f;
     public float dodgeDuration;
@@ -65,7 +66,7 @@ public class Player : BaseBrain
 
         if (character.objectStatusHandler.HasMovementControls())
             MovementControls();
-
+        
         if (character.objectStatusHandler.HasControls()) {
             WeaponControls();
             FindClosestInteractable();
@@ -116,17 +117,19 @@ public class Player : BaseBrain
 
             MovementControls();
 
-            if (movement == Vector3.zero) {
-                movement = ((Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - (Vector2)transform.position).normalized * character.statsCharacter[CharacterStatNames.MovementSpeed].GetValue();
+            dodgeMovement = movement;
+
+            if (dodgeMovement == Vector3.zero) {
+                dodgeMovement = ((Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - (Vector2)transform.position).normalized * character.statsCharacter[CharacterStatNames.MovementSpeed].GetValue();
                 
-                if (movement.x < 0) {
+                if (dodgeMovement.x < 0) {
                     character.spriteRenderer.flipX = true;
-                } else if (movement.x > 0) {
+                } else if (dodgeMovement.x > 0) {
                     character.spriteRenderer.flipX = false;
                 }
             }
 
-            movement *= dodgeSpeedMulti;
+            dodgeMovement *= dodgeSpeedMulti;
 
             _animator.SetBool("Rolling", true);
             _animator.SetTrigger("Roll");
@@ -147,6 +150,9 @@ public class Player : BaseBrain
         // } else {
         //     movement = dodgeStartingMovement * Mathf.Lerp(dodgeSpeedMulti, 1f, (dodgeTimer - (dodgeDuration / 2.0f)) * 2);
         // }
+
+        Vector3 newMove = dodgeMovement * Time.fixedDeltaTime;
+        character.movement += newMove;
 
         if (wasDodging) {
             if (InputManager.GetInstance().GetDashPressed()) {
@@ -260,7 +266,9 @@ public class Player : BaseBrain
 
 
     private void FixedUpdate() {
-        if (!character.objectStatusHandler.HasMovement()) {
+        if (!character.objectStatusHandler.HasMovement() || !character.objectStatusHandler.HasMovementControls()) {
+            movement = Vector3.zero;
+            _animator.SetFloat("Movement", 0f);
             footEmission.rateOverTime = 0f;
             return;
         }
