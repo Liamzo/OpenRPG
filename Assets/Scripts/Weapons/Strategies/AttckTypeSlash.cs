@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider2D))]
 public class AttckTypeSlash : BaseStrategy, IAttackType
 {
+    float lastCharge = 1f;
     private void Start() {
         weapon.OnTrigger += DoAttack;
         weapon.OnAttack += SpawnSlashAnimEvent;
@@ -12,6 +14,7 @@ public class AttckTypeSlash : BaseStrategy, IAttackType
     public void DoAttack(float charge)
     {
         weapon.animator.SetTrigger("Attack");
+        lastCharge = charge;
     }
 
     public void SpawnSlashAnimEvent() {
@@ -23,15 +26,15 @@ public class AttckTypeSlash : BaseStrategy, IAttackType
         go.SetActive(true);
     }
 
-    // private void OnTriggerEnter2D(Collider2D other) {
-    //     if (other.gameObject.layer != LayerMask.NameToLayer("Default")) return;
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.layer != LayerMask.NameToLayer("Default")) return;
 
-    //     ObjectHandler otherObjectHandler;
+        ObjectHandler otherObjectHandler;
 
-    //     if (other.TryGetComponent<ObjectHandler>(out otherObjectHandler)) {
-    //         if (otherObjectHandler == meleeWeapon.item.owner) return;
+        if (other.TryGetComponent<ObjectHandler>(out otherObjectHandler)) {
+            if (otherObjectHandler == weapon.item.owner) return;
             
-    //         meleeWeapon.damageType.DealDamage(otherObjectHandler);
-    //     }
-    // }
+            weapon.damageType.DealDamage(otherObjectHandler, lastCharge);
+        }
+    }
 }

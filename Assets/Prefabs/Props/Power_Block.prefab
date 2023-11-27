@@ -95,8 +95,6 @@ GameObject:
   - component: {fileID: 5789821825152852297}
   - component: {fileID: 5789821825152852302}
   - component: {fileID: 5789821825152852296}
-  - component: {fileID: 5789821825152852299}
-  - component: {fileID: 5789821825152852292}
   - component: {fileID: 5073238057078039466}
   m_Layer: 0
   m_Name: Power_Block
@@ -112,7 +110,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5789821825152852307}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 16.77, y: 13.77557, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -168,36 +166,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.4, y: 0.88}
   m_EdgeRadius: 0
---- !u!114 &5789821825152852299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5789821825152852307}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7310db108acaa224a9b60105e4db0ba7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseStats: {fileID: 11400000, guid: 95de858976419614e84657b179246d3b, type: 2}
-  objectName: 
-  objectType: 0
-  movement: {x: 0, y: 0, z: 0}
-  currentHealth: 0
-  objectStatusHandler: {fileID: 0}
---- !u!114 &5789821825152852292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5789821825152852307}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 343b98f1b6060e548a1166dd68c6a4b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5073238057078039466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,7 +192,7 @@ MonoBehaviour:
   - {x: 0.70000076, y: 0.7600002, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: -1165150
+  m_InstanceId: -2442
   m_LocalBounds:
     m_Center: {x: 0, y: 1.2000008, z: 0}
     m_Extent: {x: 0.70000076, y: 0.44000053, z: 0}
