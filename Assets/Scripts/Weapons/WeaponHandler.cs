@@ -26,6 +26,9 @@ public class WeaponHandler : MonoBehaviour
     public event System.Action OnAttack = delegate { };
     public void CallOnAttack() { OnAttack(); }
 
+    public event System.Action<ObjectHandler> OnHitTarget = delegate { };
+    public void CallOnHitTarget(ObjectHandler target) { OnHitTarget(target); }
+
     public ITrigger trigger;
     public IAttackType attackType;
     public IDamageType damageType;

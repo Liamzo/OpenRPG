@@ -28,7 +28,6 @@ public class ObjectHandler : MonoBehaviour
 
 
     // Events
-    public event System.Action<WeaponHandler, CharacterHandler> OnGetHit = delegate { };
     public event System.Action<float, WeaponHandler, CharacterHandler> OnTakeDamage = delegate { };
     public event System.Action<ObjectHandler> OnDeath = delegate { };
 
@@ -106,15 +105,15 @@ public class ObjectHandler : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void GetHit(WeaponHandler weapon, CharacterHandler damageDealer) {
+    public bool GetHit(float damage, WeaponHandler weapon, CharacterHandler damageDealer) {
         // Check for Dodge
         if (objectStatusHandler.isDodging) {
             // Dodge
-            return;
+            return false;
         }
 
         // On-hit effects
-        OnGetHit(weapon, damageDealer);
+        weapon.CallOnHitTarget(this);
 
         // // Check for Penetration
         // float penValue = weapon.statsWeapon[WeaponStatNames.PenetrationValue].GetValue();
@@ -128,20 +127,9 @@ public class ObjectHandler : MonoBehaviour
         //     return;
         // }
 
-        // Roll for Damage
-        float damage = 0.0f;
-
-        for (int i = 0; i < weapon.statsWeapon[WeaponStatNames.DamageRollCount].GetValue(); i++) {
-            damage += Random.Range(1, (int)weapon.GetStatValue(WeaponStatNames.DamageRollValue) + 1);
-        }
-
-        GameManager.instance.ShakeCamera(5.0f, 0.15f);
-        GameManager.instance.HitStop(0.2f);
-
-        objectStatusHandler.BlockControls(weapon.GetStatValue(WeaponStatNames.Stagger));
-        objectStatusHandler.BlockMovementControls(weapon.GetStatValue(WeaponStatNames.Stagger));
-
         TakeDamge(damage, weapon, damageDealer);
+
+        return true;
     }
 }
 
