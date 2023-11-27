@@ -42,14 +42,14 @@ public class WeaponHandler : MonoBehaviour
         _animationAttackLock = true;
         item.owner.objectStatusHandler.BlockControls();
 
-        if (GetStatValue(WeaponStatNames.Blocking) > 0f) {
+        if (GetStatValue(WeaponStatNames.Blocking) > 0f)
             item.owner.objectStatusHandler.BlockMovementControls();
-        }
     }
     public void animationUnblockAttack() {
         _animationAttackLock = false;
         item.owner.objectStatusHandler.UnblockControls();
-        item.owner.objectStatusHandler.UnblockMovementControls();
+        if (GetStatValue(WeaponStatNames.Blocking) > 0f)
+            item.owner.objectStatusHandler.UnblockMovementControls();
     }
 
     protected virtual void Awake() {
