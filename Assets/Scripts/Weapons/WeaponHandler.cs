@@ -40,9 +40,16 @@ public class WeaponHandler : MonoBehaviour
     bool _animationAttackLock = false;
     public void animationBlockAttack() {
         _animationAttackLock = true;
+        item.owner.objectStatusHandler.BlockControls();
+
+        if (GetStatValue(WeaponStatNames.Blocking) > 0f) {
+            item.owner.objectStatusHandler.BlockMovementControls();
+        }
     }
     public void animationUnblockAttack() {
         _animationAttackLock = false;
+        item.owner.objectStatusHandler.UnblockControls();
+        item.owner.objectStatusHandler.UnblockMovementControls();
     }
 
     protected virtual void Awake() {
@@ -135,7 +142,8 @@ public enum WeaponStatNames {
     StaminaCostEnd,
     StaminaCostHold,
     StaminaCostAim,
-    SelfKnockForce
+    SelfKnockForce,
+    Blocking
 }
 
 [System.Serializable]

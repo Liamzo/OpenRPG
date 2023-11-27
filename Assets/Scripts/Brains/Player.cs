@@ -61,7 +61,7 @@ public class Player : BaseBrain
         }
 
         // Controls
-        if (character.objectStatusHandler.HasMovementControls())
+        if (character.objectStatusHandler.HasControls())
             DodgeControls();
 
         if (character.objectStatusHandler.HasMovementControls())
