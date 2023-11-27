@@ -11,7 +11,7 @@ public class Orc : NonPlayerBrain
         base.Update();
         
         // Look at target
-        if (threatHandler.targetLastSeen != null)
+        if (threatHandler.targetLastSeen != null && character.objectStatusHandler.HasMovementControls())
             SetLookingDirection(threatHandler.targetLastSeen.Value);
     }
 }
