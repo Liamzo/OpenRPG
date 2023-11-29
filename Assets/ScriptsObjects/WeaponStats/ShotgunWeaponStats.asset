@@ -22,7 +22,7 @@ MonoBehaviour:
   - statName: 3
     value: 0.1
   - statName: 5
-    value: 50
+    value: 100
   - statName: 8
     value: 2
   - statName: 9
@@ -34,7 +34,7 @@ MonoBehaviour:
   - statName: 12
     value: 1
   - statName: 13
-    value: 30
+    value: 60
   - statName: 6
     value: 10
   - statName: 4

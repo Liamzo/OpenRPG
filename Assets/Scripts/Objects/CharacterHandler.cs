@@ -22,6 +22,8 @@ public class CharacterHandler : ObjectHandler
         }
 
         currentStamina = statsCharacter[CharacterStatNames.Stamina].GetValue();
+
+        OnTakeDamage += OnDamageFlash;
     }
 
     protected void Update() {
@@ -36,6 +38,17 @@ public class CharacterHandler : ObjectHandler
 
     public float GetStatValue(CharacterStatNames statName) {
         return statsCharacter[statName].GetValue();
+    }
+
+    void OnDamageFlash(float damage, WeaponHandler weapon, CharacterHandler damageDealer) {
+        StartCoroutine("DoFlash");
+    }
+    IEnumerator DoFlash() {
+        spriteRenderer.color = Color.red;
+
+        yield return new WaitForSeconds(0.1f);
+
+        spriteRenderer.color = Color.white;
     }
 }
 

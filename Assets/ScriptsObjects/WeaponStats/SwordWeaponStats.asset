@@ -22,13 +22,13 @@ MonoBehaviour:
   - statName: 3
     value: 1
   - statName: 5
-    value: 50
+    value: 80
   - statName: 11
     value: 5
   - statName: 10
     value: 10
   - statName: 13
-    value: 30
+    value: 50
   - statName: 6
     value: 3
   - statName: 4
