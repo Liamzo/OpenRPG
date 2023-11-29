@@ -7,7 +7,7 @@ public class Corpse : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public InventoryHandler inventoryHandler;
 
-    // Start is called before the first frame update
+
     public void SetVars(SpriteRenderer renderer, List<ItemHandler> items) {
         spriteRenderer.sprite = renderer.sprite;
         spriteRenderer.flipX = renderer.flipX;

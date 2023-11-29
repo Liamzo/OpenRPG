@@ -211,6 +211,11 @@ public class EquipmentHandler : MonoBehaviour
                 ItemHandler item = GetEquipment((EquipmentSlot) i);
                 Unequip((EquipmentSlot) i);
                 item.Drop();
+
+                item.transform.position = item.transform.position + (Vector3) Random.insideUnitCircle;
+                Vector3 randomDir = Random.insideUnitCircle.normalized;
+                float randomDist = Random.Range(0.2f, 2f);
+                item.transform.position += randomDir * randomDist;
             }
         }
     }
