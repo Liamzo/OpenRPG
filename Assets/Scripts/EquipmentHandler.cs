@@ -53,14 +53,13 @@ public class EquipmentHandler : MonoBehaviour
 
         Unequip(equipmentSlot);
 
-        if (onEquipmentChanged != null) {
-            onEquipmentChanged.Invoke(newItem, oldItem, equipmentSlot);
-        }
+        onEquipmentChanged?.Invoke(newItem, oldItem, equipmentSlot);
 
         currentEquipment[slot] = newItem;
         inventory.Remove(newItem);
         newItem.itemHitbox.enabled = false;
         newItem.gameObject.SetActive(true);
+        newItem.Equip();
 
         if (equipmentSlot == EquipmentSlot.RightHand || equipmentSlot == EquipmentSlot.RightRangedWeapon) {
             newItem.transform.parent = rightMeleeSpot.transform;
@@ -96,6 +95,7 @@ public class EquipmentHandler : MonoBehaviour
             oldItem.gameObject.SetActive(false);
             oldItem.itemHitbox.enabled = false;
             oldItem.transform.parent = null;
+            oldItem.Unequip();
 
             if ((meleeDrawn && equipmentSlot == EquipmentSlot.RightHand) || (!meleeDrawn && equipmentSlot == EquipmentSlot.RightRangedWeapon)) {
                 rightMeleeSpot.weapon = null;
@@ -103,9 +103,7 @@ public class EquipmentHandler : MonoBehaviour
                 leftMeleeSpot.weapon = null;
             }
 
-            if (onEquipmentChanged != null) {
-                onEquipmentChanged.Invoke(null, oldItem, equipmentSlot);
-            }
+            onEquipmentChanged?.Invoke(null, oldItem, equipmentSlot);
         }
     }
     public void Unequip(ItemHandler equipment) {
@@ -120,6 +118,7 @@ public class EquipmentHandler : MonoBehaviour
                 item.gameObject.SetActive(false);
                 item.itemHitbox.enabled = false;
                 item.transform.parent = null;
+                item.Unequip();
 
                 EquipmentSlot equipmentSlot = (EquipmentSlot)i;
 
@@ -129,9 +128,7 @@ public class EquipmentHandler : MonoBehaviour
                     leftMeleeSpot.weapon = null;
                 }
 
-                if (onEquipmentChanged != null) {
-                    onEquipmentChanged.Invoke(null, item, (EquipmentSlot)i);
-                }
+                onEquipmentChanged?.Invoke(null, item, (EquipmentSlot)i);
 
                 return;
             }

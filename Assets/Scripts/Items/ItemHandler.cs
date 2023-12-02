@@ -12,8 +12,6 @@ public class ItemHandler : MonoBehaviour
     public BaseItemStats baseItemStats;
     public List<ItemAction> itemActions;
     public ItemAction defaultItemAction;
-
-
     public int value {
         get {
             return baseItemStats.baseValue;
@@ -22,6 +20,10 @@ public class ItemHandler : MonoBehaviour
             this.value = value;
         }
     }
+
+
+    // Events
+    public event System.Action OnUnequip = delegate { };
 
     private void Awake() {
         objectHandler = GetComponent<ObjectHandler>();
@@ -74,6 +76,6 @@ public class ItemHandler : MonoBehaviour
         
     }
     public void Unequip() {
-
+        OnUnequip();
     }
 }

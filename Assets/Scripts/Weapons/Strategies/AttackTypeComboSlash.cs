@@ -12,6 +12,8 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
     private void Start() {
         weapon.OnTrigger += DoAttack;
         weapon.OnAttack += SpawnSlashAnimEvent;
+
+        weapon.item.OnUnequip += InteruptCombo;
     }
 
     private void Update() {
@@ -60,6 +62,16 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
         go.transform.up = -weapon.item.owner.GetComponent<BaseBrain>().lookingDirection;
 
         go.SetActive(true);
+    }
+
+    void InteruptCombo() {
+        if (inCombo) {
+            inCombo = false;
+
+            weapon.item.owner.objectStatusHandler.UnblockMovementControls();
+
+            //weapon.animator.Play("Sword_Idle");//
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other) {

@@ -55,6 +55,8 @@ public class WeaponHandler : MonoBehaviour
     protected virtual void Awake() {
         item = GetComponent<ItemHandler>();
 
+        item.OnUnequip += OnUnequip;
+
         foreach (WeaponStatValue sv in baseWeaponStats.stats) {
             statsWeapon.Add(sv.statName, new Stat(sv.value));
         }
@@ -124,6 +126,14 @@ public class WeaponHandler : MonoBehaviour
     public void AttackAnticipation() {
         anticipation.AttackAnticipation();
     }
+
+
+    void OnUnequip() {
+        if (_animationAttackLock) {
+            animationUnblockAttack();
+        }
+    }
+
 }
 
 

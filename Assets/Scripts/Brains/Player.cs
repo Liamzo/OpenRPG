@@ -363,4 +363,9 @@ public class Player : BaseBrain
         CancelInteraction();
     }
 
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        Debug.Log("collision");
+    }
+
 }
