@@ -110,6 +110,14 @@ public class Player : BaseBrain
 
         movement *= character.statsCharacter[CharacterStatNames.MovementSpeed].GetValue();
 
+        if (InputManager.GetInstance().GetSprintPressed() && character.currentStamina >= 0f) {
+            Debug.Log("sprint");
+            movement *= 2f;
+
+            character.ChangeStamina(-5 * Time.deltaTime); // 5 stamina per second
+            character.objectStatusHandler.BlockRegainStamina(0f);
+        }
+
         // Look At Mouse
         SetLookingDirection(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()));
     }
