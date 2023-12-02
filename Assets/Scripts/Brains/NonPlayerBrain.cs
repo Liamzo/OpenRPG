@@ -34,7 +34,9 @@ public class NonPlayerBrain : BaseBrain
         agent.enabled = false;
     }
 
-    protected virtual void Update() {
+    protected override void Update() {
+        base.Update();
+        
         if (attackTimer > 0f) {
             attackTimer -= Time.deltaTime;
         }

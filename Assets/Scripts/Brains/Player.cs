@@ -52,8 +52,10 @@ public class Player : BaseBrain
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
+        base.Update();
+        
         _pointerOverUI = EventSystem.current.IsPointerOverGameObject();
 
         SetTargetLookingDirection(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()));
