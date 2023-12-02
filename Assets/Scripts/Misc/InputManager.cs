@@ -23,6 +23,7 @@ public class InputManager : MonoBehaviour
     private bool dashPressed = false;
     private bool tabPressed = false;
     private bool journalPressed = false;
+    private bool sprintPressed = false;
 
     private static InputManager instance;
 
@@ -175,6 +176,17 @@ public class InputManager : MonoBehaviour
         } 
     }
 
+    public void SprintPressed(InputAction.CallbackContext context) {
+        if (context.performed)
+        {
+            sprintPressed = true;
+        }
+        else if (context.canceled)
+        {
+            sprintPressed = false;
+        } 
+    }
+
     public Vector2 GetMoveDirection() 
     {
         return moveDirection;
@@ -191,6 +203,11 @@ public class InputManager : MonoBehaviour
     public bool GetDashPressed() 
     {
         return dashPressed;
+    }
+
+    public bool GetSprintPressed() 
+    {
+        return sprintPressed;
     }
 
     // for any of the below 'Get' methods, if we're getting it then we're also using it,
