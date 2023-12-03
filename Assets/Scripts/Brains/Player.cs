@@ -12,6 +12,8 @@ public class Player : BaseBrain
 
     private bool _pointerOverUI;
 
+    List<Vector3> followThroughMovements = new List<Vector3>();
+
     [Header("Interactions")]
     public float interactionDistance = 2f;
     public InteractionHandler interactingWith;
@@ -20,6 +22,7 @@ public class Player : BaseBrain
 
     [Header("Controls")]
     private bool wasAttacking = false;
+    private bool wasSprinting = false;
 
 
     [Header("Dodging")]
@@ -64,6 +67,18 @@ public class Player : BaseBrain
             dodgeCDTimer -= Time.deltaTime;
         }
 
+
+        for (int i = 0; i < followThroughMovements.Count; i++) {
+            character.movement += followThroughMovements[i] * Time.deltaTime;
+
+            followThroughMovements[i] *= 1 - (Time.deltaTime * 5f);
+
+            if (followThroughMovements[i].magnitude <= 0.3f) {
+                followThroughMovements.Remove(followThroughMovements[i]);
+                i--;
+            }
+        }
+
         // Controls
         if (character.objectStatusHandler.HasControls())
             DodgeControls();
@@ -95,6 +110,7 @@ public class Player : BaseBrain
     }
 
     void MovementControls() {
+        Vector3 prevMovement = movement;
         movement = new Vector3(InputManager.GetInstance().GetMoveDirection().x, InputManager.GetInstance().GetMoveDirection().y, 0);
 
         if (movement.magnitude > 1) {
@@ -110,12 +126,15 @@ public class Player : BaseBrain
 
         movement *= character.statsCharacter[CharacterStatNames.MovementSpeed].GetValue();
 
-        if (InputManager.GetInstance().GetSprintPressed() && character.currentStamina >= 0f) {
-            Debug.Log("sprint");
+        if (InputManager.GetInstance().GetSprintPressed() && character.currentStamina >= 0f && movement != Vector3.zero) {
             movement *= 2f;
 
             character.ChangeStamina(-5 * Time.deltaTime); // 5 stamina per second
             character.objectStatusHandler.BlockRegainStamina(0f);
+            wasSprinting = true;
+        } else if (wasSprinting) {
+            followThroughMovements.Add(prevMovement * 0.5f);
+            wasSprinting = false;
         }
 
         // Look At Mouse
@@ -163,7 +182,7 @@ public class Player : BaseBrain
         //     movement = dodgeStartingMovement * Mathf.Lerp(dodgeSpeedMulti, 1f, (dodgeTimer - (dodgeDuration / 2.0f)) * 2);
         // }
 
-        Vector3 newMove = dodgeMovement * Time.fixedDeltaTime;
+        Vector3 newMove = dodgeMovement * Time.deltaTime;
         character.movement += newMove;
 
         if (wasDodging) {
@@ -187,6 +206,8 @@ public class Player : BaseBrain
             dodgeCDTimer = dodgeCDDuration;
 
             footSteps.Emit(25);
+
+            followThroughMovements.Add(dodgeMovement);
         }
     }
 

@@ -33,6 +33,8 @@ public class TriggerFullAuto : BaseStrategy, ITrigger
 
     public float AttackRelease()
     {
+        weapon.CallOnTriggerRelease();
+        
         return weapon.statsWeapon[WeaponStatNames.StaminaCostEnd].GetValue();
     }
 
