@@ -12,60 +12,65 @@ public class AttackTypeGrapplingHook : BaseStrategy, IAttackType
     [SerializeField] private int grappableLayerNumber = 9;
 
     [Header("Physics Ref:")]
-    // public SpringJoint2D m_springJoint2D;
     public Rigidbody2D m_rigidbody;
 
     [Header("Rotation:")]
     [SerializeField] private bool rotateOverTime = true;
     [Range(0, 60)] [SerializeField] private float rotationSpeed = 4;
 
-    private enum LaunchType
-    {
-        Transform_Launch,
-        Physics_Launch
-    }
-
     [Header("Launching:")]
     [SerializeField] private bool launchToPoint = true;
-    [SerializeField] private LaunchType launchType = LaunchType.Transform_Launch;
-    [SerializeField] private float launchSpeed = 1;
+    [SerializeField] private float launchSpeed = 20;
 
-    [HideInInspector] public Vector2 grapplePoint;
+    [HideInInspector] public Vector3 grapplePoint;
+    [HideInInspector] public GameObject grappleHitObject;
     [HideInInspector] public Vector2 grappleDistanceVector;
+
+    private bool canGrapple = true;
 
     private void Start()
     {
         grappleRope.enabled = false;
-        //m_springJoint2D.enabled = false;
 
         weapon.OnTrigger += DoAttack;
+
         weapon.OnTriggerRelease += ReleaseGrapple;
+        weapon.OnHolseter += ReleaseGrapple;
+        weapon.item.OnUnequip += ReleaseGrapple;
 
         m_rigidbody = weapon.item.owner.GetComponent<Rigidbody2D>();
     }
 
     public void DoAttack(float charge)
     {
+        if (!canGrapple) { return; }
+
         if (grappleRope.enabled == false) {
             SetGrapplePoint();
         } else {
             // RotateGun(grapplePoint, false);
         
-            if (launchToPoint && grappleRope.isGrappling)
-            {
-                if (launchType == LaunchType.Transform_Launch)
-                {
-                    Vector2 firePointDistnace = weapon.attackPoint.position - weapon.item.owner.transform.position;
-                    Vector2 targetPos = grapplePoint - firePointDistnace;
-                    Vector3 move = Vector3.Lerp(weapon.item.owner.transform.position, targetPos, Time.deltaTime * launchSpeed) - weapon.item.owner.transform.position;
-                    weapon.item.owner.movement += move;
+            if (launchToPoint && grappleRope.isGrappling) {
+
+                Vector3 firePointDistnace = weapon.attackPoint.position - weapon.item.owner.transform.position;
+                Vector3 targetPos = grapplePoint - firePointDistnace;
+
+                if (Vector3.Distance(weapon.item.owner.transform.position, targetPos) < 1f) {
+                    grappleRope.enabled = false;
+                    canGrapple = false;
+                    return;
                 }
+
+                Vector3 dir = (targetPos - weapon.item.owner.transform.position).normalized;
+                weapon.item.owner.movement += dir * launchSpeed * Time.deltaTime;
+                
             }
         }
     }
 
     void ReleaseGrapple() {
         grappleRope.enabled = false;
+        canGrapple = true;
         //m_springJoint2D.enabled = false;
     }
 
@@ -92,9 +97,11 @@ public class AttackTypeGrapplingHook : BaseStrategy, IAttackType
         
         if (hit.transform.gameObject.layer == grappableLayerNumber || grappleToAll)
         {
+            grappleHitObject = hit.transform.gameObject;
+
             if (Vector2.Distance(hit.point, weapon.attackPoint.position) <= weapon.GetStatValue(WeaponStatNames.Range)) {
                 grapplePoint = hit.point;
-                grappleDistanceVector = grapplePoint - (Vector2)weapon.item.owner.transform.position;
+                grappleDistanceVector = grapplePoint - weapon.item.owner.transform.position;
                 grappleRope.enabled = true;
             }
         }
@@ -102,42 +109,10 @@ public class AttackTypeGrapplingHook : BaseStrategy, IAttackType
 
     public void Grapple()
     {
-        // m_springJoint2D.autoConfigureDistance = false;
-        // if (!launchToPoint && !autoConfigureDistance)
-        // {
-        //     m_springJoint2D.distance = targetDistance;
-        //     m_springJoint2D.frequency = targetFrequncy;
-        // }
-        // if (!launchToPoint)
-        // {
-        //     if (autoConfigureDistance)
-        //     {
-        //         m_springJoint2D.autoConfigureDistance = true;
-        //         m_springJoint2D.frequency = 0;
-        //     }
-
-        //     m_springJoint2D.connectedAnchor = grapplePoint;
-        //     m_springJoint2D.enabled = true;
-        // }
-        // else
-        // {
-        //     switch (launchType)
-        //     {
-        //         case LaunchType.Physics_Launch:
-        //             m_springJoint2D.connectedAnchor = grapplePoint;
-
-        //             Vector2 distanceVector = weapon.attackPoint.position - weapon.item.owner.transform.position;
-
-        //             m_springJoint2D.distance = distanceVector.magnitude;
-        //             m_springJoint2D.frequency = launchSpeed;
-        //             m_springJoint2D.enabled = true;
-        //             break;
-        //         case LaunchType.Transform_Launch:
-        //             m_rigidbody.velocity = Vector2.zero;
-        //             break;
-        //     }
-        // }
-
         m_rigidbody.velocity = Vector2.zero;
+
+        if (grappleHitObject.GetComponent<ObjectHandler>()) {
+            weapon.CallOnAttack();
+        }
     }
 }

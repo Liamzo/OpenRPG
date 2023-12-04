@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 7718733276731583802}
   - component: {fileID: 5483917388734217182}
   - component: {fileID: 8933556099738628892}
+  - component: {fileID: 7985026339385159090}
   m_Layer: 0
   m_Name: Strategies
   m_TagString: Untagged
@@ -157,10 +158,22 @@ MonoBehaviour:
   rotateOverTime: 0
   rotationSpeed: 4
   launchToPoint: 1
-  launchType: 0
-  launchSpeed: 2
-  grapplePoint: {x: 0, y: 0}
+  launchSpeed: 25
+  grapplePoint: {x: 0, y: 0, z: 0}
+  grappleHitObject: {fileID: 0}
   grappleDistanceVector: {x: 0, y: 0}
+--- !u!114 &7985026339385159090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138926956870403303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30f3db205c461a14986f2c8967c5daa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2589307526377160599
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,8 +356,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 0.122641504, g: 0.090386726, b: 0.005206477, a: 1}
+      key1: {r: 0.121568635, g: 0.09019608, b: 0.003921569, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}

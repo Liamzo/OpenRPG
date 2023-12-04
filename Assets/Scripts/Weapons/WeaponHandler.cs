@@ -17,6 +17,9 @@ public class WeaponHandler : MonoBehaviour
 
 
     // Events
+    public event System.Action OnHolseter = delegate { };
+    public void CallOnHolseter() { OnHolseter(); }
+
     public event System.Action<float> OnTrigger = delegate { };
     public void CallOnTrigger(float charge = 1f) { OnTrigger(charge); }
     public event System.Action OnTriggerRelease = delegate { };
@@ -80,6 +83,8 @@ public class WeaponHandler : MonoBehaviour
         transform.localRotation = Quaternion.identity;
 
         item.objectHandler.spriteRenderer.enabled = false;
+
+        CallOnHolseter();
     }
     public void Unholster() {
         transform.localPosition = new Vector3(0,0,0);
