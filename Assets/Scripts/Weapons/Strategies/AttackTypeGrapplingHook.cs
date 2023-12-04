@@ -20,7 +20,7 @@ public class AttackTypeGrapplingHook : BaseStrategy, IAttackType
 
     [Header("Launching:")]
     [SerializeField] private bool launchToPoint = true;
-    [SerializeField] private float launchSpeed = 20;
+    [SerializeField] private float launchSpeed = 25;
 
     [HideInInspector] public Vector3 grapplePoint;
     [HideInInspector] public GameObject grappleHitObject;
