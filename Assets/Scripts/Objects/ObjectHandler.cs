@@ -77,6 +77,8 @@ public class ObjectHandler : MonoBehaviour
         go.GetComponentInChildren<TextMeshPro>().SetText(damage.ToString());
         go.SetActive(true);
 
+        OnTakeDamage(damage, weapon, damageDealer);
+
         if (currentHealth <= 0) {
             // Give the character that killed this EXP if there is one
             if (damageDealer != null) {
@@ -89,8 +91,6 @@ public class ObjectHandler : MonoBehaviour
             Die();
             return;
         }
-
-        OnTakeDamage(damage, weapon, damageDealer);
     }
 
     void Die() {
