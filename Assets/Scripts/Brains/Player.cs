@@ -269,20 +269,18 @@ public class Player : BaseBrain
                 weapon.AttackCancel();
                 wasAttacking = false;
             }
-        } else {
-            if (wasAttacking) {
-                if (character.currentStamina >= weapon.AttackReleaseCost()) {
-                    float cost = weapon.AttackRelease();
-                    if (cost != 0f) {
-                        character.ChangeStamina(-cost);
-                        character.objectStatusHandler.BlockRegainStamina(0.2f);
-                    }
-
-                    SpriteLookAtMouse();
-
-                } else {
-                    weapon.AttackCancel();
+        } else if (wasAttacking) {
+            if (character.currentStamina >= weapon.AttackReleaseCost()) {
+                float cost = weapon.AttackRelease();
+                if (cost != 0f) {
+                    character.ChangeStamina(-cost);
+                    character.objectStatusHandler.BlockRegainStamina(0.2f);
                 }
+
+                SpriteLookAtMouse();
+                
+            } else {
+                weapon.AttackCancel();
             }
 
             wasAttacking = false;
