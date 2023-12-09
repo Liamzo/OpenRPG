@@ -11,7 +11,7 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
     
     private void Start() {
         weapon.OnTrigger += DoAttack;
-        weapon.OnAttack += SpawnSlashAnimEvent;
+        //weapon.OnAttack += SpawnSlashAnimEvent;
 
         weapon.item.OnUnequip += InteruptCombo;
     }

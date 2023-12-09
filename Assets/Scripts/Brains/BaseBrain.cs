@@ -37,7 +37,7 @@ public class BaseBrain : MonoBehaviour
     }
 
     protected virtual void Update() {
-        if (waitClock > 0f) {
+        if (waitClock >= 0f) {
             waitClock -= Time.deltaTime;
 
             if (waitClock <= 0f) {
@@ -51,7 +51,7 @@ public class BaseBrain : MonoBehaviour
 
         float waitTime = weapon.GetStatValue(WeaponStatNames.Stagger) - 0.1f;
 
-        if (waitTime < 0f && waitClock <= 0f) {
+        if (waitTime <= 0f && waitClock <= 0f) {
             // If we're currently stunned, don't cancel just because of a new weak attack
             _animator.SetTrigger("Recover");
         } else {
