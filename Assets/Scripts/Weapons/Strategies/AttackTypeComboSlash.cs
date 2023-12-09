@@ -20,7 +20,9 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
         if (weapon.animator.GetCurrentAnimatorStateInfo(0).IsName("Sword_Idle") && inCombo) {
             inCombo = false;
 
-            weapon.item.owner.objectStatusHandler.UnblockMovementControls();
+            //weapon.item.owner.objectStatusHandler.UnblockMovementControls();
+            CharacterHandler character = (CharacterHandler) weapon.item.owner;
+            character.statsCharacter[CharacterStatNames.MovementSpeed].RemoveModifier(-4f);
         } else if (inCombo) {
             // Limit looking rotation
             float angleToTarget = Vector3.Angle(lockedLookingDirection, weapon.item.owner.GetComponent<BaseBrain>().targetLookingDirection);
@@ -50,8 +52,10 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
         if (!inCombo) {
             inCombo = true;
 
-            // Disable movement
-            weapon.item.owner.objectStatusHandler.BlockMovementControls();
+            // Slow down movement
+            //weapon.item.owner.objectStatusHandler.BlockMovementControls();
+            CharacterHandler character = (CharacterHandler) weapon.item.owner;
+            character.statsCharacter[CharacterStatNames.MovementSpeed].AddModifier(-4f);
         }
     }
 

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class CharacterHandler : ObjectHandler
 {
-    public BaseCharacterStats baseCharacterStats;
+    [SerializeField] private BaseCharacterStats baseCharacterStats;
 
     public Dictionary<CharacterStatNames, Stat> statsCharacter = new Dictionary<CharacterStatNames, Stat>();
     
