@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+
+        DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame

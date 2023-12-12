@@ -45,6 +45,8 @@ public class Player : BaseBrain
         base.Awake();
 
         instance = this;
+
+        DontDestroyOnLoad(gameObject);
     }
 
     protected override void Start()

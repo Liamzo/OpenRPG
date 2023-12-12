@@ -24,6 +24,7 @@ public class InputManager : MonoBehaviour
     private bool tabPressed = false;
     private bool journalPressed = false;
     private bool sprintPressed = false;
+    private bool mapPressed = false;
 
     private static InputManager instance;
 
@@ -187,6 +188,17 @@ public class InputManager : MonoBehaviour
         } 
     }
 
+    public void MapPressed(InputAction.CallbackContext context) {
+        if (context.performed)
+        {
+            mapPressed = true;
+        }
+        else if (context.canceled)
+        {
+            mapPressed = false;
+        } 
+    }
+
     public Vector2 GetMoveDirection() 
     {
         return moveDirection;
@@ -266,6 +278,13 @@ public class InputManager : MonoBehaviour
     {
         bool result = journalPressed;
         journalPressed = false;
+        return result;
+    }
+
+    public bool GetMapPressed() 
+    {
+        bool result = mapPressed;
+        mapPressed = false;
         return result;
     }
 
