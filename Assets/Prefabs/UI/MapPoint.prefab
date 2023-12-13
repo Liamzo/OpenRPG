@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4307308623317862582}
   - component: {fileID: 5863598922280411780}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -264,4 +264,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f664831e68f31445959d39cfb8f61f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelData: {fileID: 0}
+  levelNameText: {fileID: 8061433197728096104}
+  levelIcon: {fileID: 5863598922280411780}

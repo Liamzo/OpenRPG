@@ -52,6 +52,7 @@ public class ItemHandler : MonoBehaviour
             itemHitbox.transform.gameObject.SetActive(false);
             gameObject.SetActive(false);
             this.owner = owner;
+            transform.SetParent(owner.transform);
             return true;
         }
         return false;
@@ -66,6 +67,7 @@ public class ItemHandler : MonoBehaviour
         objectHandler.spriteRenderer.sortingOrder = 0;
         gameObject.SetActive(true);
         owner = null;
+        transform.SetParent(null);
     }
 
     public void Use() {

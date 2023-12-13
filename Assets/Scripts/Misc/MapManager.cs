@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MapManager : MonoBehaviour
 {
@@ -23,12 +24,7 @@ public class MapManager : MonoBehaviour
     void Start()
     {
         foreach (LevelData level in startingLevels) {
-            MapPointUI mapPointUI = Instantiate(mapPointPrefab).GetComponent<MapPointUI>();
-            mapPointUI.transform.SetParent(mapPointParent.transform, false);
-            mapPointUI.AddLevel(level);
-
-            knownLevels.Add(level);
-            mapPointUIs.Add(mapPointUI);
+            AddLevel(level);
         }
     }
 
@@ -53,6 +49,10 @@ public class MapManager : MonoBehaviour
         if (mapUI.activeSelf == false) {
             mapUI.SetActive(true);
         }
+
+        foreach (MapPointUI mapPoint in mapPointUIs) {
+            Debug.Log(mapPoint.transform.position);
+        }
     }
     public void CloseMap() {
         if (mapUI.activeSelf == true) {
@@ -62,7 +62,10 @@ public class MapManager : MonoBehaviour
 
     public void AddLevel(LevelData level) {
         MapPointUI mapPointUI = Instantiate(mapPointPrefab).GetComponent<MapPointUI>();
+        mapPointUI.transform.SetParent(mapPointParent.transform, false);
         mapPointUI.AddLevel(level);
+
+        mapPointUI.OnClick += LevelSelected;
 
         knownLevels.Add(level);
         mapPointUIs.Add(mapPointUI);
@@ -72,11 +75,18 @@ public class MapManager : MonoBehaviour
         foreach (MapPointUI mapPoint in mapPointUIs) {
             if (mapPoint.levelData == level) {
                 mapPointUIs.Remove(mapPoint);
+                mapPoint.OnClick -= LevelSelected;
                 Destroy(mapPoint.gameObject);
                 break;
             }
         }
 
         knownLevels.Remove(level);
+    }
+
+    void LevelSelected(MapPointUI mapPoint, PointerEventData eventData) {
+        // Check if we can travel. In combat, in a dungeon, etc.
+
+        LevelManager.instance.LoadLevel(mapPoint.levelData);
     }
 }

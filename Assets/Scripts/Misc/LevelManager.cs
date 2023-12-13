@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -14,5 +15,8 @@ public class LevelManager : MonoBehaviour
         // Unload previous level (save data)
 
         // Load new level
+        SceneManager.LoadScene(levelData.sceneName);
+
+        // Load level data
     }
 }
