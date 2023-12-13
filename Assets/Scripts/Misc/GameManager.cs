@@ -17,12 +17,25 @@ public class GameManager : MonoBehaviour
     public bool waitingHitStop {get; private set;} = false;
 
 
+    public LevelData startingLevel;
+    public GameObject playerPrefab;
+
+
+    public CinemachineVirtualCamera virtualCamera;
+
+
     // Start is called before the first frame update
     void Awake()
     {
         instance = this;
 
         DontDestroyOnLoad(gameObject);
+
+        LevelManager.instance.LoadLevel(startingLevel);
+
+        GameObject player = Instantiate(playerPrefab);
+
+        virtualCamera.Follow = player.transform;
     }
 
     // Update is called once per frame

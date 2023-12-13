@@ -14,11 +14,14 @@ public class InventoryHandlerUI : InventoryHandler
 
     protected override void Awake()
     {
+        inventoryUI = GameObject.Find("Canvas").transform.Find("InventoryUI").gameObject;
+        inventorySlotsParent = inventoryUI.transform.Find("ItemsParent").Find("InventoryArea").Find("InventoryUISlots").gameObject;
+        GetComponent<EquipmentHandler>().onEquipmentChanged += UpdateEquipmentUI;
+        equipSlots = inventoryUI.GetComponentsInChildren<EquipmentSlotUI>();
+
         base.Awake();
 
         instance = this;
-        GetComponent<EquipmentHandler>().onEquipmentChanged += UpdateEquipmentUI;
-        equipSlots = inventoryUI.GetComponentsInChildren<EquipmentSlotUI>();
     }
 
     private void Update() {

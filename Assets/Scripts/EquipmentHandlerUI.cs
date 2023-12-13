@@ -20,6 +20,11 @@ public class EquipmentHandlerUI : EquipmentHandler
 
     protected private void Awake() {
         onEquipmentChanged += UpdateEquipmentUI;
+
+        bulletUIHolder = GameObject.Find("BulletHolder").GetComponent<RectTransform>();
+
+        reloadBar = GameObject.Find("AmmoReload").GetComponent<Slider>();
+        reloadBarTransform = GameObject.Find("AmmoReload").GetComponent<RectTransform>();
     }
 
     // Update is called once per frame

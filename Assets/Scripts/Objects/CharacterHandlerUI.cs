@@ -21,6 +21,13 @@ public class CharacterHandlerUI : CharacterHandler
 
         instance = this;
 
+        GameObject playerStatsUI = GameObject.FindWithTag("PlayerStatsUI");
+
+        healthBar = playerStatsUI.transform.Find("Health").GetComponent<Slider>();
+        healthText = playerStatsUI.transform.Find("Health").Find("Fill Area").Find("HealthText").GetComponent<TextMeshProUGUI>();
+        staminaBar = playerStatsUI.transform.Find("Stamina").GetComponent<Slider>();
+        staminaText = playerStatsUI.transform.Find("Stamina").Find("Fill Area").Find("StaminaText").GetComponent<TextMeshProUGUI>();
+
         healthBar.maxValue = statsObject[ObjectStatNames.Health].GetValue();
         healthBar.value = currentHealth;
         staminaBar.maxValue = currentStamina = statsCharacter[CharacterStatNames.Stamina].GetValue();

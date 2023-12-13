@@ -394,7 +394,7 @@ public class Player : BaseBrain
 
 
     private void OnCollisionEnter2D(Collision2D other) {
-        Debug.Log("collision");
+        //Debug.Log("collision");
     }
 
 }

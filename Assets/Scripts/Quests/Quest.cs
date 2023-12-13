@@ -92,6 +92,15 @@ public class Quest
     void CompleteQuest() {
         Debug.Log("Complete Quest: " + name);
 
+        foreach (JSONNode beginEvent in json["onComplete"]) {
+            if (beginEvent.HasKey("removeLevel")) {
+                MapManager.instance.RemoveLevel(beginEvent["removeLevel"]);
+            }
+            if (beginEvent.HasKey("exp")) {
+                
+            }
+        }
+
         QuestManager.GetInstance().QuestComplete(name);
     }
 }

@@ -23,12 +23,17 @@
                     "stepNum": 1
                 }
             ],
-            "onBeing": {
+            "onBegin": {
 
             },
-            "onComplete": {
-
-            }
+            "onComplete": [
+                {
+                    "removeLevel": "BanditCamp"
+                },
+                {
+                    "exp": 100
+                }
+            ]
         },
         {
             "name" : "Gather Swords",

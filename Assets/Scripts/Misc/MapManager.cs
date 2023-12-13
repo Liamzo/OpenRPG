@@ -76,7 +76,7 @@ public class MapManager : MonoBehaviour
         AddLevel(levelData);
     }
 
-    public void Removelevel(LevelData level) {
+    public void RemoveLevel(LevelData level) {
         foreach (MapPointUI mapPoint in mapPointUIs) {
             if (mapPoint.levelData == level) {
                 mapPointUIs.Remove(mapPoint);
@@ -87,6 +87,11 @@ public class MapManager : MonoBehaviour
         }
 
         knownLevels.Remove(level);
+    }
+    public void RemoveLevel(string level) {
+        LevelData levelData = LevelManager.instance.FindLevelWithName(level);
+
+        RemoveLevel(levelData);
     }
 
     void LevelSelected(MapPointUI mapPoint, PointerEventData eventData) {
