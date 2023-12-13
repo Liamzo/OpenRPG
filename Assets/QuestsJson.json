@@ -9,7 +9,12 @@
                     "type": "Kill",
                     "amount": 1,
                     "target": "Orc",
-                    "stepNum": 0
+                    "stepNum": 0,
+                    "onBegin": [
+                        {
+                            "addLevel": "BanditCamp"
+                        }
+                    ]
                 },
                 {
                     "name": "Return to Bob",
@@ -17,7 +22,13 @@
                     "target": "Bob",
                     "stepNum": 1
                 }
-            ]
+            ],
+            "onBeing": {
+
+            },
+            "onComplete": {
+
+            }
         },
         {
             "name" : "Gather Swords",

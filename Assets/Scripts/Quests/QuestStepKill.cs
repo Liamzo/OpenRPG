@@ -18,8 +18,8 @@ public class QuestStepKill : QuestStep
 
     public override void Begin()
     {
-        Debug.Log("Beginning Step: " + name);
-
+        base.Begin();
+        
         QuestManager.GetInstance().OnPlayerKill += CheckKill;
     }
 

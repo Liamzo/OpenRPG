@@ -51,7 +51,7 @@ public class MapManager : MonoBehaviour
         }
 
         foreach (MapPointUI mapPoint in mapPointUIs) {
-            Debug.Log(mapPoint.transform.position);
+            //Debug.Log(mapPoint.transform.position);
         }
     }
     public void CloseMap() {
@@ -69,6 +69,11 @@ public class MapManager : MonoBehaviour
 
         knownLevels.Add(level);
         mapPointUIs.Add(mapPointUI);
+    }
+    public void AddLevel(string level) {
+        LevelData levelData = LevelManager.instance.FindLevelWithName(level);
+
+        AddLevel(levelData);
     }
 
     public void Removelevel(LevelData level) {

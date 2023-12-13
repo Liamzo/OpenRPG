@@ -7,6 +7,8 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
 
+    public List<LevelData> allLevels;
+
     private void Awake() {
         instance = this;
     }
@@ -18,5 +20,16 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene(levelData.sceneName);
 
         // Load level data
+    }
+
+
+    public LevelData FindLevelWithName(string levelName) {
+        foreach(LevelData levelData in allLevels) {
+            if (levelData.sceneName == levelName) {
+                return levelData;
+            }
+        }
+
+        return null;
     }
 }

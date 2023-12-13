@@ -7,6 +7,7 @@ using SimpleJSON;
 public class Quest
 {
     public int id {get; private set;}
+    JSONNode json;
 
     public string name;
     public string description;
@@ -19,6 +20,7 @@ public class Quest
     public List<QuestStep> questStepsActive = new List<QuestStep>();
 
     public Quest(JSONNode json) {
+        this.json = json;
         InitializeFromJson(json);
         stepOn = -1;
     }
@@ -38,7 +40,7 @@ public class Quest
                     QuestStepKill kill = new QuestStepKill(stepData, this);
                     questSteps.Add(kill);
                     break;
-                case("Talk"):
+                case "Talk":
                     QuestStepTalk talk = new QuestStepTalk(stepData, this);
                     questSteps.Add(talk);
                     break;
@@ -48,6 +50,10 @@ public class Quest
 
     public void BeingQuest() {
         Debug.Log("Beginning Quest: " + name);
+
+
+
+
         NextStep();
     }
 
