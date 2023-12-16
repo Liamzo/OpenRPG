@@ -368,6 +368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7e546a71ad611c459aa7330ee46cefa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabId: npc_01
   baseStats: {fileID: 11400000, guid: 95de858976419614e84657b179246d3b, type: 2}
   objectName: 
   objectType: 0
@@ -520,7 +521,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuName: Talk
-  inkJSON: {fileID: 4900000, guid: 65eecf1589a0a044e859b997bfec7b6c, type: 3}
+  inkJSON: {fileID: 4900000, guid: 9e83481e718ca24459fd7a0b2c0715a1, type: 3}
 --- !u!1 &6047490505323210627
 GameObject:
   m_ObjectHideFlags: 0

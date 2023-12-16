@@ -11,6 +11,8 @@ using Ink.Runtime;
 public class ObjectHandler : MonoBehaviour
 {
     public string prefabId;
+    static int idIncrementor = 0;
+    public int objectHandlerId; // Unique per instance ideally
 
     public SpriteRenderer spriteRenderer{get; private set;}
     public Rigidbody2D rigidBody{get; private set;}
@@ -47,8 +49,6 @@ public class ObjectHandler : MonoBehaviour
         foreach (ObjectStatValue sv in baseStats.stats) {
             statsObject.Add(sv.statName, new Stat(sv.value));
         }
-
-        currentHealth = statsObject[ObjectStatNames.Health].GetValue();
     }
 
     protected virtual void Start() {
@@ -139,10 +139,21 @@ public class ObjectHandler : MonoBehaviour
 
     public JSONNode SaveObject() {
         Destroy(gameObject);
-        
+
         return JSON.Parse(
-            $"{{prefabId: {prefabId}, x: {transform.position.x}, y: {transform.position.y}}}"
+            $"{{prefabId: {prefabId}, objectHandlerId: {objectHandlerId}, x: {transform.position.x}, y: {transform.position.y}, currentHealth: {currentHealth}}}"
         );
+    }
+
+    public void LoadObject(JSONNode data) {
+        transform.position = new Vector3(data["x"], data["y"], 0f);
+        objectHandlerId = data["objectHandlerId"];
+        currentHealth = data["currentHealth"];
+    }
+
+    public void CreateBaseObject() {
+        objectHandlerId = idIncrementor++;
+        currentHealth = statsObject[ObjectStatNames.Health].GetValue();
     }
 
 }

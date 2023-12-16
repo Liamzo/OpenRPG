@@ -384,6 +384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7e546a71ad611c459aa7330ee46cefa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabId: bandit_01
   baseStats: {fileID: 11400000, guid: 2f5c5583472adde4782057969a20be67, type: 2}
   objectName: 
   objectType: 0

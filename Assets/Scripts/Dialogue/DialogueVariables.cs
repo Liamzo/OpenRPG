@@ -7,7 +7,7 @@ public class DialogueVariables
     public VariablesState globalState;
     //public Dictionary<string, Ink.Runtime.Object> globalVariables { get; private set; }
     public Dictionary<string, Ink.Runtime.Object> currentLocalVariables { get; private set; }
-    public Dictionary<ObjectHandler, Dictionary<string, Ink.Runtime.Object>> localVariables { get; private set; }
+    public Dictionary<int, Dictionary<string, Ink.Runtime.Object>> localVariables { get; private set; }
 
     private Story globalVariablesStory;
     private const string saveVariablesKey = "INK_VARIABLES";
@@ -34,7 +34,7 @@ public class DialogueVariables
         //     //Debug.Log("Initialized global dialogue variable: " + name + " = " + value);
         // }
 
-        localVariables = new Dictionary<ObjectHandler, Dictionary<string, Ink.Runtime.Object>>();
+        localVariables = new Dictionary<int, Dictionary<string, Ink.Runtime.Object>>();
 
         QuestManager.GetInstance().OnQuestProgress += QuestStageUpdated;
     }
@@ -51,7 +51,7 @@ public class DialogueVariables
         }
     }
 
-    public void StartListening(Story story, ObjectHandler talker) 
+    public void StartListening(Story story, int talker) 
     {
         if (localVariables.ContainsKey(talker)) {
             currentLocalVariables = localVariables[talker];
@@ -80,7 +80,7 @@ public class DialogueVariables
         Ink.Runtime.Object ink = new Ink.Runtime.Object();
     }
 
-    public void StopListening(Story story, ObjectHandler talker) 
+    public void StopListening(Story story, int talker) 
     {
         story.variablesState.variableChangedEvent -= VariableChanged;
 

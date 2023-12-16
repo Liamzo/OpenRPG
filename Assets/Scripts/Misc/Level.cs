@@ -10,31 +10,48 @@ public class Level
     public List<ObjectHandler> items;
     List<JSONNode> itemsData;
 
-    JSONNode savedLevelData;
+    public List<ObjectHandler> characters;
+    List<JSONNode> charactersData;
 
 
     public Level(LevelData data) {
         levelData = data;
         items = new List<ObjectHandler>();
         itemsData = new List<JSONNode>();
+
+        characters = new List<ObjectHandler>();
+        charactersData = new List<JSONNode>();
     }
 
     public void SaveLevel() {
         itemsData.Clear();
+        charactersData.Clear();
         
         foreach(ObjectHandler handler in items) {
             JSONNode itemData = handler.SaveObject();
             itemsData.Add(itemData);
         }
+        
+        foreach(ObjectHandler handler in characters) {
+            JSONNode charData = handler.SaveObject();
+            charactersData.Add(charData);
+        }
     }
 
     public void LoadLevel() {
         items.Clear();
+        characters.Clear();
 
         foreach(JSONNode data in itemsData) {
-            GameObject item = GameManager.instance.SpawnPrefab(data["prefabId"]);
-            item.transform.position = new Vector3(data["x"], data["y"], 0f);
+            ObjectHandler item = GameManager.instance.SpawnPrefab(data["prefabId"]).GetComponent<ObjectHandler>();
+            item.LoadObject(data);
             items.Add(item.GetComponent<ObjectHandler>());
+        }
+
+        foreach(JSONNode data in charactersData) {
+            ObjectHandler character = GameManager.instance.SpawnPrefab(data["prefabId"]).GetComponent<ObjectHandler>();
+            character.LoadObject(data);
+            characters.Add(character.GetComponent<ObjectHandler>());
         }
     }
 }

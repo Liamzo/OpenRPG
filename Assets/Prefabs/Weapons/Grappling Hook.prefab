@@ -592,6 +592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7310db108acaa224a9b60105e4db0ba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabId: grapplinghook_01
   baseStats: {fileID: 11400000, guid: bf797cb1018438545b7d0a5178a8617a, type: 2}
   objectName: 
   objectType: 0

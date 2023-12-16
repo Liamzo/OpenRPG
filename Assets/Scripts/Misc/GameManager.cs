@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
 
 
     public List<PrefabInfo> allItems;
+    public List<PrefabInfo> allCharacters;
 
 
     // Start is called before the first frame update
@@ -37,15 +38,19 @@ public class GameManager : MonoBehaviour
 
         LevelManager.instance.LoadLevel(startingLevel);
 
-        // for (int i = 0; i < allItems.Count; i++) {
-        //     allItems[i].prefabId = info[i].prefab.GetComponent<ObjectHandler>().prefabId;
+        for (int i = 0; i < allItems.Count; i++) {
+            allItems[i].prefabId = allItems[i].prefab.GetComponent<ObjectHandler>().prefabId;
+        }
 
-        //     allItems[i];
-        // }
+        for (int i = 0; i < allCharacters.Count; i++) {
+            allCharacters[i].prefabId = allCharacters[i].prefab.GetComponent<ObjectHandler>().prefabId;
+        }
     }
 
     void Start() {
-        GameObject player = Instantiate(playerPrefab);
+        ObjectHandler player = Instantiate(playerPrefab).GetComponent<ObjectHandler>();
+
+        player.CreateBaseObject();
 
         virtualCamera.Follow = player.transform;
     }
@@ -107,13 +112,19 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        foreach (PrefabInfo info in allCharacters) {
+            if (info.prefabId == prefabId) {
+                return Instantiate(info.prefab);
+            }
+        }
+
         Debug.LogWarning("No prefab found with that ID");
         return null;
     }
 }
 
 [Serializable]
-public struct PrefabInfo {
+public class PrefabInfo {
     public string prefabId;
     public GameObject prefab;
 }

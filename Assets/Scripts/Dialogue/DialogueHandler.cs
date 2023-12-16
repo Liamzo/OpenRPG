@@ -106,7 +106,7 @@ public class DialogueHandler : MonoBehaviour
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
 
-        dialogueVariables.StartListening(currentStory, currentTalker);
+        dialogueVariables.StartListening(currentStory, currentTalker.objectHandlerId);
         inkExternalFunctions.Bind(currentStory, currentTalker);
 
         ContinueStory();
@@ -116,7 +116,7 @@ public class DialogueHandler : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
 
-        dialogueVariables.StopListening(currentStory, currentTalker);
+        dialogueVariables.StopListening(currentStory, currentTalker.objectHandlerId);
         inkExternalFunctions.Unbind(currentStory);
 
         dialogueIsPlaying = false;
