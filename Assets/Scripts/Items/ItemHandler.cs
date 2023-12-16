@@ -53,6 +53,7 @@ public class ItemHandler : MonoBehaviour
             gameObject.SetActive(false);
             this.owner = owner;
             transform.SetParent(owner.transform);
+            LevelManager.instance.currentLevel.items.Remove(objectHandler);
             return true;
         }
         return false;
@@ -68,6 +69,7 @@ public class ItemHandler : MonoBehaviour
         gameObject.SetActive(true);
         owner = null;
         transform.SetParent(null);
+        LevelManager.instance.currentLevel.items.Add(objectHandler);
     }
 
     public void Use() {

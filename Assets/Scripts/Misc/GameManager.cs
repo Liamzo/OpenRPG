@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,6 +25,9 @@ public class GameManager : MonoBehaviour
     public CinemachineVirtualCamera virtualCamera;
 
 
+    public List<PrefabInfo> allItems;
+
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -33,6 +37,14 @@ public class GameManager : MonoBehaviour
 
         LevelManager.instance.LoadLevel(startingLevel);
 
+        // for (int i = 0; i < allItems.Count; i++) {
+        //     allItems[i].prefabId = info[i].prefab.GetComponent<ObjectHandler>().prefabId;
+
+        //     allItems[i];
+        // }
+    }
+
+    void Start() {
         GameObject player = Instantiate(playerPrefab);
 
         virtualCamera.Follow = player.transform;
@@ -88,4 +100,20 @@ public class GameManager : MonoBehaviour
     }
 
 
+    public GameObject SpawnPrefab(string prefabId) {
+        foreach (PrefabInfo info in allItems) {
+            if (info.prefabId == prefabId) {
+                return Instantiate(info.prefab);
+            }
+        }
+
+        Debug.LogWarning("No prefab found with that ID");
+        return null;
+    }
+}
+
+[Serializable]
+public struct PrefabInfo {
+    public string prefabId;
+    public GameObject prefab;
 }

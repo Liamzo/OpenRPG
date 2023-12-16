@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ObjectStatusHandler : MonoBehaviour
 {
-    GameManager gameManager;
-
     public bool hasMovement {get; set;} = true;
     int canRegainStamina = 0;
     public int hasMovementControls {get; set;} = 0;
@@ -14,13 +12,9 @@ public class ObjectStatusHandler : MonoBehaviour
     public bool isDodging  {get; set;} = false;
 
 
-    private void Start() {
-        gameManager = GameManager.instance;
-    }
-
 
     public bool HasMovement() {
-        if (gameManager.gamePaused || gameManager.waitingHitStop || !hasMovement)
+        if (GameManager.instance.gamePaused || GameManager.instance.waitingHitStop || !hasMovement)
             return false;
         
         return true;
@@ -28,7 +22,7 @@ public class ObjectStatusHandler : MonoBehaviour
 
 
     public bool CanRegainStamina () {
-        if (gameManager.gamePaused || gameManager.waitingHitStop || canRegainStamina > 0) 
+        if (GameManager.instance.gamePaused || GameManager.instance.waitingHitStop || canRegainStamina > 0) 
             return false;
         else 
             return true;
@@ -46,7 +40,7 @@ public class ObjectStatusHandler : MonoBehaviour
 
 
     public bool HasMovementControls() {
-        if (gameManager.gamePaused || gameManager.waitingHitStop || hasMovementControls > 0)
+        if (GameManager.instance.gamePaused || GameManager.instance.waitingHitStop || hasMovementControls > 0)
             return false;
         
         return true;
@@ -70,7 +64,7 @@ public class ObjectStatusHandler : MonoBehaviour
 
 
     public bool HasControls() {
-        if (gameManager.gamePaused || gameManager.waitingHitStop || hasControls > 0)
+        if (GameManager.instance.gamePaused || GameManager.instance.waitingHitStop || hasControls > 0)
             return false;
         
         return true;

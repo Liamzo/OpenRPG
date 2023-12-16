@@ -186,6 +186,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Managers
       objectReference: {fileID: 0}
+    - target: {fileID: 7547779233427188600, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: allItems.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7547779233427188600, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: allItems.Array.data[0].prefab
+      value: 
+      objectReference: {fileID: 1384521666624074638, guid: 38c2e887786783046913a9685f9a8f5b, type: 3}
+    - target: {fileID: 7547779233427188600, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: allItems.Array.data[0].prefabId
+      value: shotgun_01
+      objectReference: {fileID: 0}
     - target: {fileID: 7547779233427188606, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
       propertyPath: m_RootOrder
       value: 0

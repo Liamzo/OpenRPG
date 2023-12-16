@@ -1,10 +1,6 @@
 using System;
-using System.CodeDom.Compiler;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditorInternal;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 [CreateAssetMenu(fileName = "New Level", menuName = "Levels/New Level")]
 public class LevelData : ScriptableObject
@@ -22,6 +18,7 @@ public class LevelData : ScriptableObject
         foreach (ItemStart itemStart in items) {
             GameObject item = Instantiate(itemStart.prefab);
             item.transform.position = new Vector3(itemStart.x, itemStart.y, 0f);
+            LevelManager.instance.currentLevel.items.Add(item.GetComponent<ObjectHandler>());
         }
     }
 }

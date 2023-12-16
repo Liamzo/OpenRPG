@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
+using SimpleJSON;
+using Ink.Runtime;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(ObjectStatusHandler))]
 public class ObjectHandler : MonoBehaviour
 {
+    public string prefabId;
+
     public SpriteRenderer spriteRenderer{get; private set;}
     public Rigidbody2D rigidBody{get; private set;}
 
@@ -131,6 +135,16 @@ public class ObjectHandler : MonoBehaviour
 
         return true;
     }
+
+
+    public JSONNode SaveObject() {
+        Destroy(gameObject);
+        
+        return JSON.Parse(
+            $"{{prefabId: {prefabId}, x: {transform.position.x}, y: {transform.position.y}}}"
+        );
+    }
+
 }
 
 

@@ -142,6 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7310db108acaa224a9b60105e4db0ba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabId: shotgun_01
   baseStats: {fileID: 11400000, guid: 0c918630b68231e46b61fc63798b02df, type: 2}
   objectName: 
   objectType: 0

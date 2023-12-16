@@ -10,7 +10,7 @@ public class LevelManager : MonoBehaviour
     public List<LevelData> allLevels;
     Dictionary<LevelData, Level> savedLevels = new Dictionary<LevelData, Level>();
 
-    Level currentLevel;
+    public Level currentLevel {get; private set;}
 
     private void Awake() {
         instance = this;
@@ -31,6 +31,7 @@ public class LevelManager : MonoBehaviour
             // First time entering level, so generate
             Level newLevel = new Level(levelData);
             currentLevel = newLevel;
+            savedLevels.Add(levelData, newLevel);
             StartCoroutine(StartLevel(true));
         }
     }
