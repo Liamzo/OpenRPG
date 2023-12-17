@@ -154,6 +154,10 @@ public class ObjectHandler : MonoBehaviour
         transform.position = new Vector3(data["x"], data["y"], 0f);
         objectHandlerId = data["objectHandlerId"];
         currentHealth = data["currentHealth"];
+
+        foreach (ISaveable saveable in GetComponents<ISaveable>()) {
+            saveable.LoadComponent(data);
+        }
     }
 
     public void CreateBaseObject() {

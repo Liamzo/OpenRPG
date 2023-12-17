@@ -63,7 +63,7 @@ public class InventoryHandler : MonoBehaviour, ISaveable
 
     public string SaveComponent()
     {
-        string json = $"inventory: {{ coins: {coins}, [";
+        string json = $"inventory: {{ coins: {coins}, items: [";
 
         foreach (ItemHandler item in inventory) {
             json +="item: " + item.objectHandler.SaveObject() + ",";
@@ -74,6 +74,14 @@ public class InventoryHandler : MonoBehaviour, ISaveable
 
     public void LoadComponent(JSONNode data)
     {
-        throw new System.NotImplementedException();
+        coins = data["inventory"]["coins"];
+
+        foreach (JSONNode node in data["inventory"]["items"]) {
+            Debug.Log(node);
+            
+            ObjectHandler item = GameManager.instance.SpawnPrefab(node["prefabId"]).GetComponent<ObjectHandler>();
+            item.LoadObject(node);
+            item.GetComponent<ItemHandler>().PickUp(GetComponent<ObjectHandler>());
+        }
     }
 }

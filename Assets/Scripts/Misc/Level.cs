@@ -54,4 +54,14 @@ public class Level
             character.LoadObject(data);
         }
     }
+
+    public ObjectHandler FindCharacter(int objectId) {
+        foreach (ObjectHandler character in characters) {
+            if (character.objectHandlerId == objectId) {
+                return character;
+            }
+        }
+
+        return null;
+    }
 }
