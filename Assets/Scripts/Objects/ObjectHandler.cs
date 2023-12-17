@@ -164,6 +164,10 @@ public class ObjectHandler : MonoBehaviour
         objectHandlerId = idIncrementor++;
         currentHealth = statsObject[ObjectStatNames.Health].GetValue();
         Heal(0f); // Temp fix for ui
+
+        foreach (ISaveable saveable in GetComponents<ISaveable>()) {
+            saveable.CreateBase();
+        }
     }
 
 }

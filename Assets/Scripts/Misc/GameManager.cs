@@ -52,6 +52,8 @@ public class GameManager : MonoBehaviour
 
         player.CreateBaseObject();
 
+        //LoadAfterFrame(player);
+
         virtualCamera.Follow = player.transform;
     }
 
@@ -75,6 +77,13 @@ public class GameManager : MonoBehaviour
             cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = Mathf.Lerp(startingIntensity, 0f, shakeTimer / shakeDuration);
         }
     }
+    // IEnumerator LoadAfterFrame(ObjectHandler objectHandler) {
+    //     // Wait a frame for scene to load
+    //     yield return null;
+
+    //     objectHandler.CreateBaseObject();
+    // }
+
 
 
     public void ShakeCamera(float intensity, float duration) {

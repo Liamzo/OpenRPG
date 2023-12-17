@@ -18,7 +18,9 @@ public class EquipmentHandlerUI : EquipmentHandler
     public Slider reloadBar;
     public RectTransform reloadBarTransform;
 
-    protected private void Awake() {
+    protected override void Awake() {
+        base.Awake();
+
         onEquipmentChanged += UpdateEquipmentUI;
 
         bulletUIHolder = GameObject.Find("BulletHolder").GetComponent<RectTransform>();

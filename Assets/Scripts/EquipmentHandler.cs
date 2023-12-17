@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using SimpleJSON;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterHandler))]
 [RequireComponent(typeof(InventoryHandler))]
-public class EquipmentHandler : MonoBehaviour
+public class EquipmentHandler : MonoBehaviour, ISaveable
 {
     public StartingEquipmentSO startingEquipment;
 
@@ -23,24 +24,20 @@ public class EquipmentHandler : MonoBehaviour
     public bool wasMeleeDrawn = true;
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Awake()
     {
         inventory = GetComponent<InventoryHandler>();
-        SetStartingEquipment();
         GetComponent<ObjectHandler>().OnDeath += OnDeath;
+
+        int numSlots = System.Enum.GetNames(typeof(EquipmentSlot)).Length;
+        currentEquipment = new ItemHandler[numSlots];
     }
 
     public void SetStartingEquipment() {
-        int numSlots = System.Enum.GetNames(typeof(EquipmentSlot)).Length;
-        currentEquipment = new ItemHandler[numSlots];
-
-        if (startingEquipment == null) {
-            return;
-        }
-
         foreach (StartingEquipment equipment in startingEquipment.equipment) {
             ItemHandler item = Instantiate(equipment.equipment).GetComponent<ItemHandler>();
-            item.owner = GetComponent<CharacterHandler>();
+            //item.owner = GetComponent<CharacterHandler>();
+            item.GetComponent<ItemHandler>().PickUp(GetComponent<ObjectHandler>());
             Equip(item, equipment.slot);
         }
 
@@ -215,6 +212,45 @@ public class EquipmentHandler : MonoBehaviour
                 item.transform.position += randomDir * randomDist;
             }
         }
+    }
+
+
+
+    public string SaveComponent()
+    {
+        string json = $"equipment: {{ items: [";
+
+        for (int i = 0; i < currentEquipment.Length; i++) {
+            if (currentEquipment[i] != null) {
+                json += $"{{ slot: {i}, item: {JSONNode.Parse(currentEquipment[i].objectHandler.SaveObject())} }},";
+            }
+        }
+
+        return json + "]}";
+    }
+
+    public void LoadComponent(JSONNode data)
+    {
+        Debug.Log(data);
+        foreach (JSONNode node in data["equipment"]["items"]) {
+            ObjectHandler item = GameManager.instance.SpawnPrefab(node["item"]["prefabId"]).GetComponent<ObjectHandler>();
+            item.LoadObject(node["item"]);
+            
+            //item.GetComponent<ItemHandler>().owner = GetComponent<CharacterHandler>();
+            item.GetComponent<ItemHandler>().PickUp(GetComponent<ObjectHandler>());
+            Equip(item.GetComponent<ItemHandler>(), (EquipmentSlot)((int)node["slot"]));
+        }
+
+        ToggleMeleeRanged(true);
+    }
+
+    public void CreateBase()
+    {
+        if (startingEquipment == null) {
+            return;
+        }
+
+        SetStartingEquipment();
     }
 }
 

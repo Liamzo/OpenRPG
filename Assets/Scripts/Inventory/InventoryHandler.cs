@@ -36,15 +36,7 @@ public class InventoryHandler : MonoBehaviour, ISaveable
     }
 
     protected virtual void Awake() {
-        if (startingInventory != null) {
-            coins = startingInventory.coins;
-
-            foreach (GameObject go in startingInventory.items) {
-                ItemHandler item = Instantiate(go).GetComponent<ItemHandler>();
-                item.GetComponent<ObjectHandler>().CreateBaseObject();
-                item.PickUp(GetComponent<ObjectHandler>());
-            }
-        }
+        
     }
 
     public virtual bool Add (ItemHandler item) {
@@ -66,7 +58,7 @@ public class InventoryHandler : MonoBehaviour, ISaveable
         string json = $"inventory: {{ coins: {coins}, items: [";
 
         foreach (ItemHandler item in inventory) {
-            json +="item: " + item.objectHandler.SaveObject() + ",";
+            json += item.objectHandler.SaveObject() + ",";
         }
 
         return json + "]}";
@@ -77,11 +69,21 @@ public class InventoryHandler : MonoBehaviour, ISaveable
         coins = data["inventory"]["coins"];
 
         foreach (JSONNode node in data["inventory"]["items"]) {
-            Debug.Log(node);
-            
             ObjectHandler item = GameManager.instance.SpawnPrefab(node["prefabId"]).GetComponent<ObjectHandler>();
             item.LoadObject(node);
             item.GetComponent<ItemHandler>().PickUp(GetComponent<ObjectHandler>());
+        }
+    }
+
+    public void CreateBase() {
+        if (startingInventory != null) {
+            coins = startingInventory.coins;
+
+            foreach (GameObject go in startingInventory.items) {
+                ItemHandler item = Instantiate(go).GetComponent<ItemHandler>();
+                item.GetComponent<ObjectHandler>().CreateBaseObject();
+                item.PickUp(GetComponent<ObjectHandler>());
+            }
         }
     }
 }

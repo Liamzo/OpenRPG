@@ -8,4 +8,6 @@ public interface ISaveable
     public string SaveComponent();
 
     public void LoadComponent(JSONNode data);
+
+    public void CreateBase();
 }
