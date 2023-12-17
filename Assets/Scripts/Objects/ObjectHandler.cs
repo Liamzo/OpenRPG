@@ -140,9 +140,13 @@ public class ObjectHandler : MonoBehaviour
     public JSONNode SaveObject() {
         Destroy(gameObject);
 
-        return JSON.Parse(
-            $"{{prefabId: {prefabId}, objectHandlerId: {objectHandlerId}, x: {transform.position.x}, y: {transform.position.y}, currentHealth: {currentHealth}}}"
-        );
+        string json = $"{{prefabId: {prefabId}, objectHandlerId: {objectHandlerId}, x: {transform.position.x}, y: {transform.position.y}, currentHealth: {currentHealth}";
+
+        foreach (ISaveable saveable in GetComponents<ISaveable>()) {
+            json += ", " + saveable.SaveComponent();
+        }
+
+        return json + "}";
     }
 
     public void LoadObject(JSONNode data) {

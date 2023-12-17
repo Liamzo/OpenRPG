@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using SimpleJSON;
 using UnityEngine;
 
-public class InventoryHandler : MonoBehaviour
+public class InventoryHandler : MonoBehaviour, ISaveable
 {
     public int slots;
     public StartingInventorySO startingInventory;
@@ -57,5 +58,21 @@ public class InventoryHandler : MonoBehaviour
 
     public virtual void Remove (ItemHandler item) {
         inventory.Remove(item);
+    }
+
+    public string SaveComponent()
+    {
+        string json = $"inventory: {{ coins: {coins}, [";
+
+        foreach (ItemHandler item in inventory) {
+            json +="item: " + item.objectHandler.SaveObject() + ",";
+        }
+
+        return json + "]}";
+    }
+
+    public void LoadComponent(JSONNode data)
+    {
+        throw new System.NotImplementedException();
     }
 }

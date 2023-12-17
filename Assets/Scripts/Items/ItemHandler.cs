@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using SimpleJSON;
 using UnityEngine;
 
 [RequireComponent(typeof(ObjectHandler))]
 
-public class ItemHandler : MonoBehaviour
+public class ItemHandler : MonoBehaviour//, ISaveable
 {
     public ObjectHandler objectHandler {get; private set;}
     public ObjectHandler owner;
@@ -82,4 +83,14 @@ public class ItemHandler : MonoBehaviour
     public void Unequip() {
         OnUnequip();
     }
+
+    // public string SaveComponent()
+    // {
+    //     return $"item: {{ owner: {owner} }}";
+    // }
+
+    // public void LoadComponent(JSONNode data)
+    // {
+    //     owner = data["item"]["owner"];
+    // }
 }

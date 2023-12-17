@@ -28,12 +28,12 @@ public class Level
         charactersData.Clear();
         
         foreach(ObjectHandler handler in items) {
-            JSONNode itemData = handler.SaveObject();
+            JSONNode itemData = JSONNode.Parse(handler.SaveObject());
             itemsData.Add(itemData);
         }
         
         foreach(ObjectHandler handler in characters) {
-            JSONNode charData = handler.SaveObject();
+            JSONNode charData = JSONNode.Parse(handler.SaveObject());
             charactersData.Add(charData);
         }
     }
