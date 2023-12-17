@@ -44,14 +44,14 @@ public class Level
 
         foreach(JSONNode data in itemsData) {
             ObjectHandler item = GameManager.instance.SpawnPrefab(data["prefabId"]).GetComponent<ObjectHandler>();
+            items.Add(item);
             item.LoadObject(data);
-            items.Add(item.GetComponent<ObjectHandler>());
         }
 
         foreach(JSONNode data in charactersData) {
             ObjectHandler character = GameManager.instance.SpawnPrefab(data["prefabId"]).GetComponent<ObjectHandler>();
+            characters.Add(character);
             character.LoadObject(data);
-            characters.Add(character.GetComponent<ObjectHandler>());
         }
     }
 }
