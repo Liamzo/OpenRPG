@@ -15,7 +15,7 @@ public class LevelData : ScriptableObject
     public List<ItemStart> items;
     public List<CharacterStart> characters;
 
-    public void GenerateLevel() {
+    public virtual void GenerateLevel() {
         foreach (ItemStart itemStart in items) {
             ObjectHandler item = Instantiate(itemStart.prefab).GetComponent<ObjectHandler>();
             item.transform.position = new Vector3(itemStart.x, itemStart.y, 0f);

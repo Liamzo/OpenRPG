@@ -15,7 +15,7 @@ public class DamageTypeStandard : BaseStrategy, IDamageType
 
         if (target.GetHit(damage, weapon, (CharacterHandler) weapon.item.owner)) {
             GameManager.instance.ShakeCamera(5.0f, 0.15f);
-            GameManager.instance.HitStop(0.1f);
+            GameManager.instance.HitStop(0.05f);
 
             target.objectStatusHandler.BlockControls(weapon.GetStatValue(WeaponStatNames.Stagger));
             target.objectStatusHandler.BlockMovementControls(weapon.GetStatValue(WeaponStatNames.Stagger));
