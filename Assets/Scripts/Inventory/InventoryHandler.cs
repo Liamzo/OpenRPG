@@ -41,6 +41,7 @@ public class InventoryHandler : MonoBehaviour, ISaveable
 
             foreach (GameObject go in startingInventory.items) {
                 ItemHandler item = Instantiate(go).GetComponent<ItemHandler>();
+                item.GetComponent<ObjectHandler>().CreateBaseObject();
                 item.PickUp(GetComponent<ObjectHandler>());
             }
         }
