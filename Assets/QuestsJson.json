@@ -7,7 +7,7 @@
                 {
                     "name": "Kill 5 bandits",
                     "type": "Kill",
-                    "amount": 1,
+                    "amount": 5,
                     "target": "Orc",
                     "stepNum": 0,
                     "onBegin": [

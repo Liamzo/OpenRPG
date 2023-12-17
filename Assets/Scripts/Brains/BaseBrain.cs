@@ -70,6 +70,8 @@ public class BaseBrain : MonoBehaviour
         GetComponent<CharacterHandler>().enabled = false;
         this.enabled = false;
         GetComponent<Collider2D>().enabled = false;
+
+        LevelManager.instance.currentLevel.characters.Remove(character);
     }
 
     public void SetLookingDirection(Vector3 target) { 
