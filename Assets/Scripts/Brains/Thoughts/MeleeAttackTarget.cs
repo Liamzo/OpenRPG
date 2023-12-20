@@ -21,7 +21,11 @@ public class MeleeAttackTarget : BaseThought
             return 0f;
         }
 
-        if (brain.distToTarget > brain.equipmentHandler.rightMeleeSpot.weapon.GetStatValue(WeaponStatNames.Range) && !brain.character.objectStatusHandler.HasMovementControls()) {
+        WeaponHandler meleeWeapon = brain.equipmentHandler.currentEquipment[(int)EquipmentSlot.RightHand].GetComponent<WeaponHandler>();
+
+        if (meleeWeapon == null) return 0f; // No melee weapon equipped
+
+        if (brain.distToTarget > meleeWeapon.GetStatValue(WeaponStatNames.Range) && !brain.character.objectStatusHandler.HasMovementControls()) {
             return 0f;
         }
 

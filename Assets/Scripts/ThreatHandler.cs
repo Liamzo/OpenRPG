@@ -11,7 +11,7 @@ public class ThreatHandler : MonoBehaviour
 
     // Later: Replace with Faction System and actually determine threat
     // Overlap circle and evaluation each Character found for Faction etc
-    [SerializeField] private GameObject targetToFind;
+    [SerializeField] private string targetToFind;
 
     // Start is called before the first frame update
     void Start()
@@ -22,23 +22,29 @@ public class ThreatHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (targetToFind == null) {
-            return;
-        }
+        if (targetToFind == "") return;
+        
+        foreach (Collider2D col in Physics2D.OverlapCircleAll(transform.position, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue())) {
+            CharacterHandler characterHandler = col.GetComponent<CharacterHandler>();
 
-        // Raycast to the target within Sight range and see if clear path
-        Vector3 targetDir = (targetToFind.transform.position - transform.position).normalized;
+            if (characterHandler == null) continue;
 
-        LayerMask mask = LayerMask.GetMask("Default");
+            // Raycast to the target within Sight range and see if clear path
+            Vector3 targetDir = (characterHandler.transform.position - transform.position).normalized;
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0,0.6f,0), targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), mask);
+            LayerMask mask = LayerMask.GetMask("Default");
 
-        if (hit.collider != null) {
-            if (hit.collider.gameObject == targetToFind) {
-                // Found the target
-                target = targetToFind;
-                targetLastSeen = hit.collider.bounds.center; // Collider is offset, this way the aim for the centre of the target
-                return;
+            RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0,0.6f,0), targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), mask);
+
+            if (hit.collider != null && hit.collider.gameObject == characterHandler.gameObject) {
+                if (characterHandler.tag == targetToFind) {
+                    // Found the target
+                    target = characterHandler.gameObject;
+                    targetLastSeen = hit.collider.bounds.center; // Collider is offset, this way the aim for the centre of the target
+                    return;
+                }
+
+                float distance = Vector3.Distance(characterHandler.transform.position, transform.position);
             }
         }
 

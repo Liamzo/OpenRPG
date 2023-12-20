@@ -150,7 +150,6 @@ public class ObjectHandler : MonoBehaviour
     }
 
     public void LoadObject(JSONNode data) {
-        Debug.Log(data);
         transform.position = new Vector3(data["x"], data["y"], 0f);
         objectHandlerId = data["objectHandlerId"];
         currentHealth = data["currentHealth"];
