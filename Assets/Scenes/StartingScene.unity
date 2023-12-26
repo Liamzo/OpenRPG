@@ -178,10 +178,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5414799746129347671, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7547779233427188592, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
       propertyPath: m_Name
       value: Managers
@@ -192,15 +188,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7547779233427188606, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.06887576
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7547779233427188606, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.4695807
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7547779233427188606, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.09688623
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7547779233427188606, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
       propertyPath: m_LocalRotation.w

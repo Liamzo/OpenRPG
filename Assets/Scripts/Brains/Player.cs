@@ -315,7 +315,7 @@ public class Player : BaseBrain
         if (movement == Vector3.zero || character.objectStatusHandler.isDodging) {
             footEmission.rateOverTime = 0f;
         } else {
-            footEmission.rateOverTime = 20f;
+            footEmission.rateOverTime = 7f;
         }
     }
 

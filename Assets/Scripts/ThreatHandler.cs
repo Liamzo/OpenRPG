@@ -38,6 +38,10 @@ public class ThreatHandler : MonoBehaviour
             if (hit.collider != null && hit.collider.gameObject == characterHandler.gameObject) {
                 // Found the target
 
+                FactionHandler hitFactionHandler = characterHandler.GetComponent<FactionHandler>();
+
+                if (hitFactionHandler == null) { continue; }
+
                 if (factionHandler.CheckIfEnemy(characterHandler.GetComponent<FactionHandler>().joinedFactions[0])) {
                     target = characterHandler.gameObject;
                     targetLastSeen = hit.collider.bounds.center; // Collider is offset, this way the aim for the centre of the target

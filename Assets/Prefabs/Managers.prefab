@@ -1639,7 +1639,6 @@ GameObject:
   m_Component:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
-  - component: {fileID: 519420029}
   - component: {fileID: 519420030}
   - component: {fileID: 519420034}
   m_Layer: 0
@@ -1707,14 +1706,6 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &519420029
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
 --- !u!114 &519420030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4415,6 +4406,7 @@ GameObject:
   - component: {fileID: 7547779234806883351}
   - component: {fileID: 7547779234806883352}
   - component: {fileID: 464453930}
+  - component: {fileID: 503614608231503339}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -4949,15 +4941,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90e491a238cacf44883e1ba85155c446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AllFactions:
-  - factionName: Bandit
-    reputations:
-    - faction:
-        factionName: Town
-        reputations: []
-      reputation: 0
-  - factionName: Town
-    reputations: []
+  allFactionInfo: []
+--- !u!114 &503614608231503339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7547779233427188592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 299d662c8b473a943af233ef1b5d72b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &413326266066957931
 PrefabInstance:
   m_ObjectHideFlags: 0
