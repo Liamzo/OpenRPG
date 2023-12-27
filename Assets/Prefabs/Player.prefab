@@ -414,6 +414,7 @@ MonoBehaviour:
   dodgeDuration: 0.4
   dodgeSpeedMulti: 1.5
   dodgeStaminaCost: 25
+  footStepInterval: 0.5
 --- !u!114 &1479582196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -570,10 +571,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: c971248b56d02214e99c2266fd93a66b, type: 2}
   m_audioClip: {fileID: 8300000, guid: 9ea11a2d13d536e4e8441a0f5895995c, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -615,7 +616,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -787,7 +788,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3315890270799290432, guid: 3191aba9225c556488d0daf30fda5149, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 0.25
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 3315890270799290432, guid: 3191aba9225c556488d0daf30fda5149, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
@@ -795,7 +796,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3315890270799290432, guid: 3191aba9225c556488d0daf30fda5149, type: 3}
       propertyPath: InitialModule.startSize.minScalar
-      value: 0.15
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 3315890270799290432, guid: 3191aba9225c556488d0daf30fda5149, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
