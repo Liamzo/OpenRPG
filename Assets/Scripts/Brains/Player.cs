@@ -36,11 +36,6 @@ public class Player : BaseBrain
     public float dodgeStaminaCost;
 
 
-    // Temp
-    public float footStepInterval = 0.5f;
-    float footStepTimer = 0f;
-
-
     public static Player GetInstance() 
     {
         return instance;
@@ -318,18 +313,8 @@ public class Player : BaseBrain
 
         if (movement == Vector3.zero || character.objectStatusHandler.isDodging) {
             footEmission.rateOverTime = 0f;
-
-            footStepTimer = footStepInterval / 2f;
         } else {
             footEmission.rateOverTime = 7f;
-        
-            // Temp Footsteps
-            footStepTimer += Time.fixedDeltaTime;
-
-            if (footStepTimer >= footStepInterval) {
-                AudioManager.instance.PlayClipRandom(AudioID.FootStepDirt, GetComponent<AudioSource>());
-                footStepTimer = 0f;
-            }  
         }
 
     }

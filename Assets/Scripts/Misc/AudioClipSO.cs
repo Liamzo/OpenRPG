@@ -16,7 +16,8 @@ public class AudioClipSO : ScriptableObject {
 }
 
 public enum AudioID {
-    FootStepDirt
+    FootStepDirt,
+    GunShot,
 }
 
 public enum AudioSourceType {
