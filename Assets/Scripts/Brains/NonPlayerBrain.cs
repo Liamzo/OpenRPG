@@ -78,6 +78,9 @@ public class NonPlayerBrain : BaseBrain
         if (bestThought != null) {
             bestThought.Execute();
         }
+
+        _animator.SetFloat("Movement", movement.magnitude / character.statsCharacter[CharacterStatNames.MovementSpeed].baseValue);
+        footEmission.rateOverTime = 7f * (movement.magnitude / character.statsCharacter[CharacterStatNames.MovementSpeed].baseValue);
     }
 
     private void FixedUpdate() {
@@ -97,13 +100,6 @@ public class NonPlayerBrain : BaseBrain
 
         Vector3 newMove = movement * Time.fixedDeltaTime;
         character.movement += newMove;
-        _animator.SetFloat("Movement", newMove.magnitude);
-
-        if (movement == Vector3.zero || character.objectStatusHandler.isDodging) {
-            footEmission.rateOverTime = 0f;
-        } else {
-            footEmission.rateOverTime = 20f;
-        }
     }
 
     public Vector3 GetDirectionFromPath() {

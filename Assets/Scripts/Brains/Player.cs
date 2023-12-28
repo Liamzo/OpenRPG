@@ -314,13 +314,6 @@ public class Player : BaseBrain
 
         Vector3 newMove = movement * Time.fixedDeltaTime;
         character.movement += newMove;
-
-        if (movement == Vector3.zero || character.objectStatusHandler.isDodging) {
-            footEmission.rateOverTime = 0f;
-        } else {
-            footEmission.rateOverTime = 7f;
-        }
-
     }
 
     void FindClosestInteractable() {
