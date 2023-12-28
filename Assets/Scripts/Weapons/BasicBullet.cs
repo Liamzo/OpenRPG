@@ -32,6 +32,8 @@ public class BasicBullet : MonoBehaviour
             if (objectHandler == weapon.item.owner) return;
 
             weapon.damageType.DealDamage(objectHandler, weaponCharge);
+        } else {
+            weapon.CallOnHitTarget(null);
         }
 
         Destroy(gameObject);

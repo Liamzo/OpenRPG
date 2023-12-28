@@ -263,7 +263,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
@@ -451,6 +451,7 @@ GameObject:
   - component: {fileID: 1691032427080906618}
   - component: {fileID: 3576421341539463283}
   - component: {fileID: 1525807513090668586}
+  - component: {fileID: 747376308890601214}
   m_Layer: 0
   m_Name: Strategies
   m_TagString: Untagged
@@ -574,6 +575,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioID: 1
+--- !u!114 &747376308890601214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7045684467092217511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 877f578be93856340a420de5945624db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioID: 2
 --- !u!1 &7931068025165635166
 GameObject:
   m_ObjectHideFlags: 0

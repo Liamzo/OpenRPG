@@ -4959,6 +4959,10 @@ MonoBehaviour:
   audioClips:
   - {fileID: 11400000, guid: 33914693ae818664095b72c0ebd2342f, type: 2}
   - {fileID: 11400000, guid: cb4768e2e3f86ce4a85c3a62e0f3cf32, type: 2}
+  - {fileID: 11400000, guid: e5828d09087b5b849a53b9ff2c42eb8b, type: 2}
+  - {fileID: 11400000, guid: 5e55d13a7dcaa764585cba02cb2780d6, type: 2}
+  - {fileID: 11400000, guid: f3bbd8be62dfbb849bcb8ad6a7aee512, type: 2}
+  - {fileID: 11400000, guid: 76bac066d631fc34593329ee9876a835, type: 2}
   musicSource: {fileID: 2059909079}
   ambientSource: {fileID: 2059909078}
 --- !u!82 &2059909078

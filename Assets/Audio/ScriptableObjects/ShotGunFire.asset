@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e54f4f88e5d0a14e86a1a36393887b2, type: 3}
+  m_Name: ShotGunFire
+  m_EditorClassIdentifier: 
+  audioID: 5
+  audioSourceType: 0
+  audioClips:
+  - {fileID: 8300000, guid: 72c21589a3845f34ab685ff203f6ced3, type: 3}
+  - {fileID: 8300000, guid: 39cbf92b08badae45ae98c3d60b41bd2, type: 3}
+  - {fileID: 8300000, guid: 99b789744458dad4b866797dd2360b7a, type: 3}
+  - {fileID: 8300000, guid: 4850db8ec93e0a14f810c41fc1ee3bfc, type: 3}
