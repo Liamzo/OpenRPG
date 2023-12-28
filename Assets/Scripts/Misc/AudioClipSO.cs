@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Audio Clip", menuName = "Audio/Audio Clip", order = 0)]
 public class AudioClipSO : ScriptableObject {
     public AudioID audioID;
-    public AudioSourceType audioSource;
+    public AudioSourceType audioSourceType;
 
     public List<AudioClip> audioClips;
 

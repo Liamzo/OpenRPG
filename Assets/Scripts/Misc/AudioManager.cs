@@ -37,11 +37,11 @@ public class AudioManager : MonoBehaviour
         AudioClip audioClip = audioClipSO.GetRandomClip();
 
         // Play clip
-        if (audioClipSO.audioSource == AudioSourceType.Music) {
+        if (audioClipSO.audioSourceType == AudioSourceType.Music) {
             musicSource.PlayOneShot(audioClip);
-        } else if (audioClipSO.audioSource == AudioSourceType.Ambient) {
+        } else if (audioClipSO.audioSourceType == AudioSourceType.Ambient) {
             ambientSource.PlayOneShot(audioClip);
-        } else if (audioClipSO.audioSource == AudioSourceType.Local) {
+        } else if (audioClipSO.audioSourceType == AudioSourceType.Local) {
             if (source == null) {
                 Debug.LogWarning($"No local source given");
                 return;
