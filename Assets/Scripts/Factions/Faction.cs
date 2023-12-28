@@ -10,7 +10,7 @@ public class Faction
 
     public bool IsAlly(Faction faction) {
         foreach (Reputation reputation in reputations) {
-            if (reputation.faction == faction) {
+            if (reputation.factionName == factionName) {
                 if (reputation.reputation >= 100f) return true;
 
                 return false;
@@ -22,7 +22,7 @@ public class Faction
 
     public bool IsEnemy(Faction faction) {
         foreach (Reputation reputation in reputations) {
-            if (reputation.faction == faction) {
+            if (reputation.factionName == factionName) {
                 if (reputation.reputation <= -100f) return true;
 
                 return false;

@@ -33,6 +33,6 @@ public class FactionManager : MonoBehaviour
 // Used for both personal and faction reputation
 [System.Serializable]
 public struct Reputation {
-    public Faction faction;
+    public string factionName;
     public float reputation; // < -100 = enemy, > -100 + < 100 = neutral, > 100 = ally
 }

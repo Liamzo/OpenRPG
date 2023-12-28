@@ -108,6 +108,7 @@ public class Player : BaseBrain
                 CancelInteraction();
             }
         }  
+    
     }
 
     void MovementControls() {
@@ -140,6 +141,9 @@ public class Player : BaseBrain
 
         // Look At Mouse
         SetLookingDirection(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()));
+
+        _animator.SetFloat("Movement", movement.magnitude / character.statsCharacter[CharacterStatNames.MovementSpeed].baseValue);
+        footEmission.rateOverTime = 7f * (movement.magnitude / character.statsCharacter[CharacterStatNames.MovementSpeed].baseValue);
     }
 
     void DodgeControls() {
@@ -307,9 +311,9 @@ public class Player : BaseBrain
             return;
         }
 
+
         Vector3 newMove = movement * Time.fixedDeltaTime;
         character.movement += newMove;
-        _animator.SetFloat("Movement", newMove.magnitude);
 
         if (movement == Vector3.zero || character.objectStatusHandler.isDodging) {
             footEmission.rateOverTime = 0f;

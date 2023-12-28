@@ -18,7 +18,7 @@ public class FactionHandler : MonoBehaviour
         float personal = 0f;
 
         foreach (Reputation reputation in personalReputations) {
-            if (reputation.faction == factionToFind) {
+            if (reputation.factionName == factionToFind.factionName) {
                 personal = reputation.reputation;
                 break;
             }
@@ -32,7 +32,7 @@ public class FactionHandler : MonoBehaviour
 
         foreach (Faction joinedFaction in joinedFactions) {
             foreach (Reputation reputation in joinedFaction.reputations) {
-                if (reputation.faction == factionToFind) {
+                if (reputation.factionName == factionToFind.factionName) {
                     joinedFactionRep = reputation.reputation;
                     break;
                 }
@@ -53,10 +53,10 @@ public class FactionHandler : MonoBehaviour
 
         foreach (Faction joinedFaction in joinedFactions) {
             foreach (Reputation reputation in joinedFaction.reputations) {
-                if (reputation.faction == faction) {
+                if (reputation.factionName == faction.factionName) {
                     // This will need fixed for multiple joined factions
-                    isFactionEnemy = reputation.faction.IsEnemy(faction);
-                    isFactionAlly = reputation.faction.IsAlly(faction);
+                    isFactionEnemy = faction.IsEnemy(faction);
+                    isFactionAlly = faction.IsAlly(faction);
                     break;
                 }
             }
@@ -82,7 +82,7 @@ public class FactionHandler : MonoBehaviour
         float personal = 0f;
 
         foreach (Reputation reputation in personalReputations) {
-            if (reputation.faction == factionToFind) {
+            if (reputation.factionName == factionToFind.factionName) {
                 personal = reputation.reputation;
                 break;
             }
@@ -93,7 +93,7 @@ public class FactionHandler : MonoBehaviour
 
         foreach (Faction joinedFaction in joinedFactions) {
             foreach (Reputation reputation in joinedFaction.reputations) {
-                if (reputation.faction == factionToFind) {
+                if (reputation.factionName == factionToFind.factionName) {
                     joinedFactionRep = reputation.reputation;
                     break;
                 }

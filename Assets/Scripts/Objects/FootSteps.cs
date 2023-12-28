@@ -28,7 +28,7 @@ public class FootSteps : MonoBehaviour
         } else {
             footStepTimer += Time.deltaTime;
 
-            if (footStepTimer >= footStepInterval) {
+            if (footStepTimer >= Mathf.Clamp(footStepInterval / (brain.movement.magnitude / brain.character.statsCharacter[CharacterStatNames.MovementSpeed].baseValue), 0.2f, 1f)) {
                 AudioManager.instance.PlayClipRandom(AudioID.FootStepDirt, audioSource);
                 footStepTimer = 0f;
             }  
