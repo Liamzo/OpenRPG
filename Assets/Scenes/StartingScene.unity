@@ -130,6 +130,62 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 464453930, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: allFactionInfo.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 464453930, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: allReputations.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 464453930, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: allFactionInfo.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 28169a4cf8787c24c8091e41931052db, type: 2}
+    - target: {fileID: 464453930, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: allFactionInfo.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: e46cd5f8e8bc84a4c89eaf7f0b76cb2d, type: 2}
+    - target: {fileID: 464453930, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: allFactionInfo.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3bff2b4ed94fd1245b8bca1620691207, type: 2}
+    - target: {fileID: 464453930, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: allReputations.Array.data[0].factionOne
+      value: 
+      objectReference: {fileID: 11400000, guid: 3bff2b4ed94fd1245b8bca1620691207, type: 2}
+    - target: {fileID: 464453930, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: allReputations.Array.data[0].factionTwo
+      value: 
+      objectReference: {fileID: 11400000, guid: 28169a4cf8787c24c8091e41931052db, type: 2}
+    - target: {fileID: 464453930, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: allReputations.Array.data[0].reputation
+      value: -100
+      objectReference: {fileID: 0}
+    - target: {fileID: 464453930, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: allReputations.Array.data[1].factionOne
+      value: 
+      objectReference: {fileID: 11400000, guid: 3bff2b4ed94fd1245b8bca1620691207, type: 2}
+    - target: {fileID: 464453930, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: allReputations.Array.data[1].factionTwo
+      value: 
+      objectReference: {fileID: 11400000, guid: e46cd5f8e8bc84a4c89eaf7f0b76cb2d, type: 2}
+    - target: {fileID: 464453930, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: allReputations.Array.data[1].reputation
+      value: -100
+      objectReference: {fileID: 0}
+    - target: {fileID: 464453930, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: allReputations.Array.data[2].factionOne
+      value: 
+      objectReference: {fileID: 11400000, guid: 28169a4cf8787c24c8091e41931052db, type: 2}
+    - target: {fileID: 464453930, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: allReputations.Array.data[2].factionTwo
+      value: 
+      objectReference: {fileID: 11400000, guid: e46cd5f8e8bc84a4c89eaf7f0b76cb2d, type: 2}
+    - target: {fileID: 464453930, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: allReputations.Array.data[2].reputation
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 602655482, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -186,6 +242,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Managers
       objectReference: {fileID: 0}
+    - target: {fileID: 7547779233427188600, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: startingLevel
+      value: 
+      objectReference: {fileID: 11400000, guid: c188637070a4a5d41910add92a7dabd0, type: 2}
     - target: {fileID: 7547779233427188606, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
       propertyPath: m_RootOrder
       value: 0

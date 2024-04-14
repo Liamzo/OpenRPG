@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Faction", menuName = "Faction/New Faction")]
 public class FactionSO : ScriptableObject
 {
-    
+    public string factionName;
 }

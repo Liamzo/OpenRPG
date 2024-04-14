@@ -259,6 +259,7 @@ GameObject:
   - component: {fileID: 4635434019260541824}
   - component: {fileID: -6265631831933546905}
   - component: {fileID: 6263209031098782038}
+  - component: {fileID: 5388896057563232463}
   m_Layer: 0
   m_Name: Bandit
   m_TagString: Untagged
@@ -592,6 +593,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   footStepInterval: 0.5
+--- !u!114 &5388896057563232463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154453471690096199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 955643c0bf3fe0e4ab1b4b340666027d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joinedFactions:
+  - {fileID: 11400000, guid: 3bff2b4ed94fd1245b8bca1620691207, type: 2}
 --- !u!1 &4230157604394534237
 GameObject:
   m_ObjectHideFlags: 0

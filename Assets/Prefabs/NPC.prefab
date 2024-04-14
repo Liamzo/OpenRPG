@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1465567587}
   - component: {fileID: 1465567588}
+  - component: {fileID: 231877636628449108}
+  - component: {fileID: 3753582246958118803}
   m_Layer: 0
   m_Name: Thoughts
   m_TagString: Untagged
@@ -48,6 +50,32 @@ MonoBehaviour:
   pauseDuration: 3
   minPauseWait: 2
   maxPauseWait: 4
+--- !u!114 &231877636628449108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465567586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff6b089bf1b01e2489084be41ee126db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minChaseDistance: 0
+--- !u!114 &3753582246958118803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465567586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fa123fc322bb404b9275c72c034b42d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxMeleeRange: 0
 --- !u!1 &1717953569146656049
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,6 +270,7 @@ GameObject:
   - component: {fileID: 865211563249040351}
   - component: {fileID: -7716559284397010122}
   - component: {fileID: -8879216195102339560}
+  - component: {fileID: -4449694282311874120}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -588,6 +617,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   footStepInterval: 0.5
+--- !u!114 &-4449694282311874120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3161783212397411800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 955643c0bf3fe0e4ab1b4b340666027d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joinedFactions:
+  - {fileID: 11400000, guid: e46cd5f8e8bc84a4c89eaf7f0b76cb2d, type: 2}
 --- !u!1 &5885145032520518140
 GameObject:
   m_ObjectHideFlags: 0
