@@ -4862,7 +4862,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cinemachineVirtualCamera: {fileID: 385445103}
-  startingLevel: {fileID: 11400000, guid: 221014cec74c1e24c9865750041b5eec, type: 2}
+  startingLevel: {fileID: 11400000, guid: c188637070a4a5d41910add92a7dabd0, type: 2}
   playerPrefab: {fileID: 6498385307091005126, guid: b0414b27511684743865438d27ce08fb, type: 3}
   virtualCamera: {fileID: 385445103}
   allItems:
@@ -4943,7 +4943,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90e491a238cacf44883e1ba85155c446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allFactionInfo: []
+  allFactionInfo:
+  - {fileID: 11400000, guid: 28169a4cf8787c24c8091e41931052db, type: 2}
+  - {fileID: 11400000, guid: e46cd5f8e8bc84a4c89eaf7f0b76cb2d, type: 2}
+  - {fileID: 11400000, guid: 3bff2b4ed94fd1245b8bca1620691207, type: 2}
+  allReputations:
+  - factionOne: {fileID: 11400000, guid: 3bff2b4ed94fd1245b8bca1620691207, type: 2}
+    factionTwo: {fileID: 11400000, guid: 28169a4cf8787c24c8091e41931052db, type: 2}
+    reputation: -100
+  - factionOne: {fileID: 11400000, guid: 3bff2b4ed94fd1245b8bca1620691207, type: 2}
+    factionTwo: {fileID: 11400000, guid: e46cd5f8e8bc84a4c89eaf7f0b76cb2d, type: 2}
+    reputation: -100
+  - factionOne: {fileID: 11400000, guid: 28169a4cf8787c24c8091e41931052db, type: 2}
+    factionTwo: {fileID: 11400000, guid: e46cd5f8e8bc84a4c89eaf7f0b76cb2d, type: 2}
+    reputation: 0
 --- !u!114 &503614608231503339
 MonoBehaviour:
   m_ObjectHideFlags: 0

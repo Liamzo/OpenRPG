@@ -26,7 +26,7 @@ public class Player : BaseBrain
 
 
     [Header("Dodging")]
-    Vector3 dodgeMovement;
+    Vector3 dodgeDir;
     public bool wasDodging = false;
     public float dodgeTimer = 0.0f;
     public float dodgeDuration;
@@ -151,21 +151,19 @@ public class Player : BaseBrain
             // Start dodge
             wasDodging = true;
 
-            MovementControls();
+            dodgeDir = new Vector3(InputManager.GetInstance().GetMoveDirection().x, InputManager.GetInstance().GetMoveDirection().y, 0).normalized;
 
-            dodgeMovement = movement;
+            if (dodgeDir == Vector3.zero) 
+                dodgeDir = ((Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - (Vector2)transform.position).normalized;  
+            
 
-            if (dodgeMovement == Vector3.zero) {
-                dodgeMovement = ((Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - (Vector2)transform.position).normalized * character.statsCharacter[CharacterStatNames.MovementSpeed].GetValue();
-                
-                if (dodgeMovement.x < 0) {
-                    character.spriteRenderer.flipX = true;
-                } else if (dodgeMovement.x > 0) {
-                    character.spriteRenderer.flipX = false;
-                }
+            if (dodgeDir.x < 0) {
+                character.spriteRenderer.flipX = true;
+            } else if (dodgeDir.x > 0) {
+                character.spriteRenderer.flipX = false;
             }
 
-            dodgeMovement *= dodgeSpeedMulti;
+            dodgeDir *= character.statsCharacter[CharacterStatNames.MovementSpeed].GetValue() * dodgeSpeedMulti;
 
             _animator.SetBool("Rolling", true);
             _animator.SetTrigger("Roll");
@@ -187,7 +185,7 @@ public class Player : BaseBrain
         //     movement = dodgeStartingMovement * Mathf.Lerp(dodgeSpeedMulti, 1f, (dodgeTimer - (dodgeDuration / 2.0f)) * 2);
         // }
 
-        Vector3 newMove = dodgeMovement * Time.deltaTime;
+        Vector3 newMove = dodgeDir * Time.deltaTime;
         character.movement += newMove;
 
         if (wasDodging) {
@@ -212,7 +210,7 @@ public class Player : BaseBrain
 
             footSteps.Emit(25);
 
-            followThroughMovements.Add(dodgeMovement);
+            followThroughMovements.Add(dodgeDir);
         }
     }
 
