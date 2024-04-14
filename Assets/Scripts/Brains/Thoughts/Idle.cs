@@ -87,5 +87,8 @@ public class Idle : BaseThought
         brain.movement += moveDir.normalized * brain.character.statsCharacter[CharacterStatNames.MovementSpeed].GetValue() * 0.3f; // 30% move speed
 
         prevDir = moveDir;
+
+
+        brain.equipmentHandler.rightMeleeSpot.weapon.Holster(); // Temp, do better        
     }
 }

@@ -68,6 +68,8 @@ public class Player : BaseBrain
             dodgeCDTimer -= Time.deltaTime;
         }
 
+
+
         // Controls
         if (character.objectStatusHandler.HasControls())
             DodgeControls();
@@ -86,6 +88,17 @@ public class Player : BaseBrain
 
         if (InputManager.GetInstance().GetTabPressed())
             OnTab();
+
+        if (InputManager.GetInstance().GetHolsterPressed()) {
+            if (equipmentHandler.rightMeleeSpot.weapon != null) {
+                if (equipmentHandler.rightMeleeSpot.weapon.Holstered) {
+                    equipmentHandler.rightMeleeSpot.weapon.Unholster();
+                } else {
+                    equipmentHandler.rightMeleeSpot.weapon.Holster();
+                }
+            }
+        }
+
 
         // Check if too far away for object interaction
         if (interactingWith != null) {
@@ -227,7 +240,9 @@ public class Player : BaseBrain
             character.objectStatusHandler.BlockRegainStamina(0f);
             movement *= 0.5f; // TODO: Replace with weapon stat
 
-        } else {
+        } 
+        else 
+        {
             // Melee
             if (equipmentHandler.wasMeleeDrawn == false && wasAttacking) {
                 weapon.AttackCancel();
@@ -240,6 +255,8 @@ public class Player : BaseBrain
         }
 
         if (InputManager.GetInstance().GetLeftMousePressed()) {
+            equipmentHandler.rightMeleeSpot.weapon.Unholster();
+            
             if (character.currentStamina >= weapon.AttackHoldCost()) {
                 wasAttacking = true;
 

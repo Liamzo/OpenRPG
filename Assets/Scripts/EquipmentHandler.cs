@@ -36,8 +36,8 @@ public class EquipmentHandler : MonoBehaviour, ISaveable
     public void SetStartingEquipment() {
         foreach (StartingEquipment equipment in startingEquipment.equipment) {
             ItemHandler item = Instantiate(equipment.equipment).GetComponent<ItemHandler>();
-            //item.owner = GetComponent<CharacterHandler>();
-            item.GetComponent<ItemHandler>().PickUp(GetComponent<ObjectHandler>());
+            item.objectHandler.spriteRenderer.enabled = false;
+            item.PickUp(GetComponent<ObjectHandler>());
             Equip(item, equipment.slot);
         }
 

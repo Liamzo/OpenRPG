@@ -132,5 +132,8 @@ public class CircleTarget : BaseThought
                 brain.movement += brain.GetDirectionFromPath(path) * moveSpeed; // 70% move speed
             }
         }
+
+
+        brain.equipmentHandler.rightMeleeSpot.weapon.Unholster(); // Temp, do better
     }
 }

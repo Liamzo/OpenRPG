@@ -38,6 +38,8 @@ public class MeleeAttackTarget : BaseThought
 
     public override void Execute()
     {
+        brain.equipmentHandler.rightMeleeSpot.weapon.Unholster(); // Temp, do better
+        
         brain.SetTargetLookingDirection(brain.threatHandler.targetLastSeen.Value);
 
         if (brain.character.objectStatusHandler.HasMovementControls())

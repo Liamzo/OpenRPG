@@ -25,6 +25,7 @@ public class InputManager : MonoBehaviour
     private bool journalPressed = false;
     private bool sprintPressed = false;
     private bool mapPressed = false;
+    private bool holsterPressed = false;
 
     private static InputManager instance;
 
@@ -199,6 +200,17 @@ public class InputManager : MonoBehaviour
         } 
     }
 
+    public void HolsterPressed(InputAction.CallbackContext context) {
+        if (context.performed)
+        {
+            holsterPressed = true;
+        }
+        else if (context.canceled)
+        {
+            holsterPressed = false;
+        } 
+    }
+
     public Vector2 GetMoveDirection() 
     {
         return moveDirection;
@@ -285,6 +297,13 @@ public class InputManager : MonoBehaviour
     {
         bool result = mapPressed;
         mapPressed = false;
+        return result;
+    }
+
+    public bool GetHolsterPressed() 
+    {
+        bool result = holsterPressed;
+        holsterPressed = false;
         return result;
     }
 

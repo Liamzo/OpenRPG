@@ -15,6 +15,8 @@ public class WeaponHandler : MonoBehaviour
     public Transform _handle;
     public GameObject strategies;
 
+    public bool Holstered {get; private set;}
+
 
     // Events
     public event System.Action OnHolseter = delegate { };
@@ -79,18 +81,28 @@ public class WeaponHandler : MonoBehaviour
     }
 
     public void Holster() {
+        if (item.objectHandler.spriteRenderer.enabled == false)
+            return;
+
         transform.localPosition = new Vector3(0,0,0);
         transform.localRotation = Quaternion.identity;
 
         item.objectHandler.spriteRenderer.enabled = false;
 
+        Holstered = true;
+
         CallOnHolseter();
     }
     public void Unholster() {
+        if (item.objectHandler.spriteRenderer.enabled == true)
+            return;
+
         transform.localPosition = new Vector3(0,0,0);
         transform.localRotation = Quaternion.identity;
 
         item.objectHandler.spriteRenderer.enabled = true;
+
+        Holstered = false;
     }
 
 
