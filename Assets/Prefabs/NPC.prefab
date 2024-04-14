@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1465567588}
   - component: {fileID: 231877636628449108}
   - component: {fileID: 3753582246958118803}
+  - component: {fileID: 1588908718566469932}
   m_Layer: 0
   m_Name: Thoughts
   m_TagString: Untagged
@@ -62,7 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6b089bf1b01e2489084be41ee126db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minChaseDistance: 0
+  minChaseDistance: 7
 --- !u!114 &3753582246958118803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,7 +76,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fa123fc322bb404b9275c72c034b42d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxMeleeRange: 0
+  maxMeleeRange: 8
+--- !u!114 &1588908718566469932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465567586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 976fe1e9848ab1445a5994b5df914cdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  circleDistance: 7
+  circleDistanceRange: 1
+  minCircleDistance: 3
+  minPauseDuration: 1
+  maxPauseDuration: 2
+  minPauseWait: 4
+  maxPauseWait: 8
+  circleDirection: 1
+  minDirectionDuration: 3
+  maxDirectionDuration: 5
 --- !u!1 &1717953569146656049
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,6 +504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  lastSeenDuration: 5
   targetToFind: 
 --- !u!114 &3139969052742268801
 MonoBehaviour:

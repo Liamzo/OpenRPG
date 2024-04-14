@@ -12,8 +12,6 @@ public class Player : BaseBrain
 
     private bool _pointerOverUI;
 
-    List<Vector3> followThroughMovements = new List<Vector3>();
-
     [Header("Interactions")]
     public float interactionDistance = 2f;
     public InteractionHandler interactingWith;
@@ -26,11 +24,12 @@ public class Player : BaseBrain
 
 
     [Header("Dodging")]
-    Vector3 dodgeDir;
+    Vector3 dodgeMovement;
     public bool wasDodging = false;
     public float dodgeTimer = 0.0f;
     public float dodgeDuration;
     public float dodgeSpeedMulti;
+    [SerializeField] float dodgeDurationReleaseModifier;
     float dodgeCDTimer = 0.0f;
     float dodgeCDDuration = 1.0f;
     public float dodgeStaminaCost;
@@ -69,18 +68,6 @@ public class Player : BaseBrain
             dodgeCDTimer -= Time.deltaTime;
         }
 
-
-        for (int i = 0; i < followThroughMovements.Count; i++) {
-            character.movement += followThroughMovements[i] * Time.deltaTime;
-
-            followThroughMovements[i] *= 1 - (Time.deltaTime * 5f);
-
-            if (followThroughMovements[i].magnitude <= 0.3f) {
-                followThroughMovements.Remove(followThroughMovements[i]);
-                i--;
-            }
-        }
-
         // Controls
         if (character.objectStatusHandler.HasControls())
             DodgeControls();
@@ -112,7 +99,6 @@ public class Player : BaseBrain
     }
 
     void MovementControls() {
-        Vector3 prevMovement = movement;
         movement = new Vector3(InputManager.GetInstance().GetMoveDirection().x, InputManager.GetInstance().GetMoveDirection().y, 0);
 
         if (movement.magnitude > 1) {
@@ -129,13 +115,12 @@ public class Player : BaseBrain
         movement *= character.statsCharacter[CharacterStatNames.MovementSpeed].GetValue();
 
         if (InputManager.GetInstance().GetSprintPressed() && character.currentStamina >= 0f && movement != Vector3.zero) {
-            movement *= 2f;
+            movement *= character.statsCharacter[CharacterStatNames.SprintMultiplier].GetValue();
 
             character.ChangeStamina(-5 * Time.deltaTime); // 5 stamina per second
             character.objectStatusHandler.BlockRegainStamina(0f);
             wasSprinting = true;
         } else if (wasSprinting) {
-            followThroughMovements.Add(prevMovement * 0.5f);
             wasSprinting = false;
         }
 
@@ -151,19 +136,19 @@ public class Player : BaseBrain
             // Start dodge
             wasDodging = true;
 
-            dodgeDir = new Vector3(InputManager.GetInstance().GetMoveDirection().x, InputManager.GetInstance().GetMoveDirection().y, 0).normalized;
+            dodgeMovement = new Vector3(InputManager.GetInstance().GetMoveDirection().x, InputManager.GetInstance().GetMoveDirection().y, 0).normalized;
 
-            if (dodgeDir == Vector3.zero) 
-                dodgeDir = ((Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - (Vector2)transform.position).normalized;  
+            if (dodgeMovement == Vector3.zero) 
+                dodgeMovement = ((Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - (Vector2)transform.position).normalized;  
             
 
-            if (dodgeDir.x < 0) {
+            if (dodgeMovement.x < 0) {
                 character.spriteRenderer.flipX = true;
-            } else if (dodgeDir.x > 0) {
+            } else if (dodgeMovement.x > 0) {
                 character.spriteRenderer.flipX = false;
             }
 
-            dodgeDir *= character.statsCharacter[CharacterStatNames.MovementSpeed].GetValue() * dodgeSpeedMulti;
+            dodgeMovement *= character.statsCharacter[CharacterStatNames.MovementSpeed].baseValue * dodgeSpeedMulti;
 
             _animator.SetBool("Rolling", true);
             _animator.SetTrigger("Roll");
@@ -185,12 +170,12 @@ public class Player : BaseBrain
         //     movement = dodgeStartingMovement * Mathf.Lerp(dodgeSpeedMulti, 1f, (dodgeTimer - (dodgeDuration / 2.0f)) * 2);
         // }
 
-        Vector3 newMove = dodgeDir * Time.deltaTime;
+        Vector3 newMove = dodgeMovement * Time.deltaTime;
         character.movement += newMove;
 
         if (wasDodging) {
             if (InputManager.GetInstance().GetDashPressed()) {
-                dodgeTimer += Time.deltaTime * 0.5f;
+                dodgeTimer += Time.deltaTime * dodgeDurationReleaseModifier;
             } else {
                 wasDodging = false;
                 dodgeTimer += Time.deltaTime;
@@ -209,8 +194,6 @@ public class Player : BaseBrain
             dodgeCDTimer = dodgeCDDuration;
 
             footSteps.Emit(25);
-
-            followThroughMovements.Add(dodgeDir);
         }
     }
 

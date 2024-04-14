@@ -26,6 +26,7 @@ public class ObjectHandler : MonoBehaviour
 
     
     public Vector3 movement;
+    private Vector3 prevMovement = Vector3.zero;
 
 
     public float currentHealth;
@@ -60,8 +61,16 @@ public class ObjectHandler : MonoBehaviour
     private void FixedUpdate() {
         rigidBody.velocity = Vector2.zero;
         
-        if (movement == Vector3.zero || !objectStatusHandler.HasMovement())
+        if (!objectStatusHandler.HasMovement())
             return;
+
+        movement = Vector3.Lerp(prevMovement, movement, 0.2f); // TODO: Proper smooth movement
+
+        prevMovement = movement;
+
+        if (movement == Vector3.zero) 
+            return;
+        
 
         rigidBody.MovePosition(rigidBody.position + (Vector2)movement);
 

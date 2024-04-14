@@ -413,8 +413,9 @@ MonoBehaviour:
   interactingWith: {fileID: 0}
   wasDodging: 0
   dodgeTimer: 0
-  dodgeDuration: 0.4
-  dodgeSpeedMulti: 1.5
+  dodgeDuration: 0.3
+  dodgeSpeedMulti: 2.5
+  dodgeDurationReleaseModifier: 0.75
   dodgeStaminaCost: 25
 --- !u!114 &1479582196
 MonoBehaviour:

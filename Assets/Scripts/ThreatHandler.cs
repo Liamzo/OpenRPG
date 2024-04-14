@@ -8,7 +8,10 @@ public class ThreatHandler : MonoBehaviour
     private CharacterHandler characterHandler;
     private FactionHandler factionHandler;
     public GameObject target;
+
     public Vector3? targetLastSeen;
+    float lastSeenTimer = 0.0f;
+    [SerializeField] float lastSeenDuration = 5f;
 
     // Later: Replace with Faction System and actually determine threat
     // Overlap circle and evaluation each Character found for Faction etc
@@ -51,11 +54,20 @@ public class ThreatHandler : MonoBehaviour
                     return;
                 }
 
-                float distance = Vector3.Distance(characterHandler.transform.position, transform.position);
+                float distance = Vector3.Distance(characterHandler.transform.position, transform.position); // TODO: Targetting, at least based on Distance
             }
         }
 
         // Not in range or sight was blocked
         target = null;
+
+        if (targetLastSeen != null) {
+            lastSeenTimer += Time.deltaTime;
+
+            if (lastSeenTimer >= lastSeenDuration) {
+                targetLastSeen = null;
+                lastSeenTimer = 0.0f;
+            }
+        }
     }
 }

@@ -57,6 +57,7 @@ public enum CharacterStatNames {
     Stamina,
     Sight,
     MovementSpeed,
+    SprintMultiplier,
     AttackSpeed
 
 }

@@ -588,6 +588,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  lastSeenDuration: 5
   targetToFind: 
 --- !u!114 &8523436995661248249
 MonoBehaviour:
