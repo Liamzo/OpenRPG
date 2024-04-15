@@ -53,12 +53,8 @@ public class TriggerCharge : BaseStrategy, ITrigger
         if (weapon.CanAttack()) {
             weapon.CallOnTrigger(chargeTimer);
 
-            weapon.animator.SetBool("Charging", false);
-            isCharging = false;
-            fullyCharged = false;
-            chargeTimer = 0f;
+            AttackCancel();
             
-
             weapon.item.owner.GetComponent<Physicsable>().Knock(-transform.up, weapon.statsWeapon[WeaponStatNames.SelfKnockForce].GetValue());
 
             return weapon.statsWeapon[WeaponStatNames.StaminaCostEnd].GetValue();

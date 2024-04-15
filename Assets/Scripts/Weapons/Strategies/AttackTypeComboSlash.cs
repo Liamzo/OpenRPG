@@ -11,7 +11,6 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
     
     private void Start() {
         weapon.OnTrigger += DoAttack;
-        //weapon.OnAttack += SpawnSlashAnimEvent;
 
         weapon.item.OnUnequip += InteruptCombo;
     }
@@ -53,19 +52,9 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
             inCombo = true;
 
             // Slow down movement
-            //weapon.item.owner.objectStatusHandler.BlockMovementControls();
             CharacterHandler character = (CharacterHandler) weapon.item.owner;
             character.statsCharacter[CharacterStatNames.MovementSpeed].AddModifier(-4f);
         }
-    }
-
-    public void SpawnSlashAnimEvent() {
-        GameObject go = ObjectPoolManager.instance.GetPooledObject(PoolIdentifiers.WeaponSwing);
-        go.transform.position = weapon.attackPoint.transform.position;
-        //go.transform.parent = meleeWeapon.attackPoint; // Decide which feels better. Stay in place or follow sword
-        go.transform.up = -weapon.item.owner.GetComponent<BaseBrain>().lookingDirection;
-
-        go.SetActive(true);
     }
 
     void InteruptCombo() {

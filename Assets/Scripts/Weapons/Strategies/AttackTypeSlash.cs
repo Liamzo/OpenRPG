@@ -13,7 +13,8 @@ public class AttackTypeSlash : BaseStrategy, IAttackType
 
     public void DoAttack(float charge)
     {
-        weapon.animator.SetTrigger("Attack");
+        //weapon.animator.SetTrigger("Attack");
+        weapon.animator.Play("Sword_Attack01");
         lastCharge = charge;
     }
 
