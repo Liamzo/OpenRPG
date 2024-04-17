@@ -8,21 +8,34 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
     float lastCharge = 1f;
     bool inCombo = false;
     Vector3 lockedLookingDirection;
+
+
+    [SerializeField] ComboSO combo;
+    bool charging = false;
+
+    float endHoldTimer = 0f;
+    ComboAttack lastComboAttack;
     
     private void Start() {
-        weapon.OnTrigger += DoAttack;
+        weapon.OnTrigger += ChargeAttack;
+        weapon.OnTriggerRelease += DoAttack;
 
         weapon.item.OnUnequip += InteruptCombo;
     }
 
     private void Update() {
-        if (weapon.animator.GetCurrentAnimatorStateInfo(0).IsName("Sword_Idle") && inCombo) {
-            inCombo = false;
+        if (lastComboAttack != null && weapon.animator.GetCurrentAnimatorStateInfo(0).IsName(lastComboAttack.attackAnimName) && weapon.animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1.0f) {
+            // Swing animation is complete, wait for the end hold duration before returning to Idle
+            weapon.animator.speed = 1.0f;
+            endHoldTimer += Time.deltaTime;
 
-            //weapon.item.owner.objectStatusHandler.UnblockMovementControls();
-            CharacterHandler character = (CharacterHandler) weapon.item.owner;
-            character.statsCharacter[CharacterStatNames.MovementSpeed].RemoveModifier(-4f);
-        } else if (inCombo) {
+            if (endHoldTimer >= lastComboAttack.endHoldDuration) {
+                ResetComboToIdle();
+            }
+        }
+
+        // TODO: Needs touched up, but not urgent
+        if (inCombo) {
             // Limit looking rotation
             float angleToTarget = Vector3.Angle(lockedLookingDirection, weapon.item.owner.GetComponent<BaseBrain>().targetLookingDirection);
             float side = Mathf.Sign(Vector3.Cross(lockedLookingDirection, weapon.item.owner.GetComponent<BaseBrain>().targetLookingDirection).z); // Right is negative, Left is positive
@@ -41,9 +54,40 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
         }
     }
 
+
+    public void ChargeAttack(float charge) {
+        if (charging == false) {
+            if (!inCombo) {
+                lastComboAttack = combo.comboChain;
+                weapon.animator.Play(lastComboAttack.chargeAnimName);
+                charging = true;
+                return;
+            }
+
+            // Check which section we're in based on endHoldTimer/comboAttack.endHoldDuration, switch to that lastAttack
+            float endHoldTimerPercent =  endHoldTimer / lastComboAttack.endHoldDuration;
+            float segmentLength = lastComboAttack.endHoldDuration / lastComboAttack.comboChains.Count;
+
+            int segment = Mathf.RoundToInt(endHoldTimerPercent / segmentLength);
+
+            lastComboAttack = lastComboAttack.comboChains[segment];
+            weapon.animator.Play(lastComboAttack.chargeAnimName);
+            charging = true;
+        }
+    }
+
     public void DoAttack(float charge)
     {
-        weapon.animator.SetTrigger("Attack");
+        if (charging == false) return;
+        charging = false;
+
+        if (charge >= 100f && lastComboAttack.attackHeavyAnimName != "")
+            weapon.animator.Play(lastComboAttack.attackAnimName);
+        else
+            weapon.animator.Play(lastComboAttack.attackAnimName);
+
+        weapon.animator.speed = 1.0f / lastComboAttack.swingDuration;
+
         lastCharge = charge;
 
         lockedLookingDirection = weapon.item.owner.GetComponent<BaseBrain>().lookingDirection;
@@ -59,12 +103,22 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
 
     void InteruptCombo() {
         if (inCombo) {
-            inCombo = false;
-
-            weapon.item.owner.objectStatusHandler.UnblockMovementControls();
-
-            //weapon.animator.Play("Sword_Idle");//
+            ResetComboToIdle();
         }
+    }
+
+    void ResetComboToIdle() {
+        inCombo = false;
+
+        weapon.animator.SetTrigger("Idle");
+        weapon.animator.speed = 1.0f;
+
+        CharacterHandler character = (CharacterHandler) weapon.item.owner;
+        character.statsCharacter[CharacterStatNames.MovementSpeed].RemoveModifier(-4f);
+
+        charging = false;
+
+        endHoldTimer = 0f;
     }
 
     private void OnTriggerEnter2D(Collider2D other) {

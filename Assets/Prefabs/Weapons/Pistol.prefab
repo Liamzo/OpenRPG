@@ -501,7 +501,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   muzzleFlash: {fileID: 969683319528169372}
   bulletPrefab: {fileID: 7319803943386155118, guid: fb028c1093ce9a1468561fc04d6a46f1, type: 3}
-  bulletSpeed: 50
+  bulletSpeed: 5
 --- !u!114 &7045684467092217530
 MonoBehaviour:
   m_ObjectHideFlags: 0

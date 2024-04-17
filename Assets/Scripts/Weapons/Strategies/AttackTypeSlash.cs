@@ -7,7 +7,7 @@ public class AttackTypeSlash : BaseStrategy, IAttackType
 {
     float lastCharge = 1f;
     private void Start() {
-        weapon.OnTrigger += DoAttack;
+        weapon.OnTriggerRelease += DoAttack;
         weapon.OnAttack += SpawnSlashAnimEvent;
     }
 

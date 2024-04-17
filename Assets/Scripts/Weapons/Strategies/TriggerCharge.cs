@@ -36,6 +36,9 @@ public class TriggerCharge : BaseStrategy, ITrigger
         if (weapon.CanAttack()) {
             isCharging = true;
             weapon.animator.SetBool("Charging", true);
+
+            weapon.CallOnTrigger(chargeTimer);
+
             return weapon.statsWeapon[WeaponStatNames.StaminaCostHold].GetValue() * Time.deltaTime;
         } else {
             AttackCancel();
@@ -51,7 +54,7 @@ public class TriggerCharge : BaseStrategy, ITrigger
     public float AttackRelease()
     {
         if (weapon.CanAttack()) {
-            weapon.CallOnTrigger(chargeTimer);
+            weapon.CallOnTriggerRelease(chargeTimer);
 
             AttackCancel();
             

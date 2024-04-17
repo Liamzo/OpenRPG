@@ -68,6 +68,11 @@ public class AttackTypeGrapplingHook : BaseStrategy, IAttackType
         }
     }
 
+    void ReleaseGrapple(float charge) {
+        grappleRope.enabled = false;
+        canGrapple = true;
+        //m_springJoint2D.enabled = false;
+    }
     void ReleaseGrapple() {
         grappleRope.enabled = false;
         canGrapple = true;

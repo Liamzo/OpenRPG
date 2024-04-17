@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 1592960810812754741}
   - component: {fileID: 43342035035835446}
   - component: {fileID: 525872837119891639}
-  - component: {fileID: 4398132771960501292}
   - component: {fileID: 2220449861763404007}
+  - component: {fileID: 4615682046279563948}
   m_Layer: 2
   m_Name: Strategies
   m_TagString: Untagged
@@ -112,19 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e4535a0b48a2cb44bb29bea96132908, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4398132771960501292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1592960810812754746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96283921a1f639e47a57feb7aad3c322, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioID: 3
+  combo: {fileID: 11400000, guid: 83bbb10837d2d4849a2fc7c42bbd94c5, type: 2}
 --- !u!114 &2220449861763404007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +126,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioID: 4
+--- !u!114 &4615682046279563948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592960810812754746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8676331cfb19548a3948346213dd9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioID: 3
 --- !u!1 &3048418504295214581
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,7 +363,7 @@ Animator:
   m_GameObject: {fileID: 4328129691896571672}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fd7865e99cf6f1042aa0848e035956eb, type: 2}
+  m_Controller: {fileID: 9100000, guid: f9ef938c87396da4d8049c30a2356d6f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d6cd3e454fddb94a83b877a057f9590, type: 3}
+  m_Name: BasicCombo
+  m_EditorClassIdentifier: 
+  comboName: Basic Combo
+  looping: 0
+  comboChain:
+    comboInputType: 0
+    chargeAnimName: Combo_Charge01
+    attackAnimName: Combo_Attack01
+    attackHeavyAnimName: 
+    swingDuration: 0.4
+    endHoldDuration: 1
+    comboChains:
+    - rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
