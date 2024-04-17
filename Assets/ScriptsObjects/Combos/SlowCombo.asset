@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d6cd3e454fddb94a83b877a057f9590, type: 3}
+  m_Name: SlowCombo
+  m_EditorClassIdentifier: 
+  comboName: Slow Combo
+  looping: 0
+  comboChain:
+    comboInputType: 0
+    chargeAnimName: Combo_Charge01
+    attackAnimName: Combo_Attack01
+    attackHeavyAnimName: 
+    swingDuration: 1.5
+    endHoldDuration: 1
+    comboChains:
+    - rid: 4788015104347865088
+  references:
+    version: 2
+    RefIds:
+    - rid: 4788015104347865088
+      type: {class: ComboAttack, ns: , asm: Assembly-CSharp}
+      data:
+        comboInputType: 0
+        chargeAnimName: Combo_Charge02
+        attackAnimName: Combo_Attack02
+        attackHeavyAnimName: 
+        swingDuration: 1.1
+        endHoldDuration: 1
+        comboChains:
+        - rid: 4788015104347865090
+    - rid: 4788015104347865090
+      type: {class: ComboAttack, ns: , asm: Assembly-CSharp}
+      data:
+        comboInputType: 0
+        chargeAnimName: Combo_Charge03
+        attackAnimName: Combo_Attack03
+        attackHeavyAnimName: 
+        swingDuration: 1
+        endHoldDuration: 0.2
+        comboChains: []
