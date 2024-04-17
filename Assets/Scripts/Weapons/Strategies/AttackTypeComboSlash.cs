@@ -69,6 +69,9 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
             float segmentLength = lastComboAttack.endHoldDuration / lastComboAttack.comboChains.Count;
 
             int segment = Mathf.RoundToInt(endHoldTimerPercent / segmentLength);
+            segment = Mathf.Clamp(segment, 0, lastComboAttack.comboChains.Count-1);
+
+            if (lastComboAttack.comboChains.Count == 0) return;
 
             lastComboAttack = lastComboAttack.comboChains[segment];
             weapon.animator.Play(lastComboAttack.chargeAnimName);

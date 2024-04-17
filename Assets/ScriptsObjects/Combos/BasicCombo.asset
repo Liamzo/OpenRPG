@@ -22,9 +22,28 @@ MonoBehaviour:
     swingDuration: 0.4
     endHoldDuration: 1
     comboChains:
-    - rid: -2
+    - rid: 4788015104347865088
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    - rid: 4788015104347865088
+      type: {class: ComboAttack, ns: , asm: Assembly-CSharp}
+      data:
+        comboInputType: 0
+        chargeAnimName: Combo_Charge02
+        attackAnimName: Combo_Attack02
+        attackHeavyAnimName: 
+        swingDuration: 0.7
+        endHoldDuration: 1
+        comboChains:
+        - rid: 4788015104347865090
+    - rid: 4788015104347865090
+      type: {class: ComboAttack, ns: , asm: Assembly-CSharp}
+      data:
+        comboInputType: 0
+        chargeAnimName: Combo_Charge03
+        attackAnimName: Combo_Attack03
+        attackHeavyAnimName: 
+        swingDuration: 0.3
+        endHoldDuration: 0.2
+        comboChains: []
