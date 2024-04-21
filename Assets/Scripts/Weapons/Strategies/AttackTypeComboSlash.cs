@@ -125,14 +125,14 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.layer != LayerMask.NameToLayer("Default")) return;
-
-        ObjectHandler otherObjectHandler;
-
-        if (other.TryGetComponent<ObjectHandler>(out otherObjectHandler)) {
+        if (other.TryGetComponent<ObjectHandler>(out ObjectHandler otherObjectHandler)) {
             if (otherObjectHandler == weapon.item.owner) return;
             
             weapon.damageType.DealDamage(otherObjectHandler, lastCharge);
+        }
+
+        if (other.TryGetComponent<BasicBullet>(out BasicBullet bullet)) {
+            Destroy(bullet.gameObject);
         }
     }
 }

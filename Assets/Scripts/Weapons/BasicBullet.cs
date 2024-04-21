@@ -23,12 +23,8 @@ public class BasicBullet : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        //if (other.gameObject.layer != LayerMask.NameToLayer("Default")) return;
-
-        ObjectHandler objectHandler;
-
-        if (other.TryGetComponent<ObjectHandler>(out objectHandler)) {
+    private void OnCollisionEnter2D(Collision2D other) {
+        if (other.gameObject.TryGetComponent<ObjectHandler>(out ObjectHandler objectHandler)) {
             if (objectHandler == weapon.item.owner) return;
 
             weapon.damageType.DealDamage(objectHandler, weaponCharge);

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 525872837119891639}
   - component: {fileID: 2220449861763404007}
   - component: {fileID: 4615682046279563948}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Strategies
   m_TagString: Untagged
   m_Icon: {fileID: 0}
