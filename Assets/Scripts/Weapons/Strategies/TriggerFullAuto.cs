@@ -19,7 +19,6 @@ public class TriggerFullAuto : BaseStrategy, ITrigger
             GameManager.instance.ShakeCamera(3.0f, 0.15f);
 
             weapon.CallOnTrigger();
-            weapon.item.owner.GetComponent<Physicsable>().Knock(transform.up, weapon.statsWeapon[WeaponStatNames.SelfKnockForce].GetValue());
 
             return weapon.statsWeapon[WeaponStatNames.StaminaCostHold].GetValue();
         }

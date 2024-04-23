@@ -13,3 +13,11 @@ public abstract class BaseStrategy : MonoBehaviour
         weapon = transform.parent.GetComponent<WeaponHandler>();
     }
 }
+
+public enum WeaponEvents {
+    OnTrigger,
+    OnTriggerRelease,
+    OnReload,
+    OnAttack,
+    OnHitTarget
+}

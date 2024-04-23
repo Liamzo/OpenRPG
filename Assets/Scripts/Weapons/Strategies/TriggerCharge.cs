@@ -57,8 +57,6 @@ public class TriggerCharge : BaseStrategy, ITrigger
             weapon.CallOnTriggerRelease(chargeTimer);
 
             AttackCancel();
-            
-            weapon.item.owner.GetComponent<Physicsable>().Knock(-transform.up, weapon.statsWeapon[WeaponStatNames.SelfKnockForce].GetValue());
 
             return weapon.statsWeapon[WeaponStatNames.StaminaCostEnd].GetValue();
         } else {

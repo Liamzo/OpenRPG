@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 525872837119891639}
   - component: {fileID: 2220449861763404007}
   - component: {fileID: 4615682046279563948}
+  - component: {fileID: 1443153877436204447}
   m_Layer: 8
   m_Name: Strategies
   m_TagString: Untagged
@@ -139,6 +140,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioID: 3
+--- !u!114 &1443153877436204447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592960810812754746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84de93896d1c93647be96cbf6250a9a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerEvent: 1
 --- !u!1 &3048418504295214581
 GameObject:
   m_ObjectHideFlags: 0
