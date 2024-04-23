@@ -26,6 +26,7 @@ public class InputManager : MonoBehaviour
     private bool sprintPressed = false;
     private bool mapPressed = false;
     private bool holsterPressed = false;
+    private bool toggleRangedPressed = false;
 
     private static InputManager instance;
 
@@ -210,6 +211,17 @@ public class InputManager : MonoBehaviour
             holsterPressed = false;
         } 
     }
+    public void ToggleRangedPressed(InputAction.CallbackContext context) {
+        if (context.performed)
+        {
+            toggleRangedPressed = true;
+        }
+        else if (context.canceled)
+        {
+            toggleRangedPressed = false;
+        } 
+    }
+
 
     public Vector2 GetMoveDirection() 
     {
@@ -232,6 +244,10 @@ public class InputManager : MonoBehaviour
     public bool GetSprintPressed() 
     {
         return sprintPressed;
+    }
+    public bool GetToggleRangedPressed() 
+    {
+        return toggleRangedPressed;
     }
 
     // for any of the below 'Get' methods, if we're getting it then we're also using it,
