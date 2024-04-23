@@ -19,8 +19,7 @@ public class TriggerSingleShot : BaseStrategy, ITrigger
     {
         if (canAttack && weapon.CanAttack()) {
             canAttack = false;
-            GameManager.instance.ShakeCamera(3.0f, 0.15f); // Probably move elsewhere
-
+            
             weapon.CallOnTrigger();
 
             return weapon.statsWeapon[WeaponStatNames.StaminaCostHold].GetValue();

@@ -16,8 +16,6 @@ public class TriggerFullAuto : BaseStrategy, ITrigger
     public float AttackHold()
     {
         if (weapon.CanAttack()) {
-            GameManager.instance.ShakeCamera(3.0f, 0.15f);
-
             weapon.CallOnTrigger();
 
             return weapon.statsWeapon[WeaponStatNames.StaminaCostHold].GetValue();
