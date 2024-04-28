@@ -27,6 +27,11 @@ public class WeaponHandler : MonoBehaviour
     public event System.Action<float> OnPrimaryTriggerRelease = delegate { };
     public void CallOnPrimaryTriggerRelease(float charge = 1f) { OnPrimaryTriggerRelease(charge); }
     
+    public event System.Action<float> OnSecondaryTrigger = delegate { };
+    public void CallOnSecondaryTrigger(float charge = 1f) { OnSecondaryTrigger(charge); }
+    public event System.Action<float> OnSecondaryTriggerRelease = delegate { };
+    public void CallOnSecondaryTriggerRelease(float charge = 1f) { OnSecondaryTriggerRelease(charge); }
+    
     public event System.Action<int> OnReload = delegate { };
     public void CallOnReload(int amount) { OnReload(amount); }
 
@@ -36,7 +41,8 @@ public class WeaponHandler : MonoBehaviour
     public event System.Action<ObjectHandler> OnHitTarget = delegate { };
     public void CallOnHitTarget(ObjectHandler target) { OnHitTarget(target); }
 
-    public ITrigger trigger;
+    public ITrigger triggerPrimary;
+    public ITrigger triggerSecondary;
     public IAttackType attackType;
     public IDamageType damageType;
     public IAnticipation anticipation {get; private set;}
@@ -70,7 +76,7 @@ public class WeaponHandler : MonoBehaviour
 
 
         // Handle cases where no Strategy is assigned
-        trigger = strategies.GetComponent<ITrigger>();
+        triggerPrimary = strategies.GetComponent<ITrigger>();
         attackType = strategies.GetComponent<IAttackType>();
         damageType = strategies.GetComponent<IDamageType>();
         anticipation = strategies.GetComponent<IAnticipation>();
@@ -122,31 +128,59 @@ public class WeaponHandler : MonoBehaviour
         }
     }
 
-    public float AttackHoldCost()
+    public float PrimaryAttackHoldCost()
     {
-        return trigger.AttackHoldCost();
+        return triggerPrimary.AttackHoldCost();
     }
-    public bool CanAttackHold() {
-        return trigger.CanAttackHold();
+    public bool PrimaryCanAttackHold() {
+        return triggerPrimary.CanAttackHold();
     }
-    public void AttackHold() {
-        trigger.AttackHold();
+    public void PrimaryAttackHold() {
+        triggerPrimary.AttackHold();
     }
 
-    public float AttackReleaseCost()
+    public float PrimaryAttackReleaseCost()
     {
-        return trigger.AttackReleaseCost();
+        return triggerPrimary.AttackReleaseCost();
     }
-    public bool CanAttackRelease() {
-        return trigger.CanAttackHold();
+    public bool PrimaryCanAttackRelease() {
+        return triggerPrimary.CanAttackHold();
     }
-    public void AttackRelease() {
-        trigger.AttackRelease();
+    public void PrimaryAttackRelease() {
+        triggerPrimary.AttackRelease();
     }
 
-    public void AttackCancel() {
-        trigger.AttackCancel();
+    public void PrimaryAttackCancel() {
+        triggerPrimary.AttackCancel();
     }
+
+
+    public float SecondaryAttackHoldCost()
+    {
+        return triggerSecondary.AttackHoldCost();
+    }
+    public bool SecondaryCanAttackHold() {
+        return triggerSecondary.CanAttackHold();
+    }
+    public void SecondaryAttackHold() {
+        triggerSecondary.AttackHold();
+    }
+
+    public float SecondaryAttackReleaseCost()
+    {
+        return triggerSecondary.AttackReleaseCost();
+    }
+    public bool SecondaryCanAttackRelease() {
+        return triggerSecondary.CanAttackHold();
+    }
+    public void SecondaryAttackRelease() {
+        triggerSecondary.AttackRelease();
+    }
+
+    public void SecondaryAttackCancel() {
+        triggerSecondary.AttackCancel();
+    }
+
 
     public void AttackAnticipation() {
         anticipation.AttackAnticipation();

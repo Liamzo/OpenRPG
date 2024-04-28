@@ -226,7 +226,7 @@ public class Player : BaseBrain
             // If switching equipment and previously attacking, cancel that attack
             if (equipmentHandler.meleeDrawn && wasAttacking) {
                 wasAttacking = false;
-                weapon.AttackCancel();
+                weapon.PrimaryAttackCancel();
             }
             equipmentHandler.ToggleMeleeRanged(false);
 
@@ -247,7 +247,7 @@ public class Player : BaseBrain
             // Melee
             if (equipmentHandler.meleeDrawn == false && wasAttacking) {
                 wasAttacking = false;
-                weapon.AttackCancel();
+                weapon.PrimaryAttackCancel();
             }
             equipmentHandler.ToggleMeleeRanged(true);
 
@@ -259,13 +259,13 @@ public class Player : BaseBrain
         if (InputManager.GetInstance().GetLeftMousePressed()) {
             equipmentHandler.rightMeleeSpot.weapon.Unholster();
 
-            float weaponHoldCost = weapon.AttackHoldCost();
+            float weaponHoldCost = weapon.PrimaryAttackHoldCost();
             
-            if (character.currentStamina >= weaponHoldCost && weapon.CanAttackHold()) 
+            if (character.currentStamina >= weaponHoldCost && weapon.PrimaryCanAttackHold()) 
             {
                 wasAttacking = true;
 
-                weapon.AttackHold();
+                weapon.PrimaryAttackHold();
 
                 if (weaponHoldCost != 0f) {
                     character.ChangeStamina(-weaponHoldCost);
@@ -276,17 +276,17 @@ public class Player : BaseBrain
             } 
             else if (wasAttacking && character.currentStamina < weaponHoldCost) 
             {
-                weapon.AttackCancel();
+                weapon.PrimaryAttackCancel();
                 wasAttacking = false;
             }
         } 
         else if (wasAttacking) 
         {
-            float weaponReleaseCost = weapon.AttackReleaseCost();
+            float weaponReleaseCost = weapon.PrimaryAttackReleaseCost();
 
-            if (character.currentStamina >= weaponReleaseCost && weapon.CanAttackRelease()) 
+            if (character.currentStamina >= weaponReleaseCost && weapon.PrimaryCanAttackRelease()) 
             {
-                weapon.AttackRelease();
+                weapon.PrimaryAttackRelease();
 
                 if (weaponReleaseCost != 0f) {
                     character.ChangeStamina(-weaponReleaseCost);
@@ -297,7 +297,7 @@ public class Player : BaseBrain
             } 
             else 
             {
-                weapon.AttackCancel();
+                weapon.PrimaryAttackCancel();
             }
 
             wasAttacking = false;
