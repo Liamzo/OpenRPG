@@ -4,8 +4,10 @@ using UnityEngine;
 
 public interface ITrigger {
     public float AttackHoldCost();
-    public float AttackHold();
+    public bool CanAttackHold();
+    public void AttackHold();
     public float AttackReleaseCost();
-    public float AttackRelease();
+    public bool CanAttackRelease();
+    public void AttackRelease();
     public void AttackCancel();
 }

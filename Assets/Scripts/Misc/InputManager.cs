@@ -231,6 +231,9 @@ public class InputManager : MonoBehaviour
     public bool GetLeftMousePressed() {
         return leftMousePressed;
     }
+    public void UseLeftMousePressed() {
+        leftMousePressed = false;
+    }
 
     public bool GetRightMousePressed() {
         return rightMousePressed;

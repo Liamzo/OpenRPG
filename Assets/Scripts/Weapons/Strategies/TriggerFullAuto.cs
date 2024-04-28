@@ -6,21 +6,18 @@ public class TriggerFullAuto : BaseStrategy, ITrigger
 {
     public float AttackHoldCost()
     {
-        if (weapon.CanAttack()) {
-            return weapon.statsWeapon[WeaponStatNames.StaminaCostHold].GetValue();
-        }
-
-        return 0f;
+        return weapon.statsWeapon[WeaponStatNames.StaminaCostHold].GetValue();
     }
 
-    public float AttackHold()
+    public bool CanAttackHold() {
+        return weapon.CanAttack();
+    }
+
+    public void AttackHold()
     {
         if (weapon.CanAttack()) {
             weapon.CallOnTrigger();
-
-            return weapon.statsWeapon[WeaponStatNames.StaminaCostHold].GetValue();
         }
-        return 0f;
     }
 
     public float AttackReleaseCost()
@@ -28,11 +25,13 @@ public class TriggerFullAuto : BaseStrategy, ITrigger
          return weapon.statsWeapon[WeaponStatNames.StaminaCostEnd].GetValue();
     }
 
-    public float AttackRelease()
+    public bool CanAttackRelease() {
+        return true;
+    }
+
+    public void AttackRelease()
     {
         weapon.CallOnTriggerRelease();
-        
-        return weapon.statsWeapon[WeaponStatNames.StaminaCostEnd].GetValue();
     }
 
     public void AttackCancel()

@@ -126,16 +126,22 @@ public class WeaponHandler : MonoBehaviour
     {
         return trigger.AttackHoldCost();
     }
-    public float AttackHold() {
-        return trigger.AttackHold();
+    public bool CanAttackHold() {
+        return trigger.CanAttackHold();
+    }
+    public void AttackHold() {
+        trigger.AttackHold();
     }
 
     public float AttackReleaseCost()
     {
         return trigger.AttackReleaseCost();
     }
-    public float AttackRelease() {
-        return trigger.AttackRelease();
+    public bool CanAttackRelease() {
+        return trigger.CanAttackHold();
+    }
+    public void AttackRelease() {
+        trigger.AttackRelease();
     }
 
     public void AttackCancel() {

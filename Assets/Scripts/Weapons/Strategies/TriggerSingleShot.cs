@@ -8,23 +8,20 @@ public class TriggerSingleShot : BaseStrategy, ITrigger
 
     public float AttackHoldCost()
     {
-        if (canAttack && weapon.CanAttack()) {
-            return weapon.statsWeapon[WeaponStatNames.StaminaCostHold].GetValue();
-        }
-
-        return 0f;
+        return weapon.statsWeapon[WeaponStatNames.StaminaCostHold].GetValue();
     }
 
-    public float AttackHold()
+    public bool CanAttackHold() {
+        return canAttack && weapon.CanAttack();
+    }
+
+    public void AttackHold()
     {
         if (canAttack && weapon.CanAttack()) {
             canAttack = false;
             
             weapon.CallOnTrigger();
-
-            return weapon.statsWeapon[WeaponStatNames.StaminaCostHold].GetValue();
         }
-        return 0f;
     }
 
     public float AttackReleaseCost()
@@ -32,10 +29,13 @@ public class TriggerSingleShot : BaseStrategy, ITrigger
          return weapon.statsWeapon[WeaponStatNames.StaminaCostEnd].GetValue();
     }
 
-    public float AttackRelease()
+    public bool CanAttackRelease() {
+        return true;
+    }
+
+    public void AttackRelease()
     {
         canAttack = true;
-        return weapon.statsWeapon[WeaponStatNames.StaminaCostEnd].GetValue();
     }
 
     public void AttackCancel()

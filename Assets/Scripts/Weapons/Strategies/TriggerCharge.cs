@@ -24,25 +24,22 @@ public class TriggerCharge : BaseStrategy, ITrigger
 
     public float AttackHoldCost()
     {
-        if (weapon.CanAttack()) {
-            return weapon.statsWeapon[WeaponStatNames.StaminaCostHold].GetValue() * Time.deltaTime;
-        }
-
-        return 0f;
+        return weapon.statsWeapon[WeaponStatNames.StaminaCostHold].GetValue() * Time.deltaTime;
     }
 
-    public float AttackHold()
+    public bool CanAttackHold() {
+        return weapon.CanAttack();
+    }
+
+    public void AttackHold()
     {
         if (weapon.CanAttack()) {
             isCharging = true;
             weapon.animator.SetBool("Charging", true);
 
             weapon.CallOnTrigger(chargeTimer);
-
-            return weapon.statsWeapon[WeaponStatNames.StaminaCostHold].GetValue() * Time.deltaTime;
         } else {
             AttackCancel();
-            return 0f;
         }
     }
 
@@ -51,17 +48,18 @@ public class TriggerCharge : BaseStrategy, ITrigger
          return weapon.statsWeapon[WeaponStatNames.StaminaCostEnd].GetValue();
     }
 
-    public float AttackRelease()
+    public bool CanAttackRelease() {
+        return weapon.CanAttack();
+    }
+
+    public void AttackRelease()
     {
         if (weapon.CanAttack()) {
             weapon.CallOnTriggerRelease(chargeTimer);
 
             AttackCancel();
-
-            return weapon.statsWeapon[WeaponStatNames.StaminaCostEnd].GetValue();
         } else {
             AttackCancel();
-            return 0f;
         }
     }
 

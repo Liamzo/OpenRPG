@@ -256,33 +256,46 @@ public class Player : BaseBrain
 
         if (InputManager.GetInstance().GetLeftMousePressed()) {
             equipmentHandler.rightMeleeSpot.weapon.Unholster();
+
+            float weaponHoldCost = weapon.AttackHoldCost();
             
-            if (character.currentStamina >= weapon.AttackHoldCost()) {
+            if (character.currentStamina >= weaponHoldCost && weapon.CanAttackHold()) 
+            {
                 wasAttacking = true;
 
-                float cost = weapon.AttackHold();
-                if (cost != 0f) {
-                    character.ChangeStamina(-cost);
+                weapon.AttackHold();
+
+                if (weaponHoldCost != 0f) {
+                    character.ChangeStamina(-weaponHoldCost);
                     character.objectStatusHandler.BlockRegainStamina(0.2f);
                 }
 
                 SpriteLookAtMouse();
-
-            } else if (wasAttacking) {
+            } 
+            else if (wasAttacking) 
+            {
                 weapon.AttackCancel();
                 wasAttacking = false;
+                InputManager.GetInstance().UseLeftMousePressed();
             }
-        } else if (wasAttacking) {
-            if (character.currentStamina >= weapon.AttackReleaseCost()) {
-                float cost = weapon.AttackRelease();
-                if (cost != 0f) {
-                    character.ChangeStamina(-cost);
+        } 
+        else if (wasAttacking) 
+        {
+            float weaponReleaseCost = weapon.AttackReleaseCost();
+
+            if (character.currentStamina >= weaponReleaseCost && weapon.CanAttackRelease()) 
+            {
+                weapon.AttackRelease();
+
+                if (weaponReleaseCost != 0f) {
+                    character.ChangeStamina(-weaponReleaseCost);
                     character.objectStatusHandler.BlockRegainStamina(0.2f);
                 }
 
-                SpriteLookAtMouse();
-                
-            } else {
+                SpriteLookAtMouse();    
+            } 
+            else 
+            {
                 weapon.AttackCancel();
             }
 
