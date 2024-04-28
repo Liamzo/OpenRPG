@@ -52,9 +52,9 @@ MonoBehaviour:
       type: {class: ComboAttack, ns: , asm: Assembly-CSharp}
       data:
         comboInputType: 0
-        chargeAnimName: Combo_Charge02
-        attackAnimName: Combo_Attack02
+        chargeAnimName: Combo_Charge01
+        attackAnimName: Combo_Attack01
         attackHeavyAnimName: 
-        swingDuration: 0.4
+        swingDuration: 0.6
         endHoldDuration: 1
         comboChains: []

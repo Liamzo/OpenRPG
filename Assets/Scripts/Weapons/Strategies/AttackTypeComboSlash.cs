@@ -15,6 +15,8 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
 
     float endHoldTimer = 0f;
     ComboAttack lastComboAttack;
+
+    bool hasAvailableAttack = true;
     
     private void Start() {
         weapon.OnTrigger += ChargeAttack;
@@ -28,6 +30,11 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
             // Swing animation is complete, wait for the end hold duration before returning to Idle
             weapon.animator.speed = 1.0f;
             endHoldTimer += Time.deltaTime;
+
+            if (lastComboAttack.comboChains.Count == 0 && hasAvailableAttack) {
+                hasAvailableAttack = false;
+                weapon._canAttack += 1;
+            }
 
             if (endHoldTimer >= lastComboAttack.endHoldDuration) {
                 ResetComboToIdle();
@@ -122,6 +129,11 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
         charging = false;
 
         endHoldTimer = 0f;
+
+        if (hasAvailableAttack == false) {
+            hasAvailableAttack = true;
+            weapon._canAttack -= 1;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
