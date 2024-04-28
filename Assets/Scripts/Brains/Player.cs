@@ -225,7 +225,6 @@ public class Player : BaseBrain
             // Ranged
             // If switching equipment and previously attacking, cancel that attack
             if (equipmentHandler.meleeDrawn && wasAttacking) {
-                Debug.Log("gooby");
                 wasAttacking = false;
                 weapon.AttackCancel();
             }
