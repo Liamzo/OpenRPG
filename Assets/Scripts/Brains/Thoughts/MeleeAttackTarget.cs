@@ -64,7 +64,7 @@ public class MeleeAttackTarget : BaseThought
             if (delayTimer >= 0.2f) {
                 // Do the attack
                 if (weapon != null) {
-                    weapon.PrimaryAttackRelease();
+                    weapon.AttackRelease(0);
                 }
 
                 brain.attackTimer = brain.attackCoolDown;
@@ -79,7 +79,7 @@ public class MeleeAttackTarget : BaseThought
                 // Start the attack
                 attacking = true;
                 brain.thoughtLocked = this;
-                weapon.AttackAnticipation();
+                weapon.AttackAnticipation(0);
             } else {
                 // Chase target
                 brain.movement += brain.GetDirectionFromPath() * brain.character.statsCharacter[CharacterStatNames.MovementSpeed].GetValue();

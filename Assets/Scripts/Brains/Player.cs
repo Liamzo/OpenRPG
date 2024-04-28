@@ -19,7 +19,7 @@ public class Player : BaseBrain
     InteractionHandler interactionHighlighted;
 
     [Header("Controls")]
-    private bool wasAttacking = false;
+    private List<bool> wasAttacking = new List<bool> {false, false};
     private bool wasSprinting = false;
 
 
@@ -224,9 +224,14 @@ public class Player : BaseBrain
         if (InputManager.GetInstance().GetToggleRangedPressed()) {
             // Ranged
             // If switching equipment and previously attacking, cancel that attack
-            if (equipmentHandler.meleeDrawn && wasAttacking) {
-                wasAttacking = false;
-                weapon.PrimaryAttackCancel();
+            if (equipmentHandler.meleeDrawn == true && (wasAttacking[0] || wasAttacking[1])) {
+                for (int i = 0; i < wasAttacking.Count; i++)
+                {
+                    if (wasAttacking[i]) {
+                        wasAttacking[i] = false;
+                        weapon.AttackCancel(i);
+                    }
+                }
             }
             equipmentHandler.ToggleMeleeRanged(false);
 
@@ -240,14 +245,18 @@ public class Player : BaseBrain
             character.ChangeStamina(-cost);
             character.objectStatusHandler.BlockRegainStamina(0f);
             movement *= 0.5f; // TODO: Replace with weapon stat
-
         } 
         else 
         {
             // Melee
-            if (equipmentHandler.meleeDrawn == false && wasAttacking) {
-                wasAttacking = false;
-                weapon.PrimaryAttackCancel();
+            if (equipmentHandler.meleeDrawn == false && (wasAttacking[0] || wasAttacking[1])) {
+                for (int i = 0; i < wasAttacking.Count; i++)
+                {
+                    if (wasAttacking[i]) {
+                        wasAttacking[i] = false;
+                        weapon.AttackCancel(i);
+                    }
+                }
             }
             equipmentHandler.ToggleMeleeRanged(true);
 
@@ -256,16 +265,22 @@ public class Player : BaseBrain
             if (weapon == null) return;
         }
 
-        if (InputManager.GetInstance().GetLeftMousePressed()) {
+
+        CheckAttackInput(weapon, 0, InputManager.GetInstance().GetLeftMousePressed());
+        CheckAttackInput(weapon, 1, InputManager.GetInstance().GetRightMousePressed());
+    }
+
+    void CheckAttackInput(WeaponHandler weapon, int triggerSlot, bool pressed) {
+        if (pressed) {
             equipmentHandler.rightMeleeSpot.weapon.Unholster();
 
-            float weaponHoldCost = weapon.PrimaryAttackHoldCost();
+            float weaponHoldCost = weapon.AttackHoldCost(triggerSlot);
             
-            if (character.currentStamina >= weaponHoldCost && weapon.PrimaryCanAttackHold()) 
+            if (character.currentStamina >= weaponHoldCost && weapon.CanAttackHold(triggerSlot)) 
             {
-                wasAttacking = true;
+                wasAttacking[triggerSlot] = true;
 
-                weapon.PrimaryAttackHold();
+                weapon.AttackHold(triggerSlot);
 
                 if (weaponHoldCost != 0f) {
                     character.ChangeStamina(-weaponHoldCost);
@@ -274,19 +289,19 @@ public class Player : BaseBrain
 
                 SpriteLookAtMouse();
             } 
-            else if (wasAttacking && character.currentStamina < weaponHoldCost) 
+            else if (wasAttacking[triggerSlot] && character.currentStamina < weaponHoldCost) 
             {
-                weapon.PrimaryAttackCancel();
-                wasAttacking = false;
+                weapon.AttackCancel(triggerSlot);
+                wasAttacking[triggerSlot] = false;
             }
         } 
-        else if (wasAttacking) 
+        else if (wasAttacking[triggerSlot]) 
         {
-            float weaponReleaseCost = weapon.PrimaryAttackReleaseCost();
+            float weaponReleaseCost = weapon.AttackReleaseCost(triggerSlot);
 
-            if (character.currentStamina >= weaponReleaseCost && weapon.PrimaryCanAttackRelease()) 
+            if (character.currentStamina >= weaponReleaseCost && weapon.CanAttackRelease(triggerSlot)) 
             {
-                weapon.PrimaryAttackRelease();
+                weapon.AttackRelease(triggerSlot);
 
                 if (weaponReleaseCost != 0f) {
                     character.ChangeStamina(-weaponReleaseCost);
@@ -297,10 +312,10 @@ public class Player : BaseBrain
             } 
             else 
             {
-                weapon.PrimaryAttackCancel();
+                weapon.AttackCancel(triggerSlot);
             }
 
-            wasAttacking = false;
+            wasAttacking[triggerSlot] = false;
         }
     }
 

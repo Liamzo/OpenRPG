@@ -125,8 +125,6 @@ public class ObjectHandler : MonoBehaviour
             return false;
         }
 
-        // On-hit effects
-        weapon.CallOnHitTarget(this);
 
         // // Check for Penetration
         // float penValue = weapon.statsWeapon[WeaponStatNames.PenetrationValue].GetValue();

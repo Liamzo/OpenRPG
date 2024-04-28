@@ -19,7 +19,9 @@ public class WeaponIdleFollow : MonoBehaviour
     private void Start() {
         weapon = GetComponent<WeaponHandler>();
 
-        weapon.OnAttack += PauseFollow;
+        foreach (TriggerHolder triggerHolder in weapon.triggerHolders) {
+            triggerHolder.OnAttack += PauseFollow;
+        }
     }
 
     private void Update() {

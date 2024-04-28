@@ -9,7 +9,7 @@ public class AttackTypeProjectile : BaseStrategy, IAttackType
     public float bulletSpeed;
 
     private void Start() {
-        weapon.OnPrimaryTrigger += DoAttack;
+        weapon.triggerHolders[triggerSlot].OnTrigger += DoAttack;
     }
 
     public void DoAttack(float charge)
@@ -21,6 +21,6 @@ public class AttackTypeProjectile : BaseStrategy, IAttackType
         bullet.weaponCharge = charge;
         bullet.direction = -transform.up;
         muzzleFlash.Flash();
-        weapon.CallOnAttack();
+        weapon.CallOnAttack(triggerSlot);
     }
 }

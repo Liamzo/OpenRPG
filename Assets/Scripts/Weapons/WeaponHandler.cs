@@ -18,34 +18,20 @@ public class WeaponHandler : MonoBehaviour
     public bool Holstered {get; private set;}
 
 
+    public List<TriggerHolder> triggerHolders = new List<TriggerHolder> {new TriggerHolder(), new TriggerHolder()};
+
     // Events
     public event System.Action OnHolseter = delegate { };
     public void CallOnHolseter() { OnHolseter(); }
-
-    public event System.Action<float> OnPrimaryTrigger = delegate { };
-    public void CallOnPrimaryTrigger(float charge = 1f) { OnPrimaryTrigger(charge); }
-    public event System.Action<float> OnPrimaryTriggerRelease = delegate { };
-    public void CallOnPrimaryTriggerRelease(float charge = 1f) { OnPrimaryTriggerRelease(charge); }
-    
-    public event System.Action<float> OnSecondaryTrigger = delegate { };
-    public void CallOnSecondaryTrigger(float charge = 1f) { OnSecondaryTrigger(charge); }
-    public event System.Action<float> OnSecondaryTriggerRelease = delegate { };
-    public void CallOnSecondaryTriggerRelease(float charge = 1f) { OnSecondaryTriggerRelease(charge); }
-    
     public event System.Action<int> OnReload = delegate { };
     public void CallOnReload(int amount) { OnReload(amount); }
 
-    public event System.Action OnAttack = delegate { };
-    public void CallOnAttack() { OnAttack(); }
+    public void CallOnTrigger(int triggerSlot, float charge = 1f) { triggerHolders[triggerSlot].CallOnTrigger(charge); }
+    public void CallOnTriggerRelease(int triggerSlot, float charge = 1f) { triggerHolders[triggerSlot].CallOnTriggerRelease(charge); }
+    
+    public void CallOnAttack(int triggerSlot) { triggerHolders[triggerSlot].CallOnAttack(); }
 
-    public event System.Action<ObjectHandler> OnHitTarget = delegate { };
-    public void CallOnHitTarget(ObjectHandler target) { OnHitTarget(target); }
-
-    public ITrigger triggerPrimary;
-    public ITrigger triggerSecondary;
-    public IAttackType attackType;
-    public IDamageType damageType;
-    public IAnticipation anticipation {get; private set;}
+    public void CallOnHitTarget(int triggerSlot, ObjectHandler target) { triggerHolders[triggerSlot].CallOnHitTarget(target); }
 
     public Transform attackPoint;
 
@@ -75,11 +61,32 @@ public class WeaponHandler : MonoBehaviour
         }
 
 
-        // Handle cases where no Strategy is assigned
-        triggerPrimary = strategies.GetComponent<ITrigger>();
-        attackType = strategies.GetComponent<IAttackType>();
-        damageType = strategies.GetComponent<IDamageType>();
-        anticipation = strategies.GetComponent<IAnticipation>();
+        // Set variables in trigger handlers
+        triggerHolders = new List<TriggerHolder> {new TriggerHolder(), new TriggerHolder()};
+        
+        ITrigger[] triggers = strategies.GetComponents<ITrigger>();
+        foreach (ITrigger trigger in triggers)
+        {
+            triggerHolders[((BaseStrategy)trigger).triggerSlot].trigger = trigger;
+        }
+        
+        IAttackType[] attackTypes = strategies.GetComponents<IAttackType>();
+        foreach (IAttackType attackType in attackTypes)
+        {
+            triggerHolders[((BaseStrategy)attackType).triggerSlot].attackType = attackType;
+        }
+        
+        IDamageType[] damageTypes = strategies.GetComponents<IDamageType>();
+        foreach (IDamageType damageType in damageTypes)
+        {
+            triggerHolders[((BaseStrategy)damageType).triggerSlot].damageType = damageType;
+        }
+        
+        IAnticipation[] anticipations = strategies.GetComponents<IAnticipation>();
+        foreach (IAnticipation anticipation in anticipations)
+        {
+            triggerHolders[((BaseStrategy)anticipation).triggerSlot].anticipation = anticipation;
+        }
     }
 
     public float GetStatValue(WeaponStatNames statName) {
@@ -128,62 +135,35 @@ public class WeaponHandler : MonoBehaviour
         }
     }
 
-    public float PrimaryAttackHoldCost()
+    public float AttackHoldCost(int triggerSlot)
     {
-        return triggerPrimary.AttackHoldCost();
+        return triggerHolders[triggerSlot].trigger.AttackHoldCost();
     }
-    public bool PrimaryCanAttackHold() {
-        return triggerPrimary.CanAttackHold();
+    public bool CanAttackHold(int triggerSlot) {
+        return triggerHolders[triggerSlot].trigger.CanAttackHold();
     }
-    public void PrimaryAttackHold() {
-        triggerPrimary.AttackHold();
+    public void AttackHold(int triggerSlot) {
+        triggerHolders[triggerSlot].trigger.AttackHold();
     }
 
-    public float PrimaryAttackReleaseCost()
+    public float AttackReleaseCost(int triggerSlot)
     {
-        return triggerPrimary.AttackReleaseCost();
+        return triggerHolders[triggerSlot].trigger.AttackReleaseCost();
     }
-    public bool PrimaryCanAttackRelease() {
-        return triggerPrimary.CanAttackHold();
+    public bool CanAttackRelease(int triggerSlot) {
+        return triggerHolders[triggerSlot].trigger.CanAttackHold();
     }
-    public void PrimaryAttackRelease() {
-        triggerPrimary.AttackRelease();
-    }
-
-    public void PrimaryAttackCancel() {
-        triggerPrimary.AttackCancel();
+    public void AttackRelease(int triggerSlot) {
+        triggerHolders[triggerSlot].trigger.AttackRelease();
     }
 
-
-    public float SecondaryAttackHoldCost()
-    {
-        return triggerSecondary.AttackHoldCost();
-    }
-    public bool SecondaryCanAttackHold() {
-        return triggerSecondary.CanAttackHold();
-    }
-    public void SecondaryAttackHold() {
-        triggerSecondary.AttackHold();
-    }
-
-    public float SecondaryAttackReleaseCost()
-    {
-        return triggerSecondary.AttackReleaseCost();
-    }
-    public bool SecondaryCanAttackRelease() {
-        return triggerSecondary.CanAttackHold();
-    }
-    public void SecondaryAttackRelease() {
-        triggerSecondary.AttackRelease();
-    }
-
-    public void SecondaryAttackCancel() {
-        triggerSecondary.AttackCancel();
+    public void AttackCancel(int triggerSlot) {
+        triggerHolders[triggerSlot].trigger.AttackCancel();
     }
 
 
-    public void AttackAnticipation() {
-        anticipation.AttackAnticipation();
+    public void AttackAnticipation(int triggerSlot) {
+        triggerHolders[triggerSlot].anticipation.AttackAnticipation();
     }
 
 
@@ -193,6 +173,57 @@ public class WeaponHandler : MonoBehaviour
         }
     }
 
+}
+
+[System.Serializable]
+public class TriggerHolder {
+    public event System.Action<float> OnTrigger = delegate { };
+    public void CallOnTrigger(float charge = 1f) { OnTrigger(charge); }
+    public event System.Action<float> OnTriggerRelease = delegate { };
+    public void CallOnTriggerRelease(float charge = 1f) { OnTriggerRelease(charge); }
+
+    public event System.Action OnAttack = delegate { };
+    public void CallOnAttack() { OnAttack(); }
+
+    public event System.Action<ObjectHandler> OnHitTarget = delegate { };
+    public void CallOnHitTarget(ObjectHandler target) { OnHitTarget(target); }
+
+
+    public ITrigger trigger;
+    public IAttackType attackType;
+    public IDamageType damageType;
+    public IAnticipation anticipation;
+
+
+    public float AttackHoldCost()
+    {
+        return trigger.AttackHoldCost();
+    }
+    public bool CanAttackHold() {
+        return trigger.CanAttackHold();
+    }
+    public void AttackHold() {
+        trigger.AttackHold();
+    }
+
+    public float AttackReleaseCost()
+    {
+        return trigger.AttackReleaseCost();
+    }
+    public bool CanAttackRelease() {
+        return trigger.CanAttackHold();
+    }
+    public void AttackRelease() {
+        trigger.AttackRelease();
+    }
+
+    public void AttackCancel() {
+        trigger.AttackCancel();
+    }
+
+    public void AttackAnticipation() {
+        anticipation.AttackAnticipation();
+    }
 }
 
 

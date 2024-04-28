@@ -5,7 +5,7 @@ using UnityEngine;
 public class SelfKnockBack : BaseStrategy
 {
     private void Start() {
-        weapon.OnPrimaryTriggerRelease += DoKnockBack;
+        weapon.triggerHolders[triggerSlot].OnTriggerRelease += DoKnockBack;
     }
 
     void DoKnockBack(float charge) {

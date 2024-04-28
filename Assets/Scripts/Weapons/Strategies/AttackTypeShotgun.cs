@@ -12,7 +12,7 @@ public class AttackTypeShotgun : BaseStrategy, IAttackType
     private void Start() {
         fireEffectEmission = fireEffect.emission;
 
-        weapon.OnPrimaryTrigger += DoAttack;
+        weapon.triggerHolders[triggerSlot].OnTrigger += DoAttack;
     }
 
     public void DoAttack(float charge)
@@ -20,12 +20,12 @@ public class AttackTypeShotgun : BaseStrategy, IAttackType
         List<ObjectHandler> targets = EnemiesInCone();
 
         foreach(ObjectHandler target in targets) {
-            weapon.damageType.DealDamage(target, charge); // Could potentially delay based on distance
+            weapon.triggerHolders[triggerSlot].damageType.DealDamage(target, charge); // Could potentially delay based on distance
         }
 
         fireEffect.Play();
         muzzleFlash.Flash();
-        weapon.CallOnAttack();
+        weapon.CallOnAttack(triggerSlot);
     }
 
     private void Update() {

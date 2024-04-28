@@ -7,7 +7,7 @@ public class OnTriggerCameraShake : BaseStrategy
     // Start is called before the first frame update
     void Start()
     {
-        weapon.OnPrimaryTrigger += CameraShake;
+        weapon.triggerHolders[triggerSlot].OnTrigger += CameraShake;
     }
 
     void CameraShake(float charge) {

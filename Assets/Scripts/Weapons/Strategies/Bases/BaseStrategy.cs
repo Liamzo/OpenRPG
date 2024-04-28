@@ -7,6 +7,8 @@ public abstract class BaseStrategy : MonoBehaviour
 {
     protected WeaponHandler weapon;
 
+    [SerializeField] public int triggerSlot = 0;
+
     // Start is called before the first frame update
     protected virtual void Awake()
     {

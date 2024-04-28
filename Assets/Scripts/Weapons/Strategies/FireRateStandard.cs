@@ -8,7 +8,7 @@ public class FireRateStandard : BaseStrategy, IFireRate
     bool waiting = false;
 
     void Start() {
-        weapon.OnAttack += DidAttack;
+        weapon.triggerHolders[triggerSlot].OnAttack += DidAttack;
     }
 
     private void Update() {

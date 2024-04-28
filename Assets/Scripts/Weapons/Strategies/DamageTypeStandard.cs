@@ -21,6 +21,6 @@ public class DamageTypeStandard : BaseStrategy, IDamageType
             target.objectStatusHandler.BlockMovementControls(weapon.GetStatValue(WeaponStatNames.Stagger));
         }
 
-        weapon.CallOnHitTarget(target);
+        weapon.triggerHolders[triggerSlot].CallOnHitTarget(target);
     }
 }

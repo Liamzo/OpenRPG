@@ -55,8 +55,8 @@ public class RangedAttackTarget : BaseThought
             if (delayTimer >= 0.2f) {
                 // Do the attack
                 if (weapon != null) {
-                    weapon.PrimaryAttackHold();
-                    weapon.PrimaryAttackRelease();
+                    weapon.AttackHold(0);
+                    weapon.AttackRelease(0);
                 }
 
                 brain.attackTimer = brain.attackCoolDown;
@@ -67,7 +67,7 @@ public class RangedAttackTarget : BaseThought
         } else {
             attacking = true;
             brain.thoughtLocked = this;
-            weapon.AttackAnticipation();
+            weapon.AttackAnticipation(0);
         }
     }
 }

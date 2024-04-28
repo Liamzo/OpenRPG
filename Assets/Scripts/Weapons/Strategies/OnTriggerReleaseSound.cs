@@ -11,7 +11,7 @@ public class OnTriggerReleaseSound : BaseStrategy
     // Start is called before the first frame update
     void Start()
     {
-        weapon.OnPrimaryTriggerRelease += PlaySound;
+        weapon.triggerHolders[triggerSlot].OnTriggerRelease += PlaySound;
 
         weaponAudioSource = weapon.GetComponent<AudioSource>();
     }

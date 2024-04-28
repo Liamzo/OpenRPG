@@ -15,7 +15,7 @@ public class TriggerCharge : BaseStrategy, ITrigger
 
             if (chargeTimer > 1f) {
                 chargeTimer = 1f;
-                weapon.AttackAnticipation();
+                weapon.triggerHolders[triggerSlot].AttackAnticipation();
                 fullyCharged = true;
             }
         }
@@ -42,7 +42,7 @@ public class TriggerCharge : BaseStrategy, ITrigger
             isCharging = true;
             weapon.animator.SetBool("Charging", true);
 
-            weapon.CallOnPrimaryTrigger(chargeTimer);
+            weapon.CallOnTrigger(triggerSlot, chargeTimer);
         } else {
             AttackCancel();
         }
@@ -60,7 +60,7 @@ public class TriggerCharge : BaseStrategy, ITrigger
     public void AttackRelease()
     {
         if (weapon.CanAttack()) {
-            weapon.CallOnPrimaryTriggerRelease(chargeTimer);
+            weapon.CallOnTriggerRelease(triggerSlot, chargeTimer);
 
             AttackCancel();
         } else {

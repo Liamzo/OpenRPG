@@ -7,8 +7,8 @@ public class AttackTypeSlash : BaseStrategy, IAttackType
 {
     float lastCharge = 1f;
     private void Start() {
-        weapon.OnPrimaryTriggerRelease += DoAttack;
-        weapon.OnAttack += SpawnSlashAnimEvent;
+        weapon.triggerHolders[triggerSlot].OnTriggerRelease += DoAttack;
+        weapon.triggerHolders[triggerSlot].OnAttack += SpawnSlashAnimEvent;
     }
 
     public void DoAttack(float charge)
@@ -35,7 +35,7 @@ public class AttackTypeSlash : BaseStrategy, IAttackType
         if (other.TryGetComponent<ObjectHandler>(out otherObjectHandler)) {
             if (otherObjectHandler == weapon.item.owner) return;
             
-            weapon.damageType.DealDamage(otherObjectHandler, lastCharge);
+            weapon.triggerHolders[triggerSlot].damageType.DealDamage(otherObjectHandler, lastCharge);
         }
     }
 }

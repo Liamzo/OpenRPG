@@ -17,15 +17,24 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
     ComboAttack lastComboAttack;
 
     bool hasAvailableAttack = true;
+
+    bool doingAttack = false;
     
     private void Start() {
-        weapon.OnPrimaryTrigger += ChargeAttack;
-        weapon.OnPrimaryTriggerRelease += DoAttack;
+        weapon.triggerHolders[triggerSlot].OnTrigger += ChargeAttack;
+        weapon.triggerHolders[triggerSlot].OnTriggerRelease += DoAttack;
 
         weapon.item.OnUnequip += InteruptCombo;
     }
 
     private void Update() {
+        if  (doingAttack && weapon.strategies.GetComponent<Collider2D>().enabled)
+        {
+            doingAttack = false;
+            weapon.CallOnAttack(triggerSlot);
+        }
+
+
         if (lastComboAttack != null && weapon.animator.GetCurrentAnimatorStateInfo(0).IsName(lastComboAttack.attackAnimName) && weapon.animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1.0f) {
             // Swing animation is complete, wait for the end hold duration before returning to Idle
             weapon.animator.speed = 1.0f;
@@ -90,6 +99,7 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
     {
         if (charging == false) return;
         charging = false;
+        doingAttack = true;
 
         if (charge >= 100f && lastComboAttack.attackHeavyAnimName != "")
             weapon.animator.Play(lastComboAttack.attackHeavyAnimName);
@@ -140,7 +150,7 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
         if (other.TryGetComponent<ObjectHandler>(out ObjectHandler otherObjectHandler)) {
             if (otherObjectHandler == weapon.item.owner) return;
             
-            weapon.damageType.DealDamage(otherObjectHandler, lastCharge);
+            weapon.triggerHolders[triggerSlot].damageType.DealDamage(otherObjectHandler, lastCharge);
         }
 
         if (other.TryGetComponent<BasicBullet>(out BasicBullet bullet)) {

@@ -13,7 +13,7 @@ public class AmmoStandard : BaseStrategy, IAmmo
         currentAmmo = (int)weapon.statsWeapon[WeaponStatNames.ClipSize].GetValue();
 
         weapon.OnReload += Reload;
-        weapon.OnAttack += UseAmmo;
+        weapon.triggerHolders[triggerSlot].OnAttack += UseAmmo;
     }
 
     public int GetCurrentAmmo()

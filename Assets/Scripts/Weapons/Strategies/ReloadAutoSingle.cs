@@ -9,7 +9,7 @@ public class ReloadAutoSingle : BaseStrategy, IReload
     protected override void Awake() {
         base.Awake();
         
-        weapon.OnAttack += ResetReloadTimer;
+        weapon.triggerHolders[triggerSlot].OnAttack += ResetReloadTimer;
     }
 
     public void Update()

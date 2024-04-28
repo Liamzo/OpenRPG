@@ -32,9 +32,9 @@ public class AttackTypeGrapplingHook : BaseStrategy, IAttackType
     {
         grappleRope.enabled = false;
 
-        weapon.OnPrimaryTrigger += DoAttack;
+        weapon.triggerHolders[triggerSlot].OnTrigger += DoAttack;
 
-        weapon.OnPrimaryTriggerRelease += ReleaseGrapple;
+        weapon.triggerHolders[triggerSlot].OnTriggerRelease += ReleaseGrapple;
         weapon.OnHolseter += ReleaseGrapple;
         weapon.item.OnUnequip += ReleaseGrapple;
 
@@ -117,7 +117,7 @@ public class AttackTypeGrapplingHook : BaseStrategy, IAttackType
         m_rigidbody.velocity = Vector2.zero;
 
         if (grappleHitObject.GetComponent<ObjectHandler>()) {
-            weapon.CallOnAttack();
+            weapon.CallOnAttack(triggerSlot);
         }
     }
 }

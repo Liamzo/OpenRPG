@@ -77,6 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c471dd4e9f8cb43aeabda1e3c88a26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerSlot: 0
 --- !u!114 &1592960810812754741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,6 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30f3db205c461a14986f2c8967c5daa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerSlot: 0
 --- !u!114 &43342035035835446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,6 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e97ec600dbd8c7940b7fd4cb31942511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerSlot: 0
 --- !u!114 &525872837119891639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,6 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e4535a0b48a2cb44bb29bea96132908, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerSlot: 0
   combo: {fileID: 11400000, guid: 83bbb10837d2d4849a2fc7c42bbd94c5, type: 2}
 --- !u!114 &2220449861763404007
 MonoBehaviour:
@@ -126,6 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 877f578be93856340a420de5945624db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerSlot: 0
   audioID: 4
 --- !u!114 &4615682046279563948
 MonoBehaviour:
@@ -139,6 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc8676331cfb19548a3948346213dd9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerSlot: 0
   audioID: 3
 --- !u!114 &1443153877436204447
 MonoBehaviour:
@@ -152,7 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84de93896d1c93647be96cbf6250a9a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerEvent: 1
+  triggerSlot: 0
 --- !u!1 &3048418504295214581
 GameObject:
   m_ObjectHideFlags: 0
@@ -439,6 +445,7 @@ MonoBehaviour:
   animator: {fileID: 4328129691896571668}
   _handle: {fileID: 5334118679488976819}
   strategies: {fileID: 1592960810812754746}
+  triggerHolders: []
   attackPoint: {fileID: 8183562702466392682}
   _canAttack: 0
 --- !u!114 &5311003981422222266

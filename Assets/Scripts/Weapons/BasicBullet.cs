@@ -8,6 +8,7 @@ public class BasicBullet : MonoBehaviour
     public float weaponCharge;
     public Vector3 direction;
     public WeaponHandler weapon;
+    public int triggerSlot;
 
     public float bulletLifeTime;
     float bulletLifeTimer;
@@ -27,9 +28,9 @@ public class BasicBullet : MonoBehaviour
         if (other.gameObject.TryGetComponent<ObjectHandler>(out ObjectHandler objectHandler)) {
             if (objectHandler == weapon.item.owner) return;
 
-            weapon.damageType.DealDamage(objectHandler, weaponCharge);
+            weapon.triggerHolders[triggerSlot].damageType.DealDamage(objectHandler, weaponCharge);
         } else {
-            weapon.CallOnHitTarget(null);
+            weapon.CallOnHitTarget(triggerSlot, null);
         }
 
         Destroy(gameObject);
