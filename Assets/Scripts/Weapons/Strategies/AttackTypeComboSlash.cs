@@ -92,7 +92,7 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
         charging = false;
 
         if (charge >= 100f && lastComboAttack.attackHeavyAnimName != "")
-            weapon.animator.Play(lastComboAttack.attackAnimName);
+            weapon.animator.Play(lastComboAttack.attackHeavyAnimName);
         else
             weapon.animator.Play(lastComboAttack.attackAnimName);
 
