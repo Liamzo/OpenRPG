@@ -19,8 +19,8 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
     bool hasAvailableAttack = true;
     
     private void Start() {
-        weapon.OnTrigger += ChargeAttack;
-        weapon.OnTriggerRelease += DoAttack;
+        weapon.OnPrimaryTrigger += ChargeAttack;
+        weapon.OnPrimaryTriggerRelease += DoAttack;
 
         weapon.item.OnUnequip += InteruptCombo;
     }

@@ -16,7 +16,7 @@ public class TriggerFullAuto : BaseStrategy, ITrigger
     public void AttackHold()
     {
         if (weapon.CanAttack()) {
-            weapon.CallOnTrigger();
+            weapon.CallOnPrimaryTrigger();
         }
     }
 
@@ -31,7 +31,7 @@ public class TriggerFullAuto : BaseStrategy, ITrigger
 
     public void AttackRelease()
     {
-        weapon.CallOnTriggerRelease();
+        weapon.CallOnPrimaryTriggerRelease();
     }
 
     public void AttackCancel()

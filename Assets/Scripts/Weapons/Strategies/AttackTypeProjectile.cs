@@ -9,7 +9,7 @@ public class AttackTypeProjectile : BaseStrategy, IAttackType
     public float bulletSpeed;
 
     private void Start() {
-        weapon.OnTrigger += DoAttack;
+        weapon.OnPrimaryTrigger += DoAttack;
     }
 
     public void DoAttack(float charge)

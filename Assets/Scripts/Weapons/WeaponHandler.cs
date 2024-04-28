@@ -22,10 +22,10 @@ public class WeaponHandler : MonoBehaviour
     public event System.Action OnHolseter = delegate { };
     public void CallOnHolseter() { OnHolseter(); }
 
-    public event System.Action<float> OnTrigger = delegate { };
-    public void CallOnTrigger(float charge = 1f) { OnTrigger(charge); }
-    public event System.Action<float> OnTriggerRelease = delegate { };
-    public void CallOnTriggerRelease(float charge = 1f) { OnTriggerRelease(charge); }
+    public event System.Action<float> OnPrimaryTrigger = delegate { };
+    public void CallOnPrimaryTrigger(float charge = 1f) { OnPrimaryTrigger(charge); }
+    public event System.Action<float> OnPrimaryTriggerRelease = delegate { };
+    public void CallOnPrimaryTriggerRelease(float charge = 1f) { OnPrimaryTriggerRelease(charge); }
     
     public event System.Action<int> OnReload = delegate { };
     public void CallOnReload(int amount) { OnReload(amount); }

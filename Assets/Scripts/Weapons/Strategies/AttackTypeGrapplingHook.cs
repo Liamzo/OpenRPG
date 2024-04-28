@@ -32,9 +32,9 @@ public class AttackTypeGrapplingHook : BaseStrategy, IAttackType
     {
         grappleRope.enabled = false;
 
-        weapon.OnTrigger += DoAttack;
+        weapon.OnPrimaryTrigger += DoAttack;
 
-        weapon.OnTriggerRelease += ReleaseGrapple;
+        weapon.OnPrimaryTriggerRelease += ReleaseGrapple;
         weapon.OnHolseter += ReleaseGrapple;
         weapon.item.OnUnequip += ReleaseGrapple;
 

@@ -37,7 +37,7 @@ public class TriggerCharge : BaseStrategy, ITrigger
             isCharging = true;
             weapon.animator.SetBool("Charging", true);
 
-            weapon.CallOnTrigger(chargeTimer);
+            weapon.CallOnPrimaryTrigger(chargeTimer);
         } else {
             AttackCancel();
         }
@@ -55,7 +55,7 @@ public class TriggerCharge : BaseStrategy, ITrigger
     public void AttackRelease()
     {
         if (weapon.CanAttack()) {
-            weapon.CallOnTriggerRelease(chargeTimer);
+            weapon.CallOnPrimaryTriggerRelease(chargeTimer);
 
             AttackCancel();
         } else {

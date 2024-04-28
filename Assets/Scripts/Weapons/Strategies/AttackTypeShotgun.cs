@@ -12,7 +12,7 @@ public class AttackTypeShotgun : BaseStrategy, IAttackType
     private void Start() {
         fireEffectEmission = fireEffect.emission;
 
-        weapon.OnTrigger += DoAttack;
+        weapon.OnPrimaryTrigger += DoAttack;
     }
 
     public void DoAttack(float charge)

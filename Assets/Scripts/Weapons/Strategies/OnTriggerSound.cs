@@ -11,7 +11,7 @@ public class OnTriggerSound : BaseStrategy
     // Start is called before the first frame update
     void Start()
     {
-        weapon.OnTrigger += PlaySound;
+        weapon.OnPrimaryTrigger += PlaySound;
 
         weaponAudioSource = weapon.GetComponent<AudioSource>();
     }

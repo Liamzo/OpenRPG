@@ -20,7 +20,7 @@ public class TriggerSingleShot : BaseStrategy, ITrigger
         if (canAttack && weapon.CanAttack()) {
             canAttack = false;
             
-            weapon.CallOnTrigger();
+            weapon.CallOnPrimaryTrigger();
         }
     }
 
