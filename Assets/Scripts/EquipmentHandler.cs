@@ -20,7 +20,7 @@ public class EquipmentHandler : MonoBehaviour, ISaveable
     public HandSpot rightMeleeSpot;
     public HandSpot leftMeleeSpot;
 
-    bool meleeDrawn = true;
+    public bool meleeDrawn = true;
     public bool wasMeleeDrawn = true;
 
     // Start is called before the first frame update

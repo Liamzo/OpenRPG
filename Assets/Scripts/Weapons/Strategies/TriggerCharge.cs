@@ -28,7 +28,12 @@ public class TriggerCharge : BaseStrategy, ITrigger
     }
 
     public bool CanAttackHold() {
-        return weapon.CanAttack();
+        bool canAttackHold = weapon.CanAttack();
+
+        if (!canAttackHold)
+            AttackCancel();
+
+        return canAttackHold;
     }
 
     public void AttackHold()

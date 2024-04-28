@@ -224,7 +224,9 @@ public class Player : BaseBrain
         if (InputManager.GetInstance().GetToggleRangedPressed()) {
             // Ranged
             // If switching equipment and previously attacking, cancel that attack
-            if (equipmentHandler.wasMeleeDrawn && wasAttacking) {
+            if (equipmentHandler.meleeDrawn && wasAttacking) {
+                Debug.Log("gooby");
+                wasAttacking = false;
                 weapon.AttackCancel();
             }
             equipmentHandler.ToggleMeleeRanged(false);
@@ -244,7 +246,8 @@ public class Player : BaseBrain
         else 
         {
             // Melee
-            if (equipmentHandler.wasMeleeDrawn == false && wasAttacking) {
+            if (equipmentHandler.meleeDrawn == false && wasAttacking) {
+                wasAttacking = false;
                 weapon.AttackCancel();
             }
             equipmentHandler.ToggleMeleeRanged(true);
@@ -272,11 +275,10 @@ public class Player : BaseBrain
 
                 SpriteLookAtMouse();
             } 
-            else if (wasAttacking) 
+            else if (wasAttacking && character.currentStamina < weaponHoldCost) 
             {
                 weapon.AttackCancel();
                 wasAttacking = false;
-                InputManager.GetInstance().UseLeftMousePressed();
             }
         } 
         else if (wasAttacking) 
