@@ -36,16 +36,16 @@ public class CharacterHandler : ObjectHandler
     public override bool GetHit(float damage, WeaponHandler weapon, CharacterHandler damageDealer) 
     {
         if (objectStatusHandler.isBlocking) {
-            // Get angle of hit
-            // Compare to blockingAngle
-            Debug.Log("Blocking");
-
             Vector3 attackerDir = damageDealer.rigidBody.position - rigidBody.position;
 
             float angleBetween = Vector3.Angle(GetComponent<BaseBrain>().lookingDirection, attackerDir);
 
             if (angleBetween <= objectStatusHandler.blockAngle)
+            {
+                ChangeStamina(-damage);
+
                 return false;
+            }
         }
 
         return base.GetHit(damage, weapon, damageDealer);
