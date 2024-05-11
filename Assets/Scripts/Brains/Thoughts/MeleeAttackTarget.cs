@@ -64,6 +64,7 @@ public class MeleeAttackTarget : BaseThought
             if (delayTimer >= 0.2f) {
                 // Do the attack
                 if (weapon != null) {
+                    weapon.AttackHold(0);
                     weapon.AttackRelease(0);
                 }
 

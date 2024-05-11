@@ -27,7 +27,7 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
         weapon.item.OnUnequip += InteruptCombo;
     }
 
-    private void Update() {
+    private void LateUpdate() {
         if  (doingAttack && weapon.strategies.GetComponent<Collider2D>().enabled)
         {
             doingAttack = false;
@@ -35,7 +35,7 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
         }
 
 
-        if (lastComboAttack != null && weapon.animator.GetCurrentAnimatorStateInfo(0).IsName(lastComboAttack.attackAnimName) && weapon.animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1.0f) {
+        if (lastComboAttack != null && (weapon.animator.GetCurrentAnimatorStateInfo(0).IsName(lastComboAttack.attackAnimName) || weapon.animator.GetCurrentAnimatorStateInfo(0).IsName(lastComboAttack.attackHeavyAnimName)) && weapon.animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1.0f) {
             // Swing animation is complete, wait for the end hold duration before returning to Idle
             weapon.animator.speed = 1.0f;
             endHoldTimer += Time.deltaTime;
@@ -46,8 +46,15 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
             }
 
             if (endHoldTimer >= lastComboAttack.endHoldDuration) {
-                ResetComboToIdle();
+                ResetComboToIdle(); // Don't want to change the animation
             }
+        } 
+        else if (lastComboAttack != null && !weapon.animator.GetCurrentAnimatorStateInfo(0).IsName(lastComboAttack.attackAnimName) && !weapon.animator.GetCurrentAnimatorStateInfo(0).IsName(lastComboAttack.attackHeavyAnimName) && !weapon.animator.GetCurrentAnimatorStateInfo(0).IsName(lastComboAttack.chargeAnimName)) 
+        {
+            // Started an attack but no longer playing one of the associated animations
+            // Therefore, probably interupted by something, such as Blocking or getting hit
+            Debug.Log("gooby");
+            ResetCombo();
         }
 
         // TODO: Needs touched up, but not urgent
@@ -128,10 +135,14 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
     }
 
     void ResetComboToIdle() {
-        inCombo = false;
-
         weapon.animator.SetTrigger("Idle");
         weapon.animator.speed = 1.0f;
+
+        ResetCombo();
+    }
+    void ResetCombo() {
+        inCombo = false;
+        lastComboAttack = null;
 
         CharacterHandler character = (CharacterHandler) weapon.item.owner;
         character.statsCharacter[CharacterStatNames.MovementSpeed].RemoveModifier(-4f);
