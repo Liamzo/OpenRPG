@@ -4,22 +4,39 @@ using UnityEngine;
 
 public class AttackTypeBlock : BaseStrategy, IAttackType
 {
+    bool isBlocking = false;
+
+    public float blockAngle;
+
+
     private void Start() {
         weapon.triggerHolders[triggerSlot].OnTrigger += DoAttack;
         weapon.triggerHolders[triggerSlot].OnTriggerRelease += ReleaseBlock;
+        weapon.item.owner.OnTakeDamage += ReleaseBlock;
     }
 
     public void DoAttack(float charge)
     {
-        weapon.animator.Play("Combo_Block");
+        if (!isBlocking) {
+            isBlocking = true;
+            weapon.item.owner.objectStatusHandler.Block(blockAngle);
 
-        Debug.Log(weapon.item.owner.GetComponent<BaseBrain>().lookingDirection);
+            weapon.animator.Play("Combo_Block");
+        }
     }
 
     void ReleaseBlock(float charge) {
-        if (weapon.CanAttack()) {
-            weapon.animator.SetTrigger("Idle");
-            weapon.animator.speed = 1.0f;
+        if (isBlocking) {
+            isBlocking = false;
+            weapon.item.owner.objectStatusHandler.StopBlock();
+
+            if (weapon.CanAttack()) {
+                weapon.animator.SetTrigger("Idle");
+                weapon.animator.speed = 1.0f;
+            }
         }
+    }
+    void ReleaseBlock(float damage, WeaponHandler weapon, CharacterHandler damageDealer) {
+        ReleaseBlock(0f);
     }
 }

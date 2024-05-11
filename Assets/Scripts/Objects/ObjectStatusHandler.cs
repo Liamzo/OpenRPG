@@ -11,6 +11,9 @@ public class ObjectStatusHandler : MonoBehaviour
 
     public bool isDodging  {get; set;} = false;
 
+    public bool isBlocking {get; set;} = false;
+    public float blockAngle = 0f;
+
 
 
     public bool HasMovement() {
@@ -84,5 +87,16 @@ public class ObjectStatusHandler : MonoBehaviour
         yield return new WaitForSeconds(duration);
 
         hasControls -= 1;
+    }
+
+
+    public void Block(float angle) {
+        isBlocking = true;
+        blockAngle = angle;
+    }
+
+    public void StopBlock() {
+        isBlocking = false;
+        blockAngle = 0f;
     }
 }

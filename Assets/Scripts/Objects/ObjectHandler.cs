@@ -118,13 +118,12 @@ public class ObjectHandler : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public bool GetHit(float damage, WeaponHandler weapon, CharacterHandler damageDealer) {
+    public virtual bool GetHit(float damage, WeaponHandler weapon, CharacterHandler damageDealer) {
         // Check for Dodge
         if (objectStatusHandler.isDodging) {
             // Dodge
             return false;
         }
-
 
         // // Check for Penetration
         // float penValue = weapon.statsWeapon[WeaponStatNames.PenetrationValue].GetValue();

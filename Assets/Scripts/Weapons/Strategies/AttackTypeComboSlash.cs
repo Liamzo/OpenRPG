@@ -70,7 +70,7 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
 
             angleToTarget *= side;
 
-            Vector3 newDir = Quaternion.AngleAxis(angleToTarget, Vector3.forward) * -lockedLookingDirection;
+            Vector3 newDir = Quaternion.AngleAxis(angleToTarget, Vector3.forward) * lockedLookingDirection;
 
             // Set Looking Direction
             weapon.item.owner.GetComponent<BaseBrain>().SetLookingDirection(weapon.item.owner.GetComponent<EquipmentHandler>().orbitPoint.position + newDir);

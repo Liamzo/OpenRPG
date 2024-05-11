@@ -77,7 +77,7 @@ public class BaseBrain : MonoBehaviour
     public void SetLookingDirection(Vector3 target) { 
         GetComponent<EquipmentHandler>().SpotLook(target);
 
-        lookingDirection = GetComponent<EquipmentHandler>().rightMeleeSpot.transform.up;
+        lookingDirection = -GetComponent<EquipmentHandler>().rightMeleeSpot.transform.up;
         targetLookingDirection = lookingDirection;
     }
     public void SetTargetLookingDirection(Vector3 target) { 
@@ -85,4 +85,5 @@ public class BaseBrain : MonoBehaviour
 
         targetLookingDirection = diff.normalized * -1;
     }
+
 }
