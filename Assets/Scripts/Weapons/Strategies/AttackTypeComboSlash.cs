@@ -53,7 +53,6 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
         {
             // Started an attack but no longer playing one of the associated animations
             // Therefore, probably interupted by something, such as Blocking or getting hit
-            Debug.Log("gooby");
             ResetCombo();
         }
 

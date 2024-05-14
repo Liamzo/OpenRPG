@@ -55,6 +55,10 @@ public class CharacterHandler : ObjectHandler
 
     public virtual void ChangeStamina(float changeAmount) {
         currentStamina = Mathf.Clamp(currentStamina + changeAmount, 0f, statsCharacter[CharacterStatNames.Stamina].GetValue());
+
+        if (currentStamina <= 0f) {
+            objectStatusHandler.BlockRegainStamina(2f);
+        }
     }
 
     public float GetStatValue(CharacterStatNames statName) {
