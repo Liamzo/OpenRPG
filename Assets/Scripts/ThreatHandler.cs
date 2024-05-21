@@ -13,9 +13,6 @@ public class ThreatHandler : MonoBehaviour
     float lastSeenTimer = 0.0f;
     [SerializeField] float lastSeenDuration = 5f;
 
-    // Later: Replace with Faction System and actually determine threat
-    // Overlap circle and evaluation each Character found for Faction etc
-    [SerializeField] private string targetToFind;
 
     // Start is called before the first frame update
     void Start()
