@@ -17,7 +17,7 @@ public class MeleeAttackTarget : BaseThought
     {
         float value = 0f;
 
-        if (brain.threatHandler.target == null || !brain.character.objectStatusHandler.HasControls()) {
+        if (brain.threatHandler.Target == null || brain.threatHandler.LineOfSightToTarget.TargetInLineOfSight == false || !brain.character.objectStatusHandler.HasControls()) {
             return 0f;
         }
 
@@ -40,10 +40,10 @@ public class MeleeAttackTarget : BaseThought
     {
         brain.equipmentHandler.rightMeleeSpot.weapon.Unholster(); // Temp, do better
         
-        brain.SetTargetLookingDirection(brain.threatHandler.targetLastSeen.Value);
+        brain.SetTargetLookingDirection(brain.threatHandler.TargetLastSeen.Value);
 
         if (brain.character.objectStatusHandler.HasMovementControls())
-            brain.SetLookingDirection(brain.threatHandler.targetLastSeen.Value);
+            brain.SetLookingDirection(brain.threatHandler.TargetLastSeen.Value);
         
         brain.equipmentHandler.ToggleMeleeRanged(true);
 
@@ -74,7 +74,7 @@ public class MeleeAttackTarget : BaseThought
                 brain.thoughtLocked = null;
             }
         } else {
-            float dist = Vector2.Distance(brain.threatHandler.target.transform.position, transform.position);
+            float dist = Vector2.Distance(brain.threatHandler.Target.transform.position, transform.position);
 
             if (dist <= weapon.statsWeapon[WeaponStatNames.Range].GetValue()) {
                 // Start the attack

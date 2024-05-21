@@ -13,11 +13,7 @@ public class StayAtRange : BaseThought
 
     public override float Evaluate()
     {
-        if (brain.threatHandler.targetLastSeen == null ) {
-            return 0f;
-        }
-
-        if (brain.threatHandler.target == null) {
+        if (brain.threatHandler.Target == null || brain.threatHandler.LineOfSightToTarget.TargetInLineOfSight == false) {
             return 0f;
         }
 
@@ -32,7 +28,7 @@ public class StayAtRange : BaseThought
 
     public override void Execute()
     {
-        brain.SetLookingDirection(brain.threatHandler.targetLastSeen.Value);
+        brain.SetLookingDirection(brain.threatHandler.TargetLastSeen.Value);
         
         // If within min and max distance then hold position
         // Else, try and move towards to middle on min and max distance
@@ -45,9 +41,9 @@ public class StayAtRange : BaseThought
         // Find ideal direction
         // Sweep in all directions in 20o
         // Find best direction to move, go that way
-        Vector3 dir = (transform.position - brain.threatHandler.target.transform.position).normalized;
+        Vector3 dir = (transform.position - brain.threatHandler.Target.transform.position).normalized;
         Vector3 idealPos = dir * ((minRange + maxRange) / 2);
-        idealPos += brain.threatHandler.target.transform.position;
+        idealPos += brain.threatHandler.Target.transform.position;
 
         Vector3 idealDir = (idealPos - transform.position).normalized;
         

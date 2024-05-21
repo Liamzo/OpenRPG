@@ -10,10 +10,11 @@ public class ThreatHandler : MonoBehaviour
     private FactionHandler factionHandler;
 
 
-    public GameObject target;
-    public Vector3? targetLastSeen;
-    float lastSeenTimer = 0.0f;
-    [SerializeField] float lastSeenDuration = 5f;
+    public GameObject Target {get; private set;}
+    public Vector3? TargetLastSeen {get; private set;}
+    float outLineOfSightTimer = 0.0f;
+    [SerializeField] float outLineOfSightDuration = 5f;
+    public LineOfSightInfo LineOfSightToTarget {get; private set;}
 
 
     // Start is called before the first frame update
@@ -26,6 +27,58 @@ public class ThreatHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Target == null) {
+            Target = FindTargetInRange();
+        }
+
+        if (Target == null) return;
+
+
+        LineOfSightToTarget = CheckLineOfSightToTarget(Target);
+
+
+        if (LineOfSightToTarget.TargetInLineOfSight) {
+            TargetLastSeen = LineOfSightToTarget.hit.collider.bounds.center;
+            outLineOfSightTimer = 0.0f;
+        } 
+        else if (!LineOfSightToTarget.TargetInLineOfSight) 
+        {
+            outLineOfSightTimer += Time.deltaTime;
+
+            if (outLineOfSightTimer >= outLineOfSightDuration) {
+                // Target out of sight for too long, find a new one if possible
+                TargetLastSeen = null;
+                outLineOfSightTimer = 0.0f;
+
+                Target = FindTargetInRange();
+                if (Target != null) LineOfSightToTarget = CheckLineOfSightToTarget(Target);
+            }
+        }
+    }
+
+
+    public LineOfSightInfo CheckLineOfSightToTarget(GameObject target) {
+        bool targetInRange = Vector2.Distance(transform.position, target.transform.position) < characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue();
+
+        Vector3 targetDir = (target.transform.position - transform.position).normalized;
+
+        LayerMask mask = LayerMask.GetMask("Default");
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0,0.6f,0), targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), mask);
+
+        if (hit.collider != null && hit.collider.gameObject == target.gameObject) {
+            return new LineOfSightInfo(true, targetInRange, null, hit);
+        } else if (hit.collider != null) {
+            return new LineOfSightInfo(false, targetInRange, hit.collider.gameObject, hit);
+        } else {
+            return new LineOfSightInfo(false, targetInRange, null, hit);
+        }
+    }
+
+    GameObject FindTargetInRange() {
+        float bestDistance = characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue() + 1f;
+        GameObject bestTarget = null;
+
         foreach (Collider2D col in Physics2D.OverlapCircleAll(transform.position, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue())) {
             CharacterHandler otherCharacter = col.GetComponent<CharacterHandler>();
 
@@ -39,7 +92,10 @@ public class ThreatHandler : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0,0.6f,0), targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), mask);
 
             if (hit.collider != null && hit.collider.gameObject == otherCharacter.gameObject) {
-                // Found the target
+                // Can see the character, evaluate the threat
+                // For now, just picks the closest target
+                // TODO: Evalute threat of target based on level, equipment, reputation
+                float distance = Vector3.Distance(characterHandler.transform.position, transform.position);
 
                 FactionHandler hitFactionHandler = otherCharacter.GetComponent<FactionHandler>();
 
@@ -47,26 +103,29 @@ public class ThreatHandler : MonoBehaviour
 
                 float reputation = factionHandler.FindReputation(hitFactionHandler);
 
-                if (reputation <= -100f) {
-                    target = otherCharacter.gameObject;
-                    targetLastSeen = hit.collider.bounds.center; // Collider is offset, this way the aim for the centre of the target
-                    return;
+                if (reputation <= -100f && distance < bestDistance) {
+                    bestTarget = otherCharacter.gameObject;
+                    bestDistance = distance;
                 }
 
-                float distance = Vector3.Distance(characterHandler.transform.position, transform.position); // TODO: Targetting, at least based on Distance
             }
         }
 
-        // Not in range or sight was blocked
-        target = null;
+        return bestTarget;
+    }
+}
 
-        if (targetLastSeen != null) {
-            lastSeenTimer += Time.deltaTime;
 
-            if (lastSeenTimer >= lastSeenDuration) {
-                targetLastSeen = null;
-                lastSeenTimer = 0.0f;
-            }
-        }
+public struct LineOfSightInfo {
+    public bool TargetInLineOfSight {get; private set;}
+    public bool TargetInRange {get; private set;}
+    public GameObject LineOfSightBlockedBy {get; private set;}
+    public RaycastHit2D hit;
+
+    public LineOfSightInfo (bool TargetInLineOfSight, bool TargetInRange, GameObject LineOfSightBlockedBy, RaycastHit2D hit) {
+        this.TargetInLineOfSight = TargetInLineOfSight;
+        this.TargetInRange = TargetInRange;
+        this.LineOfSightBlockedBy = LineOfSightBlockedBy;
+        this.hit = hit;
     }
 }

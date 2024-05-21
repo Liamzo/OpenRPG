@@ -32,7 +32,7 @@ public class CircleTarget : BaseThought
 
     public override float Evaluate()
     {
-        if (brain.threatHandler.target == null || !brain.character.objectStatusHandler.HasMovementControls()) {
+        if (brain.threatHandler.Target == null || brain.threatHandler.LineOfSightToTarget.TargetInLineOfSight == false || !brain.character.objectStatusHandler.HasMovementControls()) {
             return 0f;
         }
 
@@ -52,9 +52,9 @@ public class CircleTarget : BaseThought
 
     public override void Execute()
     {
-        brain.SetLookingDirection(brain.threatHandler.targetLastSeen.Value);
+        brain.SetLookingDirection(brain.threatHandler.TargetLastSeen.Value);
 
-        float dist = Vector3.Distance(transform.position, brain.threatHandler.target.transform.position);
+        float dist = Vector3.Distance(transform.position, brain.threatHandler.Target.transform.position);
 
         // Move Speed
         float moveSpeed = brain.character.GetStatValue(CharacterStatNames.MovementSpeed);
@@ -66,13 +66,13 @@ public class CircleTarget : BaseThought
         }
 
         // Target
-        Vector3 dir = (transform.position - brain.threatHandler.target.transform.position).normalized;
+        Vector3 dir = (transform.position - brain.threatHandler.Target.transform.position).normalized;
         float vertDist = (circleDistance - circleDistanceRange) + (((circleDistance + circleDistanceRange) - (circleDistance - circleDistanceRange)) * Mathf.PerlinNoise(Time.time * 0.15f , 0.0f));
         Vector3 vertPos = dir * vertDist;
 
         Vector3 horzPos = Quaternion.AngleAxis(20 * circleDirection, Vector3.forward) * vertPos;
         
-        Vector3 horzTarget = brain.threatHandler.target.transform.position + horzPos;
+        Vector3 horzTarget = brain.threatHandler.Target.transform.position + horzPos;
 
         if (dist > minCircleDistance) {
             // Pause
@@ -81,7 +81,7 @@ public class CircleTarget : BaseThought
                 _pauseTimer -= Time.deltaTime;
 
                 // Maintain distance
-                Vector3 vertTarget = brain.threatHandler.target.transform.position + (dir * pausedDistance);
+                Vector3 vertTarget = brain.threatHandler.Target.transform.position + (dir * pausedDistance);
                 
                 if (Vector3.Distance(transform.position, vertTarget) < 0.1f) {
                     return;
@@ -127,7 +127,7 @@ public class CircleTarget : BaseThought
             circleDirection *= -1;
             horzPos = Quaternion.AngleAxis(20 * circleDirection, Vector3.forward) * vertPos;
 
-            horzTarget = brain.threatHandler.target.transform.position + horzPos;
+            horzTarget = brain.threatHandler.Target.transform.position + horzPos;
             if (NavMesh.CalculatePath(transform.position, horzTarget, NavMesh.AllAreas, path)) {
                 brain.movement += brain.GetDirectionFromPath(path) * moveSpeed; // 70% move speed
             }

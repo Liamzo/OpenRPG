@@ -44,9 +44,9 @@ public class NonPlayerBrain : BaseBrain
         // Check if in combat maybe
 
         distToTarget = 0f;
-        if (threatHandler.targetLastSeen != null) {
+        if (threatHandler.TargetLastSeen != null) {
             pathToTarget = new NavMeshPath();
-            if (NavMesh.CalculatePath(transform.position, threatHandler.targetLastSeen.Value, NavMesh.AllAreas, pathToTarget)) {
+            if (NavMesh.CalculatePath(transform.position, threatHandler.TargetLastSeen.Value, NavMesh.AllAreas, pathToTarget)) {
                 for(int i = 0; i < pathToTarget.corners.Length-1; i++) {
                     distToTarget += Vector3.Distance(pathToTarget.corners[i], pathToTarget.corners[i+1]);
                 }   

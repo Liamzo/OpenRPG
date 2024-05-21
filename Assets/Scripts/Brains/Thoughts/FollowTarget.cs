@@ -14,16 +14,19 @@ public class FollowTarget : BaseThought
     {
         float value = 0f;
 
-        if (brain.threatHandler.targetLastSeen == null || !brain.character.objectStatusHandler.HasMovementControls()) {
+        if (brain.threatHandler.Target == null || !brain.character.objectStatusHandler.HasMovementControls()) {
             return 0f;
         }
 
-        if (brain.threatHandler.target != null && brain.distToTarget <= minChaseDistance) {
-            return 0f;
-        } else if (brain.threatHandler.target != null && brain.distToTarget > minChaseDistance) {
-            value += 50f;
-        } else if (brain.threatHandler.target == null) {
+
+        if (brain.threatHandler.LineOfSightToTarget.TargetInLineOfSight == false) {
             value += 70f;
+        } 
+        else if (brain.distToTarget <= minChaseDistance) {
+            return 0f;
+        } 
+        else if (brain.distToTarget > minChaseDistance) {
+            value += 50f;
         }
 
         return value;
@@ -31,9 +34,9 @@ public class FollowTarget : BaseThought
 
     public override void Execute()
     {
-        brain.SetLookingDirection(brain.threatHandler.targetLastSeen.Value);
+        brain.SetLookingDirection(brain.threatHandler.TargetLastSeen.Value);
         
-        if (Vector3.Distance(transform.position, brain.threatHandler.targetLastSeen.Value) < 0.5f) {
+        if (Vector3.Distance(transform.position, brain.threatHandler.TargetLastSeen.Value) < 0.5f) {
             // Close enough to last seen point, so just wait
             return;
         }    

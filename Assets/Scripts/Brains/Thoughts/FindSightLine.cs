@@ -12,11 +12,11 @@ public class FindSightLine : BaseThought
     {
         float value = 0f;
 
-        if (brain.threatHandler.targetLastSeen == null || !brain.character.objectStatusHandler.HasMovementControls()) {
+        if (brain.threatHandler.Target == null || !brain.character.objectStatusHandler.HasMovementControls()) {
             return 0f;
         }
 
-        if (brain.threatHandler.target == null && brain.attackTimer <= 0f) {
+        if (brain.threatHandler.LineOfSightToTarget.TargetInLineOfSight == false && brain.attackTimer <= 0f) {
             value += 60f;
         }
 

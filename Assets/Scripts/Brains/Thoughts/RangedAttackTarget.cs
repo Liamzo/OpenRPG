@@ -17,7 +17,7 @@ public class RangedAttackTarget : BaseThought
     {
         float value = 0f;
 
-        if (brain.threatHandler.target == null || !brain.character.objectStatusHandler.HasControls()) {
+        if (brain.threatHandler.Target == null || brain.threatHandler.LineOfSightToTarget.TargetInLineOfSight == false || !brain.character.objectStatusHandler.HasControls()) {
             return 0f;
         }
 
@@ -31,10 +31,10 @@ public class RangedAttackTarget : BaseThought
 
     public override void Execute()
     {
-        brain.SetTargetLookingDirection(brain.threatHandler.targetLastSeen.Value);
+        brain.SetTargetLookingDirection(brain.threatHandler.TargetLastSeen.Value);
 
         if (brain.character.objectStatusHandler.HasMovementControls())
-            brain.SetLookingDirection(brain.threatHandler.targetLastSeen.Value);
+            brain.SetLookingDirection(brain.threatHandler.TargetLastSeen.Value);
         
         brain.equipmentHandler.ToggleMeleeRanged(false);
 

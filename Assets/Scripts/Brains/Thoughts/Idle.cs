@@ -35,7 +35,7 @@ public class Idle : BaseThought
             return 0f;
         }
 
-        if (brain.threatHandler.targetLastSeen == null) {
+        if (brain.threatHandler.TargetLastSeen == null) {
             return 100f;
         } else {
             return 0f;
