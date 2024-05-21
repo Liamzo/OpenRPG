@@ -22,6 +22,8 @@ public class ThreatHandler : MonoBehaviour
     {
         characterHandler = GetComponent<CharacterHandler>();
         factionHandler = GetComponent<FactionHandler>();
+
+        characterHandler.OnTakeDamage += OnTakeDamage;
     }
 
     // Update is called once per frame
@@ -75,6 +77,24 @@ public class ThreatHandler : MonoBehaviour
         }
     }
 
+    public LineOfSightInfo CheckLineOfSightFromPosition(GameObject target, Vector3 position) {
+        bool targetInRange = Vector2.Distance(position, target.transform.position) < characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue();
+
+        Vector3 targetDir = (target.transform.position - position).normalized;
+
+        LayerMask mask = LayerMask.GetMask("Default");
+
+        RaycastHit2D hit = Physics2D.Raycast(position + new Vector3(0,0.6f,0), targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), mask);
+
+        if (hit.collider != null && hit.collider.gameObject == target.gameObject) {
+            return new LineOfSightInfo(true, targetInRange, null, hit);
+        } else if (hit.collider != null) {
+            return new LineOfSightInfo(false, targetInRange, hit.collider.gameObject, hit);
+        } else {
+            return new LineOfSightInfo(false, targetInRange, null, hit);
+        }
+    }
+
     GameObject FindTargetInRange() {
         float bestDistance = characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue() + 1f;
         GameObject bestTarget = null;
@@ -99,7 +119,7 @@ public class ThreatHandler : MonoBehaviour
 
                 FactionHandler hitFactionHandler = otherCharacter.GetComponent<FactionHandler>();
 
-                if (hitFactionHandler == null) { continue; }
+                if (hitFactionHandler == null) continue;
 
                 float reputation = factionHandler.FindReputation(hitFactionHandler);
 
@@ -112,6 +132,18 @@ public class ThreatHandler : MonoBehaviour
         }
 
         return bestTarget;
+    }
+
+    void OnTakeDamage(float damage, WeaponHandler weapon, CharacterHandler attacker) {
+        FactionHandler hitFactionHandler = attacker.GetComponent<FactionHandler>();
+
+        if (hitFactionHandler == null) return;
+
+        float reputation = factionHandler.FindReputation(hitFactionHandler);
+
+        if (reputation <= -100f) {
+            Target = attacker.gameObject;
+        }
     }
 }
 
