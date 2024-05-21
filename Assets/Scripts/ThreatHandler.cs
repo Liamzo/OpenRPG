@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterHandler))]
+[RequireComponent(typeof(FactionHandler))]
 public class ThreatHandler : MonoBehaviour
 {
     private CharacterHandler characterHandler;
     private FactionHandler factionHandler;
-    public GameObject target;
 
+
+    public GameObject target;
     public Vector3? targetLastSeen;
     float lastSeenTimer = 0.0f;
     [SerializeField] float lastSeenDuration = 5f;
