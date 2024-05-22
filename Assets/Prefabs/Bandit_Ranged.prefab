@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 3141492362439029711}
   - component: {fileID: 8237379910735449938}
   - component: {fileID: 7371308030475851263}
+  - component: {fileID: 5930101008861849973}
   m_Layer: 0
   m_Name: Thoughts
   m_TagString: Untagged
@@ -230,6 +231,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minChaseDistance: 8
+--- !u!114 &5930101008861849973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7371308030475851137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b11f188d4d2e1f429abf31a5cf9ce3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idealDistance: 8
 --- !u!1 &8523436994534951754
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,7 +455,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8523436995661248248}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -541,6 +555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343b98f1b6060e548a1166dd68c6a4b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blockAngle: 0
 --- !u!114 &1385069669822632129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -574,6 +589,7 @@ MonoBehaviour:
   orbitPoint: {fileID: 6717185283199218870}
   rightMeleeSpot: {fileID: 5186909632776001475}
   leftMeleeSpot: {fileID: 349188148136995969}
+  meleeDrawn: 1
   wasMeleeDrawn: 1
 --- !u!114 &7371308029520906902
 MonoBehaviour:
@@ -587,9 +603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d94e8b921ac65b343a183aeea951928d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  lastSeenDuration: 5
-  targetToFind: 
+  outLineOfSightDuration: 5
 --- !u!114 &8523436995661248249
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -67,6 +67,8 @@ public class StayAtRange : BaseThought
                     continue;
                 }
 
+                // Maybe want something that favours when i is low, that way it will prefer to run away
+
                 Vector3 tryDir = Quaternion.AngleAxis(i * j, Vector3.forward) * idealDir;
                 score = 10 * Vector3.Dot(idealDir, tryDir);
 

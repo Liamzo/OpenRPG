@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BanditCamp.unity
     guid: b0747a913798b6948b7c87dedd2e2f99
+  - enabled: 1
+    path: Assets/Scenes/TestLand.unity
+    guid: f1df27f5fd2181a4684d57c2c2737c1c
   m_configObjects: {}

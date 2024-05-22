@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class CircleTarget : BaseThought
 {
+    [Header("Distance")]
     public float circleDistance;
     public float circleDistanceRange;
     public float minCircleDistance; // Will move faster when in this distance to get away, not pause

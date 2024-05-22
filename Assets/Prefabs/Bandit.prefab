@@ -310,7 +310,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1154453471690096199}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -431,6 +431,7 @@ MonoBehaviour:
   orbitPoint: {fileID: 4284077682130451465}
   rightMeleeSpot: {fileID: 2429620863195684732}
   leftMeleeSpot: {fileID: 7103501921150379070}
+  meleeDrawn: 1
   wasMeleeDrawn: 1
 --- !u!114 &597049897
 MonoBehaviour:
@@ -444,9 +445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d94e8b921ac65b343a183aeea951928d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  lastSeenDuration: 5
-  targetToFind: 
+  outLineOfSightDuration: 5
 --- !u!114 &5229496855607910826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -459,6 +458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343b98f1b6060e548a1166dd68c6a4b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blockAngle: 0
 --- !u!114 &1154453471690096198
 MonoBehaviour:
   m_ObjectHideFlags: 0
