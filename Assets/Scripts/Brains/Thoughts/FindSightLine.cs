@@ -19,7 +19,7 @@ public class FindSightLine : BaseThought
             return 0f;
         }
 
-        if (brain.threatHandler.LineOfSightToTarget.TargetInLineOfSight == false && brain.attackTimer <= 0f) {
+        if (brain.threatHandler.LineOfSightToTarget.TargetInLineOfSight == false) {
             value += 80f;
         }
 

@@ -29,6 +29,8 @@ public class CircleTarget : BaseThought
 
     protected override void Start() {
         base.Start();
+
+        circleDirection = Random.Range(0,2) == 0 ? 1 : -1;
     }
 
     public override float Evaluate()

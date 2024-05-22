@@ -14,7 +14,7 @@ public class Idle : BaseThought
 
     public float minPauseWait;
     public float maxPauseWait;
-    float _pauseWaitTimer = 1f;
+    float _pauseWaitTimer = 0f;
 
 
     protected override void Start() {

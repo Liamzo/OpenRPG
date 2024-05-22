@@ -518,7 +518,8 @@ MonoBehaviour:
   lookingDirection: {x: 0, y: 0, z: 0}
   targetLookingDirection: {x: 0, y: 0, z: 0}
   thoughtLocked: {fileID: 0}
-  attackCoolDown: 3
+  attackCoolDown: 3.5
+  attackCoolDownRange: 1
   attackTimer: 0
 --- !u!114 &5641054575968057420
 MonoBehaviour:

@@ -21,10 +21,7 @@ public class FollowTarget : BaseThought
 
         if (brain.threatHandler.LineOfSightToTarget.TargetInLineOfSight == false) {
             value += 70f;
-        } 
-        else if (brain.distToTarget <= minChaseDistance) {
-            return 0f;
-        } 
+        }
         else if (brain.distToTarget > minChaseDistance) {
             value += 50f;
         }

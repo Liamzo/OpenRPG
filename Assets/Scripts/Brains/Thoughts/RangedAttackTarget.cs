@@ -59,7 +59,7 @@ public class RangedAttackTarget : BaseThought
                     weapon.AttackRelease(0);
                 }
 
-                brain.attackTimer = brain.attackCoolDown;
+                brain.ResetAttackCoolDown();
                 delayTimer = 0f;
                 attacking = false;
                 brain.thoughtLocked = null;

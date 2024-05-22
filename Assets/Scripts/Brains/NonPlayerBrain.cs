@@ -1,22 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(ThreatHandler))]
 public class NonPlayerBrain : BaseBrain
 {
-    protected BaseThought[] thoughts;
-
-    public BaseThought thoughtLocked = null;
-
     public ThreatHandler threatHandler {get; private set;}
 
     protected NavMeshAgent agent;
     protected NavMeshPath pathToTarget;
-
     public float distToTarget {get; private set;}
+
+    protected BaseThought[] thoughts;
+    public BaseThought thoughtLocked = null;
+
+    [Header("Combat")]
     public float attackCoolDown;
+    public float attackCoolDownRange;
     public float attackTimer = 0f;
 
 
@@ -32,12 +34,14 @@ public class NonPlayerBrain : BaseBrain
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         agent.enabled = false;
+        
+        ResetAttackCoolDown();
     }
 
     protected override void Update() {
         base.Update();
         
-        if (attackTimer > 0f) {
+        if (threatHandler.Target != null && attackTimer > 0f) {
             attackTimer -= Time.deltaTime;
         }
 
@@ -111,5 +115,12 @@ public class NonPlayerBrain : BaseBrain
         Vector3 dir = (path.corners[1] - transform.position).normalized;
 
         return dir;
+    }
+
+
+    public void ResetAttackCoolDown() {
+        float randRange = Random.Range(-attackCoolDownRange, attackCoolDownRange);
+
+        attackTimer = attackCoolDown + randRange;
     }
 }
