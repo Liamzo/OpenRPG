@@ -405,6 +405,9 @@ GameObject:
   - component: {fileID: -3987760355650462535}
   - component: {fileID: 2255348823054310930}
   - component: {fileID: 9197735252690711807}
+  - component: {fileID: 6373156455409393215}
+  - component: {fileID: 8265747989853778689}
+  - component: {fileID: 727438517584383456}
   m_Layer: 0
   m_Name: Bandit_Ranged
   m_TagString: Untagged
@@ -754,6 +757,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joinedFactions:
   - {fileID: 11400000, guid: 3bff2b4ed94fd1245b8bca1620691207, type: 2}
+--- !u!114 &6373156455409393215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8523436995661248248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a4b047832d9a74ba5bc9d2ec52d763, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tauntCoolDown: 10
+  tauntCoolDownRange: 3
+--- !u!114 &8265747989853778689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8523436995661248248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b7f0466b5082474dbe9a1e891297276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &727438517584383456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8523436995661248248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 387551b9eeba6af4b8f6d22009ae6fc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2514021755078439944
 PrefabInstance:
   m_ObjectHideFlags: 0

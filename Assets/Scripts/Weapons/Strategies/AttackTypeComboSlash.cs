@@ -161,6 +161,8 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
             if (otherObjectHandler == weapon.item.owner) return;
             
             weapon.triggerHolders[triggerSlot].damageType.DealDamage(otherObjectHandler, lastCharge);
+        } else {
+            weapon.CallOnHitTarget(triggerSlot, null);
         }
 
         if (other.TryGetComponent<BasicBullet>(out BasicBullet bullet)) {

@@ -33,7 +33,7 @@ MonoBehaviour:
         chargeAnimName: Combo_Charge02
         attackAnimName: Combo_Attack02
         attackHeavyAnimName: 
-        swingDuration: 0.7
+        swingDuration: 0.4
         endHoldDuration: 1
         comboChains:
         - rid: 4788015104347865090

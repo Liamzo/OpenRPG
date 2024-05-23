@@ -84,6 +84,7 @@ public class InventoryHandlerUI : InventoryHandler
             CloseInventory();
         } else {
             OpenInventory();
+            AudioManager.instance.PlayClipRandom(AudioID.OpenInventory);
         }
     }
 

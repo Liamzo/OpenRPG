@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(BaseBrain))]
-[RequireComponent(typeof(AudioSource))]
 public class FootSteps : MonoBehaviour
 {
     BaseBrain brain;
-    AudioSource audioSource;
 
     public float footStepInterval = 0.5f;
     float footStepTimer = 0f;
@@ -17,7 +15,6 @@ public class FootSteps : MonoBehaviour
     void Start()
     {
         brain  = GetComponent<BaseBrain>();
-        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -29,7 +26,7 @@ public class FootSteps : MonoBehaviour
             footStepTimer += Time.deltaTime;
 
             if (footStepTimer >= Mathf.Clamp(footStepInterval / (brain.movement.magnitude / brain.character.statsCharacter[CharacterStatNames.MovementSpeed].baseValue), 0.2f, 1f)) {
-                AudioManager.instance.PlayClipRandom(AudioID.FootStepDirt, audioSource);
+                AudioManager.instance.PlayClipRandom(AudioID.FootStepDirt, brain.character.audioSource);
                 footStepTimer = 0f;
             }  
         }

@@ -320,6 +320,8 @@ GameObject:
   - component: {fileID: -2944271992062935056}
   - component: {fileID: -4163225672637419502}
   - component: {fileID: -2455888628736232410}
+  - component: {fileID: 4677465147933283752}
+  - component: {fileID: 722120971640502916}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -456,6 +458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343b98f1b6060e548a1166dd68c6a4b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blockAngle: 0
 --- !u!114 &2030974071724324993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,6 +507,7 @@ MonoBehaviour:
   orbitPoint: {fileID: 2557231558564322897}
   rightMeleeSpot: {fileID: 5185528332149784036}
   leftMeleeSpot: {fileID: 8216754118719115536}
+  meleeDrawn: 1
   wasMeleeDrawn: 1
   bulletUIPrefab: {fileID: 3231775640795351773, guid: e0f5cb642d9a1b34baaa0295eea49c3e, type: 3}
   bulletUIHolder: {fileID: 0}
@@ -685,6 +689,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joinedFactions:
   - {fileID: 11400000, guid: 28169a4cf8787c24c8091e41931052db, type: 2}
+--- !u!114 &4677465147933283752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6498385307091005126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 387551b9eeba6af4b8f6d22009ae6fc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &722120971640502916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6498385307091005126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b7f0466b5082474dbe9a1e891297276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6498385307280544709
 GameObject:
   m_ObjectHideFlags: 0

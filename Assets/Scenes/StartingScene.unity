@@ -178,6 +178,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 503614608231503339, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: audioClips.Array.size
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 503614608231503339, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: audioClips.Array.data[19]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0423e77f7dba0414fa529a9cf96b7dcb, type: 2}
     - target: {fileID: 5414799746129347671, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -186,10 +194,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Managers
       objectReference: {fileID: 0}
-    - target: {fileID: 7547779233427188600, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
-      propertyPath: startingLevel
-      value: 
-      objectReference: {fileID: 11400000, guid: c188637070a4a5d41910add92a7dabd0, type: 2}
     - target: {fileID: 7547779233427188606, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -234,13 +238,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7547779234806883351, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
-      propertyPath: allLevels.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7547779234806883351, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
-      propertyPath: allLevels.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: e0e07fdd859bfef419d3655dc3332e9f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}

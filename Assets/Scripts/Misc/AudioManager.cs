@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource ambientSource;
+    [SerializeField] private AudioSource globalSource;
 
 
     private void Awake() {
@@ -48,6 +49,8 @@ public class AudioManager : MonoBehaviour
             }
 
             source.PlayOneShot(audioClip);
+        } else if (audioClipSO.audioSourceType == AudioSourceType.Global) {
+            globalSource.PlayOneShot(audioClip);
         }
     }
 }

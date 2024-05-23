@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerSlot: 0
-  audioID: 4
+  audioID: 10
 --- !u!114 &4615682046279563948
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -42,6 +42,7 @@ public class MapManager : MonoBehaviour
             CloseMap();
         } else {
             OpenMap();
+            AudioManager.instance.PlayClipRandom(AudioID.OpenMap);
         }
     }
 

@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class Open : BaseInteraction
 {
-    private void Awake() {
+    public AudioID audioID;
+
+    protected override void Awake() {
+        base.Awake();
+
         Continuous = true;
     }
     
     public override void Interact(CharacterHandler character) {
-        ContainerHandler.instance.OpenContainer(transform.parent.GetComponent<InventoryHandler>());
+        ContainerHandler.instance.OpenContainer(GetComponentInParent<InventoryHandler>());
+        AudioManager.instance.PlayClipRandom(audioID, audioSource);
     }
 
     public override void Cancel()

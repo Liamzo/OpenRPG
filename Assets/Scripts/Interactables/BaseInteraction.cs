@@ -8,6 +8,12 @@ public abstract class BaseInteraction : MonoBehaviour
 
     public bool Continuous {get; protected set;} = false;
     public bool Blocking {get; protected set;} = false;
+
+    protected AudioSource audioSource;
+
+    protected virtual void Awake() {
+        audioSource = GetComponentInParent<AudioSource>();
+    }
     
     public abstract void Interact(CharacterHandler character);
 

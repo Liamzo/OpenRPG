@@ -22,10 +22,27 @@ public enum AudioID {
     SwordSwing,
     SwordImpact,
     ShotGunFire,
+    HeavyBreathing,
+    TakeDamage,
+    Death,
+    Roll,
+    WeaponImpact,
+    Block,
+    Taunt,
+    LootBody,
+    OpenInventory,
+    OpenMap,
+    UI_Click,
+    TradeOfferItem,
+    TradeComplete,
+    OpenLocker,
+    PickUp
+
 }
 
 public enum AudioSourceType {
     Local,
     Music,
     Ambient,
+    Global
 }

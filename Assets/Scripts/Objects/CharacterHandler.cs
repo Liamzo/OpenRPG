@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class CharacterHandler : ObjectHandler
 {
+    public BaseBrain brain {get; private set;}
     [SerializeField] private BaseCharacterStats baseCharacterStats;
 
     public Dictionary<CharacterStatNames, Stat> statsCharacter = new Dictionary<CharacterStatNames, Stat>();
@@ -16,6 +17,8 @@ public class CharacterHandler : ObjectHandler
     protected override void Awake()
     {
         base.Awake();
+
+        brain = GetComponent<BaseBrain>();
         
         foreach (CharacterStatValue sv in baseCharacterStats.stats) {
             statsCharacter.Add(sv.statName, new Stat(sv.value));
@@ -42,7 +45,10 @@ public class CharacterHandler : ObjectHandler
 
             if (angleBetween <= objectStatusHandler.blockAngle)
             {
+                // Blocked attack
                 ChangeStamina(-damage);
+
+                AudioManager.instance.PlayClipRandom(AudioID.Block, audioSource);
 
                 return false;
             }

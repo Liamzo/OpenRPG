@@ -172,6 +172,8 @@ public class Player : BaseBrain
             character.objectStatusHandler.BlockRegainStamina(0.5f);
 
             footSteps.Emit(25);
+
+            AudioManager.instance.PlayClipRandom(AudioID.Roll, character.audioSource);
         } 
     }
     void DodgeUpdate() {

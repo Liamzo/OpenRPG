@@ -8,7 +8,9 @@ public class Talkable : BaseInteraction
     [SerializeField] private TextAsset inkJSON;
     ObjectHandler objectHandler;
 
-    private void Awake() {
+    protected override void Awake() {
+        base.Awake();
+        
         Continuous = true;
         Blocking = true;
 
