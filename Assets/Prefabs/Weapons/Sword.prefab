@@ -703,6 +703,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuName: Pick Up
+  audioID: 0
 --- !u!1 &8372799969655734812
 GameObject:
   m_ObjectHideFlags: 0
@@ -842,4 +843,4 @@ TrailRenderer:
     generateLightingData: 0
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
-  m_Emitting: 0
+  m_Emitting: 1

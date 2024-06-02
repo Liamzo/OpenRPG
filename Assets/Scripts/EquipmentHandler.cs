@@ -50,13 +50,16 @@ public class EquipmentHandler : MonoBehaviour, ISaveable
 
         Unequip(equipmentSlot);
 
-        onEquipmentChanged?.Invoke(newItem, oldItem, equipmentSlot);
-
         currentEquipment[slot] = newItem;
+
         inventory.Remove(newItem);
-        newItem.itemHitbox.enabled = false;
+
         newItem.gameObject.SetActive(true);
+
+        newItem.objectHandler.spriteRenderer.enabled = false;
+
         newItem.Equip();
+        onEquipmentChanged?.Invoke(newItem, oldItem, equipmentSlot);
 
         if (equipmentSlot == EquipmentSlot.RightHand || equipmentSlot == EquipmentSlot.RightRangedWeapon) {
             newItem.transform.parent = rightMeleeSpot.transform;
@@ -85,13 +88,11 @@ public class EquipmentHandler : MonoBehaviour, ISaveable
         int slot = (int) equipmentSlot;
         if (currentEquipment[slot] != null) {
             ItemHandler oldItem = currentEquipment[slot];
-            inventory.Add(oldItem);
-
             currentEquipment[slot] = null;
 
+            inventory.Add(oldItem);
+
             oldItem.gameObject.SetActive(false);
-            oldItem.itemHitbox.enabled = false;
-            oldItem.transform.parent = null;
             oldItem.Unequip();
 
             if ((meleeDrawn && equipmentSlot == EquipmentSlot.RightHand) || (!meleeDrawn && equipmentSlot == EquipmentSlot.RightRangedWeapon)) {
@@ -108,17 +109,14 @@ public class EquipmentHandler : MonoBehaviour, ISaveable
             ItemHandler item = currentEquipment[i];
 
             if (equipment.Equals(item)) {
-                inventory.Add(item);
-
                 currentEquipment[i] = null;
 
+                inventory.Add(item);
+
                 item.gameObject.SetActive(false);
-                item.itemHitbox.enabled = false;
-                item.transform.parent = null;
                 item.Unequip();
 
                 EquipmentSlot equipmentSlot = (EquipmentSlot)i;
-
                 if ((meleeDrawn && equipmentSlot == EquipmentSlot.RightHand) || (!meleeDrawn && equipmentSlot == EquipmentSlot.RightRangedWeapon)) {
                     rightMeleeSpot.weapon = null;
                 } else if ((meleeDrawn && equipmentSlot == EquipmentSlot.LeftHand) || (!meleeDrawn && equipmentSlot == EquipmentSlot.LeftRangedWeapon)) {
@@ -189,7 +187,7 @@ public class EquipmentHandler : MonoBehaviour, ISaveable
     public void SpotLook(Vector3 target) {
         if (meleeDrawn) {
             rightMeleeSpot.AimAtTarget(target, EquipmentSlot.RightHand);
-            leftMeleeSpot.AimAtTarget(target, EquipmentSlot.LeftHand);
+            //leftMeleeSpot.AimAtTarget(target, EquipmentSlot.LeftHand);
         } else {
             rightMeleeSpot.AimAtTarget(target, EquipmentSlot.RightRangedWeapon);
             leftMeleeSpot.AimAtTarget(target, EquipmentSlot.LeftRangedWeapon);

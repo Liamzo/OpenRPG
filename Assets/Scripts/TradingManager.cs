@@ -130,6 +130,7 @@ public class TradingManager : MonoBehaviour
 
 
         tradePanel.SetActive(false);
+        AudioManager.instance.PlayClipRandom(AudioID.CloseUI);
     }
 
 
@@ -211,6 +212,7 @@ public class TradingManager : MonoBehaviour
                 traderMarkedItems.Remove(slot);
                 totalValueMarked += slot.item.value;
                 slot.background.color = unmarkedColor;
+                AudioManager.instance.PlayClipRandom(AudioID.TradeWithdrawItem);
             }
         } else if (playerItemSlots.Contains(slot)) {
             if (playerMarkedItems.Contains(slot) == false) {
@@ -222,6 +224,7 @@ public class TradingManager : MonoBehaviour
                 playerMarkedItems.Remove(slot);
                 totalValueMarked -= slot.item.value;
                 slot.background.color = unmarkedColor;
+                AudioManager.instance.PlayClipRandom(AudioID.TradeWithdrawItem);
             }
         }
 

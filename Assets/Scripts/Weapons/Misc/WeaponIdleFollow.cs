@@ -16,16 +16,25 @@ public class WeaponIdleFollow : MonoBehaviour
 
     bool doFollow = true;
 
+    private void OnEnable() {
+        if (weapon == null) return;
+
+        weapon._handle.localPosition = new Vector3(0,0,0);
+        weapon._handle.localRotation = Quaternion.identity;
+        prevPosition = transform.TransformPoint(Vector3.zero);
+        prevAngle = 0f;
+    }
+
     private void Start() {
         weapon = GetComponent<WeaponHandler>();
 
         foreach (TriggerHolder triggerHolder in weapon.triggerHolders) {
-            triggerHolder.OnAttack += PauseFollow;
+            triggerHolder.OnTrigger += PauseFollow;
         }
     }
 
     private void Update() {
-        if (doFollow == false && weapon.animator.GetCurrentAnimatorStateInfo(0).IsName("Sword_Idle")) {
+        if (doFollow == false && weapon.animator.GetCurrentAnimatorStateInfo(0).IsName("Combo_Idle")) {
             prevPosition = transform.TransformPoint(Vector3.zero);
             doFollow = true;
         }
@@ -68,7 +77,7 @@ public class WeaponIdleFollow : MonoBehaviour
 
     }
 
-    void PauseFollow() {
+    void PauseFollow(float charge) {
         doFollow = false;
         prevAngle = 0f;
         weapon._handle.localPosition = Vector3.zero;

@@ -24,6 +24,7 @@ public class EquipmentSlotUI : MonoBehaviour, IPointerClickHandler
 
     public void UnequipItem () {
         if (item != null) {
+            AudioManager.instance.PlayClipRandom(AudioID.Unequip, item.owner.audioSource);
             item.owner.GetComponent<EquipmentHandler>().Unequip(item);
         }
     }

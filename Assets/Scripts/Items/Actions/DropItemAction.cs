@@ -8,5 +8,6 @@ public class DropItemAction : BaseItemAction
     public override void Action(ItemAction action)
     {
         action.item.Drop();
+        AudioManager.instance.PlayClipRandom(AudioID.Drop, action.item.objectHandler.audioSource);
     }
 }

@@ -19,6 +19,10 @@ public class TakeDamageSound : MonoBehaviour
     // Update is called once per frame
     void OnTakeDamage(float damage, WeaponHandler weapon, CharacterHandler damageDealer)
     {
-        AudioManager.instance.PlayClipRandom(AudioID.TakeDamage, brain.character.audioSource);
+        if (brain.character.currentHealth < brain.character.statsObject[ObjectStatNames.Health].GetValue() / 2f && brain.character.currentHealth + damage >= brain.character.statsObject[ObjectStatNames.Health].GetValue() / 2f) {
+            // Only trigger when health drops below half
+            AudioManager.instance.PlayClipRandom(AudioID.TakeDamage, brain.character.audioSource);
+        }
+
     }
 }

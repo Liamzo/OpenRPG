@@ -146,7 +146,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_Emitting
+    attribute: m_Enabled
     path: Handle/Sprite/Trail
     classID: 96
     script: {fileID: 0}
@@ -181,7 +181,7 @@ AnimationClip:
       isPPtrCurve: 0
     - serializedVersion: 2
       path: 3614184800
-      attribute: 1228858774
+      attribute: 3305885265
       script: {fileID: 0}
       typeID: 96
       customType: 0
@@ -446,7 +446,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_Emitting
+    attribute: m_Enabled
     path: Handle/Sprite/Trail
     classID: 96
     script: {fileID: 0}

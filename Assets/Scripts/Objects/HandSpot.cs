@@ -52,5 +52,11 @@ public class HandSpot : MonoBehaviour
 
         transform.localPosition = spotPos * offset;
         transform.up = diff * -1;
+
+        Debug.Log("diff: " + diff);
+        Debug.Log(target);
+        Debug.Log(owner.position);
+        Debug.Log(spotPos);
+
     }
 }

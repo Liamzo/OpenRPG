@@ -106,5 +106,7 @@ public class ContainerHandler : MonoBehaviour
             if (item.PickUp(InventoryHandlerUI.instance.GetComponent<ObjectHandler>()) == true)
                 ContainerHandler.instance.openedContainer.Remove(item);
         }
+        
+        AudioManager.instance.PlayClipRandom(AudioID.TradeWithdrawItem);
     }
 }

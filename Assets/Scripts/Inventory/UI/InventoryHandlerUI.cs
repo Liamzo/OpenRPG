@@ -82,6 +82,7 @@ public class InventoryHandlerUI : InventoryHandler
     public void OnInventory() {
         if (inventoryUI.activeSelf == true) {
             CloseInventory();
+            AudioManager.instance.PlayClipRandom(AudioID.CloseUI);
         } else {
             OpenInventory();
             AudioManager.instance.PlayClipRandom(AudioID.OpenInventory);
@@ -153,5 +154,7 @@ public class InventoryHandlerUI : InventoryHandler
             if (item.PickUp(InventoryHandlerUI.instance.GetComponent<ObjectHandler>()) == true)
                 ContainerHandler.instance.openedContainer.Remove(item);
         }
+
+        AudioManager.instance.PlayClipRandom(AudioID.TradeWithdrawItem);
     }
 }

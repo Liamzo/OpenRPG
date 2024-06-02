@@ -36,7 +36,15 @@ public enum AudioID {
     TradeOfferItem,
     TradeComplete,
     OpenLocker,
-    PickUp
+    PickUp,
+    Equip,
+    Unequip,
+    Drop,
+    Travel,
+    Hover,
+    CloseUI,
+    TradeWithdrawItem
+
 
 }
 

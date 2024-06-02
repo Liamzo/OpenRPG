@@ -56,24 +56,24 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
             ResetCombo();
         }
 
-        // TODO: Needs touched up, but not urgent
-        if (inCombo) {
-            // Limit looking rotation
-            float angleToTarget = Vector3.Angle(lockedLookingDirection, weapon.item.owner.GetComponent<BaseBrain>().targetLookingDirection);
-            float side = Mathf.Sign(Vector3.Cross(lockedLookingDirection, weapon.item.owner.GetComponent<BaseBrain>().targetLookingDirection).z); // Right is negative, Left is positive
+        // TODO: Change to Lower speed of Rotation rather than locking. Attacks are already locked in anyway
+        // if (inCombo) {
+        //     // Limit looking rotation
+        //     float angleToTarget = Vector3.Angle(lockedLookingDirection, weapon.item.owner.GetComponent<BaseBrain>().targetLookingDirection);
+        //     float side = Mathf.Sign(Vector3.Cross(lockedLookingDirection, weapon.item.owner.GetComponent<BaseBrain>().targetLookingDirection).z); // Right is negative, Left is positive
 
-            // Get new looking direction
-            if (angleToTarget > 30f) {
-                angleToTarget = 30f;
-            }
+        //     // Get new looking direction
+        //     if (angleToTarget > 30f) {
+        //         angleToTarget = 30f;
+        //     }
 
-            angleToTarget *= side;
+        //     angleToTarget *= side;
 
-            Vector3 newDir = Quaternion.AngleAxis(angleToTarget, Vector3.forward) * lockedLookingDirection;
+        //     Vector3 newDir = Quaternion.AngleAxis(angleToTarget, Vector3.forward) * lockedLookingDirection;
 
-            // Set Looking Direction
-            weapon.item.owner.GetComponent<BaseBrain>().SetLookingDirection(weapon.item.owner.GetComponent<EquipmentHandler>().orbitPoint.position + newDir);
-        }
+        //     // Set Looking Direction
+        //     weapon.item.owner.GetComponent<BaseBrain>().SetLookingDirection(weapon.item.owner.GetComponent<EquipmentHandler>().orbitPoint.position + newDir);
+        // }
     }
 
 

@@ -13,8 +13,8 @@ public class PickUp : BaseInteraction
     }
 
     public override void Interact(CharacterHandler character) {
+        AudioManager.instance.PlayClipRandom(AudioID.PickUp, character.audioSource);
         GetComponentInParent<ItemHandler>().PickUp(character);
-        AudioManager.instance.PlayClipRandom(audioID, audioSource);
     }
 
     public override void Cancel()

@@ -16,5 +16,3 @@ MonoBehaviour:
   audioSourceType: 0
   audioClips:
   - {fileID: 8300000, guid: 665f92bb69e46a94a8caf3717dbb0d5e, type: 3}
-  - {fileID: 8300000, guid: 8802544ed0324a14095edc70ab3bbab1, type: 3}
-  - {fileID: 8300000, guid: 65d9836027675574b8d070c5718f99c7, type: 3}

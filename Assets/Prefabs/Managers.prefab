@@ -5023,6 +5023,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d5fcc9deacc63114680969a57d794637, type: 2}
   - {fileID: 11400000, guid: 76204293889fc8643a16e0c08acf2b2e, type: 2}
   - {fileID: 11400000, guid: 081b5d8d58ee8654fb694285718ed624, type: 2}
+  - {fileID: 11400000, guid: 0423e77f7dba0414fa529a9cf96b7dcb, type: 2}
+  - {fileID: 11400000, guid: 1c7bba2c1d9f2c3479ad5f6bd8177d2f, type: 2}
+  - {fileID: 11400000, guid: d537731f7f5357f4ab38704b63cff459, type: 2}
+  - {fileID: 11400000, guid: d3f4e9ae1806b414089bed6a06b032b4, type: 2}
+  - {fileID: 11400000, guid: 29f1d51c3fdc94f4a970e0b84c3b1256, type: 2}
+  - {fileID: 11400000, guid: b99b60ef7b7199d418f0bf01e3deac0e, type: 2}
+  - {fileID: 11400000, guid: ef9cafe75ced6da46af1dae5f84b663d, type: 2}
+  - {fileID: 11400000, guid: 385fbbf0ada8d5749a67036bf7049e7c, type: 2}
+  - {fileID: 11400000, guid: 0297156ad2af5c6478144c1b8c5fb60d, type: 2}
   musicSource: {fileID: 2059909079}
   ambientSource: {fileID: 2059909078}
   globalSource: {fileID: 1633653148}

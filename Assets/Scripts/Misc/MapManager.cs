@@ -40,6 +40,7 @@ public class MapManager : MonoBehaviour
     public void OnMap() {
         if (mapUI.activeSelf == true) {
             CloseMap();
+            AudioManager.instance.PlayClipRandom(AudioID.CloseUI);
         } else {
             OpenMap();
             AudioManager.instance.PlayClipRandom(AudioID.OpenMap);
@@ -99,5 +100,6 @@ public class MapManager : MonoBehaviour
         // Check if we can travel. In combat, in a dungeon, etc.
 
         LevelManager.instance.LoadLevel(mapPoint.levelData);
+        AudioManager.instance.PlayClipRandom(AudioID.Travel);
     }
 }

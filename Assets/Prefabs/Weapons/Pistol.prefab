@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuName: Pick Up
+  audioID: 20
 --- !u!1 &1385850537467914684
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,6 +215,9 @@ MonoBehaviour:
   animator: {fileID: 1486458305870933430}
   _handle: {fileID: 5197348208353040065}
   strategies: {fileID: 7045684467092217511}
+  triggerHolders:
+  - anticipation: {fileID: 0}
+  - anticipation: {fileID: 0}
   attackPoint: {fileID: 4330748051512270447}
   _canAttack: 0
 --- !u!114 &7595306029146518193
@@ -228,6 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343b98f1b6060e548a1166dd68c6a4b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blockAngle: 0
 --- !u!114 &5721819381770658313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -488,6 +493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b50261b60681004cb00e29ea07ea0d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerSlot: 0
   useCost: 1
 --- !u!114 &7045684467092217528
 MonoBehaviour:
@@ -501,6 +507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98db6edcb208a2e4aad0f30a0fdd6a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerSlot: 0
   muzzleFlash: {fileID: 969683319528169372}
   bulletPrefab: {fileID: 7319803943386155118, guid: fb028c1093ce9a1468561fc04d6a46f1, type: 3}
   bulletSpeed: 20
@@ -516,6 +523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 532b810239efbbf4898f8560d915aae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerSlot: 0
 --- !u!114 &7045684467092217509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -528,6 +536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d529d7eb846a664aaef5f551811c1b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerSlot: 0
 --- !u!114 &7803341030385894553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -540,6 +549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30f3db205c461a14986f2c8967c5daa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerSlot: 0
 --- !u!114 &1691032427080906618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -552,6 +562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e97ec600dbd8c7940b7fd4cb31942511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerSlot: 0
 --- !u!114 &3576421341539463283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -564,6 +575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb87acc0f2af6a64eaeb6688bd876bda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerSlot: 0
 --- !u!114 &1525807513090668586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -576,6 +588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96283921a1f639e47a57feb7aad3c322, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerSlot: 0
   audioID: 1
 --- !u!114 &747376308890601214
 MonoBehaviour:
@@ -589,6 +602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 877f578be93856340a420de5945624db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerSlot: 0
   audioID: 2
 --- !u!114 &2344536644298038186
 MonoBehaviour:
@@ -602,6 +616,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84de93896d1c93647be96cbf6250a9a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerSlot: 0
 --- !u!114 &6664691380460158926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -614,6 +629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8431aea8c8914640875d3950dabfa89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerSlot: 0
 --- !u!1 &7931068025165635166
 GameObject:
   m_ObjectHideFlags: 0

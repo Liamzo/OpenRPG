@@ -13,6 +13,7 @@ public class EquipItemAction : BaseItemAction
         } else {
             action.item.owner.GetComponent<EquipmentHandler>().Equip(action.item, action.item.baseItemStats.possibleSlots[0]);
         }
+        AudioManager.instance.PlayClipRandom(AudioID.Equip, action.item.owner.audioSource);
     }
 
     public override string MakeMenuName(ItemAction action)
