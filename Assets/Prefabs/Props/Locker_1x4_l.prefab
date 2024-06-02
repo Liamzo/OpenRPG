@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 8950900684074421347}
   - component: {fileID: 8950900684074421348}
   - component: {fileID: 8950900684074421346}
+  - component: {fileID: 8950900684074421345}
   - component: {fileID: 8950900684074421351}
   - component: {fileID: 8950900684074421368}
-  - component: {fileID: 8950900684074421345}
   - component: {fileID: 8950900684074421359}
   - component: {fileID: 8950900684074421358}
   - component: {fileID: 910401977247109345}
@@ -89,34 +89,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.86, y: 0.52}
   m_EdgeRadius: 0
---- !u!114 &8950900684074421351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8950900684074421369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6281f8a89c253544e893c88a74cb9224, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slots: 20
-  startingInventory: {fileID: 11400000, guid: b698757e8747dce4b92ab76f10ab516b, type: 2}
-  inventory: []
-  coins: 0
---- !u!114 &8950900684074421368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8950900684074421369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af29277c85099ec4c997a3415db8a3f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8950900684074421345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,6 +109,34 @@ MonoBehaviour:
   movement: {x: 0, y: 0, z: 0}
   currentHealth: 0
   objectStatusHandler: {fileID: 0}
+--- !u!114 &8950900684074421351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8950900684074421369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6281f8a89c253544e893c88a74cb9224, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slots: 20
+  startingInventory: {fileID: 11400000, guid: 9368a51a623a6d8408101479dc10c548, type: 2}
+  inventory: []
+  coins: 0
+--- !u!114 &8950900684074421368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8950900684074421369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af29277c85099ec4c997a3415db8a3f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8950900684074421359
 MonoBehaviour:
   m_ObjectHideFlags: 0
