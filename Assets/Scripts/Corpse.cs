@@ -17,6 +17,7 @@ public class Corpse : MonoBehaviour
 
         foreach(ItemHandler item in inventoryHandler.inventory) {
             item.owner = owner;
+            item.transform.parent = transform;
         }
     }
 }

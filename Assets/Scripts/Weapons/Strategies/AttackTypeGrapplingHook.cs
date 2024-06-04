@@ -11,9 +11,6 @@ public class AttackTypeGrapplingHook : BaseStrategy, IAttackType
     [SerializeField] private bool grappleToAll = false;
     [SerializeField] private int grappableLayerNumber = 9;
 
-    [Header("Physics Ref:")]
-    public Rigidbody2D m_rigidbody;
-
     [Header("Rotation:")]
     [SerializeField] private bool rotateOverTime = true;
     [Range(0, 60)] [SerializeField] private float rotationSpeed = 4;
@@ -37,8 +34,6 @@ public class AttackTypeGrapplingHook : BaseStrategy, IAttackType
         weapon.triggerHolders[triggerSlot].OnTriggerRelease += ReleaseGrapple;
         weapon.OnHolseter += ReleaseGrapple;
         weapon.item.OnUnequip += ReleaseGrapple;
-
-        m_rigidbody = weapon.item.owner.GetComponent<Rigidbody2D>();
     }
 
     public void DoAttack(float charge)
@@ -114,7 +109,7 @@ public class AttackTypeGrapplingHook : BaseStrategy, IAttackType
 
     public void Grapple()
     {
-        m_rigidbody.velocity = Vector2.zero;
+        weapon.item.owner.rigidBody.velocity = Vector2.zero;
 
         if (grappleHitObject.GetComponent<ObjectHandler>()) {
             weapon.CallOnAttack(triggerSlot);

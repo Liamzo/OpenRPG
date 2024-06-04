@@ -25,6 +25,7 @@ public class ItemHandler : MonoBehaviour//, ISaveable
 
     // Events
     public event System.Action OnUnequip = delegate { };
+    public event System.Action OnEquip = delegate { };
 
     private void Awake() {
         objectHandler = GetComponent<ObjectHandler>();
@@ -78,7 +79,7 @@ public class ItemHandler : MonoBehaviour//, ISaveable
     }
 
     public void Equip() {
-        
+        OnEquip();
     }
     public void Unequip() {
         OnUnequip();

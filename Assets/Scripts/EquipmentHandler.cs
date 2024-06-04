@@ -146,11 +146,15 @@ public class EquipmentHandler : MonoBehaviour, ISaveable
             if (weapon != null) {
                 rightMeleeSpot.weapon = weapon.GetComponent<WeaponHandler>();
                 rightMeleeSpot.weapon.Unholster();
+            } else {
+                rightMeleeSpot.weapon = null;
             }
             weapon = currentEquipment[(int)EquipmentSlot.LeftHand];
             if (weapon != null) {
                 leftMeleeSpot.weapon = weapon.GetComponent<WeaponHandler>();
                 leftMeleeSpot.weapon.Unholster();
+            } else {
+                leftMeleeSpot.weapon = null;
             }
 
             weapon = currentEquipment[(int)EquipmentSlot.RightRangedWeapon];
@@ -166,11 +170,15 @@ public class EquipmentHandler : MonoBehaviour, ISaveable
             if (weapon != null) {
                 rightMeleeSpot.weapon = weapon.GetComponent<WeaponHandler>();
                 rightMeleeSpot.weapon.Unholster();
+            } else {
+                rightMeleeSpot.weapon = null;
             }
             weapon = currentEquipment[(int)EquipmentSlot.LeftRangedWeapon];
             if (weapon != null) {
                 leftMeleeSpot.weapon = weapon.GetComponent<WeaponHandler>();
                 leftMeleeSpot.weapon.Unholster();
+            } else {
+                leftMeleeSpot.weapon = null;
             }
 
             weapon = currentEquipment[(int)EquipmentSlot.RightHand];

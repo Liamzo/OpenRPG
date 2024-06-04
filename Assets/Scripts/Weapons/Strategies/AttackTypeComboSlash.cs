@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public class AttackTypeComboSlash : BaseStrategy, IAttackType
+public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
 {
     float lastCharge = 1f;
     bool inCombo = false;
@@ -14,17 +14,35 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
     bool charging = false;
 
     float endHoldTimer = 0f;
-    ComboAttack lastComboAttack;
+    ComboAttack currentComboAttack;
+    ComboAttack prevComboAttack;
 
     bool hasAvailableAttack = true;
 
     bool doingAttack = false;
+
+
+
+
+    bool isCharging = false;
+    bool fullyCharged = false;
+    float chargeTimer = 0f;
     
     private void Start() {
-        weapon.triggerHolders[triggerSlot].OnTrigger += ChargeAttack;
-        weapon.triggerHolders[triggerSlot].OnTriggerRelease += DoAttack;
-
         weapon.item.OnUnequip += InteruptCombo;
+    }
+
+    void Update()
+    {
+        if (isCharging && !fullyCharged) {
+            chargeTimer += Time.deltaTime;
+
+            if (chargeTimer > 1f) {
+                chargeTimer = 1f;
+                weapon.triggerHolders[triggerSlot].AttackAnticipation();
+                fullyCharged = true;
+            }
+        }  
     }
 
     private void LateUpdate() {
@@ -35,21 +53,21 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
         }
 
 
-        if (lastComboAttack != null && (weapon.animator.GetCurrentAnimatorStateInfo(0).IsName(lastComboAttack.attackAnimName) || weapon.animator.GetCurrentAnimatorStateInfo(0).IsName(lastComboAttack.attackHeavyAnimName)) && weapon.animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1.0f) {
+        if (currentComboAttack != null && (weapon.animator.GetCurrentAnimatorStateInfo(0).IsName(currentComboAttack.attackAnimName) || weapon.animator.GetCurrentAnimatorStateInfo(0).IsName(currentComboAttack.attackHeavyAnimName)) && weapon.animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1.0f) {
             // Swing animation is complete, wait for the end hold duration before returning to Idle
             weapon.animator.speed = 1.0f;
             endHoldTimer += Time.deltaTime;
 
-            if (lastComboAttack.comboChains.Count == 0 && hasAvailableAttack) {
+            if (currentComboAttack.comboChains.Count == 0 && hasAvailableAttack) {
                 hasAvailableAttack = false;
                 weapon._canAttack += 1;
             }
 
-            if (endHoldTimer >= lastComboAttack.endHoldDuration) {
+            if (endHoldTimer >= currentComboAttack.endHoldDuration) {
                 ResetComboToIdle(); // Don't want to change the animation
             }
         } 
-        else if (lastComboAttack != null && !weapon.animator.GetCurrentAnimatorStateInfo(0).IsName(lastComboAttack.attackAnimName) && !weapon.animator.GetCurrentAnimatorStateInfo(0).IsName(lastComboAttack.attackHeavyAnimName) && !weapon.animator.GetCurrentAnimatorStateInfo(0).IsName(lastComboAttack.chargeAnimName)) 
+        else if (currentComboAttack != null && !weapon.animator.GetCurrentAnimatorStateInfo(0).IsName(currentComboAttack.attackAnimName) && !weapon.animator.GetCurrentAnimatorStateInfo(0).IsName(currentComboAttack.attackHeavyAnimName) && !weapon.animator.GetCurrentAnimatorStateInfo(0).IsName(currentComboAttack.chargeAnimName)) 
         {
             // Started an attack but no longer playing one of the associated animations
             // Therefore, probably interupted by something, such as Blocking or getting hit
@@ -76,43 +94,20 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
         // }
     }
 
-
-    public void ChargeAttack(float charge) {
-        if (charging == false) {
-            if (!inCombo) {
-                lastComboAttack = combo.comboChain;
-                weapon.animator.Play(lastComboAttack.chargeAnimName);
-                charging = true;
-                return;
-            }
-
-            // Check which section we're in based on endHoldTimer/comboAttack.endHoldDuration, switch to that lastAttack
-            float endHoldTimerPercent =  endHoldTimer / lastComboAttack.endHoldDuration;
-            float segmentLength = lastComboAttack.endHoldDuration / lastComboAttack.comboChains.Count;
-
-            int segment = Mathf.RoundToInt(endHoldTimerPercent / segmentLength);
-            segment = Mathf.Clamp(segment, 0, lastComboAttack.comboChains.Count-1);
-
-            if (lastComboAttack.comboChains.Count == 0) return;
-
-            lastComboAttack = lastComboAttack.comboChains[segment];
-            weapon.animator.Play(lastComboAttack.chargeAnimName);
-            charging = true;
-        }
-    }
-
     public void DoAttack(float charge)
     {
         if (charging == false) return;
         charging = false;
         doingAttack = true;
 
-        if (charge >= 100f && lastComboAttack.attackHeavyAnimName != "")
-            weapon.animator.Play(lastComboAttack.attackHeavyAnimName);
-        else
-            weapon.animator.Play(lastComboAttack.attackAnimName);
+        endHoldTimer = 0f;
 
-        weapon.animator.speed = 1.0f / lastComboAttack.swingDuration;
+        if (charge >= 100f && currentComboAttack.attackHeavyAnimName != "")
+            weapon.animator.Play(currentComboAttack.attackHeavyAnimName);
+        else
+            weapon.animator.Play(currentComboAttack.attackAnimName);
+
+        weapon.animator.speed = 1.0f / currentComboAttack.swingDuration;
 
         lastCharge = charge;
 
@@ -141,7 +136,8 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
     }
     void ResetCombo() {
         inCombo = false;
-        lastComboAttack = null;
+        prevComboAttack = currentComboAttack;
+        currentComboAttack = null;
 
         CharacterHandler character = (CharacterHandler) weapon.item.owner;
         character.statsCharacter[CharacterStatNames.MovementSpeed].RemoveModifier(-4f);
@@ -167,6 +163,92 @@ public class AttackTypeComboSlash : BaseStrategy, IAttackType
 
         if (other.TryGetComponent<BasicBullet>(out BasicBullet bullet)) {
             Destroy(bullet.gameObject);
+        }
+    }
+
+
+    public float AttackHoldCost()
+    {
+        return weapon.statsWeapon[WeaponStatNames.StaminaCostHold].GetValue() * Time.deltaTime;
+    }
+
+    public bool CanAttackHold() {
+        bool canAttackHold = weapon.CanAttack();
+
+        if (!canAttackHold)
+            AttackCancel();
+
+        return canAttackHold;
+    }
+
+    public void AttackHold()
+    {
+        if (weapon.CanAttack()) {
+            isCharging = true;
+
+            if (charging == false) {
+                if (!inCombo) {
+                    prevComboAttack = currentComboAttack;
+                    currentComboAttack = combo.comboChain;
+                    weapon.animator.Play(currentComboAttack.chargeAnimName);
+                    charging = true;
+                    return;
+                }
+
+                // Check which section we're in based on endHoldTimer/comboAttack.endHoldDuration, switch to that lastAttack
+                float endHoldTimerPercent =  endHoldTimer / currentComboAttack.endHoldDuration;
+                float segmentLength = currentComboAttack.endHoldDuration / currentComboAttack.comboChains.Count;
+
+                int segment = Mathf.RoundToInt(endHoldTimerPercent / segmentLength);
+                segment = Mathf.Clamp(segment, 0, currentComboAttack.comboChains.Count-1);
+
+                if (currentComboAttack.comboChains.Count == 0) return;
+
+                prevComboAttack = currentComboAttack;
+                currentComboAttack = currentComboAttack.comboChains[segment];
+                weapon.animator.Play(currentComboAttack.chargeAnimName);
+                charging = true;
+            }
+
+            weapon.CallOnTrigger(triggerSlot, chargeTimer);
+        } else {
+            AttackCancel();
+        }
+    }
+
+    public float AttackReleaseCost()
+    {
+         return weapon.statsWeapon[WeaponStatNames.StaminaCostEnd].GetValue();
+    }
+
+    public bool CanAttackRelease() {
+        return weapon.CanAttack();
+    }
+
+    public void AttackRelease()
+    {
+        if (weapon.CanAttack()) {
+            DoAttack(chargeTimer);
+
+            weapon.CallOnTriggerRelease(triggerSlot, chargeTimer);
+
+            AttackCancel();
+        } else {
+            AttackCancel();
+        }
+    }
+
+    public void AttackCancel()
+    {
+        isCharging = false;
+        fullyCharged = false;
+        chargeTimer = 0f;
+
+        if (inCombo && charging) {
+            currentComboAttack = prevComboAttack;
+            charging = false;
+
+            weapon.animator.Play(currentComboAttack.attackAnimName, 0, 1.1f); // TODO: Save if we did a normal or heavy attack
         }
     }
 }

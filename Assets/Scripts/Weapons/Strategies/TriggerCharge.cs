@@ -18,8 +18,7 @@ public class TriggerCharge : BaseStrategy, ITrigger
                 weapon.triggerHolders[triggerSlot].AttackAnticipation();
                 fullyCharged = true;
             }
-        }
-        
+        }  
     }
 
     public float AttackHoldCost()
