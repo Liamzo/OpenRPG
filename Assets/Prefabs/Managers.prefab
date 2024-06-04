@@ -4790,21 +4790,27 @@ MonoBehaviour:
   - identifier: 0
     prefab: {fileID: 5290334495154664889, guid: 6cb8f8abe0045b947a628084e916274d, type: 3}
     poolSize: 10
+    resetOnNewLevel: 1
   - identifier: 2
     prefab: {fileID: 7157277655138354283, guid: d1cf7d6342981634f9cecbe588fe170b, type: 3}
     poolSize: 10
+    resetOnNewLevel: 1
   - identifier: 3
     prefab: {fileID: 4241683194879601882, guid: c70aa3065eebe0644add73419ece35e9, type: 3}
     poolSize: 20
+    resetOnNewLevel: 0
   - identifier: 4
     prefab: {fileID: 6169090837695125516, guid: eaf51acde24f0b2468a3988437e32d80, type: 3}
     poolSize: 10
+    resetOnNewLevel: 1
   - identifier: 5
     prefab: {fileID: 1724470355634153261, guid: 87551ee5aa0100341a4c942e6c8ab833, type: 3}
     poolSize: 10
+    resetOnNewLevel: 1
   - identifier: 6
     prefab: {fileID: 4241683194879601882, guid: c5999b9184902da4fb3c438501f03fd4, type: 3}
     poolSize: 10
+    resetOnNewLevel: 0
 --- !u!114 &7547779233427188604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4916,6 +4922,11 @@ MonoBehaviour:
     prefab: {fileID: 1154453471690096199, guid: 7420a0de952fe8b4c981c3fb2504e0d1, type: 3}
   - prefabId: 
     prefab: {fileID: 8523436995661248248, guid: 9ece42e72c7b43e4096067d7061e661d, type: 3}
+  allProps:
+  - prefabId: 
+    prefab: {fileID: 8950900684074421369, guid: 5fd2d8688c64daa40ac5cc92b988b3c1, type: 3}
+  - prefabId: 
+    prefab: {fileID: 5921364653110771086, guid: 1bfcfe5a574f2984c98b51cf081cd4e2, type: 3}
 --- !u!114 &1992593265
 MonoBehaviour:
   m_ObjectHideFlags: 0

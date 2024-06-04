@@ -26,6 +26,8 @@ public class InteractionHandler : MonoBehaviour
         objectHandler.spriteRenderer.material.SetColor("_Outline_Colour", Color.yellow);
     }
     public void Unhighlight() {
+        if (objectHandler.spriteRenderer == null) return;
+
         objectHandler.spriteRenderer.material.SetFloat("_DoOutline", 0.0f);
     }
 }

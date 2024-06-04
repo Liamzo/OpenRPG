@@ -18,17 +18,24 @@ public class LevelData : ScriptableObject
     public virtual void GenerateLevel() {
         foreach (ItemStart itemStart in items) {
             ObjectHandler item = Instantiate(itemStart.prefab).GetComponent<ObjectHandler>();
-            LevelManager.instance.currentLevel.items.Add(item);
             item.transform.position = new Vector3(itemStart.x, itemStart.y, 0f);
+            LevelManager.instance.currentLevel.items.Add(item);
             item.CreateBaseObject();
         }
 
         foreach (CharacterStart characterStart in characters) {
             ObjectHandler character = Instantiate(characterStart.prefab).GetComponent<ObjectHandler>();
-            LevelManager.instance.currentLevel.characters.Add(character);
             character.transform.position = new Vector3(characterStart.x, characterStart.y, 0f);
+            LevelManager.instance.currentLevel.characters.Add(character);
             character.CreateBaseObject();
         }
+
+        GameObject levelObject = GameObject.FindWithTag("Level");
+        foreach (ObjectHandler prop in levelObject.GetComponentsInChildren<ObjectHandler>()) {
+            LevelManager.instance.currentLevel.props.Add(prop);
+            prop.CreateBaseObject();
+        }
+
     }
 }
 

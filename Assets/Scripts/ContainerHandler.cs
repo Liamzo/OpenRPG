@@ -20,7 +20,7 @@ public class ContainerHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        LevelManager.instance.LoadLevelPre += LevelLoaded;
     }
 
     public void OpenContainer(InventoryHandler container) {
@@ -108,5 +108,12 @@ public class ContainerHandler : MonoBehaviour
         }
         
         AudioManager.instance.PlayClipRandom(AudioID.TradeWithdrawItem);
+    }
+
+
+    public void LevelLoaded() {
+        if (openedContainer == null) return;
+
+        CloseContainer();
     }
 }

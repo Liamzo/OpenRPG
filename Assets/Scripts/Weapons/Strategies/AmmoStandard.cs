@@ -14,6 +14,8 @@ public class AmmoStandard : BaseStrategy, IAmmo
 
         weapon.OnReload += Reload;
         weapon.triggerHolders[triggerSlot].OnAttack += UseAmmo;
+
+        LevelManager.instance.LoadLevelPre += LevelLoaded;
     }
 
     public int GetCurrentAmmo()
@@ -53,5 +55,9 @@ public class AmmoStandard : BaseStrategy, IAmmo
                 _internalLock += 1;
             }
         }
+    }
+
+    public void LevelLoaded() {
+        currentAmmo = (int)weapon.statsWeapon[WeaponStatNames.ClipSize].GetValue();
     }
 }

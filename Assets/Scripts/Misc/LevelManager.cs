@@ -12,6 +12,10 @@ public class LevelManager : MonoBehaviour
 
     public Level currentLevel {get; private set;}
 
+
+    // Events
+    public event System.Action LoadLevelPre = delegate { }; // Current Level, New Level
+
     private void Awake() {
         instance = this;
     }
@@ -19,6 +23,10 @@ public class LevelManager : MonoBehaviour
     public void LoadLevel(LevelData levelData) {
         // Unload previous level (save data)
         currentLevel?.SaveLevel();
+
+        // Probably here to turn off ObjectPool stuff like corpses and blood
+
+        LoadLevelPre();
 
         // Load new level
         SceneManager.LoadScene(levelData.sceneName);

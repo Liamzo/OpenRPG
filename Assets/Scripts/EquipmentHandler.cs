@@ -229,7 +229,6 @@ public class EquipmentHandler : MonoBehaviour, ISaveable
 
     public void LoadComponent(JSONNode data)
     {
-        Debug.Log(data);
         foreach (JSONNode node in data["equipment"]["items"]) {
             ObjectHandler item = GameManager.instance.SpawnPrefab(node["item"]["prefabId"]).GetComponent<ObjectHandler>();
             item.LoadObject(node["item"]);

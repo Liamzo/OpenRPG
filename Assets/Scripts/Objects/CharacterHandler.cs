@@ -29,6 +29,13 @@ public class CharacterHandler : ObjectHandler
         OnTakeDamage += OnDamageFlash;
     }
 
+    protected override void Start () 
+    {
+        base.Start();
+
+        LevelManager.instance.LoadLevelPre += LevelLoaded;
+    }
+
     protected void Update() {
         if (currentStamina < statsCharacter[CharacterStatNames.Stamina].GetValue() && objectStatusHandler.CanRegainStamina()) {
             ChangeStamina(staminaRecPerSec * Time.deltaTime);
@@ -58,7 +65,6 @@ public class CharacterHandler : ObjectHandler
     }
 
 
-
     public virtual void ChangeStamina(float changeAmount) {
         currentStamina = Mathf.Clamp(currentStamina + changeAmount, 0f, statsCharacter[CharacterStatNames.Stamina].GetValue());
 
@@ -74,7 +80,15 @@ public class CharacterHandler : ObjectHandler
     void OnDamageFlash(float damage, WeaponHandler weapon, CharacterHandler damageDealer) {
         StartCoroutine("DoFlash");
     }
-    IEnumerator DoFlash() {
+
+    public void LevelLoaded() {
+        currentStamina = statsCharacter[CharacterStatNames.Stamina].GetValue();
+
+        ChangeStamina(0); // Updates UI
+    }
+
+    IEnumerator 
+    DoFlash() {
         spriteRenderer.color = Color.red;
 
         yield return new WaitForSeconds(0.1f);

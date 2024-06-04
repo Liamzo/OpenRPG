@@ -11,7 +11,7 @@ public class DamageNumber : MonoBehaviour
         if (timer >= 1.0f) {
             timer = 0f;
             transform.parent.gameObject.SetActive(false);
-            transform.parent.SetParent(null);
+            //transform.parent.SetParent(null);
         }
     }
 }

@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
 
     public List<PrefabInfo> allItems;
     public List<PrefabInfo> allCharacters;
+    public List<PrefabInfo> allProps;
 
 
     // Start is called before the first frame update
@@ -44,6 +45,10 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < allCharacters.Count; i++) {
             allCharacters[i].prefabId = allCharacters[i].prefab.GetComponent<ObjectHandler>().prefabId;
+        }
+
+        for (int i = 0; i < allProps.Count; i++) {
+            allProps[i].prefabId = allProps[i].prefab.GetComponent<ObjectHandler>().prefabId;
         }
     }
 
@@ -122,6 +127,12 @@ public class GameManager : MonoBehaviour
         }
 
         foreach (PrefabInfo info in allCharacters) {
+            if (info.prefabId == prefabId) {
+                return Instantiate(info.prefab);
+            }
+        }
+
+        foreach (PrefabInfo info in allProps) {
             if (info.prefabId == prefabId) {
                 return Instantiate(info.prefab);
             }

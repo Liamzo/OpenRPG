@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 2588738359589984777}
   - component: {fileID: 2588738359589984782}
   - component: {fileID: 2588738359589984776}
-  - component: {fileID: 2588738359589984779}
-  - component: {fileID: 2588738359589984772}
   - component: {fileID: 4658275259326151017}
   m_Layer: 0
   m_Name: Bed_f
@@ -84,36 +82,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.876358, y: 2.897997}
   m_EdgeRadius: 0
---- !u!114 &2588738359589984779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2588738359589984787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7310db108acaa224a9b60105e4db0ba7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseStats: {fileID: 11400000, guid: 95de858976419614e84657b179246d3b, type: 2}
-  objectName: 
-  objectType: 0
-  movement: {x: 0, y: 0, z: 0}
-  currentHealth: 0
-  objectStatusHandler: {fileID: 0}
---- !u!114 &2588738359589984772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2588738359589984787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 343b98f1b6060e548a1166dd68c6a4b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4658275259326151017
 MonoBehaviour:
   m_ObjectHideFlags: 0

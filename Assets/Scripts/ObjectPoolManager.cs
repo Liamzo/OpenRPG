@@ -14,6 +14,8 @@ public class ObjectPoolManager : MonoBehaviour
     private void Start()
     {
         instance = this;
+
+        LevelManager.instance.LoadLevelPre += LevelLoaded;
         
         InitializePool();
     }
@@ -61,6 +63,17 @@ public class ObjectPoolManager : MonoBehaviour
         Debug.LogError("Identifier not found");
         return null;
     }
+
+
+    public void LevelLoaded() {
+        foreach (PoolObject poolObject in poolObjects) {
+            if (poolObject.resetOnNewLevel == false) continue;
+
+            foreach (GameObject pooledObject in pooledObjects[poolObject.identifier]) {
+                pooledObject.SetActive(false);
+            }
+        }
+    }
 }
 
 [System.Serializable]
@@ -68,6 +81,7 @@ public struct PoolObject {
     public PoolIdentifiers identifier;
     public GameObject prefab;
     public int poolSize;
+    public bool resetOnNewLevel;
 }
 
 public enum PoolIdentifiers {

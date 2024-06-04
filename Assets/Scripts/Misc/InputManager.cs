@@ -329,6 +329,7 @@ public class InputManager : MonoBehaviour
     public void RegisterSubmitPressed() 
     {
         submitPressed = false;
+        dashPressed = false;
     }
 
 }
