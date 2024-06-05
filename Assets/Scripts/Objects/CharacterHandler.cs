@@ -12,7 +12,6 @@ public class CharacterHandler : ObjectHandler
     public Dictionary<CharacterStatNames, Stat> statsCharacter = new Dictionary<CharacterStatNames, Stat>();
     
     public float currentStamina;
-    public float staminaRecPerSec;
 
     protected override void Awake()
     {
@@ -36,9 +35,11 @@ public class CharacterHandler : ObjectHandler
         LevelManager.instance.LoadLevelPre += LevelLoaded;
     }
 
-    protected void Update() {
+    protected override void Update() {
+        base.Update();
+
         if (currentStamina < statsCharacter[CharacterStatNames.Stamina].GetValue() && objectStatusHandler.CanRegainStamina()) {
-            ChangeStamina(staminaRecPerSec * Time.deltaTime);
+            ChangeStamina(statsCharacter[CharacterStatNames.StaminaRegen].GetValue() * Time.deltaTime);
         }
     }
 
@@ -69,7 +70,7 @@ public class CharacterHandler : ObjectHandler
         currentStamina = Mathf.Clamp(currentStamina + changeAmount, 0f, statsCharacter[CharacterStatNames.Stamina].GetValue());
 
         if (currentStamina <= 0f) {
-            objectStatusHandler.BlockRegainStamina(2f);
+            conditionHandler.AddCondition(new OutOfBreathCondition(this, 2f, 5f, 15f));
         }
     }
 
@@ -103,7 +104,8 @@ public enum CharacterStatNames {
     Sight,
     MovementSpeed,
     SprintMultiplier,
-    AttackSpeed
+    AttackSpeed,
+    StaminaRegen
 
 }
 

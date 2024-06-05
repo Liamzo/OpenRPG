@@ -127,7 +127,7 @@ public class Player : BaseBrain
 
         movement *= character.statsCharacter[CharacterStatNames.MovementSpeed].GetValue();
 
-        if (InputManager.GetInstance().GetSprintPressed() && character.currentStamina >= 0f && movement != Vector3.zero) {
+        if (InputManager.GetInstance().GetSprintPressed() && character.currentStamina > 0f && movement != Vector3.zero) {
             movement *= character.statsCharacter[CharacterStatNames.SprintMultiplier].GetValue();
 
             character.ChangeStamina(-5 * Time.deltaTime); // 5 stamina per second

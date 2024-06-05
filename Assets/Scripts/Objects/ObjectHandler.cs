@@ -35,6 +35,9 @@ public class ObjectHandler : MonoBehaviour
     public ObjectStatusHandler objectStatusHandler;
 
 
+    public ConditionHandler conditionHandler { get; protected set; }
+
+
     // Events
     public event System.Action<float, WeaponHandler, CharacterHandler> OnTakeDamage = delegate { };
     public event System.Action<ObjectHandler> OnDeath = delegate { };
@@ -52,6 +55,8 @@ public class ObjectHandler : MonoBehaviour
         foreach (ObjectStatValue sv in baseStats.stats) {
             statsObject.Add(sv.statName, new Stat(sv.value));
         }
+
+        conditionHandler = new ConditionHandler();
     }
 
     protected virtual void Start() {
@@ -59,6 +64,12 @@ public class ObjectHandler : MonoBehaviour
 
         objectStatusHandler = GetComponent<ObjectStatusHandler>();
     }
+
+
+    protected virtual void Update() {
+        conditionHandler.Tick();
+    }
+
 
     private void FixedUpdate() {
         rigidBody.velocity = Vector2.zero;
