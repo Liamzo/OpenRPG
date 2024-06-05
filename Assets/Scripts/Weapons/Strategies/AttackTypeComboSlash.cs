@@ -244,11 +244,17 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
         fullyCharged = false;
         chargeTimer = 0f;
 
-        if (inCombo && charging) {
+        if (charging) {
             currentComboAttack = prevComboAttack;
             charging = false;
 
-            weapon.animator.Play(currentComboAttack.attackAnimName, 0, 1.1f); // TODO: Save if we did a normal or heavy attack
+            if (currentComboAttack == null) {
+                weapon.animator.SetTrigger("Idle");
+                weapon.animator.speed = 1.0f;
+            } else {
+                weapon.animator.Play(currentComboAttack.attackAnimName, 0, 1.1f); // TODO: Save if we did a normal or heavy attack
+            }
+
         }
     }
 }
