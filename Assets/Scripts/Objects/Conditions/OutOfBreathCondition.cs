@@ -31,6 +31,8 @@ public class OutOfBreathCondition : BaseCondition
         if (durationPause > 0f) {
             owner.statsCharacter[CharacterStatNames.StaminaRegen].AddModifier(-pauseStrength);
         }
+
+        AudioManager.instance.PlayClipRandom(AudioID.HeavyBreathing, owner.audioSource);
     }
 
     public override void Tick()
@@ -46,7 +48,26 @@ public class OutOfBreathCondition : BaseCondition
 
     public override void End()
     {
-        owner.statsCharacter[CharacterStatNames.StaminaRegen].RemoveModifier(-pauseStrength);
+        if (durationPause > 0f) {
+            owner.statsCharacter[CharacterStatNames.StaminaRegen].RemoveModifier(-pauseStrength);
+        }
         owner.conditionHandler.RemoveCondition(this);
+    }
+
+    public override void SameAdded(BaseCondition condition)
+    {
+        OutOfBreathCondition otherCondition = (OutOfBreathCondition) condition;
+        // Reset and use the new one's values
+
+        if (durationPause > 0f) {
+            owner.statsCharacter[CharacterStatNames.StaminaRegen].RemoveModifier(-pauseStrength);
+        }
+
+        durationStop = otherCondition.durationStop;
+        durationPause = otherCondition.durationPause;
+        pauseStrength = otherCondition.pauseStrength;
+        timerPause = 0f;
+
+        Start();
     }
 }

@@ -7,4 +7,5 @@ public abstract class BaseCondition
     public abstract void Start();
     public abstract void Tick();
     public abstract void End();
+    public abstract void SameAdded(BaseCondition condition);
 }

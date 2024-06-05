@@ -145,7 +145,7 @@ public class Player : BaseBrain
     }
 
     void DodgeControls() {
-        if (InputManager.GetInstance().GetDashPressed() && dodgeTimer <= 0.0f && dodgeCDTimer <= 0.0f && character.currentStamina >= dodgeStaminaCost) {
+        if (InputManager.GetInstance().GetDashPressed() && dodgeTimer <= 0.0f && dodgeCDTimer <= 0.0f && character.currentStamina > 0f) {
             // Start dodge
             wasDodging = true;
 
@@ -223,6 +223,7 @@ public class Player : BaseBrain
 
         WeaponHandler weapon = equipmentHandler.rightMeleeSpot.weapon;
 
+        // Swithcing Weapons Melee or Ranged
         if (InputManager.GetInstance().GetToggleRangedPressed()) {
             // Ranged
             // If switching equipment and previously attacking, cancel that attack
@@ -278,7 +279,7 @@ public class Player : BaseBrain
 
             float weaponHoldCost = weapon.AttackHoldCost(triggerSlot);
             
-            if (character.currentStamina >= weaponHoldCost && weapon.CanAttackHold(triggerSlot)) 
+            if (character.currentStamina > 0 && weapon.CanAttackHold(triggerSlot)) 
             {
                 wasAttacking[triggerSlot] = true;
 
@@ -291,7 +292,7 @@ public class Player : BaseBrain
 
                 SpriteLookAtMouse();
             } 
-            else if (wasAttacking[triggerSlot] && character.currentStamina < weaponHoldCost) 
+            else if (wasAttacking[triggerSlot] && character.currentStamina <= 0f) 
             {
                 weapon.AttackCancel(triggerSlot);
                 wasAttacking[triggerSlot] = false;
@@ -301,7 +302,7 @@ public class Player : BaseBrain
         {
             float weaponReleaseCost = weapon.AttackReleaseCost(triggerSlot);
 
-            if (character.currentStamina >= weaponReleaseCost && weapon.CanAttackRelease(triggerSlot)) 
+            if (character.currentStamina > 0 && weapon.CanAttackRelease(triggerSlot)) 
             {
                 weapon.AttackRelease(triggerSlot);
 

@@ -26,7 +26,10 @@ public class ConditionHandler
     public void AddCondition(BaseCondition condition)
     {
         foreach (BaseCondition activeCondition in conditions) {
-            if (condition.GetType() == activeCondition.GetType()) return; // Can't have 2 of same condition
+            if (condition.GetType() == activeCondition.GetType()) {
+                activeCondition.SameAdded(condition);
+                return;
+            }
         }
 
         conditions.Add(condition);
