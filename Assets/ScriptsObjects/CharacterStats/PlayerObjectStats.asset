@@ -18,7 +18,7 @@ MonoBehaviour:
   expValue: 10
   stats:
   - statName: 0
-    value: 100
+    value: 20
   - statName: 1
     value: 0
   - statName: 2

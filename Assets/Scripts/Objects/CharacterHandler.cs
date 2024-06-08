@@ -69,8 +69,11 @@ public class CharacterHandler : ObjectHandler
     public virtual void ChangeStamina(float changeAmount) {
         currentStamina = Mathf.Clamp(currentStamina + changeAmount, 0f, statsCharacter[CharacterStatNames.Stamina].GetValue());
 
+        Debug.Log("change: " + changeAmount);
+        Debug.Log(currentStamina);
+
         if (currentStamina <= 0f) {
-            conditionHandler.AddCondition(new OutOfBreathCondition(this, 2f, 5f, 15f));
+            conditionHandler.AddCondition(new OutOfBreathCondition(this, 2f, 5f, 10f));
         }
     }
 

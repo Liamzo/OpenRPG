@@ -224,7 +224,7 @@ public class Player : BaseBrain
         WeaponHandler weapon = equipmentHandler.rightMeleeSpot.weapon;
 
         // Swithcing Weapons Melee or Ranged
-        if (InputManager.GetInstance().GetToggleRangedPressed()) {
+        if (InputManager.GetInstance().GetToggleRangedPressed() && character.currentStamina > 0) {
             // Ranged
             // If switching equipment and previously attacking, cancel that attack
             if (equipmentHandler.meleeDrawn == true && (wasAttacking[0] || wasAttacking[1])) {
