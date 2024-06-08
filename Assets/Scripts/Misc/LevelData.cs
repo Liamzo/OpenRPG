@@ -11,6 +11,8 @@ public class LevelData : ScriptableObject
     public string y;
     public Sprite icon;
 
+    public Vector2 spawnPosition;
+
     [Header("First Generation Settings")]
     public List<ItemStart> items;
     public List<CharacterStart> characters;

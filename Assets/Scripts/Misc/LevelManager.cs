@@ -53,6 +53,8 @@ public class LevelManager : MonoBehaviour
         } else {
             currentLevel.LoadLevel();
         }
+
+        Player.instance.transform.position = currentLevel.levelData.spawnPosition;
     }
 
 
