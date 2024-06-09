@@ -117,6 +117,53 @@ public class NonPlayerBrain : BaseBrain
         return dir;
     }
 
+    public Vector3 FindPossibleDirectionFromIdeal(Vector3 idealDir) {
+        float score = 10f;
+
+        Debug.DrawLine(transform.position, transform.position + (idealDir * 5), Color.yellow, 0.1f);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, idealDir, 5f);
+        if (hit.collider != null) {
+            score += hit.distance * 2;
+            Debug.Log(hit.transform.name);
+        } else {
+            score += 10;
+        }
+
+        Vector3 bestDir = idealDir;
+        float bestScore = score;
+
+        for(int i = 10; i <= 180; i += 10) {
+            // Used to check either side of the Character
+            for (int j = -1; j <= 1; j += 2) {
+                if (j == 1 && (i == 0 || i == 180)) {
+                    continue;
+                }
+
+                // Maybe want something that favours when i is low, that way it will prefer to run away
+
+                Vector3 tryDir = Quaternion.AngleAxis(i * j, Vector3.forward) * idealDir;
+                score = 10 * Vector3.Dot(idealDir, tryDir);
+
+                hit = Physics2D.Raycast(transform.position, tryDir, 5f);
+                if (hit.collider != null) {
+                    Debug.DrawLine(transform.position, transform.position + (tryDir * 5), Color.red, 0.1f);
+                    score += hit.distance * 2;
+                } else {
+                    Debug.DrawLine(transform.position, transform.position + (tryDir * 5), Color.white, 0.1f);
+                    score += 10;
+                }
+
+                if (score > bestScore) {
+                    bestScore = score;
+                    bestDir = tryDir;
+                }
+            }
+        }
+
+        Debug.DrawLine(transform.position, transform.position + (bestDir * 5), Color.blue, 0.1f);
+        return bestDir.normalized;
+    }
+
 
     public void ResetAttackCoolDown() {
         float randRange = Random.Range(-attackCoolDownRange, attackCoolDownRange);

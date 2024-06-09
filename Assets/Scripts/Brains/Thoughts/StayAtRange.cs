@@ -48,44 +48,8 @@ public class StayAtRange : BaseThought
         Vector3 idealDir = (idealPos - transform.position).normalized;
         
 
-        float score = 10f;
+        Vector3 bestDir = brain.FindPossibleDirectionFromIdeal(idealDir);
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, idealDir, 5f);
-        if (hit.collider != null) {
-            score += hit.distance * 2;
-        } else {
-            score += 10;
-        }
-
-        Vector3 bestDir = idealDir;
-        float bestScore = score;
-
-        for(int i = 20; i <= 180; i += 20) {
-            // Used to check either side of the Character
-            for (int j = -1; j <= 1; j += 2) {
-                if (j == 1 && (i == 0 || i == 180)) {
-                    continue;
-                }
-
-                // Maybe want something that favours when i is low, that way it will prefer to run away
-
-                Vector3 tryDir = Quaternion.AngleAxis(i * j, Vector3.forward) * idealDir;
-                score = 10 * Vector3.Dot(idealDir, tryDir);
-
-                hit = Physics2D.Raycast(transform.position, tryDir, 5f);
-                if (hit.collider != null) {
-                    score += hit.distance * 2;
-                } else {
-                    score += 10;
-                }
-
-                if (score > bestScore) {
-                    bestScore = score;
-                    bestDir = tryDir;
-                }
-            }
-        }
-
-        brain.movement += bestDir.normalized * brain.character.statsCharacter[CharacterStatNames.MovementSpeed].GetValue() * 0.75f;
+        brain.movement += bestDir * brain.character.statsCharacter[CharacterStatNames.MovementSpeed].GetValue() * 0.75f;
     }
 }
