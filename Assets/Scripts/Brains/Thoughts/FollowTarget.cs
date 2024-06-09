@@ -36,8 +36,10 @@ public class FollowTarget : BaseThought
         if (Vector3.Distance(transform.position, brain.threatHandler.TargetLastSeen.Value) < 0.5f) {
             // Close enough to last seen point, so just wait
             return;
-        }    
+        }
 
-        brain.movement += brain.GetDirectionFromPath() * brain.character.statsCharacter[CharacterStatNames.MovementSpeed].GetValue() * 0.9f; // 90% speed
+        Vector3 bestDir = brain.FindPossibleDirectionFromIdeal(brain.GetDirectionFromPath());
+
+        brain.movement += bestDir * brain.character.statsCharacter[CharacterStatNames.MovementSpeed].GetValue() * 0.9f; // 90% speed
     }
 }

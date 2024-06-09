@@ -56,6 +56,7 @@ public class CircleTarget : BaseThought
     public override void Execute()
     {
         brain.SetLookingDirection(brain.threatHandler.TargetLastSeen.Value);
+        brain.equipmentHandler.rightMeleeSpot.weapon.Unholster(); // Temp, do better
 
         float dist = Vector3.Distance(transform.position, brain.threatHandler.Target.transform.position);
 
@@ -92,7 +93,7 @@ public class CircleTarget : BaseThought
 
                 NavMeshPath vertPath = new NavMeshPath();
                 if (NavMesh.CalculatePath(transform.position, vertTarget, NavMesh.AllAreas, vertPath) && vertPath.corners.Length > 1) {
-                    brain.movement += brain.GetDirectionFromPath(vertPath) * moveSpeed; // 70% move speed
+                    brain.movement += brain.FindPossibleDirectionFromIdeal(brain.GetDirectionFromPath(vertPath)) * moveSpeed; // 70% move speed
                 }
                 
                 return;
@@ -123,8 +124,11 @@ public class CircleTarget : BaseThought
         }
 
         NavMeshPath path = new NavMeshPath();
+
+
         if (NavMesh.CalculatePath(transform.position, horzTarget, NavMesh.AllAreas, path) && path.corners.Length > 1) {
-            brain.movement += brain.GetDirectionFromPath(path) * moveSpeed; // 70% move speed
+            Vector3 bestDir = brain.FindPossibleDirectionFromIdeal(brain.GetDirectionFromPath(path));
+            brain.movement += bestDir * moveSpeed; // 70% move speed
         } else {
             // Bug where Orc gets stuck on wall, thinks there's a path when none exists so keeps moving into wall. Path length returns 2, need to verify points
             circleDirection *= -1;
@@ -132,11 +136,22 @@ public class CircleTarget : BaseThought
 
             horzTarget = brain.threatHandler.Target.transform.position + horzPos;
             if (NavMesh.CalculatePath(transform.position, horzTarget, NavMesh.AllAreas, path)) {
-                brain.movement += brain.GetDirectionFromPath(path) * moveSpeed; // 70% move speed
+                Vector3 bestDir = brain.FindPossibleDirectionFromIdeal(brain.GetDirectionFromPath(path));
+                brain.movement += bestDir * moveSpeed; // 70% move speed
             }
         }
 
 
-        brain.equipmentHandler.rightMeleeSpot.weapon.Unholster(); // Temp, do better
+        // if (NavMesh.CalculatePath(transform.position, horzTarget, NavMesh.AllAreas, path) && path.corners.Length <= 1) {
+        //     // Bug where Orc gets stuck on wall, thinks there's a path when none exists so keeps moving into wall. Path length returns 2, need to verify points
+        //     circleDirection *= -1;
+        //     horzPos = Quaternion.AngleAxis(20 * circleDirection, Vector3.forward) * vertPos;
+
+        //     horzTarget = brain.threatHandler.Target.transform.position + horzPos;
+        //     if (!NavMesh.CalculatePath(transform.position, horzTarget, NavMesh.AllAreas, path)) return;
+        // }
+
+        // Vector3 bestDir = brain.FindPossibleDirectionFromIdeal(brain.GetDirectionFromPath(path));
+        // brain.movement += bestDir * moveSpeed; // 70% move speed
     }
 }

@@ -17,9 +17,18 @@ MonoBehaviour:
   comboChain:
     comboInputType: 0
     chargeAnimName: Combo_Charge01
-    attackAnimName: Combo_Attack01
-    attackHeavyAnimName: 
-    swingDuration: 0.4
+    lightAttack:
+      attackAnimName: Combo_Attack01
+      swingDuration: 1
+      knockBackModifier: 1
+      selfKnockBackModifier: 1
+      staggerModifier: 1
+    heavyAttack:
+      attackAnimName: 
+      swingDuration: 1
+      knockBackModifier: 1
+      selfKnockBackModifier: 1
+      staggerModifier: 1
     endHoldDuration: 1
     comboChains:
     - rid: 4788015104347865088
@@ -31,9 +40,18 @@ MonoBehaviour:
       data:
         comboInputType: 0
         chargeAnimName: Combo_Charge02
-        attackAnimName: Combo_Attack02
-        attackHeavyAnimName: 
-        swingDuration: 0.4
+        lightAttack:
+          attackAnimName: Combo_Attack02
+          swingDuration: 1
+          knockBackModifier: 1
+          selfKnockBackModifier: 1
+          staggerModifier: 1
+        heavyAttack:
+          attackAnimName: 
+          swingDuration: 1
+          knockBackModifier: 1
+          selfKnockBackModifier: 1
+          staggerModifier: 1
         endHoldDuration: 1
         comboChains:
         - rid: 4788015104347865090
@@ -43,9 +61,18 @@ MonoBehaviour:
       data:
         comboInputType: 0
         chargeAnimName: Combo_Charge03
-        attackAnimName: Combo_Attack03
-        attackHeavyAnimName: 
-        swingDuration: 0.3
+        lightAttack:
+          attackAnimName: Combo_Attack03
+          swingDuration: 1
+          knockBackModifier: 1
+          selfKnockBackModifier: 1
+          staggerModifier: 1
+        heavyAttack:
+          attackAnimName: 
+          swingDuration: 1
+          knockBackModifier: 1
+          selfKnockBackModifier: 1
+          staggerModifier: 1
         endHoldDuration: 0.2
         comboChains: []
     - rid: 4788015152540155908
@@ -53,8 +80,17 @@ MonoBehaviour:
       data:
         comboInputType: 0
         chargeAnimName: Combo_Charge01
-        attackAnimName: Combo_Attack01
-        attackHeavyAnimName: 
-        swingDuration: 0.6
+        lightAttack:
+          attackAnimName: Combo_Attack01
+          swingDuration: 1
+          knockBackModifier: 1
+          selfKnockBackModifier: 1
+          staggerModifier: 1
+        heavyAttack:
+          attackAnimName: 
+          swingDuration: 1
+          knockBackModifier: 1
+          selfKnockBackModifier: 1
+          staggerModifier: 1
         endHoldDuration: 1
         comboChains: []

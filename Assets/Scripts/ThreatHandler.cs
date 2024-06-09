@@ -66,7 +66,7 @@ public class ThreatHandler : MonoBehaviour
 
         LayerMask mask = LayerMask.GetMask("Default");
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0,0.6f,0), targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), mask);
+        RaycastHit2D hit = Physics2D.Raycast(characterHandler.brain.Collider.bounds.center, targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), mask);
 
         if (hit.collider != null && hit.collider.gameObject == target.gameObject) {
             return new LineOfSightInfo(true, targetInRange, null, hit);
@@ -84,7 +84,8 @@ public class ThreatHandler : MonoBehaviour
 
         LayerMask mask = LayerMask.GetMask("Default");
 
-        RaycastHit2D hit = Physics2D.Raycast(position + new Vector3(0,0.6f,0), targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), mask);
+        float middleOfCollider = characterHandler.brain.Collider.bounds.extents.y / 2f;
+        RaycastHit2D hit = Physics2D.Raycast(position + new Vector3(0,middleOfCollider,0), targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), mask);
 
         if (hit.collider != null && hit.collider.gameObject == target.gameObject) {
             return new LineOfSightInfo(true, targetInRange, null, hit);
@@ -109,7 +110,7 @@ public class ThreatHandler : MonoBehaviour
 
             LayerMask mask = LayerMask.GetMask("Default");
 
-            RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0,0.6f,0), targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), mask);
+            RaycastHit2D hit = Physics2D.Raycast(characterHandler.brain.Collider.bounds.center, targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), mask);
 
             if (hit.collider != null && hit.collider.gameObject == otherCharacter.gameObject) {
                 // Can see the character, evaluate the threat

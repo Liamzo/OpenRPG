@@ -83,8 +83,8 @@ public class Idle : BaseThought
         }
 
         Vector3 moveDir = Quaternion.AngleAxis(noise, Vector3.forward) * prevDir;
-
-        brain.movement += moveDir.normalized * brain.character.statsCharacter[CharacterStatNames.MovementSpeed].GetValue() * 0.3f; // 30% move speed
+        Vector3 bestDir = brain.FindPossibleDirectionFromIdeal(moveDir.normalized);
+        brain.movement += bestDir * brain.character.statsCharacter[CharacterStatNames.MovementSpeed].GetValue() * 0.3f; // 30% move speed
 
         prevDir = moveDir;
 

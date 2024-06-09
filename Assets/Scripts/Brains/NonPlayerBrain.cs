@@ -15,6 +15,7 @@ public class NonPlayerBrain : BaseBrain
 
     protected BaseThought[] thoughts;
     public BaseThought thoughtLocked = null;
+    public BaseThought previousThought = null;
 
     [Header("Combat")]
     public float attackCoolDown;
@@ -83,6 +84,8 @@ public class NonPlayerBrain : BaseBrain
             bestThought.Execute();
         }
 
+        previousThought = bestThought;
+
         _animator.SetFloat("Movement", movement.magnitude / character.statsCharacter[CharacterStatNames.MovementSpeed].baseValue);
         footEmission.rateOverTime = 7f * (movement.magnitude / character.statsCharacter[CharacterStatNames.MovementSpeed].baseValue);
     }
@@ -118,50 +121,88 @@ public class NonPlayerBrain : BaseBrain
     }
 
     public Vector3 FindPossibleDirectionFromIdeal(Vector3 idealDir) {
-        float score = 10f;
+        int tryAngle = 15;
+        bool idealClear = true;
+        List<bool> rightSideClear = new List<bool>();
+        List<bool> leftSideClear = new List<bool>();
 
-        Debug.DrawLine(transform.position, transform.position + (idealDir * 5), Color.yellow, 0.1f);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, idealDir, 5f);
+        //Debug.DrawLine(collider.bounds.center, collider.bounds.center + (idealDir * 5f), Color.yellow, 0.1f);
+        RaycastHit2D hit = Physics2D.Raycast(Collider.bounds.center, idealDir, 5f);
         if (hit.collider != null) {
-            score += hit.distance * 2;
-            Debug.Log(hit.transform.name);
-        } else {
-            score += 10;
+            idealClear = false;
         }
 
-        Vector3 bestDir = idealDir;
-        float bestScore = score;
-
-        for(int i = 10; i <= 180; i += 10) {
+        for(int i = tryAngle; i <= 180; i += tryAngle) {
             // Used to check either side of the Character
             for (int j = -1; j <= 1; j += 2) {
-                if (j == 1 && (i == 0 || i == 180)) {
+                if (j == 1 && i == 180) {
                     continue;
                 }
 
-                // Maybe want something that favours when i is low, that way it will prefer to run away
-
                 Vector3 tryDir = Quaternion.AngleAxis(i * j, Vector3.forward) * idealDir;
-                score = 10 * Vector3.Dot(idealDir, tryDir);
 
-                hit = Physics2D.Raycast(transform.position, tryDir, 5f);
+                hit = Physics2D.Raycast(Collider.bounds.center, tryDir, 5f);
                 if (hit.collider != null) {
-                    Debug.DrawLine(transform.position, transform.position + (tryDir * 5), Color.red, 0.1f);
-                    score += hit.distance * 2;
+                    //Debug.DrawLine(collider.bounds.center, collider.bounds.center + (tryDir * 5f), Color.red, 0.1f);
+                    if (j == 1) {
+                        rightSideClear.Add(false);
+                    } else {
+                        leftSideClear.Add(false);
+                    }
                 } else {
-                    Debug.DrawLine(transform.position, transform.position + (tryDir * 5), Color.white, 0.1f);
-                    score += 10;
+                    //Debug.DrawLine(collider.bounds.center, collider.bounds.center + (tryDir * 5f), Color.white, 0.1f);
+                    if (j == 1) {
+                        rightSideClear.Add(true);
+                    } else {
+                        leftSideClear.Add(true);
+                    }
                 }
 
-                if (score > bestScore) {
-                    bestScore = score;
-                    bestDir = tryDir;
-                }
             }
         }
 
-        Debug.DrawLine(transform.position, transform.position + (bestDir * 5), Color.blue, 0.1f);
-        return bestDir.normalized;
+        
+
+        if (idealClear && rightSideClear[0] && leftSideClear[0]) {
+            Debug.DrawLine(Collider.bounds.center, Collider.bounds.center + (idealDir.normalized * 5f), Color.blue, 0.1f);
+            return idealDir.normalized;
+        }
+
+        int rightSideCount = idealClear ? 1 : 0;
+        int leftSideCount = idealClear ? 1 : 0;
+
+        for(int i = 0; i < leftSideClear.Count; i++) {
+            if (rightSideClear[i]) {
+                rightSideCount++;
+            } else {
+                rightSideCount = 0;
+            }
+
+            if (rightSideCount == 3) {
+                // Find a direction clear on both sides
+                Vector3 bestDir = Quaternion.AngleAxis(i*tryAngle, Vector3.forward) * idealDir;
+                Debug.DrawLine(Collider.bounds.center, Collider.bounds.center + (bestDir * 5f), Color.blue, 0.1f);
+                return bestDir.normalized;
+            }
+
+            if (leftSideClear[i]) {
+                leftSideCount++;
+            } else {
+                leftSideCount = 0;
+            }
+
+            if (leftSideCount == 3) {
+                // Find a direction clear on both sides
+                Vector3 bestDir = Quaternion.AngleAxis(i*-tryAngle, Vector3.forward) * idealDir;
+                Debug.DrawLine(Collider.bounds.center, Collider.bounds.center + (bestDir * 5f), Color.blue, 0.1f);
+                return bestDir.normalized;
+            }
+        }
+
+
+        Debug.LogWarning("Couldn't find a clear direction");
+        Debug.DrawLine(Collider.bounds.center, Collider.bounds.center + (idealDir.normalized * 5f), Color.blue, 0.1f);
+        return idealDir.normalized;
     }
 
 

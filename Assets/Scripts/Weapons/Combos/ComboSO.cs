@@ -16,13 +16,20 @@ public class ComboSO : ScriptableObject
 public class ComboAttack {
     public ComboInputType comboInputType;
     public string chargeAnimName;
-    public string attackAnimName;
-    public string attackHeavyAnimName;
-
-    public float swingDuration;
+    public AttackDetails lightAttack;
+    public AttackDetails heavyAttack;
     public float endHoldDuration;
 
     [SerializeReference] public List<ComboAttack> comboChains;
+}
+
+[System.Serializable]
+public class AttackDetails {
+    public string attackAnimName;
+    public float swingDuration = 1f;
+    public float knockBackModifier = 1f;
+    public float selfKnockBackModifier = 1f;
+    public float staggerModifier = 1f;
 }
 
 public enum ComboInputType {

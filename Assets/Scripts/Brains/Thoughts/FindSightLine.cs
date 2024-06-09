@@ -47,8 +47,9 @@ public class FindSightLine : BaseThought
                 LineOfSightInfo lineOfSightInfo = brain.threatHandler.CheckLineOfSightFromPosition(brain.threatHandler.Target, tryPosition);
 
                 if (lineOfSightInfo.TargetInLineOfSight) {
-                    Vector3 movingDir = (tryPosition - transform.position).normalized;
-                    brain.movement += movingDir * brain.character.statsCharacter[CharacterStatNames.MovementSpeed].GetValue() * 0.75f;
+                    Vector3 idealDir = (tryPosition - transform.position).normalized;
+                    Vector3 bestDir = brain.FindPossibleDirectionFromIdeal(idealDir);
+                    brain.movement += bestDir * brain.character.statsCharacter[CharacterStatNames.MovementSpeed].GetValue() * 0.75f;
                     return;
                 }
             }
@@ -56,6 +57,7 @@ public class FindSightLine : BaseThought
 
 
         // Couldn't find a good position, so move towards the target
-        brain.movement += brain.GetDirectionFromPath() * brain.character.statsCharacter[CharacterStatNames.MovementSpeed].GetValue() * 0.75f;;
+        Vector3 moveDir = brain.FindPossibleDirectionFromIdeal(brain.GetDirectionFromPath());
+        brain.movement += moveDir * brain.character.statsCharacter[CharacterStatNames.MovementSpeed].GetValue() * 0.75f;;
     }
 }

@@ -37,10 +37,7 @@ public class StayAtRange : BaseThought
             return;
         }
 
-
-        // Find ideal direction
-        // Sweep in all directions in 20o
-        // Find best direction to move, go that way
+        
         Vector3 dir = (transform.position - brain.threatHandler.Target.transform.position).normalized;
         Vector3 idealPos = dir * ((minRange + maxRange) / 2);
         idealPos += brain.threatHandler.Target.transform.position;
