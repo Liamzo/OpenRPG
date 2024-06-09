@@ -14,7 +14,7 @@ public class OutOfBreathCondition : BaseCondition
     float pauseStrength;
 
 
-    public OutOfBreathCondition (CharacterHandler owner, float durationStop = 0f, float durationPause = 3f, float pauseStrength = 0.5f) {
+    public OutOfBreathCondition (CharacterHandler owner, float durationStop = 0f, float durationPause = 3f, float pauseStrength = 75f) {
         this.owner = owner;
         this.durationStop = durationStop;
         this.durationPause = durationPause;
@@ -29,7 +29,7 @@ public class OutOfBreathCondition : BaseCondition
         }
 
         if (durationPause > 0f) {
-            owner.statsCharacter[CharacterStatNames.StaminaRegen].AddModifier(-pauseStrength);
+            owner.statsCharacter[CharacterStatNames.StaminaRegen].AddModifier(new Modifier(ModifierTypes.Multiplier, -pauseStrength));
         }
 
         AudioManager.instance.PlayClipRandom(AudioID.HeavyBreathing, owner.audioSource);
@@ -49,7 +49,7 @@ public class OutOfBreathCondition : BaseCondition
     public override void End()
     {
         if (durationPause > 0f) {
-            owner.statsCharacter[CharacterStatNames.StaminaRegen].RemoveModifier(-pauseStrength);
+            owner.statsCharacter[CharacterStatNames.StaminaRegen].RemoveModifier(new Modifier(ModifierTypes.Multiplier, -pauseStrength));
         }
         owner.conditionHandler.RemoveCondition(this);
     }
@@ -60,7 +60,7 @@ public class OutOfBreathCondition : BaseCondition
         // Reset and use the new one's values
 
         if (durationPause > 0f) {
-            owner.statsCharacter[CharacterStatNames.StaminaRegen].RemoveModifier(-pauseStrength);
+            owner.statsCharacter[CharacterStatNames.StaminaRegen].RemoveModifier(new Modifier(ModifierTypes.Multiplier, -pauseStrength));
         }
 
         durationStop = otherCondition.durationStop;

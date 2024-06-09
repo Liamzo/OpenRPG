@@ -55,7 +55,7 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
         }
 
 
-        if (currentComboAttack != null && weapon.animator.GetCurrentAnimatorStateInfo(0).IsName(currentAttack.attackAnimName) && weapon.animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1.0f) {
+        if (currentComboAttack != null && currentAttack != null && weapon.animator.GetCurrentAnimatorStateInfo(0).IsName(currentAttack.attackAnimName) && weapon.animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1.0f) {
             // Swing animation is complete, wait for the end hold duration before returning to Idle
             weapon.animator.speed = 1.0f;
             endHoldTimer += Time.deltaTime;
@@ -69,7 +69,7 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
                 ResetComboToIdle(); // Don't want to change the animation
             }
         } 
-        else if (currentComboAttack != null && !weapon.animator.GetCurrentAnimatorStateInfo(0).IsName(currentAttack.attackAnimName) && !weapon.animator.GetCurrentAnimatorStateInfo(0).IsName(currentComboAttack.chargeAnimName)) 
+        else if (currentComboAttack != null && currentAttack != null && !weapon.animator.GetCurrentAnimatorStateInfo(0).IsName(currentAttack.attackAnimName) && !weapon.animator.GetCurrentAnimatorStateInfo(0).IsName(currentComboAttack.chargeAnimName)) 
         {
             // Started an attack but no longer playing one of the associated animations
             // Therefore, probably interupted by something, such as Blocking or getting hit
@@ -121,7 +121,7 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
 
             // Slow down movement
             CharacterHandler character = (CharacterHandler) weapon.item.owner;
-            character.statsCharacter[CharacterStatNames.MovementSpeed].AddModifier(-4f);
+            character.statsCharacter[CharacterStatNames.MovementSpeed].AddModifier(new Modifier(ModifierTypes.Multiplier, -90f));
         }
     }
 
@@ -145,7 +145,7 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
         currentAttack = null;
 
         CharacterHandler character = (CharacterHandler) weapon.item.owner;
-        character.statsCharacter[CharacterStatNames.MovementSpeed].RemoveModifier(-4f);
+        character.statsCharacter[CharacterStatNames.MovementSpeed].RemoveModifier(new Modifier(ModifierTypes.Multiplier, -90f));
 
         charging = false;
 

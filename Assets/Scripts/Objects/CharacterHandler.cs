@@ -70,7 +70,7 @@ public class CharacterHandler : ObjectHandler
         currentStamina = Mathf.Clamp(currentStamina + changeAmount, 0f, statsCharacter[CharacterStatNames.Stamina].GetValue());
 
         if (currentStamina <= 0f) {
-            conditionHandler.AddCondition(new OutOfBreathCondition(this, 2f, 5f, 10f));
+            conditionHandler.AddCondition(new OutOfBreathCondition(this, 2f, 5f, 75f));
         }
     }
 
