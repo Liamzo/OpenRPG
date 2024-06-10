@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class DamageTypeStandard : BaseStrategy, IDamageType
 {
-    public void DealDamage(ObjectHandler target, float charge)
+    void Start()
+    {
+        weapon.triggerHolders[triggerSlot].OnHitTarget += DealDamage;
+    }
+
+    public void DealDamage(ObjectHandler target, HitOutcome hitOutcome, float charge)
     {
         // Roll for Damage
         float damage = 0.0f;
@@ -12,8 +17,6 @@ public class DamageTypeStandard : BaseStrategy, IDamageType
         for (int i = 0; i < weapon.statsWeapon[WeaponStatNames.DamageRollCount].GetValue(); i++) {
             damage += Random.Range(1, (int)weapon.GetStatValue(WeaponStatNames.DamageRollValue) + 1);
         }
-
-        HitOutcome hitOutcome = target.GetHit(damage, weapon, (CharacterHandler) weapon.item.owner);
 
         if (hitOutcome == HitOutcome.Hit) {
             GameManager.instance.ShakeCamera(8.0f, 0.2f);
@@ -23,15 +26,11 @@ public class DamageTypeStandard : BaseStrategy, IDamageType
             target.objectStatusHandler.BlockMovementControls(weapon.GetStatValue(WeaponStatNames.Stagger));
 
             target.TakeDamge(damage, weapon, (CharacterHandler) weapon.item.owner);
-            
-            weapon.triggerHolders[triggerSlot].CallOnHitTarget(target);
         } else if (hitOutcome == HitOutcome.Block) {
             GameManager.instance.ShakeCamera(5.0f, 0.15f);
             GameManager.instance.HitStop(0.05f);
 
             target.objectStatusHandler.BlockMovementControls(weapon.GetStatValue(WeaponStatNames.Stagger));
-
-            weapon.triggerHolders[triggerSlot].CallOnHitTarget(target);
         } else if (hitOutcome == HitOutcome.Dodge) {
 
         }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IDamageType
 {
-    public void DealDamage(ObjectHandler target, float charge);
+    public void DealDamage(ObjectHandler target, HitOutcome hitOutcome, float charge);
 }
 
 public enum HitOutcome {

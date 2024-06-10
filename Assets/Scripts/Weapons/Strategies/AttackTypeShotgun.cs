@@ -20,7 +20,7 @@ public class AttackTypeShotgun : BaseStrategy, IAttackType
         List<ObjectHandler> targets = EnemiesInCone();
 
         foreach(ObjectHandler target in targets) {
-            weapon.triggerHolders[triggerSlot].damageType.DealDamage(target, charge); // Could potentially delay based on distance
+            weapon.CallOnHitTarget(triggerSlot, target, charge); // Could potentially delay based on distance
         }
 
         fireEffect.Play();

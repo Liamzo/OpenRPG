@@ -35,7 +35,7 @@ public class AttackTypeSlash : BaseStrategy, IAttackType
         if (other.TryGetComponent<ObjectHandler>(out otherObjectHandler)) {
             if (otherObjectHandler == weapon.item.owner) return;
             
-            weapon.triggerHolders[triggerSlot].damageType.DealDamage(otherObjectHandler, lastCharge);
+            weapon.CallOnHitTarget(triggerSlot, otherObjectHandler, lastCharge);
         }
     }
 }

@@ -44,7 +44,7 @@ public class CharacterHandler : ObjectHandler
     }
 
 
-    public override HitOutcome GetHit(float damage, WeaponHandler weapon, CharacterHandler damageDealer) 
+    public override HitOutcome GetHit(WeaponHandler weapon, CharacterHandler damageDealer) 
     {
         if (objectStatusHandler.isBlocking) {
             Vector3 attackerDir = damageDealer.rigidBody.position - rigidBody.position;
@@ -53,16 +53,16 @@ public class CharacterHandler : ObjectHandler
 
             if (angleBetween <= objectStatusHandler.blockAngle)
             {
-                // Blocked attack
-                ChangeStamina(-damage);
+                // // Blocked attack
+                // ChangeStamina(-damage);
 
-                AudioManager.instance.PlayClipRandom(AudioID.Block, audioSource);
+                // AudioManager.instance.PlayClipRandom(AudioID.Block, audioSource);
 
                 return HitOutcome.Block;
             }
         }
 
-        return base.GetHit(damage, weapon, damageDealer);
+        return base.GetHit(weapon, damageDealer);
     }
 
 

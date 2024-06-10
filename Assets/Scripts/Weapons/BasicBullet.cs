@@ -28,9 +28,9 @@ public class BasicBullet : MonoBehaviour
         if (other.gameObject.TryGetComponent<ObjectHandler>(out ObjectHandler objectHandler)) {
             if (objectHandler == weapon.item.owner) return;
 
-            weapon.triggerHolders[triggerSlot].damageType.DealDamage(objectHandler, weaponCharge);
+            weapon.CallOnHitTarget(triggerSlot, objectHandler, weaponCharge);
         } else {
-            weapon.CallOnHitTarget(triggerSlot, null);
+            weapon.CallOnHitTarget(triggerSlot, null, weaponCharge);
         }
 
         Destroy(gameObject);

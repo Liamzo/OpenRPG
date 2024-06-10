@@ -16,7 +16,7 @@ public class OnHitTargetSound : BaseStrategy
         weaponAudioSource = weapon.GetComponent<AudioSource>();
     }
 
-    void PlaySound(ObjectHandler target) {
+    void PlaySound(ObjectHandler target, HitOutcome hitOutcome, float charge) {
         AudioManager.instance.PlayClipRandom(audioID, weaponAudioSource);
     }
 }
