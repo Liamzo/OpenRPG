@@ -21,7 +21,7 @@ public class Physicsable : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        objectHandler.OnTakeDamage += KnockBack;
+        
     }
 
     private void Update() {
@@ -37,11 +37,10 @@ public class Physicsable : MonoBehaviour
         }
     }
 
-    public void KnockBack(float damage, WeaponHandler weapon, CharacterHandler damageDealer) {
+    public void KnockBack(WeaponHandler weapon, float knockback) {
         Vector3 dir = (transform.position - weapon.item.owner.transform.position).normalized;
 
         // Calculate KnockBack Force
-        float knockback = weapon.statsWeapon[WeaponStatNames.KnockBack].GetValue();
         float weight = objectHandler.statsObject[ObjectStatNames.Weight].GetValue();
 
         float force = knockback / weight;

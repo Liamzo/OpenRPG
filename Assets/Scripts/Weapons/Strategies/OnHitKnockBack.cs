@@ -2,17 +2,47 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnHitKnockBack : MonoBehaviour
+public class OnHitKnockBack : BaseStrategy
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    [SerializeField] WeaponEvents triggerEvent;
+
+    private void Start() {
+        switch (triggerEvent)
+        {
+            case WeaponEvents.OnAttack:
+                weapon.triggerHolders[triggerSlot].OnAttack += DoKnockBack;
+                break;
+            case WeaponEvents.OnHitTarget:
+                weapon.triggerHolders[triggerSlot].OnHitTarget += DoKnockBack;
+                break;
+            case WeaponEvents.OnTrigger:
+                weapon.triggerHolders[triggerSlot].OnTrigger += DoKnockBack;
+                break;
+            case WeaponEvents.OnTriggerRelease:
+                weapon.triggerHolders[triggerSlot].OnTriggerRelease += DoKnockBack;
+                break;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+
+    // On Attack
+    private void DoKnockBack()
     {
-        
+        throw new System.Exception("This Strategy does not work with this event");
+    }
+
+    // On Trigger and Release
+    void DoKnockBack(float charge) {
+        throw new System.Exception("This Strategy does not work with this event");
+    }
+
+    // On Hit Target
+    private void DoKnockBack(ObjectHandler target, HitOutcome hitOutcome, float charge)
+    {
+        if (hitOutcome == HitOutcome.Hit) {
+            target.GetComponent<Physicsable>().KnockBack(weapon, weapon.statsWeapon[WeaponStatNames.KnockBack].GetValue());
+        } else if (hitOutcome == HitOutcome.Block) {
+            target.GetComponent<Physicsable>().KnockBack(weapon, weapon.statsWeapon[WeaponStatNames.KnockBack].GetValue()/2f);
+        }
     }
 }
