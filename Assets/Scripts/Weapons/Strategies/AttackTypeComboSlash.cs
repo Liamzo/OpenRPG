@@ -22,6 +22,7 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
     bool hasAvailableAttack = true;
 
     bool doingAttack = false;
+    bool endingAttack = false;
 
 
 
@@ -51,13 +52,22 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
         if  (doingAttack && weapon.strategies.GetComponent<Collider2D>().enabled)
         {
             doingAttack = false;
+            endingAttack = true;
             weapon.CallOnAttack(triggerSlot);
         }
 
 
         if (currentComboAttack != null && currentAttack != null && weapon.animator.GetCurrentAnimatorStateInfo(0).IsName(currentAttack.attackAnimName) && weapon.animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1.0f) {
             // Swing animation is complete, wait for the end hold duration before returning to Idle
-            weapon.animator.speed = 1.0f;
+            if (endingAttack) {
+                weapon.animator.speed = 1.0f;
+                endingAttack = false;
+
+                weapon.statsWeapon[WeaponStatNames.KnockBack].RemoveModifier(new Modifier(ModifierTypes.Multiplier, currentAttack.knockBackModifier));
+                weapon.statsWeapon[WeaponStatNames.SelfKnockForce].RemoveModifier(new Modifier(ModifierTypes.Multiplier, currentAttack.selfKnockBackModifier));
+                weapon.statsWeapon[WeaponStatNames.Stagger].RemoveModifier(new Modifier(ModifierTypes.Multiplier, currentAttack.staggerModifier));
+            }
+
             endHoldTimer += Time.deltaTime;
 
             if (currentComboAttack.comboChains.Count == 0 && hasAvailableAttack) {
@@ -104,13 +114,24 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
 
         endHoldTimer = 0f;
 
-        if (charge >= 100f && currentComboAttack.heavyAttack.attackAnimName != "")
+        if (charge >= 1f && currentComboAttack.heavyAttack.attackAnimName != ""){
             currentAttack = currentComboAttack.heavyAttack;
-        else
+        } 
+        else if(charge >= 1f && currentComboAttack.heavyAttack.attackAnimName == "")
+        {
+            currentAttack = currentComboAttack.heavyAttack;
+            currentAttack.attackAnimName = currentComboAttack.lightAttack.attackAnimName;
+        }
+        else {
             currentAttack = currentComboAttack.lightAttack;
+        }
 
         weapon.animator.Play(currentAttack.attackAnimName);
         weapon.animator.speed = 1.0f / currentAttack.swingDuration;
+
+        weapon.statsWeapon[WeaponStatNames.KnockBack].AddModifier(new Modifier(ModifierTypes.Multiplier, currentAttack.knockBackModifier));
+        weapon.statsWeapon[WeaponStatNames.SelfKnockForce].AddModifier(new Modifier(ModifierTypes.Multiplier, currentAttack.selfKnockBackModifier));
+        weapon.statsWeapon[WeaponStatNames.Stagger].AddModifier(new Modifier(ModifierTypes.Multiplier, currentAttack.staggerModifier));
 
         lastCharge = charge;
 
@@ -227,7 +248,9 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
 
             weapon.CallOnTriggerRelease(triggerSlot, chargeTimer);
 
-            AttackCancel();
+            isCharging = false;
+            fullyCharged = false;
+            chargeTimer = 0f;
         } else {
             AttackCancel();
         }
@@ -250,7 +273,40 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
             } else if (prevAttack != null) {
                 weapon.animator.Play(currentComboAttack.lightAttack.attackAnimName, 0, 1.1f); // TODO: Save if we did a normal or heavy attack
             }
+        }
 
+        if (doingAttack) {
+            currentComboAttack = prevComboAttack;
+            currentAttack = prevAttack;
+            doingAttack = false;
+
+            weapon.statsWeapon[WeaponStatNames.KnockBack].RemoveModifier(new Modifier(ModifierTypes.Multiplier, currentAttack.knockBackModifier));
+            weapon.statsWeapon[WeaponStatNames.SelfKnockForce].RemoveModifier(new Modifier(ModifierTypes.Multiplier, currentAttack.selfKnockBackModifier));
+            weapon.statsWeapon[WeaponStatNames.Stagger].RemoveModifier(new Modifier(ModifierTypes.Multiplier, currentAttack.staggerModifier));
+
+            if (currentComboAttack == null) {
+                weapon.animator.SetTrigger("Idle");
+                weapon.animator.speed = 1.0f;
+            } else if (prevAttack != null) {
+                weapon.animator.Play(currentComboAttack.lightAttack.attackAnimName, 0, 1.1f); // TODO: Save if we did a normal or heavy attack
+            }
+        }
+        
+        if (endingAttack) {
+            currentComboAttack = prevComboAttack;
+            currentAttack = prevAttack;
+            endingAttack = false;
+
+            weapon.statsWeapon[WeaponStatNames.KnockBack].RemoveModifier(new Modifier(ModifierTypes.Multiplier, currentAttack.knockBackModifier));
+            weapon.statsWeapon[WeaponStatNames.SelfKnockForce].RemoveModifier(new Modifier(ModifierTypes.Multiplier, currentAttack.selfKnockBackModifier));
+            weapon.statsWeapon[WeaponStatNames.Stagger].RemoveModifier(new Modifier(ModifierTypes.Multiplier, currentAttack.staggerModifier));
+
+            if (currentComboAttack == null) {
+                weapon.animator.SetTrigger("Idle");
+                weapon.animator.speed = 1.0f;
+            } else if (prevAttack != null) {
+                weapon.animator.Play(currentComboAttack.lightAttack.attackAnimName, 0, 1.1f); // TODO: Save if we did a normal or heavy attack
+            }
         }
     }
 

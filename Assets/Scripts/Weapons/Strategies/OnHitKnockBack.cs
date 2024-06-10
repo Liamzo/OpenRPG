@@ -39,6 +39,7 @@ public class OnHitKnockBack : BaseStrategy
     // On Hit Target
     private void DoKnockBack(ObjectHandler target, HitOutcome hitOutcome, float charge)
     {
+        Debug.Log("in knock back" + weapon.statsWeapon[WeaponStatNames.KnockBack].GetValue());
         if (hitOutcome == HitOutcome.Hit) {
             target.GetComponent<Physicsable>().KnockBack(weapon, weapon.statsWeapon[WeaponStatNames.KnockBack].GetValue());
         } else if (hitOutcome == HitOutcome.Block) {

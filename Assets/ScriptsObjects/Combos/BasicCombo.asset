@@ -19,16 +19,16 @@ MonoBehaviour:
     chargeAnimName: Combo_Charge01
     lightAttack:
       attackAnimName: Combo_Attack01
-      swingDuration: 1
-      knockBackModifier: 1
-      selfKnockBackModifier: 1
-      staggerModifier: 1
+      swingDuration: 0.5
+      knockBackModifier: 0
+      selfKnockBackModifier: 0
+      staggerModifier: 0
     heavyAttack:
       attackAnimName: 
-      swingDuration: 1
-      knockBackModifier: 1
-      selfKnockBackModifier: 1
-      staggerModifier: 1
+      swingDuration: 0.7
+      knockBackModifier: 100
+      selfKnockBackModifier: 100
+      staggerModifier: 100
     endHoldDuration: 1
     comboChains:
     - rid: 4788015104347865088
@@ -42,16 +42,16 @@ MonoBehaviour:
         chargeAnimName: Combo_Charge02
         lightAttack:
           attackAnimName: Combo_Attack02
-          swingDuration: 1
-          knockBackModifier: 1
-          selfKnockBackModifier: 1
-          staggerModifier: 1
+          swingDuration: 0.5
+          knockBackModifier: 0
+          selfKnockBackModifier: 0
+          staggerModifier: 0
         heavyAttack:
-          attackAnimName: 
-          swingDuration: 1
-          knockBackModifier: 1
-          selfKnockBackModifier: 1
-          staggerModifier: 1
+          attackAnimName: Combo_Attack02
+          swingDuration: 0.7
+          knockBackModifier: 100
+          selfKnockBackModifier: 100
+          staggerModifier: 100
         endHoldDuration: 1
         comboChains:
         - rid: 4788015104347865090
@@ -63,16 +63,16 @@ MonoBehaviour:
         chargeAnimName: Combo_Charge03
         lightAttack:
           attackAnimName: Combo_Attack03
-          swingDuration: 1
-          knockBackModifier: 1
-          selfKnockBackModifier: 1
-          staggerModifier: 1
+          swingDuration: 0.5
+          knockBackModifier: 0
+          selfKnockBackModifier: 0
+          staggerModifier: 0
         heavyAttack:
           attackAnimName: 
           swingDuration: 1
-          knockBackModifier: 1
-          selfKnockBackModifier: 1
-          staggerModifier: 1
+          knockBackModifier: 300
+          selfKnockBackModifier: 300
+          staggerModifier: 100
         endHoldDuration: 0.2
         comboChains: []
     - rid: 4788015152540155908
@@ -82,15 +82,15 @@ MonoBehaviour:
         chargeAnimName: Combo_Charge01
         lightAttack:
           attackAnimName: Combo_Attack01
-          swingDuration: 1
-          knockBackModifier: 1
-          selfKnockBackModifier: 1
-          staggerModifier: 1
+          swingDuration: 0.7
+          knockBackModifier: 0
+          selfKnockBackModifier: 0
+          staggerModifier: 0
         heavyAttack:
           attackAnimName: 
           swingDuration: 1
-          knockBackModifier: 1
-          selfKnockBackModifier: 1
-          staggerModifier: 1
+          knockBackModifier: 300
+          selfKnockBackModifier: 300
+          staggerModifier: 200
         endHoldDuration: 1
         comboChains: []

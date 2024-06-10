@@ -26,10 +26,10 @@ public class ComboAttack {
 [System.Serializable]
 public class AttackDetails {
     public string attackAnimName;
-    public float swingDuration = 1f;
-    public float knockBackModifier = 1f;
-    public float selfKnockBackModifier = 1f;
-    public float staggerModifier = 1f;
+    public float swingDuration = 0f;
+    public float knockBackModifier = 0f;
+    public float selfKnockBackModifier = 0f;
+    public float staggerModifier = 0f;
 }
 
 public enum ComboInputType {
