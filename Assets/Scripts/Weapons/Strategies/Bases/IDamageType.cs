@@ -6,3 +6,9 @@ public interface IDamageType
 {
     public void DealDamage(ObjectHandler target, float charge);
 }
+
+public enum HitOutcome {
+    Hit,
+    Block,
+    Dodge
+}

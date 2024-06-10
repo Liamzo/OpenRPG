@@ -44,7 +44,7 @@ public class CharacterHandler : ObjectHandler
     }
 
 
-    public override bool GetHit(float damage, WeaponHandler weapon, CharacterHandler damageDealer) 
+    public override HitOutcome GetHit(float damage, WeaponHandler weapon, CharacterHandler damageDealer) 
     {
         if (objectStatusHandler.isBlocking) {
             Vector3 attackerDir = damageDealer.rigidBody.position - rigidBody.position;
@@ -58,7 +58,7 @@ public class CharacterHandler : ObjectHandler
 
                 AudioManager.instance.PlayClipRandom(AudioID.Block, audioSource);
 
-                return false;
+                return HitOutcome.Block;
             }
         }
 

@@ -157,20 +157,6 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (other.TryGetComponent<ObjectHandler>(out ObjectHandler otherObjectHandler)) {
-            if (otherObjectHandler == weapon.item.owner) return;
-            
-            weapon.triggerHolders[triggerSlot].damageType.DealDamage(otherObjectHandler, lastCharge);
-        } else {
-            weapon.CallOnHitTarget(triggerSlot, null);
-        }
-
-        if (other.TryGetComponent<BasicBullet>(out BasicBullet bullet)) {
-            Destroy(bullet.gameObject);
-        }
-    }
-
 
     public float AttackHoldCost()
     {
@@ -265,6 +251,21 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
                 weapon.animator.Play(currentComboAttack.lightAttack.attackAnimName, 0, 1.1f); // TODO: Save if we did a normal or heavy attack
             }
 
+        }
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.TryGetComponent<ObjectHandler>(out ObjectHandler otherObjectHandler)) {
+            if (otherObjectHandler == weapon.item.owner) return;
+            
+            weapon.triggerHolders[triggerSlot].damageType.DealDamage(otherObjectHandler, lastCharge);
+        } else {
+            weapon.CallOnHitTarget(triggerSlot, null);
+        }
+
+        if (other.TryGetComponent<BasicBullet>(out BasicBullet bullet)) {
+            Destroy(bullet.gameObject);
         }
     }
 }

@@ -13,14 +13,27 @@ public class DamageTypeStandard : BaseStrategy, IDamageType
             damage += Random.Range(1, (int)weapon.GetStatValue(WeaponStatNames.DamageRollValue) + 1);
         }
 
-        if (target.GetHit(damage, weapon, (CharacterHandler) weapon.item.owner)) {
-            GameManager.instance.ShakeCamera(5.0f, 0.15f);
+        HitOutcome hitOutcome = target.GetHit(damage, weapon, (CharacterHandler) weapon.item.owner);
+
+        if (hitOutcome == HitOutcome.Hit) {
+            GameManager.instance.ShakeCamera(8.0f, 0.2f);
             GameManager.instance.HitStop(0.05f);
 
             target.objectStatusHandler.BlockControls(weapon.GetStatValue(WeaponStatNames.Stagger));
             target.objectStatusHandler.BlockMovementControls(weapon.GetStatValue(WeaponStatNames.Stagger));
+
+            target.TakeDamge(damage, weapon, (CharacterHandler) weapon.item.owner);
             
             weapon.triggerHolders[triggerSlot].CallOnHitTarget(target);
+        } else if (hitOutcome == HitOutcome.Block) {
+            GameManager.instance.ShakeCamera(5.0f, 0.15f);
+            GameManager.instance.HitStop(0.05f);
+
+            target.objectStatusHandler.BlockMovementControls(weapon.GetStatValue(WeaponStatNames.Stagger));
+
+            weapon.triggerHolders[triggerSlot].CallOnHitTarget(target);
+        } else if (hitOutcome == HitOutcome.Dodge) {
+
         }
 
     }

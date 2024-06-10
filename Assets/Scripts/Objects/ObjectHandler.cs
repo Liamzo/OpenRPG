@@ -132,11 +132,11 @@ public class ObjectHandler : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public virtual bool GetHit(float damage, WeaponHandler weapon, CharacterHandler damageDealer) {
+    public virtual HitOutcome GetHit(float damage, WeaponHandler weapon, CharacterHandler damageDealer) {
         // Check for Dodge
         if (objectStatusHandler.isDodging) {
             // Dodge
-            return false;
+            return HitOutcome.Dodge;
         }
 
         // // Check for Penetration
@@ -151,9 +151,7 @@ public class ObjectHandler : MonoBehaviour
         //     return;
         // }
 
-        TakeDamge(damage, weapon, damageDealer);
-
-        return true;
+        return HitOutcome.Hit;
     }
 
 
