@@ -22,15 +22,20 @@ public class DamageTypeStandard : BaseStrategy, IDamageType
             GameManager.instance.ShakeCamera(8.0f, 0.2f);
             GameManager.instance.HitStop(0.05f);
 
-            target.objectStatusHandler.BlockControls(weapon.GetStatValue(WeaponStatNames.Stagger));
-            target.objectStatusHandler.BlockMovementControls(weapon.GetStatValue(WeaponStatNames.Stagger));
+            if (target != null){
+                target.objectStatusHandler.BlockControls(weapon.GetStatValue(WeaponStatNames.Stagger));
+                target.objectStatusHandler.BlockMovementControls(weapon.GetStatValue(WeaponStatNames.Stagger));
 
-            target.TakeDamge(damage, weapon, (CharacterHandler) weapon.item.owner);
+                target.TakeDamge(damage, weapon, (CharacterHandler) weapon.item.owner);
+            }
+
         } else if (hitOutcome == HitOutcome.Block) {
             GameManager.instance.ShakeCamera(5.0f, 0.15f);
             GameManager.instance.HitStop(0.05f);
 
-            target.objectStatusHandler.BlockMovementControls(weapon.GetStatValue(WeaponStatNames.Stagger));
+            if (target != null){
+                target.objectStatusHandler.BlockMovementControls(weapon.GetStatValue(WeaponStatNames.Stagger));
+            }
         } else if (hitOutcome == HitOutcome.Dodge) {
 
         }

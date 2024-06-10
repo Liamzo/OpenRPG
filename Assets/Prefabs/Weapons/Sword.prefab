@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerSlot: 0
+  triggerEvent: 1
 --- !u!114 &3946115045179472872
 MonoBehaviour:
   m_ObjectHideFlags: 0

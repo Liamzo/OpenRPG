@@ -34,7 +34,7 @@ MonoBehaviour:
   - statName: 12
     value: 5
   - statName: 13
-    value: 20
+    value: -20
   - statName: 4
     value: 0.1
   - statName: 14

@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuName: Pick Up
+  audioID: 0
 --- !u!1 &1384521666624074638
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,6 +183,9 @@ MonoBehaviour:
   animator: {fileID: 1384521666624074626}
   _handle: {fileID: 8039679433212352046}
   strategies: {fileID: 7372804200891990163}
+  triggerHolders:
+  - anticipation: {fileID: 0}
+  - anticipation: {fileID: 0}
   attackPoint: {fileID: 4291880427879301211}
   _canAttack: 0
 --- !u!114 &7994391254223891589
@@ -196,6 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343b98f1b6060e548a1166dd68c6a4b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blockAngle: 0
 --- !u!114 &5735838055761432642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5288,6 +5293,7 @@ GameObject:
   - component: {fileID: 7073907862433821761}
   - component: {fileID: 7309780720511969913}
   - component: {fileID: 2383292567895231548}
+  - component: {fileID: 6632185985890481304}
   m_Layer: 0
   m_Name: Strategies
   m_TagString: Untagged
@@ -5322,6 +5328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b50261b60681004cb00e29ea07ea0d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerSlot: 0
   useCost: 1
 --- !u!114 &7372804200891990159
 MonoBehaviour:
@@ -5335,6 +5342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb87acc0f2af6a64eaeb6688bd876bda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerSlot: 0
 --- !u!114 &7372804200891990161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5347,6 +5355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d529d7eb846a664aaef5f551811c1b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerSlot: 0
 --- !u!114 &7372804200891990173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5359,6 +5368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f049264d52964d5438325e49a25ce1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerSlot: 0
   muzzleFlash: {fileID: 784535896378638760}
   fireEffect: {fileID: 2715419685453167536}
 --- !u!114 &7372804200891990162
@@ -5373,6 +5383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b2f8e03300186647b9bfd14876b13a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerSlot: 0
 --- !u!114 &7073907862433821761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5385,6 +5396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e97ec600dbd8c7940b7fd4cb31942511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerSlot: 0
 --- !u!114 &7309780720511969913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5397,6 +5409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30f3db205c461a14986f2c8967c5daa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerSlot: 0
 --- !u!114 &2383292567895231548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5409,7 +5422,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96283921a1f639e47a57feb7aad3c322, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerSlot: 0
   audioID: 5
+--- !u!114 &6632185985890481304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7372804200891990163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84de93896d1c93647be96cbf6250a9a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerSlot: 0
+  triggerEvent: 0
 --- !u!1 &7604023079632420970
 GameObject:
   m_ObjectHideFlags: 0

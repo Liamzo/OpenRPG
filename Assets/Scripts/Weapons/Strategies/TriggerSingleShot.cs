@@ -36,6 +36,8 @@ public class TriggerSingleShot : BaseStrategy, ITrigger
     public void AttackRelease()
     {
         canAttack = true;
+
+        weapon.CallOnTriggerRelease(triggerSlot);
     }
 
     public void AttackCancel()
