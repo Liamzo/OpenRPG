@@ -17,6 +17,10 @@ public class OnHitTargetSound : BaseStrategy
     }
 
     void PlaySound(ObjectHandler target, HitOutcome hitOutcome, float charge) {
-        AudioManager.instance.PlayClipRandom(audioID, weaponAudioSource);
+        if (hitOutcome == HitOutcome.Hit) {
+            AudioManager.instance.PlayClipRandom(audioID, weaponAudioSource);
+        } else if (hitOutcome == HitOutcome.Block) {
+            AudioManager.instance.PlayClipRandom(AudioID.Block, weaponAudioSource);
+        }
     }
 }

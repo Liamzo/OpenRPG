@@ -53,11 +53,6 @@ public class CharacterHandler : ObjectHandler
 
             if (angleBetween <= objectStatusHandler.blockAngle)
             {
-                // // Blocked attack
-                // ChangeStamina(-damage);
-
-                // AudioManager.instance.PlayClipRandom(AudioID.Block, audioSource);
-
                 return HitOutcome.Block;
             }
         }

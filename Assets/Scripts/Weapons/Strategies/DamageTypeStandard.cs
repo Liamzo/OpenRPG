@@ -27,6 +27,11 @@ public class DamageTypeStandard : BaseStrategy, IDamageType
                 target.objectStatusHandler.BlockMovementControls(weapon.GetStatValue(WeaponStatNames.Stagger));
 
                 target.TakeDamge(damage, weapon, (CharacterHandler) weapon.item.owner);
+
+                CharacterHandler targetCharacter = (CharacterHandler) target;
+                if (targetCharacter != null){
+                    targetCharacter.ChangeStamina(-damage);
+                }
             }
 
         } else if (hitOutcome == HitOutcome.Block) {
@@ -35,6 +40,11 @@ public class DamageTypeStandard : BaseStrategy, IDamageType
 
             if (target != null){
                 target.objectStatusHandler.BlockMovementControls(weapon.GetStatValue(WeaponStatNames.Stagger));
+
+                CharacterHandler targetCharacter = (CharacterHandler) target;
+                if (targetCharacter != null){
+                    targetCharacter.ChangeStamina(-damage/2f);
+                }
             }
         } else if (hitOutcome == HitOutcome.Dodge) {
 
