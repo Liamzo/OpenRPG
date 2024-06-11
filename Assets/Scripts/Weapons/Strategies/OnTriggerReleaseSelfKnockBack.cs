@@ -36,7 +36,7 @@ public class OnTriggerReleaseSelfKnockBack : BaseStrategy
         DoKnockBack();
     }
 
-    private void DoKnockBack(ObjectHandler target, HitOutcome hitOutcome, float charge)
+    private void DoKnockBack(ObjectHandler target, HitOutcome hitOutcome, float charge, GameObject projectile)
     {
         DoKnockBack();
     }

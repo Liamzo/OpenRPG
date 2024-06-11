@@ -37,8 +37,8 @@ public class Physicsable : MonoBehaviour
         }
     }
 
-    public void KnockBack(WeaponHandler weapon, float knockback) {
-        Vector3 dir = (transform.position - weapon.item.owner.transform.position).normalized;
+    public void KnockBack(Vector3 hitPosition, float knockback) {
+        Vector3 dir = (transform.position - hitPosition).normalized;
 
         // Calculate KnockBack Force
         float weight = objectHandler.statsObject[ObjectStatNames.Weight].GetValue();

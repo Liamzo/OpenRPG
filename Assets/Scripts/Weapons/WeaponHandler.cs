@@ -31,7 +31,7 @@ public class WeaponHandler : MonoBehaviour
     
     public void CallOnAttack(int triggerSlot) { triggerHolders[triggerSlot].CallOnAttack(); }
 
-    public void CallOnHitTarget(int triggerSlot, ObjectHandler target, float charge) { triggerHolders[triggerSlot].CallOnHitTarget(target, this, charge); }
+    public void CallOnHitTarget(int triggerSlot, ObjectHandler target, float charge, GameObject projectile = null) { triggerHolders[triggerSlot].CallOnHitTarget(target, this, charge, projectile); }
 
     public void CallAttackCancel(int triggerSlot) { }
 
@@ -187,15 +187,15 @@ public class TriggerHolder {
     public event System.Action OnAttack = delegate { };
     public void CallOnAttack() { OnAttack(); }
 
-    public event System.Action<ObjectHandler, HitOutcome, float> OnHitTarget = delegate { };
-    public void CallOnHitTarget(ObjectHandler target, WeaponHandler weapon, float charge) {
+    public event System.Action<ObjectHandler, HitOutcome, float, GameObject> OnHitTarget = delegate { };
+    public void CallOnHitTarget(ObjectHandler target, WeaponHandler weapon, float charge, GameObject projectile = null) {
         HitOutcome hitOutcome;
         if (target != null)
             hitOutcome = target.GetHit(weapon, (CharacterHandler) weapon.item.owner);
         else
             hitOutcome = HitOutcome.Hit;
 
-        OnHitTarget(target, hitOutcome, charge); 
+        OnHitTarget(target, hitOutcome, charge, projectile); 
     }
 
     public event System.Action OnAttackCancel = delegate { };

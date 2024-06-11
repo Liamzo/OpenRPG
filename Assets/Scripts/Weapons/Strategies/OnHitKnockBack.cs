@@ -37,13 +37,14 @@ public class OnHitKnockBack : BaseStrategy
     }
 
     // On Hit Target
-    private void DoKnockBack(ObjectHandler target, HitOutcome hitOutcome, float charge)
+    private void DoKnockBack(ObjectHandler target, HitOutcome hitOutcome, float charge, GameObject projectile)
     {
-        Debug.Log("in knock back" + weapon.statsWeapon[WeaponStatNames.KnockBack].GetValue());
+        Vector3 hitPosition = projectile == null ? weapon.item.owner.transform.position : projectile.transform.position;
+
         if (hitOutcome == HitOutcome.Hit) {
-            target.GetComponent<Physicsable>().KnockBack(weapon, weapon.statsWeapon[WeaponStatNames.KnockBack].GetValue());
+            target.GetComponent<Physicsable>().KnockBack(hitPosition, weapon.statsWeapon[WeaponStatNames.KnockBack].GetValue());
         } else if (hitOutcome == HitOutcome.Block) {
-            target.GetComponent<Physicsable>().KnockBack(weapon, weapon.statsWeapon[WeaponStatNames.KnockBack].GetValue()/2f);
+            target.GetComponent<Physicsable>().KnockBack(hitPosition, weapon.statsWeapon[WeaponStatNames.KnockBack].GetValue()/2f);
         }
     }
 }
