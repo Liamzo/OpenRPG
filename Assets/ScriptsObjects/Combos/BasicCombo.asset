@@ -24,7 +24,7 @@ MonoBehaviour:
       selfKnockBackModifier: 0
       staggerModifier: 0
     heavyAttack:
-      attackAnimName: 
+      attackAnimName: Combo_Attack01
       swingDuration: 0.7
       knockBackModifier: 100
       selfKnockBackModifier: 100
@@ -68,7 +68,7 @@ MonoBehaviour:
           selfKnockBackModifier: 0
           staggerModifier: 0
         heavyAttack:
-          attackAnimName: 
+          attackAnimName: Combo_Attack03
           swingDuration: 1
           knockBackModifier: 300
           selfKnockBackModifier: 300
@@ -87,10 +87,10 @@ MonoBehaviour:
           selfKnockBackModifier: 0
           staggerModifier: 0
         heavyAttack:
-          attackAnimName: 
+          attackAnimName: Combo_Attack_Spin
           swingDuration: 1
           knockBackModifier: 300
-          selfKnockBackModifier: 300
+          selfKnockBackModifier: 200
           staggerModifier: 200
         endHoldDuration: 1
         comboChains: []
