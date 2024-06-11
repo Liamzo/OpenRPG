@@ -13,6 +13,8 @@ public class OutOfBreathCondition : BaseCondition
 
     float pauseStrength;
 
+    float lastPlayedAudio = 0f;
+
 
     public OutOfBreathCondition (CharacterHandler owner, float durationStop = 0f, float durationPause = 3f, float pauseStrength = 75f) {
         this.owner = owner;
@@ -37,6 +39,8 @@ public class OutOfBreathCondition : BaseCondition
 
     public override void Tick()
     {
+        lastPlayedAudio += Time.deltaTime;
+
         if (durationPause > 0f) {
             timerPause += Time.deltaTime;
 
@@ -68,6 +72,17 @@ public class OutOfBreathCondition : BaseCondition
         pauseStrength = otherCondition.pauseStrength;
         timerPause = 0f;
 
-        Start();
+        if (durationStop > 0f) {
+            owner.objectStatusHandler.BlockRegainStamina(durationStop);
+        }
+
+        if (durationPause > 0f) {
+            owner.statsCharacter[CharacterStatNames.StaminaRegen].AddModifier(new Modifier(ModifierTypes.Multiplier, -pauseStrength));
+        }
+
+        if (lastPlayedAudio >= 5f) {
+            AudioManager.instance.PlayClipRandom(AudioID.HeavyBreathing, owner.audioSource);
+            lastPlayedAudio = 0f;
+        }
     }
 }
