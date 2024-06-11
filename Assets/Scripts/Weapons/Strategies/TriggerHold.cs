@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class TriggerHold : BaseStrategy, ITrigger
 {
+    private void Start() {
+        weapon.triggerHolders[triggerSlot].OnAttackCancel += AttackCancel;
+    }
+
+    
     public float AttackHoldCost()
     {
         return weapon.statsWeapon[WeaponStatNames.StaminaCostHold].GetValue() * Time.deltaTime;

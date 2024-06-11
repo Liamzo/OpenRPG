@@ -12,6 +12,7 @@ public class AttackTypeBlock : BaseStrategy, IAttackType
     private void Start() {
         weapon.triggerHolders[triggerSlot].OnTrigger += DoAttack;
         weapon.triggerHolders[triggerSlot].OnTriggerRelease += ReleaseBlock;
+        weapon.triggerHolders[triggerSlot].OnAttackCancel += ReleaseBlock;
         weapon.item.OnEquip += OnEquip;
         weapon.item.OnUnequip += OnUnequip;
     }
@@ -26,7 +27,8 @@ public class AttackTypeBlock : BaseStrategy, IAttackType
         }
     }
 
-    void ReleaseBlock(float charge) {
+
+    void ReleaseBlock() {
         if (isBlocking) {
             isBlocking = false;
             weapon.item.owner.objectStatusHandler.StopBlock();
@@ -37,8 +39,12 @@ public class AttackTypeBlock : BaseStrategy, IAttackType
             }
         }
     }
+
+    void ReleaseBlock(float charge) {
+        ReleaseBlock();
+    }
     void ReleaseBlock(float damage, WeaponHandler weapon, CharacterHandler damageDealer) {
-        ReleaseBlock(0f);
+        ReleaseBlock();
     }
 
 

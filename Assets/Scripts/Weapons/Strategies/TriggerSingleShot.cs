@@ -6,6 +6,12 @@ public class TriggerSingleShot : BaseStrategy, ITrigger
 {
     bool canAttack = true;
 
+
+    private void Start() {
+        weapon.triggerHolders[triggerSlot].OnAttackCancel += AttackCancel;
+    }
+    
+
     public float AttackHoldCost()
     {
         return weapon.statsWeapon[WeaponStatNames.StaminaCostHold].GetValue();

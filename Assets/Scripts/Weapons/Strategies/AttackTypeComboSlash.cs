@@ -33,6 +33,8 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
     
     private void Start() {
         weapon.item.OnUnequip += InteruptCombo;
+
+        weapon.triggerHolders[triggerSlot].OnAttackCancel += AttackCancel;
     }
 
     void Update()

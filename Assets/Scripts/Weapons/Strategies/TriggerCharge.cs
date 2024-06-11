@@ -8,6 +8,11 @@ public class TriggerCharge : BaseStrategy, ITrigger
     bool fullyCharged = false;
     float chargeTimer = 0f;
 
+
+    private void Start() {
+        weapon.triggerHolders[triggerSlot].OnAttackCancel += AttackCancel;
+    }
+
     void Update()
     {
         if (isCharging && !fullyCharged) {

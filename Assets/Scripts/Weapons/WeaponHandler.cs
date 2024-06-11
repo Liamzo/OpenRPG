@@ -33,6 +33,8 @@ public class WeaponHandler : MonoBehaviour
 
     public void CallOnHitTarget(int triggerSlot, ObjectHandler target, float charge) { triggerHolders[triggerSlot].CallOnHitTarget(target, this, charge); }
 
+    public void CallAttackCancel(int triggerSlot) { }
+
     public Transform attackPoint;
 
     public int _canAttack = 0; // 0 = Can Attack. Add 1 when blocking, -1 when allowing
@@ -137,28 +139,28 @@ public class WeaponHandler : MonoBehaviour
 
     public float AttackHoldCost(int triggerSlot)
     {
-        return triggerHolders[triggerSlot].trigger.AttackHoldCost();
+        return triggerHolders[triggerSlot].AttackHoldCost();
     }
     public bool CanAttackHold(int triggerSlot) {
-        return triggerHolders[triggerSlot].trigger.CanAttackHold();
+        return triggerHolders[triggerSlot].CanAttackHold();
     }
     public void AttackHold(int triggerSlot) {
-        triggerHolders[triggerSlot].trigger.AttackHold();
+        triggerHolders[triggerSlot].AttackHold();
     }
 
     public float AttackReleaseCost(int triggerSlot)
     {
-        return triggerHolders[triggerSlot].trigger.AttackReleaseCost();
+        return triggerHolders[triggerSlot].AttackReleaseCost();
     }
     public bool CanAttackRelease(int triggerSlot) {
-        return triggerHolders[triggerSlot].trigger.CanAttackHold();
+        return triggerHolders[triggerSlot].CanAttackRelease();
     }
     public void AttackRelease(int triggerSlot) {
-        triggerHolders[triggerSlot].trigger.AttackRelease();
+        triggerHolders[triggerSlot].AttackRelease();
     }
 
     public void AttackCancel(int triggerSlot) {
-        triggerHolders[triggerSlot].trigger.AttackCancel();
+        triggerHolders[triggerSlot].AttackCancel();
     }
 
 
@@ -196,6 +198,8 @@ public class TriggerHolder {
         OnHitTarget(target, hitOutcome, charge); 
     }
 
+    public event System.Action OnAttackCancel = delegate { };
+
 
     public ITrigger trigger;
     public IAttackType attackType;
@@ -219,14 +223,14 @@ public class TriggerHolder {
         return trigger.AttackReleaseCost();
     }
     public bool CanAttackRelease() {
-        return trigger.CanAttackHold();
+        return trigger.CanAttackRelease();
     }
     public void AttackRelease() {
         trigger.AttackRelease();
     }
 
     public void AttackCancel() {
-        trigger.AttackCancel();
+        OnAttackCancel();
     }
 
     public void AttackAnticipation() {
