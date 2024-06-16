@@ -191,7 +191,7 @@ public class TriggerHolder {
     public void CallOnHitTarget(ObjectHandler target, WeaponHandler weapon, float charge, GameObject projectile = null) {
         HitOutcome hitOutcome;
         if (target != null)
-            hitOutcome = target.GetHit(weapon, (CharacterHandler) weapon.item.owner);
+            hitOutcome = target.GetHit(weapon, (CharacterHandler) weapon.item.owner, projectile);
         else
             hitOutcome = HitOutcome.Hit;
 

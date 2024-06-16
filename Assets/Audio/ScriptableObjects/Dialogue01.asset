@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e54f4f88e5d0a14e86a1a36393887b2, type: 3}
+  m_Name: Dialogue01
+  m_EditorClassIdentifier: 
+  audioID: 28
+  audioSourceType: 0
+  audioClips:
+  - {fileID: 8300000, guid: 9e80b5a373ae92546aa2f9399ad77869, type: 3}
+  - {fileID: 8300000, guid: 3b6677db55b10da4ba682776ecd5bd9b, type: 3}
+  - {fileID: 8300000, guid: 19e61999845d62b40b37ff6f63e0511f, type: 3}
+  - {fileID: 8300000, guid: 9af74da4306b6c24d9ae1897e89059aa, type: 3}
+  - {fileID: 8300000, guid: 665565f7486747e43aae3649e3c42a17, type: 3}
+  - {fileID: 8300000, guid: f59d2f1a2db60ba42b14aa2379f07b15, type: 3}
+  - {fileID: 8300000, guid: ab47e18b05a8b3646813a717013850cd, type: 3}
+  - {fileID: 8300000, guid: 9846a5b9e73afd04592fb3d83ffa75e5, type: 3}

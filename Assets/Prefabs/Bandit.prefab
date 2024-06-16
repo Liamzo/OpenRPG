@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circleDistance: 7
-  circleDistanceRange: 1
+  circleDistanceRange: 2
   minCircleDistance: 3
   minPauseDuration: 1
   maxPauseDuration: 2
@@ -376,6 +376,7 @@ MonoBehaviour:
   lookingDirection: {x: 0, y: 0, z: 0}
   targetLookingDirection: {x: 0, y: 0, z: 0}
   thoughtLocked: {fileID: 0}
+  previousThought: {fileID: 0}
   attackCoolDown: 7
   attackCoolDownRange: 2
   attackTimer: 0
@@ -401,7 +402,6 @@ MonoBehaviour:
   objectStatusHandler: {fileID: 0}
   baseCharacterStats: {fileID: 11400000, guid: 8221420ade17c174d8079dd656f2ebdf, type: 2}
   currentStamina: 0
-  staminaRecPerSec: 0
 --- !u!114 &8463640423895685246
 MonoBehaviour:
   m_ObjectHideFlags: 0

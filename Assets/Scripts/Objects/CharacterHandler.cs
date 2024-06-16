@@ -44,10 +44,13 @@ public class CharacterHandler : ObjectHandler
     }
 
 
-    public override HitOutcome GetHit(WeaponHandler weapon, CharacterHandler damageDealer) 
+    public override HitOutcome GetHit(WeaponHandler weapon, CharacterHandler damageDealer, GameObject projectile) 
     {
         if (objectStatusHandler.isBlocking) {
-            Vector3 attackerDir = damageDealer.rigidBody.position - rigidBody.position;
+            Vector2 hitPosition = projectile == null ? damageDealer.rigidBody.position : projectile.transform.position;
+            Vector3 attackerDir = hitPosition - rigidBody.position;
+
+            Debug.Log(hitPosition);
 
             float angleBetween = Vector3.Angle(GetComponent<BaseBrain>().lookingDirection, attackerDir);
 
@@ -57,7 +60,7 @@ public class CharacterHandler : ObjectHandler
             }
         }
 
-        return base.GetHit(weapon, damageDealer);
+        return base.GetHit(weapon, damageDealer, projectile);
     }
 
 

@@ -30,6 +30,7 @@ public class DialogueHandler : MonoBehaviour
     private bool canContinueToNextLine = false;
 
     private Coroutine displayLineCoroutine;
+    private Coroutine talkingAudioCoroutine;
 
     private static DialogueHandler instance;
 
@@ -143,6 +144,10 @@ public class DialogueHandler : MonoBehaviour
             {
                 StopCoroutine(displayLineCoroutine);
             }
+            if (talkingAudioCoroutine != null) 
+            {
+                StopCoroutine(talkingAudioCoroutine);
+            }
             string nextLine = currentStory.Continue();
             // handle case where the last line is an external function
             if (nextLine.Equals("") && !currentStory.canContinue)
@@ -155,6 +160,7 @@ public class DialogueHandler : MonoBehaviour
                 // handle tags
                 //HandleTags(currentStory.currentTags);
                 displayLineCoroutine = StartCoroutine(DisplayLine(nextLine));
+                talkingAudioCoroutine = StartCoroutine(PlayTalkingAudio());
             }
         }
         else 
@@ -208,6 +214,41 @@ public class DialogueHandler : MonoBehaviour
         DisplayChoices();
 
         canContinueToNextLine = true;
+
+        if (talkingAudioCoroutine != null) 
+        {
+            StopCoroutine(talkingAudioCoroutine);
+        }
+    }
+
+    private IEnumerator PlayTalkingAudio() {
+        float soundWaitTime = 0.2f;
+        float wordWaitTime = 0.5f;
+        float wordWaitRange = 0.1f;
+        int minSounds = 2;
+        int maxSounds = 5;
+        int wordSounds = Random.Range(minSounds, maxSounds);
+        int curSounds = 0;
+
+        float maxPlayTime = 5f; // Stop self after 5 seconds
+        float curPlayTime = 0f;
+
+        while (curPlayTime < maxPlayTime)
+        {
+            AudioManager.instance.PlayClipRandom(AudioID.Dialogue01, currentTalker.audioSource);
+            curSounds++;
+            yield return new WaitForSeconds(soundWaitTime);
+
+            if (curSounds >= wordSounds) 
+            {
+                wordSounds = Random.Range(minSounds, maxSounds);
+                curSounds = 0;
+                yield return new WaitForSeconds(Random.Range(wordWaitTime-wordWaitRange, wordWaitTime+wordWaitRange));
+            }
+        }
+
+
+        yield return null;
     }
 
     private void HideChoices() 

@@ -216,8 +216,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a511a9a4bc513478b13000c7638a9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minRange: 6
-  maxRange: 9
+  minRange: 9
+  maxRange: 12
 --- !u!114 &7371308030475851263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,7 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6b089bf1b01e2489084be41ee126db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minChaseDistance: 8
+  minChaseDistance: 9
 --- !u!114 &5930101008861849973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b11f188d4d2e1f429abf31a5cf9ce3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idealDistance: 8
+  idealDistance: 9
 --- !u!1 &8523436994534951754
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,6 +521,7 @@ MonoBehaviour:
   lookingDirection: {x: 0, y: 0, z: 0}
   targetLookingDirection: {x: 0, y: 0, z: 0}
   thoughtLocked: {fileID: 0}
+  previousThought: {fileID: 0}
   attackCoolDown: 3.5
   attackCoolDownRange: 1
   attackTimer: 0
@@ -546,7 +547,6 @@ MonoBehaviour:
   objectStatusHandler: {fileID: 0}
   baseCharacterStats: {fileID: 11400000, guid: 8221420ade17c174d8079dd656f2ebdf, type: 2}
   currentStamina: 0
-  staminaRecPerSec: 0
 --- !u!114 &3377350315652835605
 MonoBehaviour:
   m_ObjectHideFlags: 0

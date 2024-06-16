@@ -8,6 +8,7 @@ public class CircleTarget : BaseThought
     [Header("Distance")]
     public float circleDistance;
     public float circleDistanceRange;
+    float currentCircleDistance;
     public float minCircleDistance; // Will move faster when in this distance to get away, not pause
 
     [Header("Pause")]
@@ -31,6 +32,8 @@ public class CircleTarget : BaseThought
         base.Start();
 
         circleDirection = Random.Range(0,2) == 0 ? 1 : -1;
+
+        _pauseWaitTimer = Random.Range(minPauseWait,maxPauseWait);
     }
 
     public override float Evaluate()
@@ -71,8 +74,13 @@ public class CircleTarget : BaseThought
 
         // Target
         Vector3 dir = (transform.position - brain.threatHandler.Target.transform.position).normalized;
-        float vertDist = (circleDistance - circleDistanceRange) + (((circleDistance + circleDistanceRange) - (circleDistance - circleDistanceRange)) * Mathf.PerlinNoise(Time.time * 0.15f , 0.0f));
-        Vector3 vertPos = dir * vertDist;
+
+        if (brain.previousThought == null || brain.previousThought.GetType() != GetType())
+        {
+            // Pick a new circle distance
+            currentCircleDistance = Random.Range(circleDistance-circleDistanceRange, circleDistance+circleDistanceRange);
+        }
+        Vector3 vertPos = dir * currentCircleDistance;
 
         Vector3 horzPos = Quaternion.AngleAxis(20 * circleDirection, Vector3.forward) * vertPos;
         

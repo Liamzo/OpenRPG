@@ -39,6 +39,8 @@ public class OnHitKnockBack : BaseStrategy
     // On Hit Target
     private void DoKnockBack(ObjectHandler target, HitOutcome hitOutcome, float charge, GameObject projectile)
     {
+        if (target == null) return;
+        
         Vector3 hitPosition = projectile == null ? weapon.item.owner.transform.position : projectile.transform.position;
 
         if (hitOutcome == HitOutcome.Hit) {

@@ -132,7 +132,7 @@ public class ObjectHandler : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public virtual HitOutcome GetHit(WeaponHandler weapon, CharacterHandler damageDealer) {
+    public virtual HitOutcome GetHit(WeaponHandler weapon, CharacterHandler damageDealer, GameObject projectile) {
         // Check for Dodge
         if (objectStatusHandler.isDodging) {
             // Dodge
