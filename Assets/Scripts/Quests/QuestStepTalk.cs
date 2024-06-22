@@ -6,8 +6,6 @@ using SimpleJSON;
 [System.Serializable]
 public class QuestStepTalk : QuestStep
 {
-    ObjectType target;
-    
     public QuestStepTalk(JSONNode json, Quest parent) : base(json, parent) {
         
     }
