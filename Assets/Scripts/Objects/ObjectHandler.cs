@@ -197,7 +197,6 @@ public class ObjectHandler : MonoBehaviour
 public enum ObjectStatNames {
     Health,
     ArmourValue,
-    DodgeValue,
     Weight
 }
 

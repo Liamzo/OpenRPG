@@ -22,6 +22,4 @@ MonoBehaviour:
   - statName: 1
     value: 0
   - statName: 2
-    value: 0
-  - statName: 3
     value: 50

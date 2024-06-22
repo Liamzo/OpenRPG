@@ -15,8 +15,9 @@ MonoBehaviour:
   objectName: Sword
   description: A basic iron sword
   type: 0
+  expValue: 0
   stats:
   - statName: 0
     value: 10
-  - statName: 3
+  - statName: 2
     value: 5

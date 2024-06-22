@@ -15,8 +15,9 @@ MonoBehaviour:
   objectName: Pistol
   description: A rusty old six-shooter
   type: 0
+  expValue: 0
   stats:
   - statName: 0
     value: 5
-  - statName: 3
+  - statName: 2
     value: 2

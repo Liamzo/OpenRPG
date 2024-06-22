@@ -20,6 +20,6 @@ MonoBehaviour:
   spawnPosition: {x: 0, y: 0}
   items: []
   characters:
-  - prefab: {fileID: 1154453471690096199, guid: 7420a0de952fe8b4c981c3fb2504e0d1, type: 3}
+  - prefab: {fileID: 8523436995661248248, guid: 9ece42e72c7b43e4096067d7061e661d, type: 3}
     x: 10
     y: 10

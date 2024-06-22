@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Stat {
     [SerializeField] public float baseValue {get; private set;}
+    [SerializeField] public AttributeValue baseAttribute {get; private set;}
 
     [SerializeField] private List<float> flatModifiers = new List<float>();
 
