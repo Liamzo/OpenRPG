@@ -69,16 +69,11 @@ public class ThreatHandler : MonoBehaviour
         Vector3 rightPos = characterHandler.Collider.bounds.center + (Quaternion.AngleAxis(-90f, Vector3.forward) * targetDir).normalized;
         Vector3 rightDir = (target.Collider.bounds.center - rightPos).normalized;
 
-
         LayerMask mask = LayerMask.GetMask("Default");
 
         RaycastHit2D hit = Physics2D.Raycast(characterHandler.Collider.bounds.center, targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), mask);
-
-
-
         RaycastHit2D hitLeft = Physics2D.Raycast(leftPos, leftDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue()+1f, mask);
         RaycastHit2D hitRight = Physics2D.Raycast(rightPos, rightDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue()+1f, mask);
-
 
 
         if (hit.collider == null) {
@@ -92,13 +87,10 @@ public class ThreatHandler : MonoBehaviour
         }
 
         if (hitLeft.collider != null && hitLeft.collider.gameObject != target.gameObject) {
-            Debug.Log("left " + hitLeft.collider);
             return new LineOfSightInfo(false, targetInRange, hitLeft.collider.gameObject, hitLeft);
         } else if (hitRight.collider != null && hitRight.collider.gameObject != target.gameObject) {
-            Debug.Log("right " + hitRight.collider);
             return new LineOfSightInfo(false, targetInRange, hitRight.collider.gameObject, hitRight);
         } else {
-            Debug.Log("none");
             return new LineOfSightInfo(false, targetInRange, null, hitLeft);
         }
     }
@@ -106,19 +98,36 @@ public class ThreatHandler : MonoBehaviour
     public LineOfSightInfo CheckLineOfSightFromPosition(ObjectHandler target, Vector3 position) {
         bool targetInRange = Vector2.Distance(position, target.transform.position) < characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue();
 
+        Vector3 startingPos = position + new Vector3(0,characterHandler.Collider.bounds.extents.y / 2f,0);
         Vector3 targetDir = (target.transform.position - position).normalized;
+
+        Vector3 leftPos = startingPos + (Quaternion.AngleAxis(90f, Vector3.forward) * targetDir);
+        Vector3 leftDir = (target.Collider.bounds.center - leftPos).normalized;
+        Vector3 rightPos = startingPos + (Quaternion.AngleAxis(-90f, Vector3.forward) * targetDir).normalized;
+        Vector3 rightDir = (target.Collider.bounds.center - rightPos).normalized;
 
         LayerMask mask = LayerMask.GetMask("Default");
 
-        float middleOfCollider = characterHandler.Collider.bounds.extents.y / 2f;
-        RaycastHit2D hit = Physics2D.Raycast(position + new Vector3(0,middleOfCollider,0), targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), mask);
+        RaycastHit2D hit = Physics2D.Raycast(startingPos, targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), mask);
+        RaycastHit2D hitLeft = Physics2D.Raycast(leftPos, leftDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue()+1f, mask);
+        RaycastHit2D hitRight = Physics2D.Raycast(rightPos, rightDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue()+1f, mask);
 
-        if (hit.collider != null && hit.collider.gameObject == target.gameObject) {
-            return new LineOfSightInfo(true, targetInRange, null, hit);
-        } else if (hit.collider != null) {
-            return new LineOfSightInfo(false, targetInRange, hit.collider.gameObject, hit);
-        } else {
+        if (hit.collider == null) {
             return new LineOfSightInfo(false, targetInRange, null, hit);
+        } else if (hit.collider.gameObject != target.gameObject) {
+            return new LineOfSightInfo(false, targetInRange, hit.collider.gameObject, hit);
+        }
+
+        if (hitLeft.collider != null && hitLeft.collider.gameObject == target.gameObject && hitRight.collider != null && hitRight.collider.gameObject == target.gameObject) {
+            return new LineOfSightInfo(true, targetInRange, null, hit);
+        }
+
+        if (hitLeft.collider != null && hitLeft.collider.gameObject != target.gameObject) {
+            return new LineOfSightInfo(false, targetInRange, hitLeft.collider.gameObject, hitLeft);
+        } else if (hitRight.collider != null && hitRight.collider.gameObject != target.gameObject) {
+            return new LineOfSightInfo(false, targetInRange, hitRight.collider.gameObject, hitRight);
+        } else {
+            return new LineOfSightInfo(false, targetInRange, null, hitLeft);
         }
     }
 
