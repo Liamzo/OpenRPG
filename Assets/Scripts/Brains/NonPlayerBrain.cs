@@ -127,7 +127,7 @@ public class NonPlayerBrain : BaseBrain
         List<bool> leftSideClear = new List<bool>();
 
         //Debug.DrawLine(collider.bounds.center, collider.bounds.center + (idealDir * 5f), Color.yellow, 0.1f);
-        RaycastHit2D hit = Physics2D.Raycast(Collider.bounds.center, idealDir, 5f);
+        RaycastHit2D hit = Physics2D.Raycast(character.Collider.bounds.center, idealDir, 5f);
         if (hit.collider != null) {
             idealClear = false;
         }
@@ -141,7 +141,7 @@ public class NonPlayerBrain : BaseBrain
 
                 Vector3 tryDir = Quaternion.AngleAxis(i * j, Vector3.forward) * idealDir;
 
-                hit = Physics2D.Raycast(Collider.bounds.center, tryDir, 5f);
+                hit = Physics2D.Raycast(character.Collider.bounds.center, tryDir, 5f);
                 if (hit.collider != null) {
                     //Debug.DrawLine(collider.bounds.center, collider.bounds.center + (tryDir * 5f), Color.red, 0.1f);
                     if (j == 1) {
@@ -164,7 +164,7 @@ public class NonPlayerBrain : BaseBrain
         
 
         if (idealClear && rightSideClear[0] && leftSideClear[0]) {
-            Debug.DrawLine(Collider.bounds.center, Collider.bounds.center + (idealDir.normalized * 5f), Color.blue, 0.1f);
+            Debug.DrawLine(character.Collider.bounds.center, character.Collider.bounds.center + (idealDir.normalized * 5f), Color.blue, 0.1f);
             return idealDir.normalized;
         }
 
@@ -181,7 +181,7 @@ public class NonPlayerBrain : BaseBrain
             if (rightSideCount == 3) {
                 // Find a direction clear on both sides
                 Vector3 bestDir = Quaternion.AngleAxis(i*tryAngle, Vector3.forward) * idealDir;
-                Debug.DrawLine(Collider.bounds.center, Collider.bounds.center + (bestDir * 5f), Color.blue, 0.1f);
+                Debug.DrawLine(character.Collider.bounds.center, character.Collider.bounds.center + (bestDir * 5f), Color.blue, 0.1f);
                 return bestDir.normalized;
             }
 
@@ -194,14 +194,14 @@ public class NonPlayerBrain : BaseBrain
             if (leftSideCount == 3) {
                 // Find a direction clear on both sides
                 Vector3 bestDir = Quaternion.AngleAxis(i*-tryAngle, Vector3.forward) * idealDir;
-                Debug.DrawLine(Collider.bounds.center, Collider.bounds.center + (bestDir * 5f), Color.blue, 0.1f);
+                Debug.DrawLine(character.Collider.bounds.center, character.Collider.bounds.center + (bestDir * 5f), Color.blue, 0.1f);
                 return bestDir.normalized;
             }
         }
 
 
         Debug.LogWarning("Couldn't find a clear direction");
-        Debug.DrawLine(Collider.bounds.center, Collider.bounds.center + (idealDir.normalized * 5f), Color.blue, 0.1f);
+        Debug.DrawLine(character.Collider.bounds.center, character.Collider.bounds.center + (idealDir.normalized * 5f), Color.blue, 0.1f);
         return idealDir.normalized;
     }
 

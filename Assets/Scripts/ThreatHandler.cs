@@ -10,7 +10,7 @@ public class ThreatHandler : MonoBehaviour
     private FactionHandler factionHandler;
 
 
-    public GameObject Target {get; private set;}
+    public ObjectHandler Target {get; private set;}
     public Vector3? TargetLastSeen {get; private set;}
     float outLineOfSightTimer = 0.0f;
     [SerializeField] float outLineOfSightDuration = 5f;
@@ -59,32 +59,58 @@ public class ThreatHandler : MonoBehaviour
     }
 
 
-    public LineOfSightInfo CheckLineOfSightToTarget(GameObject target) {
+    public LineOfSightInfo CheckLineOfSightToTarget(ObjectHandler target) {
         bool targetInRange = Vector2.Distance(transform.position, target.transform.position) < characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue();
 
         Vector3 targetDir = (target.transform.position - transform.position).normalized;
 
+        Vector3 leftPos = characterHandler.Collider.bounds.center + (Quaternion.AngleAxis(90f, Vector3.forward) * targetDir);
+        Vector3 leftDir = (target.Collider.bounds.center - leftPos).normalized;
+        Vector3 rightPos = characterHandler.Collider.bounds.center + (Quaternion.AngleAxis(-90f, Vector3.forward) * targetDir).normalized;
+        Vector3 rightDir = (target.Collider.bounds.center - rightPos).normalized;
+
+
         LayerMask mask = LayerMask.GetMask("Default");
 
-        RaycastHit2D hit = Physics2D.Raycast(characterHandler.brain.Collider.bounds.center, targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), mask);
+        RaycastHit2D hit = Physics2D.Raycast(characterHandler.Collider.bounds.center, targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), mask);
 
-        if (hit.collider != null && hit.collider.gameObject == target.gameObject) {
-            return new LineOfSightInfo(true, targetInRange, null, hit);
-        } else if (hit.collider != null) {
-            return new LineOfSightInfo(false, targetInRange, hit.collider.gameObject, hit);
-        } else {
+
+
+        RaycastHit2D hitLeft = Physics2D.Raycast(leftPos, leftDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue()+1f, mask);
+        RaycastHit2D hitRight = Physics2D.Raycast(rightPos, rightDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue()+1f, mask);
+
+
+
+        if (hit.collider == null) {
             return new LineOfSightInfo(false, targetInRange, null, hit);
+        } else if (hit.collider.gameObject != target.gameObject) {
+            return new LineOfSightInfo(false, targetInRange, hit.collider.gameObject, hit);
+        }
+
+        if (hitLeft.collider != null && hitLeft.collider.gameObject == target.gameObject && hitRight.collider != null && hitRight.collider.gameObject == target.gameObject) {
+            return new LineOfSightInfo(true, targetInRange, null, hit);
+        }
+
+        if (hitLeft.collider != null && hitLeft.collider.gameObject != target.gameObject) {
+            Debug.Log("left " + hitLeft.collider);
+            return new LineOfSightInfo(false, targetInRange, hitLeft.collider.gameObject, hitLeft);
+        } else if (hitRight.collider != null && hitRight.collider.gameObject != target.gameObject) {
+            Debug.Log("right " + hitRight.collider);
+            return new LineOfSightInfo(false, targetInRange, hitRight.collider.gameObject, hitRight);
+        } else {
+            Debug.Log("none");
+            return new LineOfSightInfo(false, targetInRange, null, hitLeft);
         }
     }
 
-    public LineOfSightInfo CheckLineOfSightFromPosition(GameObject target, Vector3 position) {
+    public LineOfSightInfo CheckLineOfSightFromPosition(ObjectHandler target, Vector3 position) {
         bool targetInRange = Vector2.Distance(position, target.transform.position) < characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue();
 
         Vector3 targetDir = (target.transform.position - position).normalized;
 
         LayerMask mask = LayerMask.GetMask("Default");
 
-        float middleOfCollider = characterHandler.brain.Collider.bounds.extents.y / 2f;
+        float middleOfCollider = characterHandler.Collider.bounds.extents.y / 2f;
         RaycastHit2D hit = Physics2D.Raycast(position + new Vector3(0,middleOfCollider,0), targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), mask);
 
         if (hit.collider != null && hit.collider.gameObject == target.gameObject) {
@@ -96,9 +122,9 @@ public class ThreatHandler : MonoBehaviour
         }
     }
 
-    GameObject FindTargetInRange() {
+    ObjectHandler FindTargetInRange() {
         float bestDistance = characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue() + 1f;
-        GameObject bestTarget = null;
+        ObjectHandler bestTarget = null;
 
         foreach (Collider2D col in Physics2D.OverlapCircleAll(transform.position, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue())) {
             CharacterHandler otherCharacter = col.GetComponent<CharacterHandler>();
@@ -110,7 +136,7 @@ public class ThreatHandler : MonoBehaviour
 
             LayerMask mask = LayerMask.GetMask("Default");
 
-            RaycastHit2D hit = Physics2D.Raycast(characterHandler.brain.Collider.bounds.center, targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), mask);
+            RaycastHit2D hit = Physics2D.Raycast(characterHandler.Collider.bounds.center, targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), mask);
 
             if (hit.collider != null && hit.collider.gameObject == otherCharacter.gameObject) {
                 // Can see the character, evaluate the threat
@@ -125,7 +151,7 @@ public class ThreatHandler : MonoBehaviour
                 float reputation = factionHandler.FindReputation(hitFactionHandler);
 
                 if (reputation <= -100f && distance < bestDistance) {
-                    bestTarget = otherCharacter.gameObject;
+                    bestTarget = otherCharacter;
                     bestDistance = distance;
                 }
 
@@ -143,7 +169,7 @@ public class ThreatHandler : MonoBehaviour
         float reputation = factionHandler.FindReputation(hitFactionHandler);
 
         if (reputation <= -100f) {
-            Target = attacker.gameObject;
+            Target = attacker;
         }
     }
 }

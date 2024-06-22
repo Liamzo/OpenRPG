@@ -10,7 +10,6 @@ public class BaseBrain : MonoBehaviour
     public EquipmentHandler equipmentHandler {get; private set;}
 
     protected Animator _animator;
-    public Collider2D Collider {get; private set;}
     
 
     public ParticleSystem footSteps;
@@ -26,7 +25,6 @@ public class BaseBrain : MonoBehaviour
     protected virtual void Awake() {
         _animator = GetComponentInChildren<Animator>();
         character = GetComponent<CharacterHandler>();
-        Collider = GetComponent<Collider2D>();
 
         footEmission = footSteps.emission;
 

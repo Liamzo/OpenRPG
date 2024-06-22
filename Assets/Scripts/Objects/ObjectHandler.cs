@@ -16,6 +16,7 @@ public class ObjectHandler : MonoBehaviour
 
     public SpriteRenderer spriteRenderer{get; private set;}
     public Rigidbody2D rigidBody{get; private set;}
+    public Collider2D Collider {get; private set;}
     public AudioSource audioSource{get; private set;}
 
     public BaseStats baseStats;
@@ -47,6 +48,7 @@ public class ObjectHandler : MonoBehaviour
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         rigidBody = GetComponentInChildren<Rigidbody2D>();
+        Collider = GetComponent<Collider2D>();
         audioSource = GetComponentInChildren<AudioSource>();
         
         objectName = baseStats.objectName;
