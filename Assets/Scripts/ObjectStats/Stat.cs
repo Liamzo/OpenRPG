@@ -4,19 +4,31 @@ using UnityEngine;
 
 [System.Serializable]
 public class Stat {
-    [SerializeField] public float baseValue {get; private set;}
-    [SerializeField] public AttributeValue baseAttribute {get; private set;}
+    [SerializeField] public float BaseValue {get; private set;}
+    [SerializeField] public AttributeValue? BaseAttribute {get; private set;}
+    [SerializeField] public CharacterHandler Character {get; private set;}
 
     [SerializeField] private List<float> flatModifiers = new List<float>();
 
     [SerializeField] private List<float> percentModifiers = new List<float>();
 
-    public Stat(float baseValue) {
-        this.baseValue = baseValue;
+    public Stat(float baseValue, AttributeValue? baseAttribute = null, CharacterHandler character = null) {
+        BaseValue = baseValue;
+        BaseAttribute = baseAttribute;
+        Character = character;
+    }
+
+    public void AddAttribute (AttributeValue attribute, CharacterHandler character) {
+        BaseAttribute = attribute;
+        Character = character;
     }
 
     public float GetValue() {
-        float finalValue = baseValue;
+        float finalValue = BaseValue;
+
+        if (BaseAttribute.HasValue) {
+            finalValue += Character.Attributes.GetAttribute(BaseAttribute.Value.attributeName) * BaseAttribute.Value.value;
+        }
 
         flatModifiers.ForEach(x => finalValue += x);
 
@@ -30,10 +42,10 @@ public class Stat {
     }
 
     public void SetBaseValue(float value) {
-        baseValue = value;
+        BaseValue = value;
     }
     public void ChangeBaseValue(float value) {
-        baseValue += value;
+        BaseValue += value;
     }
 
     public void AddModifier (Modifier modifier) {
@@ -72,4 +84,38 @@ public struct Modifier {
         this.type = type;
         this.value = value;
     }
+}
+
+
+
+
+[System.Serializable]
+public enum ObjectStatNames {
+    Health,
+    ArmourValue,
+    Weight
+}
+
+[System.Serializable]
+public struct ObjectStatValue {
+    public ObjectStatNames statName;
+    public float value;
+}
+
+
+[System.Serializable]
+public enum CharacterStatNames {
+    Stamina,
+    Sight,
+    MovementSpeed,
+    SprintMultiplier,
+    AttackSpeed,
+    StaminaRegen
+
+}
+
+[System.Serializable]
+public struct CharacterStatValue {
+    public CharacterStatNames statName;
+    public float value;
 }

@@ -193,19 +193,6 @@ public class ObjectHandler : MonoBehaviour
 
 
 
-[System.Serializable]
-public enum ObjectStatNames {
-    Health,
-    ArmourValue,
-    Weight
-}
-
-[System.Serializable]
-public struct ObjectStatValue {
-    public ObjectStatNames statName;
-    public float value;
-}
-
 // Very temporary, replace with Faction System
 [System.Serializable]
 public enum ObjectType {

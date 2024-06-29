@@ -12,9 +12,9 @@ public class DamageTypeStandard : BaseStrategy, IDamageType
     public void DealDamage(ObjectHandler target, HitOutcome hitOutcome, float charge, GameObject projectile)
     {
         // Roll for Damage
-        float damage = 0.0f;
+        float damage = ((CharacterHandler) weapon.item.owner).Attributes.GetAttribute(AttributeNames.Strength);
 
-        for (int i = 0; i < weapon.statsWeapon[WeaponStatNames.DamageRollCount].GetValue(); i++) {
+        for (int i = 0; i < weapon.GetStatValue(WeaponStatNames.DamageRollCount); i++) {
             damage += Random.Range(1, (int)weapon.GetStatValue(WeaponStatNames.DamageRollValue) + 1);
         }
 
@@ -29,7 +29,7 @@ public class DamageTypeStandard : BaseStrategy, IDamageType
                 target.TakeDamge(damage, weapon, (CharacterHandler) weapon.item.owner);
 
                 CharacterHandler targetCharacter = (CharacterHandler) target;
-                if (targetCharacter != null){
+                if (targetCharacter != null) {
                     targetCharacter.ChangeStamina(-damage);
                 }
             }
@@ -39,10 +39,10 @@ public class DamageTypeStandard : BaseStrategy, IDamageType
             GameManager.instance.HitStop(0.05f);
 
             if (target != null){
-                target.objectStatusHandler.BlockMovementControls(weapon.GetStatValue(WeaponStatNames.Stagger));
+                target.objectStatusHandler.BlockMovementControls(weapon.GetStatValue(WeaponStatNames.Stagger)/2f);
 
                 CharacterHandler targetCharacter = (CharacterHandler) target;
-                if (targetCharacter != null){
+                if (targetCharacter != null) {
                     targetCharacter.ChangeStamina(-damage/2f);
                 }
             }

@@ -546,6 +546,7 @@ MonoBehaviour:
   currentHealth: 0
   objectStatusHandler: {fileID: 0}
   baseCharacterStats: {fileID: 11400000, guid: 8221420ade17c174d8079dd656f2ebdf, type: 2}
+  baseAttributes: {fileID: 11400000, guid: 03df065ba32904d4aba4b37f7c703d38, type: 2}
   currentStamina: 0
 --- !u!114 &3377350315652835605
 MonoBehaviour:

@@ -140,8 +140,8 @@ public class Player : BaseBrain
         // Look At Mouse
         SetLookingDirection(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()));
 
-        _animator.SetFloat("Movement", movement.magnitude / character.statsCharacter[CharacterStatNames.MovementSpeed].baseValue);
-        footEmission.rateOverTime = 7f * (movement.magnitude / character.statsCharacter[CharacterStatNames.MovementSpeed].baseValue);
+        _animator.SetFloat("Movement", movement.magnitude / character.statsCharacter[CharacterStatNames.MovementSpeed].BaseValue);
+        footEmission.rateOverTime = 7f * (movement.magnitude / character.statsCharacter[CharacterStatNames.MovementSpeed].BaseValue);
     }
 
     void DodgeControls() {
@@ -161,7 +161,7 @@ public class Player : BaseBrain
                 character.spriteRenderer.flipX = false;
             }
 
-            dodgeMovement *= character.statsCharacter[CharacterStatNames.MovementSpeed].baseValue * dodgeSpeedMulti;
+            dodgeMovement *= character.statsCharacter[CharacterStatNames.MovementSpeed].BaseValue * dodgeSpeedMulti;
 
             _animator.SetBool("Rolling", true);
             _animator.SetTrigger("Roll");

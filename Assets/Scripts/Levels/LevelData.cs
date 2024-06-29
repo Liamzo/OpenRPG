@@ -16,6 +16,7 @@ public class LevelData : ScriptableObject
     [Header("First Generation Settings")]
     public List<ItemStart> items;
     public List<CharacterStart> characters;
+    public List<CharacterStart> things;
 
     public virtual void GenerateLevel() {
         foreach (ItemStart itemStart in items) {

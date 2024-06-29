@@ -26,9 +26,9 @@ public class InventoryHandler : MonoBehaviour, ISaveable
 
     public float carryWeightMax {
         get {
-            AttributeHandler attributeHandler;
-            if (TryGetComponent<AttributeHandler>(out attributeHandler)) {
-                return attributeHandler.stats[AttributeNames.Strength].GetValue() * 15f;
+            CharacterHandler characterHandler;
+            if (TryGetComponent<CharacterHandler>(out characterHandler)) {
+                return characterHandler.Attributes.GetAttribute(AttributeNames.Strength) * 15f;
             }
 
             return Mathf.Infinity;

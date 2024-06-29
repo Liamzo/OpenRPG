@@ -310,7 +310,6 @@ GameObject:
   - component: {fileID: 6498385307091005130}
   - component: {fileID: 1479582196}
   - component: {fileID: 5729023158561328753}
-  - component: {fileID: 2030974071724324993}
   - component: {fileID: 1479582193}
   - component: {fileID: 1479582198}
   - component: {fileID: 1479582195}
@@ -440,6 +439,7 @@ MonoBehaviour:
   currentHealth: 0
   objectStatusHandler: {fileID: 5729023158561328753}
   baseCharacterStats: {fileID: 11400000, guid: 8221420ade17c174d8079dd656f2ebdf, type: 2}
+  baseAttributes: {fileID: 11400000, guid: 03df065ba32904d4aba4b37f7c703d38, type: 2}
   currentStamina: 0
   healthBar: {fileID: 0}
   staminaBar: {fileID: 0}
@@ -458,19 +458,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockAngle: 0
---- !u!114 &2030974071724324993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6498385307091005126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7592b2b035779454e82fa614378b527e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseAttributes: {fileID: 11400000, guid: 03df065ba32904d4aba4b37f7c703d38, type: 2}
 --- !u!114 &1479582193
 MonoBehaviour:
   m_ObjectHideFlags: 0

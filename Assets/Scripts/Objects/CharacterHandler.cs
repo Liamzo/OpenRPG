@@ -8,6 +8,8 @@ public class CharacterHandler : ObjectHandler
 {
     public BaseBrain brain {get; private set;}
     [SerializeField] private BaseCharacterStats baseCharacterStats;
+    [SerializeField] private BaseAttributes baseAttributes;
+    public AttributeHandler Attributes { get; private set; }
 
     public Dictionary<CharacterStatNames, Stat> statsCharacter = new Dictionary<CharacterStatNames, Stat>();
     
@@ -18,10 +20,34 @@ public class CharacterHandler : ObjectHandler
         base.Awake();
 
         brain = GetComponent<BaseBrain>();
+
+        Dictionary<CharacterStatNames, AttributeValue> characterAttributeMappings = new Dictionary<CharacterStatNames, AttributeValue>
+        {
+            {CharacterStatNames.Stamina, new AttributeValue()},
+            {CharacterStatNames.StaminaRegen, new AttributeValue()},
+            {CharacterStatNames.AttackSpeed, new AttributeValue()},
+            {CharacterStatNames.MovementSpeed, new AttributeValue()},
+        };
+        Dictionary<ObjectStatNames, AttributeValue> objectAttributeMappings = new Dictionary<ObjectStatNames, AttributeValue>
+        {
+            {ObjectStatNames.Health, new AttributeValue()},
+        };
         
         foreach (CharacterStatValue sv in baseCharacterStats.stats) {
-            statsCharacter.Add(sv.statName, new Stat(sv.value));
+            Stat stat = new Stat(sv.value);
+            statsCharacter.Add(sv.statName, stat);
+            if (characterAttributeMappings.ContainsKey(sv.statName))
+                stat.AddAttribute(characterAttributeMappings[sv.statName], this);
         }
+
+        foreach (KeyValuePair<ObjectStatNames, Stat> objectStat in statsObject)
+        {
+            if (objectAttributeMappings.ContainsKey(objectStat.Key))
+                objectStat.Value.AddAttribute(objectAttributeMappings[objectStat.Key], this);
+        }
+
+
+        Attributes = new AttributeHandler(baseAttributes);
 
         currentStamina = statsCharacter[CharacterStatNames.Stamina].GetValue();
 
@@ -94,21 +120,4 @@ public class CharacterHandler : ObjectHandler
 
         spriteRenderer.color = Color.white;
     }
-}
-
-[System.Serializable]
-public enum CharacterStatNames {
-    Stamina,
-    Sight,
-    MovementSpeed,
-    SprintMultiplier,
-    AttackSpeed,
-    StaminaRegen
-
-}
-
-[System.Serializable]
-public struct CharacterStatValue {
-    public CharacterStatNames statName;
-    public float value;
 }
