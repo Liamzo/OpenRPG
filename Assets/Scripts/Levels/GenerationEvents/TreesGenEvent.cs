@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class TreesGenEvent : BaseGenEvent
 {
-    public List<GameObject> treePrefabs;
+    public List<SpawnChance> treePrefabs;
     public float treeCoverage;
     public override void Generate(LevelData level)
     {
@@ -31,7 +31,7 @@ public class TreesGenEvent : BaseGenEvent
 
             } while (!validPosition);
 
-            GameObject treePrefab = treePrefabs[Random.Range(0,treePrefabs.Count)];
+            GameObject treePrefab = BaseGenEvent.PickRandomSpawn(treePrefabs);
             GameObject go = GameObject.Instantiate(treePrefab);
 
             go.transform.position = newPosition;

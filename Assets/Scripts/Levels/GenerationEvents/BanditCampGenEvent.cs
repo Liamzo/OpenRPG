@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
@@ -39,6 +40,8 @@ public class BanditCampGenEvent : BaseGenEvent
         go.transform.position = campPosition;
         
         LevelManager.instance.currentLevel.things.Add(go);
+
+        go.GetComponentsInChildren<Building>().ToList().ForEach(x => x.Generate());
 
 
         // Spawn Enemies

@@ -32,7 +32,8 @@ MonoBehaviour:
       type: {class: TreesGenEvent, ns: , asm: Assembly-CSharp}
       data:
         treePrefabs:
-        - {fileID: 1307998372530817856, guid: d7a5f0dd7d5edaf43bf860c729a56cf0, type: 3}
+        - prefab: {fileID: 1307998372530817856, guid: d7a5f0dd7d5edaf43bf860c729a56cf0, type: 3}
+          chance: 100
         treeCoverage: 40
     - rid: 139207646597087241
       type: {class: BanditCampGenEvent, ns: , asm: Assembly-CSharp}

@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: TestLand
   levelName: Test Land
-  x: 
-  y: 
+  x: 0
+  y: 0
   icon: {fileID: 21300000, guid: 5e6587a9998f0de43ad4e6bd8faf534b, type: 3}
-  spawnPosition: {x: 0, y: 0}
+  spawnPosition: {x: 50, y: 50}
   items: []
   characters: []
   props:
   - prefab: {fileID: 8950900684074421369, guid: 5fd2d8688c64daa40ac5cc92b988b3c1, type: 3}
-    position: {x: 2, y: -2}
+    position: {x: 52, y: -52}
   things:
   - prefab: {fileID: 4077313069437475185, guid: 9a30541e78eaca243bffb264c73cd863, type: 3}
-    position: {x: -2, y: -2}
+    position: {x: -52, y: -52}
   generationEvents:
   - rid: 139207646597087238
   - rid: 139207646597087239
@@ -36,7 +36,8 @@ MonoBehaviour:
       type: {class: TreesGenEvent, ns: , asm: Assembly-CSharp}
       data:
         treePrefabs:
-        - {fileID: 1307998372530817856, guid: d7a5f0dd7d5edaf43bf860c729a56cf0, type: 3}
+        - prefab: {fileID: 1307998372530817856, guid: d7a5f0dd7d5edaf43bf860c729a56cf0, type: 3}
+          chance: 100
         treeCoverage: 40
     - rid: 139207646597087239
       type: {class: BanditCampGenEvent, ns: , asm: Assembly-CSharp}
