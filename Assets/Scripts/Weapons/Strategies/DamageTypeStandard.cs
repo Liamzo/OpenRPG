@@ -19,24 +19,24 @@ public class DamageTypeStandard : BaseStrategy, IDamageType
         }
 
         if (hitOutcome == HitOutcome.Hit) {
-            GameManager.instance.ShakeCamera(8.0f, 0.2f);
-            GameManager.instance.HitStop(0.05f);
+            GameManager.instance.ShakeCamera(8.0f, 0.2f); // Move to future BaseDamage class
+            GameManager.instance.HitStop(0.05f); // Move to future BaseDamage class
 
             if (target != null){
-                target.objectStatusHandler.BlockControls(weapon.GetStatValue(WeaponStatNames.Stagger));
-                target.objectStatusHandler.BlockMovementControls(weapon.GetStatValue(WeaponStatNames.Stagger));
+                target.objectStatusHandler.BlockControls(weapon.GetStatValue(WeaponStatNames.Stagger)); // Move somewhere else
+                target.objectStatusHandler.BlockMovementControls(weapon.GetStatValue(WeaponStatNames.Stagger)); // Move somewhere else
 
-                target.TakeDamge(damage, weapon, (CharacterHandler) weapon.item.owner);
+                target.TakeDamge(damage, weapon, (CharacterHandler) weapon.item.owner); // Move to future BaseDamage class
 
                 CharacterHandler targetCharacter = (CharacterHandler) target;
                 if (targetCharacter != null) {
-                    targetCharacter.ChangeStamina(-damage);
+                    targetCharacter.ChangeStamina(-damage); // Move somewhere else
                 }
             }
 
         } else if (hitOutcome == HitOutcome.Block) {
-            GameManager.instance.ShakeCamera(5.0f, 0.15f);
-            GameManager.instance.HitStop(0.05f);
+            GameManager.instance.ShakeCamera(5.0f, 0.15f); // Move to future BaseDamage class
+            GameManager.instance.HitStop(0.05f); // Move to future BaseDamage class
 
             if (target != null){
                 target.objectStatusHandler.BlockMovementControls(weapon.GetStatValue(WeaponStatNames.Stagger)/2f);

@@ -16,6 +16,9 @@ public class Level
     public List<ObjectHandler> props;
     List<JSONNode> propsData;
 
+    public List<GameObject> things;
+    public List<JSONNode> thingsSaved;
+
 
     public Level(LevelData data) {
         levelData = data;
@@ -27,12 +30,16 @@ public class Level
 
         props = new List<ObjectHandler>();
         propsData = new List<JSONNode>();
+
+        things = new List<GameObject>();
+        thingsSaved = new List<JSONNode>();
     }
 
     public void SaveLevel() {
         itemsData.Clear();
         charactersData.Clear();
         propsData.Clear();
+        thingsSaved.Clear();
         
         foreach(ObjectHandler handler in items) {
             JSONNode itemData = JSONNode.Parse(handler.SaveObject());
@@ -48,21 +55,28 @@ public class Level
             JSONNode propData = JSONNode.Parse(handler.SaveObject());
             propsData.Add(propData);
         }
+        
+        foreach (GameObject thing in things)
+        {
+            JSONNode propData = JSONNode.Parse(thing.GetComponent<Thing>().SaveObject());
+            thingsSaved.Add(propData);
+        }
     }
 
     public void LoadLevel() {
         items.Clear();
         characters.Clear();
         props.Clear();
+        things.Clear();
 
         foreach(JSONNode data in itemsData) {
-            ObjectHandler item = GameManager.instance.SpawnPrefab(data["prefabId"]).GetComponent<ObjectHandler>();
+            ObjectHandler item = PrefabManager.Instance.SpawnPrefab(data["prefabId"]).GetComponent<ObjectHandler>();
             items.Add(item);
             item.LoadObject(data);
         }
 
         foreach(JSONNode data in charactersData) {
-            ObjectHandler character = GameManager.instance.SpawnPrefab(data["prefabId"]).GetComponent<ObjectHandler>();
+            ObjectHandler character = PrefabManager.Instance.SpawnPrefab(data["prefabId"]).GetComponent<ObjectHandler>();
             characters.Add(character);
             character.LoadObject(data);
         }
@@ -73,9 +87,16 @@ public class Level
         }
 
         foreach(JSONNode data in propsData) {
-            ObjectHandler prop = GameManager.instance.SpawnPrefab(data["prefabId"]).GetComponent<ObjectHandler>();
+            ObjectHandler prop = PrefabManager.Instance.SpawnPrefab(data["prefabId"]).GetComponent<ObjectHandler>();
             props.Add(prop);
             prop.LoadObject(data);
+        }
+
+        foreach (JSONNode thingSaved in thingsSaved)
+        {
+            GameObject thing = PrefabManager.Instance.SpawnPrefab(thingSaved["prefabId"]);
+            things.Add(thing);
+            thing.GetComponent<Thing>().LoadObject(thingSaved);
         }
     }
 

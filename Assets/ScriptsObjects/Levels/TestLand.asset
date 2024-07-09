@@ -19,7 +19,34 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 5e6587a9998f0de43ad4e6bd8faf534b, type: 3}
   spawnPosition: {x: 0, y: 0}
   items: []
-  characters:
-  - prefab: {fileID: 8523436995661248248, guid: 9ece42e72c7b43e4096067d7061e661d, type: 3}
-    x: 10
-    y: 10
+  characters: []
+  props:
+  - prefab: {fileID: 8950900684074421369, guid: 5fd2d8688c64daa40ac5cc92b988b3c1, type: 3}
+    position: {x: 2, y: -2}
+  things:
+  - prefab: {fileID: 4077313069437475185, guid: 9a30541e78eaca243bffb264c73cd863, type: 3}
+    position: {x: -2, y: -2}
+  generationEvents:
+  - rid: 139207646597087238
+  - rid: 139207646597087239
+  references:
+    version: 2
+    RefIds:
+    - rid: 139207646597087238
+      type: {class: TreesGenEvent, ns: , asm: Assembly-CSharp}
+      data:
+        treePrefabs:
+        - {fileID: 1307998372530817856, guid: d7a5f0dd7d5edaf43bf860c729a56cf0, type: 3}
+        treeCoverage: 40
+    - rid: 139207646597087239
+      type: {class: BanditCampGenEvent, ns: , asm: Assembly-CSharp}
+      data:
+        campPrefabs:
+        - prefab: {fileID: 6494099200600906937, guid: a77e2a6421e072f42847312384ffafeb, type: 3}
+          chance: 100
+        enemyPrefabs:
+        - prefab: {fileID: 1154453471690096199, guid: 7420a0de952fe8b4c981c3fb2504e0d1, type: 3}
+          chance: 3
+        - prefab: {fileID: 8523436995661248248, guid: 9ece42e72c7b43e4096067d7061e661d, type: 3}
+          chance: 2
+        enemyAmount: 4

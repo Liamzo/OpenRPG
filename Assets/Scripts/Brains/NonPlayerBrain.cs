@@ -129,7 +129,7 @@ public class NonPlayerBrain : BaseBrain
         LayerMask mask = LayerMask.GetMask("Default");
 
         //Debug.DrawLine(character.Collider.bounds.center, character.Collider.bounds.center + (idealDir * 5f), Color.yellow, 0.1f);
-        RaycastHit2D hit = Physics2D.Raycast(character.Collider.bounds.center, idealDir, 5f, mask);
+        RaycastHit2D hit = Physics2D.Raycast(character.Collider.bounds.center, idealDir, 2f, mask);
         if (hit.collider != null) {
             idealClear = false;
         }
@@ -143,7 +143,7 @@ public class NonPlayerBrain : BaseBrain
 
                 Vector3 tryDir = Quaternion.AngleAxis(i * j, Vector3.forward) * idealDir;
 
-                hit = Physics2D.Raycast(character.Collider.bounds.center, tryDir, 5f, mask);
+                hit = Physics2D.Raycast(character.Collider.bounds.center, tryDir, 2f, mask);
                 if (hit.collider != null) {
                     //Debug.DrawLine(collider.bounds.center, collider.bounds.center + (tryDir * 5f), Color.red, 0.1f);
                     if (j == 1) {

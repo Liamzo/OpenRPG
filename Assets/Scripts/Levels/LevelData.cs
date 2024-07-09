@@ -16,21 +16,36 @@ public class LevelData : ScriptableObject
     [Header("First Generation Settings")]
     public List<ItemStart> items;
     public List<CharacterStart> characters;
+    public List<CharacterStart> props;
     public List<CharacterStart> things;
+    [SerializeReference] public List<BaseGenEvent> generationEvents = new List<BaseGenEvent>();
 
     public virtual void GenerateLevel() {
         foreach (ItemStart itemStart in items) {
             ObjectHandler item = Instantiate(itemStart.prefab).GetComponent<ObjectHandler>();
-            item.transform.position = new Vector3(itemStart.x, itemStart.y, 0f);
+            item.transform.position = itemStart.position;
             LevelManager.instance.currentLevel.items.Add(item);
             item.CreateBaseObject();
         }
 
         foreach (CharacterStart characterStart in characters) {
             ObjectHandler character = Instantiate(characterStart.prefab).GetComponent<ObjectHandler>();
-            character.transform.position = new Vector3(characterStart.x, characterStart.y, 0f);
+            character.transform.position = characterStart.position;
             LevelManager.instance.currentLevel.characters.Add(character);
             character.CreateBaseObject();
+        }
+        
+        foreach (CharacterStart characterStart in props) {
+            ObjectHandler prop = Instantiate(characterStart.prefab).GetComponent<ObjectHandler>();
+            prop.transform.position = characterStart.position;
+            LevelManager.instance.currentLevel.props.Add(prop);
+            prop.CreateBaseObject();
+        }
+
+        foreach (CharacterStart thing in things) {
+            GameObject go = Instantiate(thing.prefab);
+            go.transform.position = thing.position;
+            LevelManager.instance.currentLevel.things.Add(go);
         }
 
         GameObject levelObject = GameObject.FindWithTag("Level");
@@ -39,19 +54,22 @@ public class LevelData : ScriptableObject
             prop.CreateBaseObject();
         }
 
+        foreach (BaseGenEvent generationEvent in generationEvents)
+        {
+            generationEvent.Generate(this);
+        }
+
     }
 }
 
 [Serializable]
 public struct ItemStart {
     public GameObject prefab;
-    public float x;
-    public float y;
+    public Vector2 position;
 }
 
 [Serializable]
 public struct CharacterStart {
     public GameObject prefab;
-    public float x;
-    public float y;
+    public Vector2 position;
 }

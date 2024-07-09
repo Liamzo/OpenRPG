@@ -25,11 +25,6 @@ public class GameManager : MonoBehaviour
     public CinemachineVirtualCamera virtualCamera;
 
 
-    public List<PrefabInfo> allItems;
-    public List<PrefabInfo> allCharacters;
-    public List<PrefabInfo> allProps;
-
-
     // Start is called before the first frame update
     void Awake()
     {
@@ -38,18 +33,6 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         LevelManager.instance.LoadLevel(startingLevel);
-
-        for (int i = 0; i < allItems.Count; i++) {
-            allItems[i].prefabId = allItems[i].prefab.GetComponent<ObjectHandler>().prefabId;
-        }
-
-        for (int i = 0; i < allCharacters.Count; i++) {
-            allCharacters[i].prefabId = allCharacters[i].prefab.GetComponent<ObjectHandler>().prefabId;
-        }
-
-        for (int i = 0; i < allProps.Count; i++) {
-            allProps[i].prefabId = allProps[i].prefab.GetComponent<ObjectHandler>().prefabId;
-        }
     }
 
     void Start() {
@@ -117,34 +100,4 @@ public class GameManager : MonoBehaviour
         waitingHitStop = false;
         Time.timeScale = 1.0f;
     }
-
-
-    public GameObject SpawnPrefab(string prefabId) {
-        foreach (PrefabInfo info in allItems) {
-            if (info.prefabId == prefabId) {
-                return Instantiate(info.prefab);
-            }
-        }
-
-        foreach (PrefabInfo info in allCharacters) {
-            if (info.prefabId == prefabId) {
-                return Instantiate(info.prefab);
-            }
-        }
-
-        foreach (PrefabInfo info in allProps) {
-            if (info.prefabId == prefabId) {
-                return Instantiate(info.prefab);
-            }
-        }
-
-        Debug.LogWarning("No prefab found with that ID");
-        return null;
-    }
-}
-
-[Serializable]
-public class PrefabInfo {
-    public string prefabId;
-    public GameObject prefab;
 }

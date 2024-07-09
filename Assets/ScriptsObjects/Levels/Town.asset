@@ -17,12 +17,15 @@ MonoBehaviour:
   x: 
   y: 
   icon: {fileID: 21300000, guid: 76f8ac007e83a944bb452e9fdc67f326, type: 3}
-  spawnPosition: {x: 1, y: 7}
+  spawnPosition: {x: 70, y: 70}
   items:
   - prefab: {fileID: 1384521666624074638, guid: 38c2e887786783046913a9685f9a8f5b, type: 3}
-    x: 3
-    y: 3
+    position: {x: 72, y: 72}
   characters:
   - prefab: {fileID: 3161783212397411800, guid: 855d8503aab0e524895cc617020c069e, type: 3}
-    x: 0
-    y: 2
+    position: {x: 65, y: 75}
+  things: []
+  generationEvents: []
+  references:
+    version: 2
+    RefIds: []
