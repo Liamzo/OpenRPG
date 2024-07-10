@@ -39,7 +39,8 @@ public class LevelManager : MonoBehaviour
             // First time entering level, so generate
             Level newLevel = new Level(levelData);
             currentLevel = newLevel;
-            savedLevels.Add(levelData, newLevel);
+            if (levelData.persistent)
+                savedLevels.Add(levelData, newLevel);
             StartCoroutine(StartLevel(true));
         }
     }

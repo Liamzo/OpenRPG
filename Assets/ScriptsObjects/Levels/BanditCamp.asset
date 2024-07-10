@@ -17,7 +17,8 @@ MonoBehaviour:
   levelPosition: {x: 0, y: 0}
   icon: {fileID: 21300000, guid: 2d6f2213bf14be34dbc1c191285b469a, type: 3}
   levelTier: 1
-  spawnPosition: {x: 0, y: 0}
+  persistent: 1
+  spawnPosition: {x: 50, y: 50}
   items: []
   characters: []
   props: []

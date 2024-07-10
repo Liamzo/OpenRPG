@@ -28,7 +28,7 @@
             },
             "onComplete": [
                 {
-                    "removeLevel": "BanditCamp"
+                    "item": "sword_01"
                 },
                 {
                     "exp": 100

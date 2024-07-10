@@ -11,6 +11,7 @@ public class LevelData : ScriptableObject
     public Sprite icon;
 
     public int levelTier;
+    public bool persistent;
 
     public Vector2 spawnPosition;
 

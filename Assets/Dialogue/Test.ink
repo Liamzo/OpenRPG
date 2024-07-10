@@ -23,6 +23,7 @@ What can I do for you?
     +   { slay_the_bandits_stage == -1} [Anything I can help with?]
         We need help killing some bandits nearby
             + +     [I'd be happy to help]
+                Let me mark the location on your map
                 ~slay_the_bandits_stage = 0
                 ~startQuest("Slay the Bandits")
                 -> opts
@@ -30,6 +31,7 @@ What can I do for you?
                 -> opts
     *   { slay_the_bandits_stage == 1 } [I've slain the bandits]
         You have my thanks. Here, please take this as a reward
+        If you're ever out in the woods again, feel free to kill more of the bastards
         ~slay_the_bandits_stage = 2
         ~dialogueChoiceMade("Slay the Bandits", "Return to Bob", 0)
         -> opts

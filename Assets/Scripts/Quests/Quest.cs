@@ -92,12 +92,18 @@ public class Quest
     void CompleteQuest() {
         Debug.Log("Complete Quest: " + name);
 
-        foreach (JSONNode beginEvent in json["onComplete"]) {
-            if (beginEvent.HasKey("removeLevel")) {
-                MapManager.instance.RemoveLevel(beginEvent["removeLevel"]);
+        foreach (JSONNode completeEvent in json["onComplete"]) {
+            if (completeEvent.HasKey("removeLevel")) {
+                MapManager.instance.RemoveLevel(completeEvent["removeLevel"]);
             }
-            if (beginEvent.HasKey("exp")) {
+            if (completeEvent.HasKey("exp")) {
                 
+            }
+            if (completeEvent.HasKey("item")) {
+                GameObject go = PrefabManager.Instance.SpawnPrefab(completeEvent["item"]);
+                ItemHandler item = GameObject.Instantiate(go).GetComponent<ItemHandler>();
+                item.GetComponent<ObjectHandler>().CreateBaseObject();
+                item.PickUp(Player.instance.character);
             }
         }
 
