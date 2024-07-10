@@ -7,7 +7,8 @@ using UnityEngine;
 
 public class ItemHandler : MonoBehaviour//, ISaveable
 {
-    public ObjectHandler objectHandler {get; private set;}
+    public ObjectHandler objectHandler { get; private set; }
+    public int tier { get; private set; }
     public ObjectHandler owner;
     public Collider2D itemHitbox;
     public BaseItemStats baseItemStats;
