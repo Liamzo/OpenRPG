@@ -7,9 +7,10 @@ public class LevelData : ScriptableObject
 {
     public string sceneName;
     public string levelName;
-    public string x;
-    public string y;
+    public Vector2 levelPosition;
     public Sprite icon;
+
+    public int levelTier;
 
     public Vector2 spawnPosition;
 
@@ -49,6 +50,7 @@ public class LevelData : ScriptableObject
         }
 
         GameObject levelObject = GameObject.FindWithTag("Level");
+        // Only works for now because everything in Town with an ObjectHandler is a Prop. Would break if any Items or Characters were present
         foreach (ObjectHandler prop in levelObject.GetComponentsInChildren<ObjectHandler>()) {
             LevelManager.instance.currentLevel.props.Add(prop);
             prop.CreateBaseObject();
