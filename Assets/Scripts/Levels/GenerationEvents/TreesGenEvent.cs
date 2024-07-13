@@ -11,28 +11,9 @@ public class TreesGenEvent : BaseGenEvent
     
     public override void Generate(LevelData level)
     {
-        int attempts = 0;
         for (int i = 0; i < treeCoverage; i++)
         {
-            Vector2 newPosition;
-            bool validPosition = false;
-            do
-            {
-                newPosition = new Vector2(
-                    Random.Range(0f, 100f),
-                    Random.Range(0f, 100f));
-                
-                validPosition = IsPositionValid(newPosition, 5f);
-
-                attempts++;
-                if (attempts > 1000) // Prevent infinite loop in case of too many attempts
-                {
-                    Debug.LogWarning("Unable to place all objects with given constraints.");
-                    return;
-                }
-
-            } while (!validPosition);
-
+            Vector2 newPosition = PickRandomLocation(3f);
             GameObject treePrefab = BaseGenEvent.PickRandomSpawn(treePrefabs);
             GameObject go = GameObject.Instantiate(treePrefab);
 

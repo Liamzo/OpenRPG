@@ -16,7 +16,7 @@ MonoBehaviour:
   - statName: 0
     value: 80
   - statName: 1
-    value: 20
+    value: 15
   - statName: 2
     value: 5
   - statName: 3

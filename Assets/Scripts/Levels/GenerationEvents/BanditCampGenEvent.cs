@@ -12,27 +12,8 @@ public class BanditCampGenEvent : BaseGenEvent
     
     public override void Generate(LevelData level) 
     {
-        int attempts = 0;
-        
         // Place camp
-        Vector2 campPosition;
-        bool validPosition = false;
-        do
-        {
-            campPosition = new Vector2(
-                Random.Range(0f, 100f),
-                Random.Range(0f, 100f));
-            
-            validPosition = IsPositionValid(campPosition, 10f);
-
-            attempts++;
-            if (attempts > 1000) // Prevent infinite loop in case of too many attempts
-            {
-                Debug.LogWarning("Unable to place all objects with given constraints.");
-                return;
-            }
-
-        } while (!validPosition);
+        Vector2 campPosition = PickRandomLocation(10f, true);
 
         GameObject campPrefab = BaseGenEvent.PickRandomSpawn(campPrefabs);
         GameObject go = GameObject.Instantiate(campPrefab);
