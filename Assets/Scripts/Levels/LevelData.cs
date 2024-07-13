@@ -15,6 +15,12 @@ public class LevelData : ScriptableObject
 
     public Vector2 spawnPosition;
 
+
+    [Header("Audio")]
+    public List<AudioID> ambientAudioList;
+    public List<AudioID> musicAudioList;
+
+
     [Header("First Generation Settings")]
     public List<ItemStart> items;
     public List<CharacterStart> characters;

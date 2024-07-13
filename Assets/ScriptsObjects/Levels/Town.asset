@@ -19,6 +19,8 @@ MonoBehaviour:
   levelTier: 0
   persistent: 1
   spawnPosition: {x: 70, y: 70}
+  ambientAudioList: 
+  musicAudioList: 1f000000
   items:
   - prefab: {fileID: 1384521666624074638, guid: 38c2e887786783046913a9685f9a8f5b, type: 3}
     position: {x: 72, y: 72}

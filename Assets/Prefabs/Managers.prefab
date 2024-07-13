@@ -4411,6 +4411,7 @@ GameObject:
   - component: {fileID: 2059909079}
   - component: {fileID: 1633653148}
   - component: {fileID: 1017528808}
+  - component: {fileID: 931480620}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -4953,6 +4954,7 @@ MonoBehaviour:
   mapPointPrefab: {fileID: 5120936074458504934, guid: 1089bb5a6ff94784a850503243b84142, type: 3}
   startingLevels:
   - {fileID: 11400000, guid: 221014cec74c1e24c9865750041b5eec, type: 2}
+  - {fileID: 11400000, guid: e0e07fdd859bfef419d3655dc3332e9f, type: 2}
   knownLevels: []
 --- !u!114 &464453930
 MonoBehaviour:
@@ -5022,9 +5024,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 385fbbf0ada8d5749a67036bf7049e7c, type: 2}
   - {fileID: 11400000, guid: 0297156ad2af5c6478144c1b8c5fb60d, type: 2}
   - {fileID: 11400000, guid: a58a7ea3e7c4e3748b601be4c97cd00b, type: 2}
-  musicSource: {fileID: 2059909079}
-  ambientSource: {fileID: 2059909078}
+  - {fileID: 11400000, guid: 57abdcaf7e32119478e01ad03dcf4294, type: 2}
+  - {fileID: 11400000, guid: b6d18cf8db0365547988fa61f6a4c674, type: 2}
+  - {fileID: 11400000, guid: b2bc5a82a4df2584891199940ba0def2, type: 2}
+  - {fileID: 11400000, guid: ebfe2a3e65235cf4ab20f984e3746a0d, type: 2}
+  musicSource: {fileID: 2059909078}
+  ambientSource: {fileID: 2059909079}
   globalSource: {fileID: 1633653148}
+  ambientWaitDuration: 45
+  ambientWaitDurationRange: 15
+  musicPauseDuration: 75
+  musicPauseDurationRange: 30
 --- !u!82 &2059909078
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5133,13 +5143,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 100
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -5352,9 +5362,36 @@ MonoBehaviour:
   - prefabId: 
     prefab: {fileID: 1307998372530817856, guid: d7a5f0dd7d5edaf43bf860c729a56cf0, type: 3}
   - prefabId: 
+    prefab: {fileID: 8632036033638678713, guid: a8e024b17474c8c4a8d7d67f45f79dd0, type: 3}
+  - prefabId: 
     prefab: {fileID: 6494099200600906937, guid: a77e2a6421e072f42847312384ffafeb, type: 3}
   - prefabId: 
     prefab: {fileID: 4077313069437475185, guid: 9a30541e78eaca243bffb264c73cd863, type: 3}
+--- !u!114 &931480620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7547779233427188592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0adfb193e33e93f479ff004185448ca7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemTierList:
+  - itemList:
+    - prefab: {fileID: 4328129691896571672, guid: c2c826d08684ae7438b6605db6557142, type: 3}
+      chance: 1
+    - prefab: {fileID: 1486458305870933434, guid: b7b58165901f8f747b2b03206a1e3e5e, type: 3}
+      chance: 1
+  - itemList:
+    - prefab: {fileID: 6617126573172718267, guid: f81865d54996fbb4c99fb68bdfc2702d, type: 3}
+      chance: 1
+    - prefab: {fileID: 7550645386958731258, guid: 784a5fdf9943ded4ea808dd06405badf, type: 3}
+      chance: 1
+    - prefab: {fileID: 1384521666624074638, guid: 38c2e887786783046913a9685f9a8f5b, type: 3}
+      chance: 1
 --- !u!1001 &413326266066957931
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -44,7 +44,11 @@ public enum AudioID {
     Hover,
     CloseUI,
     TradeWithdrawItem,
-    Dialogue01
+    Dialogue01,
+    AmbientWind,
+    AmbientBird,
+    MusicTown,
+    MusicForest,
 
 }
 

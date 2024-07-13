@@ -19,6 +19,8 @@ MonoBehaviour:
   levelTier: 0
   persistent: 0
   spawnPosition: {x: 50, y: 50}
+  ambientAudioList: 1d0000001e000000
+  musicAudioList: 20000000
   items: []
   characters: []
   props: []

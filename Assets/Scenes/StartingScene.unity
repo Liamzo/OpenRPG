@@ -123,36 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &931480602 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7547779233427188592, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
-  m_PrefabInstance: {fileID: 2059909076}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &931480620
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 931480602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0adfb193e33e93f479ff004185448ca7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemTierList:
-  - itemList:
-    - prefab: {fileID: 4328129691896571672, guid: c2c826d08684ae7438b6605db6557142, type: 3}
-      chance: 1
-    - prefab: {fileID: 1486458305870933434, guid: b7b58165901f8f747b2b03206a1e3e5e, type: 3}
-      chance: 1
-  - itemList:
-    - prefab: {fileID: 6617126573172718267, guid: f81865d54996fbb4c99fb68bdfc2702d, type: 3}
-      chance: 1
-    - prefab: {fileID: 7550645386958731258, guid: 784a5fdf9943ded4ea808dd06405badf, type: 3}
-      chance: 1
-    - prefab: {fileID: 1384521666624074638, guid: 38c2e887786783046913a9685f9a8f5b, type: 3}
-      chance: 1
 --- !u!1001 &2059909076
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -176,22 +146,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1017528808, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
-      propertyPath: allThings.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1017528808, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
-      propertyPath: allThings.Array.data[1].prefab
-      value: 
-      objectReference: {fileID: 8632036033638678713, guid: a8e024b17474c8c4a8d7d67f45f79dd0, type: 3}
-    - target: {fileID: 1017528808, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
-      propertyPath: allThings.Array.data[2].prefab
-      value: 
-      objectReference: {fileID: 6494099200600906937, guid: a77e2a6421e072f42847312384ffafeb, type: 3}
-    - target: {fileID: 1017528808, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
-      propertyPath: allThings.Array.data[3].prefab
-      value: 
-      objectReference: {fileID: 4077313069437475185, guid: 9a30541e78eaca243bffb264c73cd863, type: 3}
     - target: {fileID: 1526807545, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -232,10 +186,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Managers
       objectReference: {fileID: 0}
-    - target: {fileID: 7547779233427188600, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
-      propertyPath: startingLevel
-      value: 
-      objectReference: {fileID: 11400000, guid: e0e07fdd859bfef419d3655dc3332e9f, type: 2}
     - target: {fileID: 7547779233427188606, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -280,13 +230,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7547779234806883352, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
-      propertyPath: startingLevels.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7547779234806883352, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
-      propertyPath: startingLevels.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: e0e07fdd859bfef419d3655dc3332e9f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}

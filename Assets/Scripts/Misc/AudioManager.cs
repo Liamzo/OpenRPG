@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public class AudioManager : MonoBehaviour
 {
@@ -14,6 +15,15 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource globalSource;
 
 
+    public float ambientWaitDuration;
+    public float ambientWaitDurationRange;
+    float ambientWaitTimer;
+
+    public float musicPauseDuration;
+    public float musicPauseDurationRange;
+    float musicPauseTimer;
+
+
     private void Awake() {
         instance = this;
 
@@ -21,6 +31,40 @@ public class AudioManager : MonoBehaviour
 
         foreach (AudioClipSO audioClipSO in audioClips) {
             audioClipsDict.Add(audioClipSO.audioID, audioClipSO);
+        }
+
+
+        ambientWaitTimer = Random.Range(ambientWaitDuration - ambientWaitDurationRange, ambientWaitDuration + ambientWaitDurationRange);
+        musicPauseTimer = Random.Range(musicPauseDuration - musicPauseDurationRange, musicPauseDuration + musicPauseDurationRange);
+    }
+
+    private void Update() {
+        if (LevelManager.instance.currentLevel == null) return;
+
+        // Ambient
+        ambientWaitTimer -= Time.deltaTime;
+
+        if (ambientWaitTimer <= 0f) {
+            List<AudioID> audioIDs = LevelManager.instance.currentLevel.levelData.ambientAudioList;
+
+            if (audioIDs.Count > 0) {
+                int index = Random.Range(0, audioIDs.Count);
+
+                PlayClipRandom(audioIDs[index]);
+
+                ambientWaitTimer = Random.Range(ambientWaitDuration - ambientWaitDurationRange, ambientWaitDuration + ambientWaitDurationRange);
+            }
+        }
+
+
+        // Music
+        musicPauseTimer -= Time.deltaTime;
+
+        if (musicPauseTimer <= 0f) {
+            List<AudioID> audioIDs = LevelManager.instance.currentLevel.levelData.musicAudioList;
+            int index = Random.Range(0, audioIDs.Count);
+
+            SetMusic(audioIDs[index]);
         }
     }
 
@@ -52,5 +96,41 @@ public class AudioManager : MonoBehaviour
         } else if (audioClipSO.audioSourceType == AudioSourceType.Global) {
             globalSource.PlayOneShot(audioClip);
         }
+    }
+
+    public void SetAmbientAudio(AudioID audioID) {
+        if (audioClipsDict.ContainsKey(audioID) == false) {
+            Debug.LogWarning($"No audio clip found with ID: {audioID}");
+            return;
+        }
+
+        AudioClipSO audioClipSO = audioClipsDict[audioID];
+
+        if (audioClipSO.audioSourceType != AudioSourceType.Ambient) {
+            Debug.LogWarning($"Wrong audio type");
+            return;
+        }
+
+        ambientSource.clip = audioClipSO.GetRandomClip();
+        ambientSource.Play();
+    }
+    
+    public void SetMusic(AudioID audioID) {
+        if (audioClipsDict.ContainsKey(audioID) == false) {
+            Debug.LogWarning($"No audio clip found with ID: {audioID}");
+            return;
+        }
+
+        AudioClipSO audioClipSO = audioClipsDict[audioID];
+
+        if (audioClipSO.audioSourceType != AudioSourceType.Music) {
+            Debug.LogWarning($"Wrong audio type");
+            return;
+        }
+
+        musicSource.clip = audioClipSO.GetRandomClip();
+        musicSource.Play();
+
+        musicPauseTimer = Random.Range(musicSource.clip.length + musicPauseDuration - musicPauseDurationRange, musicSource.clip.length + musicPauseDuration + musicPauseDurationRange);
     }
 }
