@@ -34,8 +34,8 @@ public class AudioManager : MonoBehaviour
         }
 
 
-        ambientWaitTimer = Random.Range(ambientWaitDuration - ambientWaitDurationRange, ambientWaitDuration + ambientWaitDurationRange);
-        musicPauseTimer = Random.Range(musicPauseDuration - musicPauseDurationRange, musicPauseDuration + musicPauseDurationRange);
+        ambientWaitTimer = Random.Range(ambientWaitDuration - ambientWaitDurationRange, ambientWaitDuration + ambientWaitDurationRange) / 3f;
+        musicPauseTimer = Random.Range(musicPauseDuration - musicPauseDurationRange, musicPauseDuration + musicPauseDurationRange) / 3f;
     }
 
     private void Update() {
