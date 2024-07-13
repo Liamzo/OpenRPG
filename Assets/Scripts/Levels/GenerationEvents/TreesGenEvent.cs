@@ -7,6 +7,8 @@ public class TreesGenEvent : BaseGenEvent
 {
     public List<SpawnChance> treePrefabs;
     public float treeCoverage;
+
+    
     public override void Generate(LevelData level)
     {
         int attempts = 0;

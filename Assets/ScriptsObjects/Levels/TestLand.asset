@@ -27,6 +27,8 @@ MonoBehaviour:
   - rid: 139207646597087238
   - rid: 139207646597087239
   - rid: 2539556613908856832
+  - rid: 2539556613908856834
+  - rid: 2539556613908856835
   references:
     version: 2
     RefIds:
@@ -38,7 +40,7 @@ MonoBehaviour:
           chance: 50
         - prefab: {fileID: 8632036033638678713, guid: a8e024b17474c8c4a8d7d67f45f79dd0, type: 3}
           chance: 50
-        treeCoverage: 40
+        treeCoverage: 20
     - rid: 139207646597087239
       type: {class: BanditCampGenEvent, ns: , asm: Assembly-CSharp}
       data:
@@ -60,3 +62,21 @@ MonoBehaviour:
         maxAmount: 2
         minWidth: 8
         maxWidth: 14
+    - rid: 2539556613908856834
+      type: {class: ShackSpawnEvent, ns: , asm: Assembly-CSharp}
+      data:
+        shackPrefabs:
+        - prefab: {fileID: 2159335888821213467, guid: fc025cf6d3d4c3547942fb00158e3781, type: 3}
+          chance: 100
+        minAmount: 1
+        maxAmount: 3
+    - rid: 2539556613908856835
+      type: {class: EnemiesGenEvent, ns: , asm: Assembly-CSharp}
+      data:
+        enemyPrefabs:
+        - prefab: {fileID: 1154453471690096199, guid: 7420a0de952fe8b4c981c3fb2504e0d1, type: 3}
+          chance: 1
+        - prefab: {fileID: 8523436995661248248, guid: 9ece42e72c7b43e4096067d7061e661d, type: 3}
+          chance: 3
+        minAmount: 5
+        maxAmount: 8

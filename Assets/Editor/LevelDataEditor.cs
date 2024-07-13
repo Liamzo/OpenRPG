@@ -6,7 +6,7 @@ using UnityEditor;
 [CustomEditor(typeof(LevelData)), CanEditMultipleObjects]
 public class LevelDataEditor : Editor
 {
-    public string[] options = new string[] {"Road", "Trees", "BanditCamp"};
+    public string[] options = new string[] {"Road", "Trees", "BanditCamp", "Shack", "Enemies"};
     public int index = 0;
 
     public override void OnInspectorGUI() {
@@ -27,6 +27,12 @@ public class LevelDataEditor : Editor
                     break;
                 case 2:
                     levelData.generationEvents.Add(new BanditCampGenEvent());
+                    break;
+                case 3:
+                    levelData.generationEvents.Add(new ShackSpawnEvent());
+                    break;
+                case 4:
+                    levelData.generationEvents.Add(new EnemiesGenEvent());
                     break;
             }
         }
