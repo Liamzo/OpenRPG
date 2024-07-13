@@ -21,15 +21,12 @@ MonoBehaviour:
   spawnPosition: {x: 50, y: 50}
   items: []
   characters: []
-  props:
-  - prefab: {fileID: 8950900684074421369, guid: 5fd2d8688c64daa40ac5cc92b988b3c1, type: 3}
-    position: {x: 52, y: -52}
-  things:
-  - prefab: {fileID: 4077313069437475185, guid: 9a30541e78eaca243bffb264c73cd863, type: 3}
-    position: {x: -52, y: -52}
+  props: []
+  things: []
   generationEvents:
   - rid: 139207646597087238
   - rid: 139207646597087239
+  - rid: 2539556613908856832
   references:
     version: 2
     RefIds:
@@ -54,3 +51,12 @@ MonoBehaviour:
         - prefab: {fileID: 8523436995661248248, guid: 9ece42e72c7b43e4096067d7061e661d, type: 3}
           chance: 2
         enemyAmount: 4
+    - rid: 2539556613908856832
+      type: {class: RoadGenEvent, ns: , asm: Assembly-CSharp}
+      data:
+        roadTile: {fileID: 11400000, guid: f024967e99a286945af7f79c363919b3, type: 2}
+        tilemapPrefab: {fileID: 3466845665134259520, guid: 2ab8e02106c30cf4da4f565574e6a99c, type: 3}
+        minAmount: 1
+        maxAmount: 2
+        minWidth: 8
+        maxWidth: 14

@@ -26,6 +26,7 @@ MonoBehaviour:
   generationEvents:
   - rid: 139207646597087240
   - rid: 139207646597087241
+  - rid: 2539556613908856833
   references:
     version: 2
     RefIds:
@@ -50,3 +51,12 @@ MonoBehaviour:
         - prefab: {fileID: 8523436995661248248, guid: 9ece42e72c7b43e4096067d7061e661d, type: 3}
           chance: 2
         enemyAmount: 5
+    - rid: 2539556613908856833
+      type: {class: RoadGenEvent, ns: , asm: Assembly-CSharp}
+      data:
+        roadTile: {fileID: 11400000, guid: f024967e99a286945af7f79c363919b3, type: 2}
+        tilemapPrefab: {fileID: 3466845665134259520, guid: 2ab8e02106c30cf4da4f565574e6a99c, type: 3}
+        minAmount: 1
+        maxAmount: 2
+        minWidth: 8
+        maxWidth: 14

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerStatsUI
   - Level
+  - TileMap
   layers:
   - Default
   - TransparentFX
