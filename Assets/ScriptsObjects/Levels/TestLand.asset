@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: TestLand
   levelName: Test Land
-  x: 0
-  y: 0
+  levelPosition: {x: 0, y: 0}
   icon: {fileID: 21300000, guid: 5e6587a9998f0de43ad4e6bd8faf534b, type: 3}
+  levelTier: 0
+  persistent: 0
   spawnPosition: {x: 50, y: 50}
   items: []
   characters: []
@@ -37,7 +38,9 @@ MonoBehaviour:
       data:
         treePrefabs:
         - prefab: {fileID: 1307998372530817856, guid: d7a5f0dd7d5edaf43bf860c729a56cf0, type: 3}
-          chance: 100
+          chance: 50
+        - prefab: {fileID: 8632036033638678713, guid: a8e024b17474c8c4a8d7d67f45f79dd0, type: 3}
+          chance: 50
         treeCoverage: 40
     - rid: 139207646597087239
       type: {class: BanditCampGenEvent, ns: , asm: Assembly-CSharp}
