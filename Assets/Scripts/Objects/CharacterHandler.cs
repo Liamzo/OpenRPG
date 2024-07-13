@@ -23,14 +23,13 @@ public class CharacterHandler : ObjectHandler
 
         Dictionary<CharacterStatNames, AttributeValue> characterAttributeMappings = new Dictionary<CharacterStatNames, AttributeValue>
         {
-            {CharacterStatNames.Stamina, new AttributeValue()},
-            {CharacterStatNames.StaminaRegen, new AttributeValue()},
-            {CharacterStatNames.AttackSpeed, new AttributeValue()},
-            {CharacterStatNames.MovementSpeed, new AttributeValue()},
+            {CharacterStatNames.Stamina, new AttributeValue(AttributeNames.Agility, 5f)},
+            {CharacterStatNames.StaminaRegen, new AttributeValue(AttributeNames.Agility, 2f)},
+            {CharacterStatNames.MovementSpeed, new AttributeValue(AttributeNames.Agility, 0.2f)},
         };
         Dictionary<ObjectStatNames, AttributeValue> objectAttributeMappings = new Dictionary<ObjectStatNames, AttributeValue>
         {
-            {ObjectStatNames.Health, new AttributeValue()},
+            {ObjectStatNames.Health, new AttributeValue(AttributeNames.Toughness, 5f)},
         };
         
         foreach (CharacterStatValue sv in baseCharacterStats.stats) {

@@ -33,4 +33,9 @@ public enum AttributeNames {
 public struct AttributeValue {
     public AttributeNames attributeName;
     public float value;
+
+    public AttributeValue(AttributeNames attributeName, float value) {
+        this.attributeName = attributeName;
+        this.value = value;
+    }
 }

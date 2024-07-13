@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: PlayerBaseAttributes
   m_EditorClassIdentifier: 
   stats:
-  - statName: 0
-    value: 10
+  - attributeName: 0
+    value: 5
+  - attributeName: 2
+    value: 2
+  - attributeName: 1
+    value: 2
