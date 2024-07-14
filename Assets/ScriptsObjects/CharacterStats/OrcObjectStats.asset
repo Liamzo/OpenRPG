@@ -13,13 +13,47 @@ MonoBehaviour:
   m_Name: OrcObjectStats
   m_EditorClassIdentifier: 
   objectName: Grork
+  sprite: {fileID: 0}
+  prefab: {fileID: 0}
   description: 
   type: 2
   expValue: 15
   stats:
   - statName: 0
-    value: 20
+    value: 10
   - statName: 1
     value: 1
   - statName: 2
     value: 60
+  statBlocks:
+  - rid: 2539556635058110465
+  references:
+    version: 2
+    RefIds:
+    - rid: 2539556635058110465
+      type: {class: BaseCharacterStats, ns: , asm: Assembly-CSharp}
+      data:
+        stats:
+        - statName: 0
+          value: 100
+        - statName: 1
+          value: 15
+        - statName: 2
+          value: 5
+        - statName: 3
+          value: 1.5
+        - statName: 4
+          value: 3
+        attributes:
+        - attributeName: 0
+          value: 2
+        - attributeName: 1
+          value: 2
+        - attributeName: 2
+          value: 2
+        - attributeName: 3
+          value: 0
+        - attributeName: 4
+          value: 0
+        - attributeName: 5
+          value: 0

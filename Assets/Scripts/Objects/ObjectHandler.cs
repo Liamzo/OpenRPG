@@ -182,8 +182,8 @@ public class ObjectHandler : MonoBehaviour
         }
     }
 
-    public void CreateBaseObject(BaseStats baseStats) {
-        this.baseStats = baseStats;
+    public void CreateBaseObject() {
+        //this.baseStats = baseStats;
         objectHandlerId = idIncrementor++;
         currentHealth = statsObject[ObjectStatNames.Health].GetValue();
         Heal(0f); // Temp fix for ui

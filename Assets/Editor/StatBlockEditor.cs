@@ -29,7 +29,7 @@ public class StatBlockEditor : Editor
             switch (index)
             {
                 case 0:
-                
+                    baseStats.statBlocks.Add(new BaseCharacterStats());
                     break;
                 case 1:
                 

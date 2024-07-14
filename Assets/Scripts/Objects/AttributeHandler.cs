@@ -6,9 +6,9 @@ public class AttributeHandler
 {
     public Dictionary<AttributeNames, Stat> attributes = new Dictionary<AttributeNames, Stat>();
 
-    public AttributeHandler(BaseAttributes baseAttributes)
+    public AttributeHandler(List<AttributeValue> baseAttributes)
     {
-        foreach (AttributeValue sv in baseAttributes.stats) {
+        foreach (AttributeValue sv in baseAttributes) {
             attributes.Add(sv.attributeName, new Stat(sv.value));
         }
     }

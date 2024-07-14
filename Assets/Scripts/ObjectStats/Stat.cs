@@ -130,4 +130,9 @@ public enum CharacterStatNames {
 public struct CharacterStatValue {
     public CharacterStatNames statName;
     public float value;
+
+    public CharacterStatValue(CharacterStatNames statName, float value) {
+        this.statName = statName;
+        this.value = value;
+    }
 }

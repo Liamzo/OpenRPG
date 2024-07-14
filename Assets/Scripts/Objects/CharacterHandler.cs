@@ -7,8 +7,7 @@ using UnityEngine;
 public class CharacterHandler : ObjectHandler
 {
     public BaseBrain brain {get; private set;}
-    [SerializeField] private BaseCharacterStats baseCharacterStats;
-    [SerializeField] private BaseAttributes baseAttributes;
+    private BaseCharacterStats baseCharacterStats;
     public AttributeHandler Attributes { get; private set; }
 
     public Dictionary<CharacterStatNames, Stat> statsCharacter = new Dictionary<CharacterStatNames, Stat>();
@@ -31,6 +30,9 @@ public class CharacterHandler : ObjectHandler
         {
             {ObjectStatNames.Health, new AttributeValue(AttributeNames.Toughness, 5f)},
         };
+
+
+        baseCharacterStats = baseStats.GetStatBlock<BaseCharacterStats>();
         
         foreach (CharacterStatValue sv in baseCharacterStats.stats) {
             Stat stat = new Stat(sv.value);
@@ -45,8 +47,7 @@ public class CharacterHandler : ObjectHandler
                 objectStat.Value.AddAttribute(objectAttributeMappings[objectStat.Key], this);
         }
 
-
-        Attributes = new AttributeHandler(baseAttributes);
+        Attributes = new AttributeHandler(baseCharacterStats.attributes);
 
         currentStamina = statsCharacter[CharacterStatNames.Stamina].GetValue();
 

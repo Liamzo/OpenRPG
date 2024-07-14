@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Stat Block", menuName = "Stats/New Stat Block")]
@@ -15,5 +16,9 @@ public class BaseStats : ScriptableObject {
 
     public List<ObjectStatValue> stats;
 
-    [SerializeReference] public List<TestClass> statBlocks;
+    [SerializeReference] public List<StatBlock> statBlocks;
+    
+    public T GetStatBlock<T>() where T : StatBlock {
+        return statBlocks.OfType<T>().FirstOrDefault();
+    }
 }

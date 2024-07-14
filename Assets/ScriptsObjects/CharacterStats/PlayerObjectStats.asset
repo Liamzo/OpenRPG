@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: PlayerObjectStats
   m_EditorClassIdentifier: 
   objectName: Liam
+  sprite: {fileID: 0}
+  prefab: {fileID: 0}
   description: 
   type: 1
   expValue: 10
@@ -23,3 +25,35 @@ MonoBehaviour:
     value: 0
   - statName: 2
     value: 50
+  statBlocks:
+  - rid: 2539556635058110464
+  references:
+    version: 2
+    RefIds:
+    - rid: 2539556635058110464
+      type: {class: BaseCharacterStats, ns: , asm: Assembly-CSharp}
+      data:
+        stats:
+        - statName: 0
+          value: 100
+        - statName: 1
+          value: 15
+        - statName: 2
+          value: 5
+        - statName: 3
+          value: 1.5
+        - statName: 4
+          value: 3
+        attributes:
+        - attributeName: 0
+          value: 2
+        - attributeName: 1
+          value: 2
+        - attributeName: 2
+          value: 2
+        - attributeName: 3
+          value: 0
+        - attributeName: 4
+          value: 0
+        - attributeName: 5
+          value: 0
