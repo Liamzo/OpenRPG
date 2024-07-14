@@ -35,7 +35,7 @@ public class StatBlockEditor : Editor
                     baseStats.statBlocks.Add(new BaseItemStats());
                     break;
                 case 2:
-                
+                    baseStats.statBlocks.Add(new BaseWeaponStats());
                     break;
             }
         }

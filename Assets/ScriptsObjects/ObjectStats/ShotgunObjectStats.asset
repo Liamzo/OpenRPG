@@ -28,6 +28,7 @@ MonoBehaviour:
     value: 2
   statBlocks:
   - rid: 2539556635058110470
+  - rid: 2539556635058110476
   references:
     version: 2
     RefIds:
@@ -46,3 +47,36 @@ MonoBehaviour:
         objectStatBonuses: []
         characterStatBonuses: []
         attributeBonuses: []
+    - rid: 2539556635058110476
+      type: {class: BaseWeaponStats, ns: , asm: Assembly-CSharp}
+      data:
+        stats:
+        - statName: 1
+          value: 1
+        - statName: 2
+          value: 6
+        - statName: 0
+          value: 1
+        - statName: 11
+          value: 10
+        - statName: 10
+          value: 0
+        - statName: 6
+          value: 10
+        - statName: 14
+          value: 0
+        - statName: 3
+          value: 0.1
+        - statName: 4
+          value: 0.5
+        - statName: 5
+          value: 100
+        - statName: 8
+          value: 2
+        - statName: 9
+          value: 3
+        - statName: 12
+          value: 1
+        - statName: 13
+          value: -60
+        restingAngle: 0

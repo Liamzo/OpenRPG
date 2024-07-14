@@ -2,9 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Weapon Stat Block", menuName = "Stats/New Weapon Stat Block")]
-public class BaseWeaponStats : ScriptableObject {
-        public List<WeaponStatValue> stats;
+[System.Serializable]
+public class BaseWeaponStats : StatBlock {
+	public List<WeaponStatValue> stats;
 
-        public float restingAngle;
+	public float restingAngle;
+
+	public BaseWeaponStats() {
+		stats = new List<WeaponStatValue>() {
+			new WeaponStatValue(WeaponStatNames.DamageRollCount, 0),
+			new WeaponStatValue(WeaponStatNames.DamageRollValue, 0),
+			new WeaponStatValue(WeaponStatNames.PenetrationValue, 0),
+			new WeaponStatValue(WeaponStatNames.StaminaCostHold, 0),
+			new WeaponStatValue(WeaponStatNames.StaminaCostEnd, 0),
+			new WeaponStatValue(WeaponStatNames.Range, 0),
+			new WeaponStatValue(WeaponStatNames.Blocking, 0),
+		};
+	}
 }

@@ -8,7 +8,7 @@ public class WeaponHandler : MonoBehaviour
 {
     public ItemHandler item {get; private set;}
 
-    public BaseWeaponStats baseWeaponStats;
+    private BaseWeaponStats baseWeaponStats;
     public Dictionary<WeaponStatNames, Stat> statsWeapon = new Dictionary<WeaponStatNames, Stat>();
 
     public Animator animator; // Probably used by everything when fully implemented
@@ -53,10 +53,15 @@ public class WeaponHandler : MonoBehaviour
             item.owner.objectStatusHandler.UnblockMovementControls();
     }
 
+    
+
     protected virtual void Awake() {
         item = GetComponent<ItemHandler>();
 
         item.OnUnequip += OnUnequip;
+
+
+        baseWeaponStats = item.objectHandler.baseStats.GetStatBlock<BaseWeaponStats>();
 
         foreach (WeaponStatValue sv in baseWeaponStats.stats) {
             statsWeapon.Add(sv.statName, new Stat(sv.value));
@@ -262,4 +267,9 @@ public enum WeaponStatNames {
 public struct WeaponStatValue {
     public WeaponStatNames statName;
     public float value;
+
+    public WeaponStatValue(WeaponStatNames statName, float value) {
+        this.statName = statName;
+        this.value = value;
+    }
 }
