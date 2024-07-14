@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: Rusty Helmet
   sprite: {fileID: 21300000, guid: d316e42d18f42bc48aa9ad69a2a5851a, type: 3}
+  prefab: {fileID: 0}
+  prefabId: 
   description: An old rusty helmet. Better than nothing.
   type: 0
   expValue: 0
@@ -22,3 +24,25 @@ MonoBehaviour:
     value: 10
   - statName: 2
     value: 5
+  statBlocks:
+  - rid: 2539556635058110468
+  references:
+    version: 2
+    RefIds:
+    - rid: 2539556635058110468
+      type: {class: BaseItemStats, ns: , asm: Assembly-CSharp}
+      data:
+        icon: {fileID: 21300000, guid: d316e42d18f42bc48aa9ad69a2a5851a, type: 3}
+        itemActions:
+        - {fileID: 11400000, guid: 394bdde43074ad04ca06c57e06a485a1, type: 2}
+        - {fileID: 11400000, guid: fdd49667933645f44b86c89802be93ec, type: 2}
+        - {fileID: 11400000, guid: 79804920e0fee0d40b8b71b516aacc08, type: 2}
+        - {fileID: 11400000, guid: 8ded9ea133c00724ab265fc03ab041b3, type: 2}
+        defaultAction: {fileID: 11400000, guid: fdd49667933645f44b86c89802be93ec, type: 2}
+        possibleSlots: 00000000
+        baseValue: 50
+        objectStatBonuses:
+        - objectStatName: 1
+          value: 1
+        characterStatBonuses: []
+        attributeBonuses: []

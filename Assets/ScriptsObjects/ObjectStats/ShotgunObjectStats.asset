@@ -14,11 +14,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: Shotgun
   sprite: {fileID: 21300000, guid: 0bbb16b5bc14a97498cc7a7cb3931be0, type: 3}
+  prefab: {fileID: 1384521666624074638, guid: 38c2e887786783046913a9685f9a8f5b, type: 3}
+  prefabId: shotgun_01
   description: A trusty double barrel
   type: 0
   expValue: 0
   stats:
   - statName: 0
     value: 5
+  - statName: 1
+    value: 0
   - statName: 2
     value: 2
+  statBlocks:
+  - rid: 2539556635058110470
+  references:
+    version: 2
+    RefIds:
+    - rid: 2539556635058110470
+      type: {class: BaseItemStats, ns: , asm: Assembly-CSharp}
+      data:
+        icon: {fileID: 21300000, guid: 0bbb16b5bc14a97498cc7a7cb3931be0, type: 3}
+        itemActions:
+        - {fileID: 11400000, guid: 394bdde43074ad04ca06c57e06a485a1, type: 2}
+        - {fileID: 11400000, guid: fdd49667933645f44b86c89802be93ec, type: 2}
+        - {fileID: 11400000, guid: 79804920e0fee0d40b8b71b516aacc08, type: 2}
+        - {fileID: 11400000, guid: 8ded9ea133c00724ab265fc03ab041b3, type: 2}
+        defaultAction: {fileID: 11400000, guid: fdd49667933645f44b86c89802be93ec, type: 2}
+        possibleSlots: 0800000009000000
+        baseValue: 100
+        objectStatBonuses: []
+        characterStatBonuses: []
+        attributeBonuses: []

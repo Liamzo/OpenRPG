@@ -32,7 +32,7 @@ public class StatBlockEditor : Editor
                     baseStats.statBlocks.Add(new BaseCharacterStats());
                     break;
                 case 1:
-                
+                    baseStats.statBlocks.Add(new BaseItemStats());
                     break;
                 case 2:
                 

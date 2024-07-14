@@ -12,7 +12,7 @@ public class ItemHandler : MonoBehaviour//, ISaveable
     public int tier { get; private set; }
     public ObjectHandler owner;
     public Collider2D itemHitbox;
-    public BaseItemStats baseItemStats;
+    public BaseItemStats baseItemStats { get; private set; }
     public List<ItemAction> itemActions;
     public ItemAction defaultItemAction;
     public int value {
@@ -34,6 +34,8 @@ public class ItemHandler : MonoBehaviour//, ISaveable
 
         // Create List of Actions
         itemActions = new List<ItemAction>();
+
+        baseItemStats = objectHandler.baseStats.GetStatBlock<BaseItemStats>();
 
         foreach (BaseItemAction action in baseItemStats.itemActions) {
             if (action is EquipItemAction) {
@@ -125,13 +127,24 @@ public class ItemHandler : MonoBehaviour//, ISaveable
         }
     }
 
-    // public string SaveComponent()
-    // {
-    //     return $"item: {{ owner: {owner} }}";
-    // }
+//     public void CreateBase()
+//     {
+//         List<GameObject> loot = LootTableManager.Instance.GetRandomLoot(minAmount, maxAmount, tierBoost);
 
-    // public void LoadComponent(JSONNode data)
-    // {
-    //     owner = data["item"]["owner"];
-    // }
+//         foreach (GameObject go in loot) {
+//             ItemHandler item = Instantiate(go).GetComponent<ItemHandler>();
+//             item.GetComponent<ObjectHandler>().CreateBaseObject();
+//             item.PickUp(GetComponent<ObjectHandler>());
+//         }
+// }
+
+//     public void LoadComponent(JSONNode data)
+//     {
+        
+//     }
+
+//     public string SaveComponent()
+//     {
+//         return "";
+//     }
 }

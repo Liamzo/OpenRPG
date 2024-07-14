@@ -12,13 +12,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5eac169f66d096428752ed9c9ae5a10, type: 3}
   m_Name: SwordObjectStats
   m_EditorClassIdentifier: 
-  objectName: Sword
+  objectName: Iron Sword
   sprite: {fileID: 21300000, guid: 37e9fb16acbe38c45815380a7e9eb232, type: 3}
+  prefab: {fileID: 4328129691896571672, guid: c2c826d08684ae7438b6605db6557142, type: 3}
+  prefabId: sword_01
   description: A basic iron sword
   type: 0
   expValue: 0
   stats:
   - statName: 0
     value: 10
+  - statName: 1
+    value: 0
   - statName: 2
     value: 5
+  statBlocks:
+  - rid: 2539556635058110471
+  references:
+    version: 2
+    RefIds:
+    - rid: 2539556635058110471
+      type: {class: BaseItemStats, ns: , asm: Assembly-CSharp}
+      data:
+        icon: {fileID: 21300000, guid: 37e9fb16acbe38c45815380a7e9eb232, type: 3}
+        itemActions:
+        - {fileID: 11400000, guid: 394bdde43074ad04ca06c57e06a485a1, type: 2}
+        - {fileID: 11400000, guid: fdd49667933645f44b86c89802be93ec, type: 2}
+        - {fileID: 11400000, guid: 79804920e0fee0d40b8b71b516aacc08, type: 2}
+        - {fileID: 11400000, guid: 8ded9ea133c00724ab265fc03ab041b3, type: 2}
+        defaultAction: {fileID: 11400000, guid: fdd49667933645f44b86c89802be93ec, type: 2}
+        possibleSlots: 0600000007000000
+        baseValue: 50
+        objectStatBonuses: []
+        characterStatBonuses: []
+        attributeBonuses: []

@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
-public class BaseItemStats : ScriptableObject
+[System.Serializable]
+public class BaseItemStats : StatBlock
 {
     public Sprite icon;
     public List<BaseItemAction> itemActions;

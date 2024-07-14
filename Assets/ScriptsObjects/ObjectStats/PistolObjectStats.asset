@@ -14,11 +14,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: Pistol
   sprite: {fileID: 21300000, guid: 04bdfc0709689ca4ca0f5568a928e94c, type: 3}
+  prefab: {fileID: 1486458305870933434, guid: b7b58165901f8f747b2b03206a1e3e5e, type: 3}
+  prefabId: pistol_01
   description: A rusty old six-shooter
   type: 0
   expValue: 0
   stats:
   - statName: 0
     value: 5
+  - statName: 1
+    value: 0
   - statName: 2
     value: 2
+  statBlocks:
+  - rid: 2539556635058110469
+  references:
+    version: 2
+    RefIds:
+    - rid: 2539556635058110469
+      type: {class: BaseItemStats, ns: , asm: Assembly-CSharp}
+      data:
+        icon: {fileID: 21300000, guid: 04bdfc0709689ca4ca0f5568a928e94c, type: 3}
+        itemActions:
+        - {fileID: 11400000, guid: 394bdde43074ad04ca06c57e06a485a1, type: 2}
+        - {fileID: 11400000, guid: fdd49667933645f44b86c89802be93ec, type: 2}
+        - {fileID: 11400000, guid: 79804920e0fee0d40b8b71b516aacc08, type: 2}
+        - {fileID: 11400000, guid: 8ded9ea133c00724ab265fc03ab041b3, type: 2}
+        defaultAction: {fileID: 11400000, guid: fdd49667933645f44b86c89802be93ec, type: 2}
+        possibleSlots: 0800000009000000
+        baseValue: 50
+        objectStatBonuses: []
+        characterStatBonuses: []
+        attributeBonuses: []
