@@ -37,6 +37,17 @@ public class CharacterHandlerUI : CharacterHandler
         staminaText.text = currentStamina + " / " + currentStamina;
     }
 
+    protected override void Start() {
+        base.Start();
+
+        statsObject[ObjectStatNames.Health].OnChange += UpdateHealthUI;
+
+        if (statsObject[ObjectStatNames.Health].BaseAttribute != null)
+            Attributes.attributes[statsObject[ObjectStatNames.Health].BaseAttribute.Value.attributeName].OnChange += UpdateHealthUI;
+
+        UpdateHealthUI();
+    }
+
 
     public override void Heal(float amount)
     {

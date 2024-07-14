@@ -12,6 +12,10 @@ public class Stat {
 
     [SerializeField] private List<float> percentModifiers = new List<float>();
 
+
+    // Events
+    public event System.Action OnChange = delegate { };
+
     public Stat(float baseValue, AttributeValue? baseAttribute = null, CharacterHandler character = null) {
         BaseValue = baseValue;
         BaseAttribute = baseAttribute;
@@ -55,6 +59,8 @@ public class Stat {
             } else if (modifier.type == ModifierTypes.Multiplier) {
                 percentModifiers.Add(modifier.value);
             }
+
+            OnChange();
         }
     }
 
@@ -65,6 +71,8 @@ public class Stat {
             } else if (modifier.type == ModifierTypes.Multiplier) {
                 percentModifiers.Remove(modifier.value);
             }
+
+            OnChange();
         }
     }
 }

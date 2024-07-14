@@ -97,6 +97,8 @@ public class ObjectHandler : MonoBehaviour
     }
 
     public virtual void TakeDamge (float damage, WeaponHandler weapon, CharacterHandler damageDealer) {
+        damage -= statsObject[ObjectStatNames.ArmourValue].GetValue();
+
         currentHealth = Mathf.Clamp(currentHealth - damage, 0f, statsObject[ObjectStatNames.Health].GetValue());
 
         GameObject go = ObjectPoolManager.instance.GetPooledObject(PoolIdentifiers.DamageNumber);

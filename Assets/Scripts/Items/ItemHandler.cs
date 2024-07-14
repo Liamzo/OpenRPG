@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using SimpleJSON;
@@ -81,9 +82,47 @@ public class ItemHandler : MonoBehaviour//, ISaveable
 
     public void Equip() {
         OnEquip();
+
+        foreach (ObjectStatBonus objectStatBonus in baseItemStats.objectStatBonuses)
+        {
+            owner.statsObject[objectStatBonus.objectStatName].AddModifier(new Modifier(ModifierTypes.Flat, objectStatBonus.value));
+        }
+
+        if (owner is CharacterHandler) {
+            CharacterHandler character = (CharacterHandler) owner;
+
+            foreach (CharacterStatBonus characterStatBonus in baseItemStats.characterStatBonuses)
+            {
+                character.statsCharacter[characterStatBonus.characterStatName].AddModifier(new Modifier(ModifierTypes.Flat, characterStatBonus.value));
+            }
+
+            foreach (AttributeBonus attributeBonus in baseItemStats.attributeBonuses)
+            {
+                character.Attributes.attributes[attributeBonus.attributeName].AddModifier(new Modifier(ModifierTypes.Flat, attributeBonus.value));
+            }
+        }
     }
     public void Unequip() {
         OnUnequip();
+
+        foreach (ObjectStatBonus objectStatBonus in baseItemStats.objectStatBonuses)
+        {
+            owner.statsObject[objectStatBonus.objectStatName].RemoveModifier(new Modifier(ModifierTypes.Flat, objectStatBonus.value));
+        }
+
+        if (owner is CharacterHandler) {
+            CharacterHandler character = (CharacterHandler)owner;
+
+            foreach (CharacterStatBonus characterStatBonus in baseItemStats.characterStatBonuses)
+            {
+                character.statsCharacter[characterStatBonus.characterStatName].RemoveModifier(new Modifier(ModifierTypes.Flat, characterStatBonus.value));
+            }
+
+            foreach (AttributeBonus attributeBonus in baseItemStats.attributeBonuses)
+            {
+                character.Attributes.attributes[attributeBonus.attributeName].RemoveModifier(new Modifier(ModifierTypes.Flat, attributeBonus.value));
+            }
+        }
     }
 
     // public string SaveComponent()
