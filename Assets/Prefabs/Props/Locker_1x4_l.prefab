@@ -12,13 +12,13 @@ GameObject:
   - component: {fileID: 8950900684074421348}
   - component: {fileID: 8950900684074421346}
   - component: {fileID: 8950900684074421345}
+  - component: {fileID: 8950900684074421358}
   - component: {fileID: 8950900684074421351}
+  - component: {fileID: 8990363721202090042}
   - component: {fileID: 8950900684074421368}
   - component: {fileID: 8950900684074421359}
-  - component: {fileID: 8950900684074421358}
   - component: {fileID: 910401977247109345}
   - component: {fileID: -4077216301926656964}
-  - component: {fileID: 8990363721202090042}
   m_Layer: 0
   m_Name: Locker_1x4_l
   m_TagString: Untagged
@@ -110,6 +110,19 @@ MonoBehaviour:
   movement: {x: 0, y: 0, z: 0}
   currentHealth: 0
   objectStatusHandler: {fileID: 0}
+--- !u!114 &8950900684074421358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8950900684074421369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 343b98f1b6060e548a1166dd68c6a4b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockAngle: 0
 --- !u!114 &8950900684074421351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,6 +139,22 @@ MonoBehaviour:
   startingInventory: {fileID: 0}
   inventory: []
   coins: 0
+--- !u!114 &8990363721202090042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8950900684074421369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f93ead424e40a14db3e8a619d155d8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  generateLoot: 1
+  minAmount: 0
+  maxAmount: 3
+  tierBoost: 0
 --- !u!114 &8950900684074421368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,19 +180,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseKnockDuration: 0.25
---- !u!114 &8950900684074421358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8950900684074421369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 343b98f1b6060e548a1166dd68c6a4b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blockAngle: 0
 --- !u!114 &910401977247109345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,7 +206,7 @@ MonoBehaviour:
   - {x: 0.4300003, y: 0.43999958, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 120932
+  m_InstanceId: 133814
   m_LocalBounds:
     m_Center: {x: 0, y: 0.6999998, z: 0}
     m_Extent: {x: 0.4300003, y: 0.26000023, z: 0}
@@ -290,22 +306,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8990363721202090042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8950900684074421369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f93ead424e40a14db3e8a619d155d8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  generateLoot: 1
-  minAmount: 0
-  maxAmount: 3
-  tierBoost: 0
 --- !u!1 &8950900684276836005
 GameObject:
   m_ObjectHideFlags: 0

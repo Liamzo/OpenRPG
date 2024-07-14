@@ -392,7 +392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7e546a71ad611c459aa7330ee46cefa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabId: bandit_01
+  prefabId: 
   objectHandlerId: 0
   baseStats: {fileID: 11400000, guid: 2f5c5583472adde4782057969a20be67, type: 2}
   objectName: 
@@ -400,8 +400,6 @@ MonoBehaviour:
   movement: {x: 0, y: 0, z: 0}
   currentHealth: 0
   objectStatusHandler: {fileID: 0}
-  baseCharacterStats: {fileID: 11400000, guid: 8221420ade17c174d8079dd656f2ebdf, type: 2}
-  baseAttributes: {fileID: 11400000, guid: 03df065ba32904d4aba4b37f7c703d38, type: 2}
   currentStamina: 0
 --- !u!114 &8463640423895685246
 MonoBehaviour:

@@ -427,16 +427,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7e546a71ad611c459aa7330ee46cefa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabId: npc_01
+  prefabId: 
   objectHandlerId: 0
-  baseStats: {fileID: 11400000, guid: 95de858976419614e84657b179246d3b, type: 2}
+  baseStats: {fileID: 11400000, guid: 7d9bc6958f352974a96a86bd63521ee7, type: 2}
   objectName: 
   objectType: 0
   movement: {x: 0, y: 0, z: 0}
   currentHealth: 0
   objectStatusHandler: {fileID: 0}
-  baseCharacterStats: {fileID: 11400000, guid: 8221420ade17c174d8079dd656f2ebdf, type: 2}
-  baseAttributes: {fileID: 11400000, guid: 03df065ba32904d4aba4b37f7c703d38, type: 2}
   currentStamina: 0
 --- !u!114 &2736253971471747455
 MonoBehaviour:

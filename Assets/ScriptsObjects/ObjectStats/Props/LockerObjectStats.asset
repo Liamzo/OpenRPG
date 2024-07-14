@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: Locker
   sprite: {fileID: 21300000, guid: ec0f3cf71da182f4f8ab34df9fab4902, type: 3}
-  prefab: {fileID: 0}
+  prefab: {fileID: 8950900684074421369, guid: 5fd2d8688c64daa40ac5cc92b988b3c1, type: 3}
   prefabId: locker_01
   description: 
   type: 0

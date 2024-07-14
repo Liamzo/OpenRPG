@@ -88,15 +88,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1486458305870933435}
   - component: {fileID: 6157572692197873295}
-  - component: {fileID: 1486458305870933430}
   - component: {fileID: 2942737818077056421}
   - component: {fileID: 3184057323160938519}
   - component: {fileID: 7595306029146518193}
   - component: {fileID: 5721819381770658313}
-  - component: {fileID: 3048399103839459515}
   - component: {fileID: 4955738140260552055}
   m_Layer: 0
-  m_Name: Helmet
+  m_Name: BaseEquipemtPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -141,27 +139,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!95 &1486458305870933430
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1486458305870933434}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &2942737818077056421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,7 +173,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   itemHitbox: {fileID: 8686579915277826898}
-  baseItemStats: {fileID: 11400000, guid: 648c0574534f0794da3a90b01d42b3ed, type: 2}
 --- !u!114 &7595306029146518193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,18 +196,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af29277c85099ec4c997a3415db8a3f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3048399103839459515
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1486458305870933434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc8f3160b976d5e488784e14f8b5a41c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!82 &4955738140260552055

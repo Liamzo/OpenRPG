@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: Safe
   sprite: {fileID: 21300000, guid: 765bb9017b610f648abb7934285c27ff, type: 3}
-  prefab: {fileID: 0}
+  prefab: {fileID: 5921364653110771086, guid: 1bfcfe5a574f2984c98b51cf081cd4e2, type: 3}
   prefabId: safe_01
   description: 
   type: 0

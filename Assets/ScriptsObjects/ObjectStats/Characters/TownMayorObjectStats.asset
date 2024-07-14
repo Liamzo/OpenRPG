@@ -10,27 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5eac169f66d096428752ed9c9ae5a10, type: 3}
-  m_Name: OrcObjectStats
+  m_Name: TownMayorObjectStats
   m_EditorClassIdentifier: 
-  objectName: Grork
+  objectName: Mr McUffin
   sprite: {fileID: 0}
-  prefab: {fileID: 0}
+  prefab: {fileID: 3161783212397411800, guid: 855d8503aab0e524895cc617020c069e, type: 3}
+  prefabId: npc_01
   description: 
-  type: 2
-  expValue: 15
+  type: 1
+  expValue: 10
   stats:
   - statName: 0
-    value: 10
+    value: 20
   - statName: 1
-    value: 1
+    value: 0
   - statName: 2
-    value: 60
+    value: 50
   statBlocks:
-  - rid: 2539556635058110465
+  - rid: 2539556635058110464
   references:
     version: 2
     RefIds:
-    - rid: 2539556635058110465
+    - rid: 2539556635058110464
       type: {class: BaseCharacterStats, ns: , asm: Assembly-CSharp}
       data:
         stats:

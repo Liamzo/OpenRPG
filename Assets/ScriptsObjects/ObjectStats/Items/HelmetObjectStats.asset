@@ -14,14 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: Rusty Helmet
   sprite: {fileID: 21300000, guid: d316e42d18f42bc48aa9ad69a2a5851a, type: 3}
-  prefab: {fileID: 0}
-  prefabId: 
+  prefab: {fileID: 1486458305870933434, guid: de2ce4b5bf80240468afe5b4533a799a, type: 3}
+  prefabId: head_01
   description: An old rusty helmet. Better than nothing.
   type: 0
   expValue: 0
   stats:
   - statName: 0
     value: 10
+  - statName: 1
+    value: 1
   - statName: 2
     value: 5
   statBlocks:
