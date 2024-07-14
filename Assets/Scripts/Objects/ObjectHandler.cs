@@ -14,8 +14,8 @@ public class ObjectHandler : MonoBehaviour
     static int idIncrementor = 0;
     public int objectHandlerId; // Unique per instance ideally
 
-    public SpriteRenderer spriteRenderer{get; private set;}
-    public Rigidbody2D rigidBody{get; private set;}
+    public SpriteRenderer spriteRenderer {get; private set;}
+    public Rigidbody2D rigidBody {get; private set;}
     public Collider2D Collider {get; private set;}
     public AudioSource audioSource {get; private set;}
 
