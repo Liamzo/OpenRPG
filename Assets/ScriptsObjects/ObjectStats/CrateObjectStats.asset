@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: CrateObjectStats
   m_EditorClassIdentifier: 
   objectName: Crate
+  sprite: {fileID: 21300000, guid: bb5ce7259b8b9bc418281d8744cd17a7, type: 3}
   description: 
   type: 0
   expValue: 0

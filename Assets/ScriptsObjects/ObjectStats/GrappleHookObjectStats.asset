@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: GrappleHookObjectStats
   m_EditorClassIdentifier: 
   objectName: Grappling Hook
+  sprite: {fileID: 21300000, guid: e92fc44f12c21dd44a49e390f39f7ffd, type: 3}
   description: A fancy grappling hook
   type: 0
   expValue: 0

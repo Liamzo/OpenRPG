@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: SwordObjectStats
   m_EditorClassIdentifier: 
   objectName: Sword
+  sprite: {fileID: 21300000, guid: 37e9fb16acbe38c45815380a7e9eb232, type: 3}
   description: A basic iron sword
   type: 0
   expValue: 0

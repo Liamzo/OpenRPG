@@ -262,7 +262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabId: safe_01
   objectHandlerId: 0
-  baseStats: {fileID: 11400000, guid: 95de858976419614e84657b179246d3b, type: 2}
+  baseStats: {fileID: 11400000, guid: db9affbc44f6a8e4a98d29a5cc8e20d4, type: 2}
   objectName: 
   objectType: 0
   movement: {x: 0, y: 0, z: 0}

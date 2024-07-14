@@ -52,6 +52,7 @@ public class ObjectHandler : MonoBehaviour
         audioSource = GetComponentInChildren<AudioSource>();
         
         objectName = baseStats.objectName;
+        spriteRenderer.sprite = baseStats.sprite;
         objectType = baseStats.type;
 
         foreach (ObjectStatValue sv in baseStats.stats) {
@@ -181,7 +182,8 @@ public class ObjectHandler : MonoBehaviour
         }
     }
 
-    public void CreateBaseObject() {
+    public void CreateBaseObject(BaseStats baseStats) {
+        this.baseStats = baseStats;
         objectHandlerId = idIncrementor++;
         currentHealth = statsObject[ObjectStatNames.Health].GetValue();
         Heal(0f); // Temp fix for ui

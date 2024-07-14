@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: AutoGunStats
   m_EditorClassIdentifier: 
   objectName: Auto Gun
+  sprite: {fileID: 21300000, guid: 04bdfc0709689ca4ca0f5568a928e94c, type: 3}
   description: A fast shooting machien gun
   type: 0
   expValue: 0

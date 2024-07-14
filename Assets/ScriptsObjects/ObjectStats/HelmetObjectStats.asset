@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: HelmetObjectStats
   m_EditorClassIdentifier: 
   objectName: Rusty Helmet
+  sprite: {fileID: 21300000, guid: d316e42d18f42bc48aa9ad69a2a5851a, type: 3}
   description: An old rusty helmet. Better than nothing.
   type: 0
   expValue: 0

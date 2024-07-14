@@ -108,6 +108,11 @@ public enum ObjectStatNames {
 public struct ObjectStatValue {
     public ObjectStatNames statName;
     public float value;
+
+    public ObjectStatValue(ObjectStatNames statName, float value) {
+        this.statName = statName;
+        this.value = value;
+    }
 }
 
 

@@ -21,3 +21,6 @@ MonoBehaviour:
   defaultAction: {fileID: 11400000, guid: fdd49667933645f44b86c89802be93ec, type: 2}
   possibleSlots: 0800000009000000
   baseValue: 200
+  objectStatBonuses: []
+  characterStatBonuses: []
+  attributeBonuses: []
