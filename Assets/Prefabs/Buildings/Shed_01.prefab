@@ -815,9 +815,9 @@ MonoBehaviour:
   - {fileID: 4921582932500605324}
   - {fileID: 4890722624842160430}
   lootContainerPrefabs:
-  - prefab: {fileID: 8950900684074421369, guid: 5fd2d8688c64daa40ac5cc92b988b3c1, type: 3}
+  - baseStats: {fileID: 11400000, guid: 00a912955e77a1349b494f0934ab0367, type: 2}
     chance: 50
-  - prefab: {fileID: 5921364653110771086, guid: 1bfcfe5a574f2984c98b51cf081cd4e2, type: 3}
+  - baseStats: {fileID: 11400000, guid: db9affbc44f6a8e4a98d29a5cc8e20d4, type: 2}
     chance: 50
 --- !u!1 &2921625678517006830
 GameObject:

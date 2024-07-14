@@ -12,11 +12,11 @@ public class RandomLootGeneration : MonoBehaviour, ISaveable
 
     public void CreateBase()
     {
-        List<GameObject> loot = LootTableManager.Instance.GetRandomLoot(minAmount, maxAmount, tierBoost);
+        List<BaseStats> loot = LootTableManager.Instance.GetRandomLoot(minAmount, maxAmount, tierBoost);
 
-        foreach (GameObject go in loot) {
-            ItemHandler item = Instantiate(go).GetComponent<ItemHandler>();
-            item.GetComponent<ObjectHandler>().CreateBaseObject();
+        foreach (BaseStats baseStats in loot) {
+            ItemHandler item = Instantiate(baseStats.prefab).GetComponent<ItemHandler>();
+            item.GetComponent<ObjectHandler>().CreateBaseObject(baseStats);
             item.PickUp(GetComponent<ObjectHandler>());
         }
 }

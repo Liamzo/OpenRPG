@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
 
     public LevelData startingLevel;
-    public GameObject playerPrefab;
+    public BaseStats playerBaseStats;
 
 
     public CinemachineVirtualCamera virtualCamera;
@@ -36,9 +36,9 @@ public class GameManager : MonoBehaviour
     }
 
     void Start() {
-        ObjectHandler player = Instantiate(playerPrefab).GetComponent<ObjectHandler>();
+        ObjectHandler player = Instantiate(playerBaseStats.prefab).GetComponent<ObjectHandler>();
 
-        player.CreateBaseObject();
+        player.CreateBaseObject(playerBaseStats);
 
         //LoadAfterFrame(player);
 

@@ -6,7 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public class BanditCampGenEvent : BaseGenEvent
 {
-    public List<SpawnChance> campPrefabs;
+    public List<ThingSpawnChance> campPrefabs;
     public List<SpawnChance> enemyPrefabs;
     public int enemyAmount;
     
@@ -15,7 +15,7 @@ public class BanditCampGenEvent : BaseGenEvent
         // Place camp
         Vector2 campPosition = PickRandomLocation(10f, true);
 
-        GameObject campPrefab = BaseGenEvent.PickRandomSpawn(campPrefabs);
+        GameObject campPrefab = BaseGenEvent.PickRandomThingSpawn(campPrefabs);
         GameObject go = GameObject.Instantiate(campPrefab);
 
         go.transform.position = campPosition;
@@ -32,13 +32,13 @@ public class BanditCampGenEvent : BaseGenEvent
                     Random.Range(-5f, 5f),
                     Random.Range(-5f, 5f));
 
-            GameObject enemyPrefab = BaseGenEvent.PickRandomSpawn(enemyPrefabs);
-            ObjectHandler character = GameObject.Instantiate(enemyPrefab).GetComponent<ObjectHandler>();
+            BaseStats enemyPrefab = BaseGenEvent.PickRandomSpawn(enemyPrefabs);
+            ObjectHandler character = GameObject.Instantiate(enemyPrefab.prefab).GetComponent<ObjectHandler>();
 
             character.transform.position = campPosition + banditPosition;
 
             LevelManager.instance.currentLevel.characters.Add(character);
-            character.CreateBaseObject();
+            character.CreateBaseObject(enemyPrefab);
         }
     }
 }

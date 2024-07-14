@@ -157,7 +157,6 @@ MonoBehaviour:
   grappleRope: {fileID: 2624167088165953246}
   grappleToAll: 1
   grappableLayerNumber: 9
-  m_rigidbody: {fileID: 0}
   rotateOverTime: 0
   rotationSpeed: 4
   launchToPoint: 1
@@ -597,9 +596,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7310db108acaa224a9b60105e4db0ba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabId: grapplinghook_01
+  prefabId: 
   objectHandlerId: 0
-  baseStats: {fileID: 11400000, guid: bf797cb1018438545b7d0a5178a8617a, type: 2}
   objectName: 
   objectType: 0
   movement: {x: 0, y: 0, z: 0}
@@ -619,7 +617,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   itemHitbox: {fileID: 352789737891504402}
-  baseItemStats: {fileID: 11400000, guid: 65736833f12784a43a5bf517eba01161, type: 2}
 --- !u!114 &8742803987580376187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -632,7 +629,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f219b1f6055ca6e42a30466b30dc2a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseWeaponStats: {fileID: 11400000, guid: 9d9b8f77eca881f4cae8edf9e2ef9095, type: 2}
   animator: {fileID: 7550645386958731254}
   _handle: {fileID: 3767545474331249793}
   strategies: {fileID: 2138926956870403303}

@@ -6,8 +6,8 @@ public class ReloadAutoFull : BaseStrategy, IReload
 {
     float reloadTimer = 0f;
 
-    protected override void Awake() {
-        base.Awake();
+    public override void Create() {
+        base.Create();
         
         weapon.triggerHolders[triggerSlot].OnAttack += ResetReloadTimer;
     }

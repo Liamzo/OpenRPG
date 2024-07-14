@@ -102,9 +102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7310db108acaa224a9b60105e4db0ba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabId: locker_01
+  prefabId: 
   objectHandlerId: 0
-  baseStats: {fileID: 11400000, guid: 00a912955e77a1349b494f0934ab0367, type: 2}
   objectName: 
   objectType: 0
   movement: {x: 0, y: 0, z: 0}

@@ -22,45 +22,46 @@ public class LevelData : ScriptableObject
 
 
     [Header("First Generation Settings")]
-    public List<ItemStart> items;
-    public List<CharacterStart> characters;
-    public List<CharacterStart> props;
-    public List<CharacterStart> things;
+    public List<ObjectStart> items;
+    public List<ObjectStart> characters;
+    public List<ObjectStart> props;
+    public List<ThingStart> things;
     [SerializeReference] public List<BaseGenEvent> generationEvents = new List<BaseGenEvent>();
 
     public virtual void GenerateLevel() {
-        foreach (ItemStart itemStart in items) {
-            ObjectHandler item = Instantiate(itemStart.prefab).GetComponent<ObjectHandler>();
-            item.transform.position = itemStart.position;
+        foreach (ObjectStart objectStart in items) {
+            ObjectHandler item = Instantiate(objectStart.baseStats.prefab).GetComponent<ObjectHandler>();
+            item.transform.position = objectStart.position;
             LevelManager.instance.currentLevel.items.Add(item);
-            item.CreateBaseObject();
+            item.CreateBaseObject(objectStart.baseStats);
         }
 
-        foreach (CharacterStart characterStart in characters) {
-            ObjectHandler character = Instantiate(characterStart.prefab).GetComponent<ObjectHandler>();
-            character.transform.position = characterStart.position;
+        foreach (ObjectStart objectStart in characters) {
+            ObjectHandler character = Instantiate(objectStart.baseStats.prefab).GetComponent<ObjectHandler>();
+            character.transform.position = objectStart.position;
             LevelManager.instance.currentLevel.characters.Add(character);
-            character.CreateBaseObject();
+            character.CreateBaseObject(objectStart.baseStats);
         }
         
-        foreach (CharacterStart characterStart in props) {
-            ObjectHandler prop = Instantiate(characterStart.prefab).GetComponent<ObjectHandler>();
-            prop.transform.position = characterStart.position;
+        foreach (ObjectStart objectStart in props) {
+            ObjectHandler prop = Instantiate(objectStart.baseStats.prefab).GetComponent<ObjectHandler>();
+            prop.transform.position = objectStart.position;
             LevelManager.instance.currentLevel.props.Add(prop);
-            prop.CreateBaseObject();
+            prop.CreateBaseObject(objectStart.baseStats);
         }
 
-        foreach (CharacterStart thing in things) {
-            GameObject go = Instantiate(thing.prefab);
-            go.transform.position = thing.position;
+        foreach (ThingStart thingStart in things) {
+            GameObject go = Instantiate(thingStart.prefab);
+            go.transform.position = thingStart.position;
             LevelManager.instance.currentLevel.things.Add(go);
         }
 
         GameObject levelObject = GameObject.FindWithTag("Level");
         // Only works for now because everything in Town with an ObjectHandler is a Prop. Would break if any Items or Characters were present
+        // Anything already in scene will need to have Base Stats assigned manually somehow
         foreach (ObjectHandler prop in levelObject.GetComponentsInChildren<ObjectHandler>()) {
             LevelManager.instance.currentLevel.props.Add(prop);
-            prop.CreateBaseObject();
+            prop.CreateBaseObject(prop.baseStats);
         }
 
         foreach (BaseGenEvent generationEvent in generationEvents)
@@ -72,13 +73,13 @@ public class LevelData : ScriptableObject
 }
 
 [Serializable]
-public struct ItemStart {
-    public GameObject prefab;
+public struct ObjectStart {
+    public BaseStats baseStats;
     public Vector2 position;
 }
 
 [Serializable]
-public struct CharacterStart {
+public struct ThingStart {
     public GameObject prefab;
     public Vector2 position;
 }

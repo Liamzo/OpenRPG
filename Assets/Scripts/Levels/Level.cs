@@ -70,15 +70,17 @@ public class Level
         things.Clear();
 
         foreach(JSONNode data in itemsData) {
-            ObjectHandler item = PrefabManager.Instance.SpawnPrefab(data["prefabId"]).GetComponent<ObjectHandler>();
+            (BaseStats baseStats, GameObject go) = PrefabManager.Instance.SpawnPrefab(data["prefabId"]);
+            ObjectHandler item = go.GetComponent<ObjectHandler>();
             items.Add(item);
-            item.LoadObject(data);
+            item.LoadObject(baseStats, data);
         }
 
         foreach(JSONNode data in charactersData) {
-            ObjectHandler character = PrefabManager.Instance.SpawnPrefab(data["prefabId"]).GetComponent<ObjectHandler>();
+            (BaseStats baseStats, GameObject go) = PrefabManager.Instance.SpawnPrefab(data["prefabId"]);
+            ObjectHandler character = go.GetComponent<ObjectHandler>();
             characters.Add(character);
-            character.LoadObject(data);
+            character.LoadObject(baseStats, data);
         }
 
         GameObject levelObject = GameObject.FindWithTag("Level");
@@ -87,14 +89,15 @@ public class Level
         }
 
         foreach(JSONNode data in propsData) {
-            ObjectHandler prop = PrefabManager.Instance.SpawnPrefab(data["prefabId"]).GetComponent<ObjectHandler>();
+            (BaseStats baseStats, GameObject go) = PrefabManager.Instance.SpawnPrefab(data["prefabId"]);
+            ObjectHandler prop = go.GetComponent<ObjectHandler>();
             props.Add(prop);
-            prop.LoadObject(data);
+            prop.LoadObject(baseStats, data);
         }
 
         foreach (JSONNode thingSaved in thingsSaved)
         {
-            GameObject thing = PrefabManager.Instance.SpawnPrefab(thingSaved["prefabId"]);
+            GameObject thing = PrefabManager.Instance.SpawnThing(thingSaved["prefabId"]);
             things.Add(thing);
             thing.GetComponent<Thing>().LoadObject(thingSaved);
         }

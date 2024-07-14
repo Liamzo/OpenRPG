@@ -22,13 +22,15 @@ MonoBehaviour:
   ambientAudioList: 
   musicAudioList: 1f000000
   items:
-  - prefab: {fileID: 1384521666624074638, guid: 38c2e887786783046913a9685f9a8f5b, type: 3}
+  - baseStats: {fileID: 11400000, guid: 0c918630b68231e46b61fc63798b02df, type: 2}
     position: {x: 72, y: 72}
   characters:
-  - prefab: {fileID: 3161783212397411800, guid: 855d8503aab0e524895cc617020c069e, type: 3}
+  - baseStats: {fileID: 11400000, guid: 7d9bc6958f352974a96a86bd63521ee7, type: 2}
     position: {x: 65, y: 75}
   props: []
-  things: []
+  things:
+  - prefab: {fileID: 4077313069437475185, guid: 9a30541e78eaca243bffb264c73cd863, type: 3}
+    position: {x: 70, y: 65}
   generationEvents: []
   references:
     version: 2

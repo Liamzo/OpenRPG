@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: Liam
   sprite: {fileID: 0}
-  prefab: {fileID: 0}
+  prefab: {fileID: 6498385307091005126, guid: b0414b27511684743865438d27ce08fb, type: 3}
+  prefabId: 
   description: 
   type: 1
   expValue: 10

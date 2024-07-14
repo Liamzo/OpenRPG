@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coins: 100
   items:
-  - {fileID: 1486458305870933434, guid: de2ce4b5bf80240468afe5b4533a799a, type: 3}
+  - {fileID: 11400000, guid: fd8ac6b2016f68049bb41906ee6644df, type: 2}

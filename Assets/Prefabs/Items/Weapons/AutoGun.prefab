@@ -504,9 +504,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7310db108acaa224a9b60105e4db0ba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabId: autogun_01
+  prefabId: 
   objectHandlerId: 0
-  baseStats: {fileID: 11400000, guid: 277f7bbd5ac2e8e488331af1d6290aaa, type: 2}
   objectName: 
   objectType: 0
   movement: {x: 0, y: 0, z: 0}
@@ -526,7 +525,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   itemHitbox: {fileID: 4033213245311495251}
-  baseItemStats: {fileID: 11400000, guid: 963b101ddbb2b09409f6efc91165b783, type: 2}
 --- !u!114 &3739576213653541355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -539,7 +537,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f219b1f6055ca6e42a30466b30dc2a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseWeaponStats: {fileID: 11400000, guid: 4e03c1fdcd76c5144a78c7a1957feff7, type: 2}
   animator: {fileID: 6617126573172718263}
   _handle: {fileID: 3851494845544793067}
   strategies: {fileID: 3365166156655135142}

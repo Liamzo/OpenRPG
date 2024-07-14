@@ -6,7 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public class ShackSpawnEvent : BaseGenEvent
 {
-    public List<SpawnChance> shackPrefabs;
+    public List<ThingSpawnChance> shackPrefabs;
     public int minAmount;
     public int maxAmount;
 
@@ -17,7 +17,7 @@ public class ShackSpawnEvent : BaseGenEvent
         for (int i = 0; i < amount; i++)
         {
             Vector2 newPosition = PickRandomLocation(5f);
-            GameObject shackPrefab = BaseGenEvent.PickRandomSpawn(shackPrefabs);
+            GameObject shackPrefab = BaseGenEvent.PickRandomThingSpawn(shackPrefabs);
             GameObject go = GameObject.Instantiate(shackPrefab);
 
             go.transform.position = newPosition;

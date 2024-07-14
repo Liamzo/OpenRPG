@@ -100,9 +100,9 @@ public class Quest
                 
             }
             if (completeEvent.HasKey("item")) {
-                GameObject go = PrefabManager.Instance.SpawnPrefab(completeEvent["item"]);
+                (BaseStats baseStats, GameObject go) = PrefabManager.Instance.SpawnPrefab(completeEvent["item"]);
                 ItemHandler item = GameObject.Instantiate(go).GetComponent<ItemHandler>();
-                item.GetComponent<ObjectHandler>().CreateBaseObject();
+                item.GetComponent<ObjectHandler>().CreateBaseObject(baseStats);
                 item.PickUp(Player.instance.character);
             }
         }

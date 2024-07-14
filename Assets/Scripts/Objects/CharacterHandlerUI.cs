@@ -14,10 +14,8 @@ public class CharacterHandlerUI : CharacterHandler
     public TextMeshProUGUI staminaText;
 
 
-
-    protected override void Awake()
-    {
-        base.Awake();
+    protected override void Setup(BaseStats baseStats) {
+        base.Setup(baseStats);
 
         instance = this;
 
@@ -35,10 +33,7 @@ public class CharacterHandlerUI : CharacterHandler
 
         healthText.text = currentHealth + " / " + currentHealth;
         staminaText.text = currentStamina + " / " + currentStamina;
-    }
 
-    protected override void Start() {
-        base.Start();
 
         statsObject[ObjectStatNames.Health].OnChange += UpdateHealthUI;
 

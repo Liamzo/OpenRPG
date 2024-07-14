@@ -10,7 +10,7 @@ public abstract class BaseStrategy : MonoBehaviour
     [SerializeField] public int triggerSlot = 0;
 
     // Start is called before the first frame update
-    protected virtual void Awake()
+    public virtual void Create()
     {
         weapon = transform.parent.GetComponent<WeaponHandler>();
     }

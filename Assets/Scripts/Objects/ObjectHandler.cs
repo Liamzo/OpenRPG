@@ -14,12 +14,12 @@ public class ObjectHandler : MonoBehaviour
     static int idIncrementor = 0;
     public int objectHandlerId; // Unique per instance ideally
 
-    public SpriteRenderer spriteRenderer {get; private set;}
-    public Rigidbody2D rigidBody {get; private set;}
-    public Collider2D Collider {get; private set;}
-    public AudioSource audioSource {get; private set;}
+    public SpriteRenderer spriteRenderer { get; private set; }
+    public Rigidbody2D rigidBody { get; private set; }
+    public Collider2D Collider { get; private set; }
+    public AudioSource audioSource { get; private set; }
 
-    public BaseStats baseStats;
+    public BaseStats baseStats  {get; private set; }
 
     public string objectName;
     public ObjectType objectType;
@@ -46,20 +46,7 @@ public class ObjectHandler : MonoBehaviour
 
     protected virtual void Awake()
     {
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        rigidBody = GetComponentInChildren<Rigidbody2D>();
-        Collider = GetComponent<Collider2D>();
-        audioSource = GetComponentInChildren<AudioSource>();
         
-        objectName = baseStats.objectName;
-        spriteRenderer.sprite = baseStats.sprite;
-        objectType = baseStats.type;
-
-        foreach (ObjectStatValue sv in baseStats.stats) {
-            statsObject.Add(sv.statName, new Stat(sv.value));
-        }
-
-        conditionHandler = new ConditionHandler();
     }
 
     protected virtual void Start() {
@@ -70,11 +57,15 @@ public class ObjectHandler : MonoBehaviour
 
 
     protected virtual void Update() {
+        if (baseStats == null) return;
+
         conditionHandler.Tick();
     }
 
 
     private void FixedUpdate() {
+        if (baseStats == null) return;
+        
         rigidBody.velocity = Vector2.zero;
         
         if (!objectStatusHandler.HasMovement())
@@ -172,7 +163,9 @@ public class ObjectHandler : MonoBehaviour
         return json + "}";
     }
 
-    public void LoadObject(JSONNode data) {
+    public void LoadObject(BaseStats baseStats, JSONNode data) {
+        Setup(baseStats);
+        
         transform.position = new Vector3(data["x"], data["y"], 0f);
         objectHandlerId = data["objectHandlerId"];
         currentHealth = data["currentHealth"];
@@ -182,11 +175,31 @@ public class ObjectHandler : MonoBehaviour
         }
     }
 
-    public void CreateBaseObject() {
-        //this.baseStats = baseStats;
+    public void CreateBaseObject(BaseStats baseStats) {
+        Setup(baseStats);
+
         objectHandlerId = idIncrementor++;
         currentHealth = statsObject[ObjectStatNames.Health].GetValue();
         Heal(0f); // Temp fix for ui
+    }
+
+    protected virtual void Setup(BaseStats baseStats) {
+        this.baseStats = baseStats;
+
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        rigidBody = GetComponentInChildren<Rigidbody2D>();
+        Collider = GetComponent<Collider2D>();
+        audioSource = GetComponentInChildren<AudioSource>();
+        
+        objectName = baseStats.objectName;
+        spriteRenderer.sprite = baseStats.sprite;
+        objectType = baseStats.type;
+
+        foreach (ObjectStatValue sv in baseStats.stats) {
+            statsObject.Add(sv.statName, new Stat(sv.value));
+        }
+
+        conditionHandler = new ConditionHandler();
 
         foreach (ISaveable saveable in GetComponents<ISaveable>()) {
             saveable.CreateBase();

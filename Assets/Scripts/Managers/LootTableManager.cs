@@ -13,8 +13,8 @@ public class LootTableManager : MonoBehaviour
         Instance = this;
     }
 
-    public List<GameObject> GetRandomLoot(int minAmount, int maxAmount, int tierMod = 0, bool exclusive = false) {
-        List<GameObject> loot = new List<GameObject>();
+    public List<BaseStats> GetRandomLoot(int minAmount, int maxAmount, int tierMod = 0, bool exclusive = false) {
+        List<BaseStats> loot = new List<BaseStats>();
         List<SpawnChance> possibleSpawns = new List<SpawnChance>();
 
         int maxTier = LevelManager.instance.currentLevel.levelData.levelTier + tierMod;
@@ -29,7 +29,7 @@ public class LootTableManager : MonoBehaviour
 
         for (int i = 0; i < amount; i++)
         {
-            GameObject go = BaseGenEvent.PickRandomSpawn(possibleSpawns);
+            BaseStats go = BaseGenEvent.PickRandomSpawn(possibleSpawns);
             loot.Add(go);
         }
 

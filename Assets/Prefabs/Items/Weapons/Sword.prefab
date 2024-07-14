@@ -437,9 +437,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7310db108acaa224a9b60105e4db0ba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabId: sword_01
+  prefabId: 
   objectHandlerId: 0
-  baseStats: {fileID: 11400000, guid: 566d40a0008146144868f1027802d88e, type: 2}
   objectName: 
   objectType: 0
   movement: {x: 0, y: 0, z: 0}
@@ -459,7 +458,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   itemHitbox: {fileID: 5781637417171694064}
-  baseItemStats: {fileID: 11400000, guid: a529ad9952f99c247a2c4ba3a4079012, type: 2}
 --- !u!114 &838098256805155220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,7 +470,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f219b1f6055ca6e42a30466b30dc2a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseWeaponStats: {fileID: 11400000, guid: 5a53fc5cc1a32304c92e323710c06f3c, type: 2}
   animator: {fileID: 4328129691896571668}
   _handle: {fileID: 5334118679488976819}
   strategies: {fileID: 1592960810812754746}

@@ -10,5 +10,5 @@ public class StartingEquipmentSO : ScriptableObject {
 [System.Serializable]
 public struct StartingEquipment {
     public EquipmentSlot slot;
-    public GameObject equipment;
+    public BaseStats baseStats;
 }

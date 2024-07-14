@@ -11,7 +11,26 @@ public class BaseGenEvent
 
     }
 
-    public static GameObject PickRandomSpawn(List<SpawnChance> spawnChances) {
+    public static BaseStats PickRandomSpawn(List<SpawnChance> spawnChances) {
+        float totalChance = 0f;
+        spawnChances.ForEach(x => totalChance += x.chance);
+
+        float randomChance = UnityEngine.Random.Range(0f, totalChance);
+
+        float chanceCount = 0f;
+        for (int i = 0; i < spawnChances.Count; i++)
+        {
+            chanceCount += spawnChances[i].chance;
+
+            if (randomChance <= chanceCount) {
+                return spawnChances[i].baseStats;
+            }
+        }
+
+        Debug.LogError("Couldn't find a chance");
+        return null;
+    }
+    public static GameObject PickRandomThingSpawn(List<ThingSpawnChance> spawnChances) {
         float totalChance = 0f;
         spawnChances.ForEach(x => totalChance += x.chance);
 
@@ -78,6 +97,12 @@ public class BaseGenEvent
 
 [Serializable]
 public struct SpawnChance {
+    public BaseStats baseStats;
+    public float chance;
+}
+
+[Serializable]
+public struct ThingSpawnChance {
     public GameObject prefab;
     public float chance;
 }

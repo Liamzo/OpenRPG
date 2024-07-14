@@ -17,41 +17,6 @@ public class CharacterHandler : ObjectHandler
     protected override void Awake()
     {
         base.Awake();
-
-        brain = GetComponent<BaseBrain>();
-
-        Dictionary<CharacterStatNames, AttributeValue> characterAttributeMappings = new Dictionary<CharacterStatNames, AttributeValue>
-        {
-            {CharacterStatNames.Stamina, new AttributeValue(AttributeNames.Agility, 5f)},
-            {CharacterStatNames.StaminaRegen, new AttributeValue(AttributeNames.Agility, 2f)},
-            {CharacterStatNames.MovementSpeed, new AttributeValue(AttributeNames.Agility, 0.2f)},
-        };
-        Dictionary<ObjectStatNames, AttributeValue> objectAttributeMappings = new Dictionary<ObjectStatNames, AttributeValue>
-        {
-            {ObjectStatNames.Health, new AttributeValue(AttributeNames.Toughness, 5f)},
-        };
-
-
-        baseCharacterStats = baseStats.GetStatBlock<BaseCharacterStats>();
-        
-        foreach (CharacterStatValue sv in baseCharacterStats.stats) {
-            Stat stat = new Stat(sv.value);
-            statsCharacter.Add(sv.statName, stat);
-            if (characterAttributeMappings.ContainsKey(sv.statName))
-                stat.AddAttribute(characterAttributeMappings[sv.statName], this);
-        }
-
-        foreach (KeyValuePair<ObjectStatNames, Stat> objectStat in statsObject)
-        {
-            if (objectAttributeMappings.ContainsKey(objectStat.Key))
-                objectStat.Value.AddAttribute(objectAttributeMappings[objectStat.Key], this);
-        }
-
-        Attributes = new AttributeHandler(baseCharacterStats.attributes);
-
-        currentStamina = statsCharacter[CharacterStatNames.Stamina].GetValue();
-
-        OnTakeDamage += OnDamageFlash;
     }
 
     protected override void Start () 
@@ -110,6 +75,45 @@ public class CharacterHandler : ObjectHandler
         currentStamina = statsCharacter[CharacterStatNames.Stamina].GetValue();
 
         ChangeStamina(0); // Updates UI
+    }
+
+    protected override void Setup(BaseStats baseStats) {
+        base.Setup(baseStats);
+
+        brain = GetComponent<BaseBrain>();
+
+        Dictionary<CharacterStatNames, AttributeValue> characterAttributeMappings = new Dictionary<CharacterStatNames, AttributeValue>
+        {
+            {CharacterStatNames.Stamina, new AttributeValue(AttributeNames.Agility, 5f)},
+            {CharacterStatNames.StaminaRegen, new AttributeValue(AttributeNames.Agility, 2f)},
+            {CharacterStatNames.MovementSpeed, new AttributeValue(AttributeNames.Agility, 0.2f)},
+        };
+        Dictionary<ObjectStatNames, AttributeValue> objectAttributeMappings = new Dictionary<ObjectStatNames, AttributeValue>
+        {
+            {ObjectStatNames.Health, new AttributeValue(AttributeNames.Toughness, 5f)},
+        };
+
+
+        baseCharacterStats = baseStats.GetStatBlock<BaseCharacterStats>();
+        
+        foreach (CharacterStatValue sv in baseCharacterStats.stats) {
+            Stat stat = new Stat(sv.value);
+            statsCharacter.Add(sv.statName, stat);
+            if (characterAttributeMappings.ContainsKey(sv.statName))
+                stat.AddAttribute(characterAttributeMappings[sv.statName], this);
+        }
+
+        foreach (KeyValuePair<ObjectStatNames, Stat> objectStat in statsObject)
+        {
+            if (objectAttributeMappings.ContainsKey(objectStat.Key))
+                objectStat.Value.AddAttribute(objectAttributeMappings[objectStat.Key], this);
+        }
+
+        Attributes = new AttributeHandler(baseCharacterStats.attributes);
+
+        currentStamina = statsCharacter[CharacterStatNames.Stamina].GetValue();
+
+        OnTakeDamage += OnDamageFlash;
     }
 
     IEnumerator 

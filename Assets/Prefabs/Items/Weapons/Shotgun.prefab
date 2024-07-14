@@ -144,9 +144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7310db108acaa224a9b60105e4db0ba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabId: shotgun_01
+  prefabId: 
   objectHandlerId: 0
-  baseStats: {fileID: 11400000, guid: 0c918630b68231e46b61fc63798b02df, type: 2}
   objectName: 
   objectType: 0
   movement: {x: 0, y: 0, z: 0}
@@ -166,7 +165,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   itemHitbox: {fileID: 9158866447139956070}
-  baseItemStats: {fileID: 11400000, guid: 624fd00206a71984d821eb1e30c3f70a, type: 2}
 --- !u!114 &1800847161386877997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,7 +177,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f219b1f6055ca6e42a30466b30dc2a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseWeaponStats: {fileID: 11400000, guid: af52599889b18c94e89dc7aea6d1d0d8, type: 2}
   animator: {fileID: 1384521666624074626}
   _handle: {fileID: 8039679433212352046}
   strategies: {fileID: 7372804200891990163}

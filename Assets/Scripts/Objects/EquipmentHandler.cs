@@ -35,7 +35,8 @@ public class EquipmentHandler : MonoBehaviour, ISaveable
 
     public void SetStartingEquipment() {
         foreach (StartingEquipment equipment in startingEquipment.equipment) {
-            ItemHandler item = Instantiate(equipment.equipment).GetComponent<ItemHandler>();
+            ItemHandler item = Instantiate(equipment.baseStats.prefab).GetComponent<ItemHandler>();
+            item.GetComponent<ObjectHandler>().CreateBaseObject(equipment.baseStats);
             item.objectHandler.spriteRenderer.enabled = false;
             item.PickUp(GetComponent<ObjectHandler>());
             Equip(item, equipment.slot);
@@ -238,8 +239,9 @@ public class EquipmentHandler : MonoBehaviour, ISaveable
     public void LoadComponent(JSONNode data)
     {
         foreach (JSONNode node in data["equipment"]["items"]) {
-            ObjectHandler item = PrefabManager.Instance.SpawnPrefab(node["item"]["prefabId"]).GetComponent<ObjectHandler>();
-            item.LoadObject(node["item"]);
+            (BaseStats baseStats, GameObject go) = PrefabManager.Instance.SpawnPrefab(node["item"]["prefabId"]);
+            ObjectHandler item = go.GetComponent<ObjectHandler>();
+            item.LoadObject(baseStats, node["item"]);
             
             //item.GetComponent<ItemHandler>().owner = GetComponent<CharacterHandler>();
             item.GetComponent<ItemHandler>().PickUp(GetComponent<ObjectHandler>());

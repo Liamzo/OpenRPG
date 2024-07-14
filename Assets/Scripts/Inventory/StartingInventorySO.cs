@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Starting Inventory", menuName = "Inventory/New Starting Inventory")]
 public class StartingInventorySO : ScriptableObject {
     public int coins;
-    public List<GameObject> items;
+    public List<BaseStats> items;
 }

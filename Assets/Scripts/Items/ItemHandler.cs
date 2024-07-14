@@ -6,7 +6,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(ObjectHandler))]
 
-public class ItemHandler : MonoBehaviour//, ISaveable
+public class ItemHandler : MonoBehaviour, ISaveable
 {
     public ObjectHandler objectHandler { get; private set; }
     public int tier { get; private set; }
@@ -30,26 +30,7 @@ public class ItemHandler : MonoBehaviour//, ISaveable
     public event System.Action OnEquip = delegate { };
 
     private void Awake() {
-        objectHandler = GetComponent<ObjectHandler>();
-
-        // Create List of Actions
-        itemActions = new List<ItemAction>();
-
-        baseItemStats = objectHandler.baseStats.GetStatBlock<BaseItemStats>();
-
-        foreach (BaseItemAction action in baseItemStats.itemActions) {
-            if (action is EquipItemAction) {
-                foreach (EquipmentSlot slot in baseItemStats.possibleSlots) {
-                    Dictionary<ItemActionDataType, object> data = new Dictionary<ItemActionDataType, object>();
-                    data.Add(ItemActionDataType.EquipSlot, slot);
-                    itemActions.Add(new ItemAction(this, action, data));
-                }
-                continue;
-            }
-            itemActions.Add(new ItemAction(this, action));
-        }
-
-        defaultItemAction = new ItemAction(this, baseItemStats.defaultAction);
+        
     }
 
     public bool PickUp(ObjectHandler owner) {
@@ -127,24 +108,37 @@ public class ItemHandler : MonoBehaviour//, ISaveable
         }
     }
 
-//     public void CreateBase()
-//     {
-//         List<GameObject> loot = LootTableManager.Instance.GetRandomLoot(minAmount, maxAmount, tierBoost);
+    public void CreateBase()
+    {
+        objectHandler = GetComponent<ObjectHandler>();
 
-//         foreach (GameObject go in loot) {
-//             ItemHandler item = Instantiate(go).GetComponent<ItemHandler>();
-//             item.GetComponent<ObjectHandler>().CreateBaseObject();
-//             item.PickUp(GetComponent<ObjectHandler>());
-//         }
-// }
+        // Create List of Actions
+        itemActions = new List<ItemAction>();
 
-//     public void LoadComponent(JSONNode data)
-//     {
+        baseItemStats = objectHandler.baseStats.GetStatBlock<BaseItemStats>();
+
+        foreach (BaseItemAction action in baseItemStats.itemActions) {
+            if (action is EquipItemAction) {
+                foreach (EquipmentSlot slot in baseItemStats.possibleSlots) {
+                    Dictionary<ItemActionDataType, object> data = new Dictionary<ItemActionDataType, object>();
+                    data.Add(ItemActionDataType.EquipSlot, slot);
+                    itemActions.Add(new ItemAction(this, action, data));
+                }
+                continue;
+            }
+            itemActions.Add(new ItemAction(this, action));
+        }
+
+        defaultItemAction = new ItemAction(this, baseItemStats.defaultAction);
+    }   
+
+    public string SaveComponent()
+    {
+        return "";
+    }
+
+    public void LoadComponent(JSONNode data)
+    {
         
-//     }
-
-//     public string SaveComponent()
-//     {
-//         return "";
-//     }
+    }
 }

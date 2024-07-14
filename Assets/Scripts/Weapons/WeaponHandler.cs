@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SimpleJSON;
+using Unity.VisualScripting;
 
 [RequireComponent(typeof(ObjectHandler))]
 [RequireComponent(typeof(ItemHandler))]
-public class WeaponHandler : MonoBehaviour
+public class WeaponHandler : MonoBehaviour, ISaveable
 {
     public ItemHandler item {get; private set;}
 
@@ -53,47 +55,10 @@ public class WeaponHandler : MonoBehaviour
             item.owner.objectStatusHandler.UnblockMovementControls();
     }
 
-    
+
 
     protected virtual void Awake() {
-        item = GetComponent<ItemHandler>();
-
-        item.OnUnequip += OnUnequip;
-
-
-        baseWeaponStats = item.objectHandler.baseStats.GetStatBlock<BaseWeaponStats>();
-
-        foreach (WeaponStatValue sv in baseWeaponStats.stats) {
-            statsWeapon.Add(sv.statName, new Stat(sv.value));
-        }
-
-
-        // Set variables in trigger handlers
-        triggerHolders = new List<TriggerHolder> {new TriggerHolder(), new TriggerHolder()};
         
-        ITrigger[] triggers = strategies.GetComponents<ITrigger>();
-        foreach (ITrigger trigger in triggers)
-        {
-            triggerHolders[((BaseStrategy)trigger).triggerSlot].trigger = trigger;
-        }
-        
-        IAttackType[] attackTypes = strategies.GetComponents<IAttackType>();
-        foreach (IAttackType attackType in attackTypes)
-        {
-            triggerHolders[((BaseStrategy)attackType).triggerSlot].attackType = attackType;
-        }
-        
-        IDamageType[] damageTypes = strategies.GetComponents<IDamageType>();
-        foreach (IDamageType damageType in damageTypes)
-        {
-            triggerHolders[((BaseStrategy)damageType).triggerSlot].damageType = damageType;
-        }
-        
-        IAnticipation[] anticipations = strategies.GetComponents<IAnticipation>();
-        foreach (IAnticipation anticipation in anticipations)
-        {
-            triggerHolders[((BaseStrategy)anticipation).triggerSlot].anticipation = anticipation;
-        }
     }
 
     public float GetStatValue(WeaponStatNames statName) {
@@ -178,6 +143,66 @@ public class WeaponHandler : MonoBehaviour
         if (_animationAttackLock) {
             animationUnblockAttack();
         }
+    }
+
+
+
+
+    public void CreateBase()
+    {
+        item = GetComponent<ItemHandler>();
+
+        item.OnUnequip += OnUnequip;
+
+
+        baseWeaponStats = item.objectHandler.baseStats.GetStatBlock<BaseWeaponStats>();
+
+        foreach (WeaponStatValue sv in baseWeaponStats.stats) {
+            statsWeapon.Add(sv.statName, new Stat(sv.value));
+        }
+
+
+        // Set variables in trigger handlers
+        triggerHolders = new List<TriggerHolder> {new TriggerHolder(), new TriggerHolder()};
+        
+        ITrigger[] triggers = strategies.GetComponents<ITrigger>();
+        foreach (ITrigger trigger in triggers)
+        {
+            triggerHolders[((BaseStrategy)trigger).triggerSlot].trigger = trigger;
+        }
+        
+        IAttackType[] attackTypes = strategies.GetComponents<IAttackType>();
+        foreach (IAttackType attackType in attackTypes)
+        {
+            triggerHolders[((BaseStrategy)attackType).triggerSlot].attackType = attackType;
+        }
+        
+        IDamageType[] damageTypes = strategies.GetComponents<IDamageType>();
+        foreach (IDamageType damageType in damageTypes)
+        {
+            triggerHolders[((BaseStrategy)damageType).triggerSlot].damageType = damageType;
+        }
+        
+        IAnticipation[] anticipations = strategies.GetComponents<IAnticipation>();
+        foreach (IAnticipation anticipation in anticipations)
+        {
+            triggerHolders[((BaseStrategy)anticipation).triggerSlot].anticipation = anticipation;
+        }
+
+        foreach (BaseStrategy strategy in strategies.GetComponents<BaseStrategy>())
+        {
+            strategy.Create();
+        }
+    }   
+
+    public string SaveComponent()
+    {
+        return "";
+    }
+
+    public void LoadComponent(JSONNode data)
+    {
+        
     }
 
 }

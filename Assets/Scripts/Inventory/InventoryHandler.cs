@@ -69,8 +69,10 @@ public class InventoryHandler : MonoBehaviour, ISaveable
         coins = data["inventory"]["coins"];
 
         foreach (JSONNode node in data["inventory"]["items"]) {
-            ObjectHandler item = PrefabManager.Instance.SpawnPrefab(node["prefabId"]).GetComponent<ObjectHandler>();
-            item.LoadObject(node);
+            (BaseStats baseStats, GameObject go) = PrefabManager.Instance.SpawnPrefab(node["prefabId"]);
+            ObjectHandler item = go.GetComponent<ObjectHandler>();
+
+            item.LoadObject(baseStats, node);
             item.GetComponent<ItemHandler>().PickUp(GetComponent<ObjectHandler>());
         }
     }
@@ -79,9 +81,9 @@ public class InventoryHandler : MonoBehaviour, ISaveable
         if (startingInventory != null) {
             coins = startingInventory.coins;
 
-            foreach (GameObject go in startingInventory.items) {
-                ItemHandler item = Instantiate(go).GetComponent<ItemHandler>();
-                item.GetComponent<ObjectHandler>().CreateBaseObject();
+            foreach (BaseStats baseStats in startingInventory.items) {
+                ItemHandler item = Instantiate(baseStats.prefab).GetComponent<ItemHandler>();
+                item.GetComponent<ObjectHandler>().CreateBaseObject(baseStats);
                 item.PickUp(GetComponent<ObjectHandler>());
             }
         }

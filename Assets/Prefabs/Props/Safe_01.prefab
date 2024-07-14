@@ -232,9 +232,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7310db108acaa224a9b60105e4db0ba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabId: safe_01
+  prefabId: 
   objectHandlerId: 0
-  baseStats: {fileID: 11400000, guid: db9affbc44f6a8e4a98d29a5cc8e20d4, type: 2}
   objectName: 
   objectType: 0
   movement: {x: 0, y: 0, z: 0}

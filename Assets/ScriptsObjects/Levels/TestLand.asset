@@ -21,64 +21,17 @@ MonoBehaviour:
   spawnPosition: {x: 50, y: 50}
   ambientAudioList: 1d0000001e000000
   musicAudioList: 20000000
-  items: []
+  items:
+  - baseStats: {fileID: 11400000, guid: 277f7bbd5ac2e8e488331af1d6290aaa, type: 2}
+    position: {x: 51, y: 51}
   characters: []
-  props: []
-  things: []
-  generationEvents:
-  - rid: 139207646597087238
-  - rid: 139207646597087239
-  - rid: 2539556613908856832
-  - rid: 2539556613908856834
-  - rid: 2539556613908856835
+  props:
+  - baseStats: {fileID: 11400000, guid: 00a912955e77a1349b494f0934ab0367, type: 2}
+    position: {x: 50, y: 55}
+  things:
+  - prefab: {fileID: 4077313069437475185, guid: 9a30541e78eaca243bffb264c73cd863, type: 3}
+    position: {x: 45, y: 50}
+  generationEvents: []
   references:
     version: 2
-    RefIds:
-    - rid: 139207646597087238
-      type: {class: TreesGenEvent, ns: , asm: Assembly-CSharp}
-      data:
-        treePrefabs:
-        - prefab: {fileID: 1307998372530817856, guid: d7a5f0dd7d5edaf43bf860c729a56cf0, type: 3}
-          chance: 50
-        - prefab: {fileID: 8632036033638678713, guid: a8e024b17474c8c4a8d7d67f45f79dd0, type: 3}
-          chance: 50
-        treeCoverage: 20
-    - rid: 139207646597087239
-      type: {class: BanditCampGenEvent, ns: , asm: Assembly-CSharp}
-      data:
-        campPrefabs:
-        - prefab: {fileID: 6494099200600906937, guid: a77e2a6421e072f42847312384ffafeb, type: 3}
-          chance: 100
-        enemyPrefabs:
-        - prefab: {fileID: 1154453471690096199, guid: 7420a0de952fe8b4c981c3fb2504e0d1, type: 3}
-          chance: 3
-        - prefab: {fileID: 8523436995661248248, guid: 9ece42e72c7b43e4096067d7061e661d, type: 3}
-          chance: 2
-        enemyAmount: 4
-    - rid: 2539556613908856832
-      type: {class: RoadGenEvent, ns: , asm: Assembly-CSharp}
-      data:
-        roadTile: {fileID: 11400000, guid: f024967e99a286945af7f79c363919b3, type: 2}
-        tilemapPrefab: {fileID: 3466845665134259520, guid: 2ab8e02106c30cf4da4f565574e6a99c, type: 3}
-        minAmount: 1
-        maxAmount: 2
-        minWidth: 8
-        maxWidth: 14
-    - rid: 2539556613908856834
-      type: {class: ShackSpawnEvent, ns: , asm: Assembly-CSharp}
-      data:
-        shackPrefabs:
-        - prefab: {fileID: 2159335888821213467, guid: fc025cf6d3d4c3547942fb00158e3781, type: 3}
-          chance: 100
-        minAmount: 1
-        maxAmount: 3
-    - rid: 2539556613908856835
-      type: {class: EnemiesGenEvent, ns: , asm: Assembly-CSharp}
-      data:
-        enemyPrefabs:
-        - prefab: {fileID: 1154453471690096199, guid: 7420a0de952fe8b4c981c3fb2504e0d1, type: 3}
-          chance: 1
-        - prefab: {fileID: 8523436995661248248, guid: 9ece42e72c7b43e4096067d7061e661d, type: 3}
-          chance: 3
-        minAmount: 5
-        maxAmount: 8
+    RefIds: []

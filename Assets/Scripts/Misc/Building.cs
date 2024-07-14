@@ -14,11 +14,11 @@ public class Building : MonoBehaviour
         lootContainerPrefabs.ForEach(x => totalChance += x.chance);
         foreach (Transform transform in lootContainerSpawnLocations)
         {
-            GameObject lootContainerPrefab = BaseGenEvent.PickRandomSpawn(lootContainerPrefabs);
-            ObjectHandler prop = Instantiate(lootContainerPrefab).GetComponent<ObjectHandler>();
+            BaseStats lootContainerPrefab = BaseGenEvent.PickRandomSpawn(lootContainerPrefabs);
+            ObjectHandler prop = Instantiate(lootContainerPrefab.prefab).GetComponent<ObjectHandler>();
             prop.transform.position = transform.position;
             LevelManager.instance.currentLevel.props.Add(prop);
-            prop.CreateBaseObject();
+            prop.CreateBaseObject(lootContainerPrefab);
         }
     }
 }

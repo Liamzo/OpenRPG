@@ -176,9 +176,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7310db108acaa224a9b60105e4db0ba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabId: pistol_01
+  prefabId: 
   objectHandlerId: 0
-  baseStats: {fileID: 11400000, guid: c5a0ab9a93dcb27498238727931d872f, type: 2}
   objectName: 
   objectType: 0
   movement: {x: 0, y: 0, z: 0}
@@ -198,7 +197,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   itemHitbox: {fileID: 8686579915277826898}
-  baseItemStats: {fileID: 11400000, guid: 276a7b15aede7a745b27c8f9769936f7, type: 2}
 --- !u!114 &377493036484562491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,7 +209,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f219b1f6055ca6e42a30466b30dc2a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseWeaponStats: {fileID: 11400000, guid: 000b6042d3a6cf8489550bdd384dda9f, type: 2}
   animator: {fileID: 1486458305870933430}
   _handle: {fileID: 5197348208353040065}
   strategies: {fileID: 7045684467092217511}
@@ -617,6 +614,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerSlot: 0
+  triggerEvent: 0
 --- !u!114 &6664691380460158926
 MonoBehaviour:
   m_ObjectHideFlags: 0

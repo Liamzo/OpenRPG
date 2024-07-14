@@ -17,12 +17,12 @@ public class EnemiesGenEvent : BaseGenEvent
         {
             Vector2 newPosition = PickRandomLocation(1f, true);
 
-            GameObject enemyPrefab = BaseGenEvent.PickRandomSpawn(enemyPrefabs);
+            BaseStats enemyPrefab = BaseGenEvent.PickRandomSpawn(enemyPrefabs);
 
-            ObjectHandler character = GameObject.Instantiate(enemyPrefab).GetComponent<ObjectHandler>();
+            ObjectHandler character = GameObject.Instantiate(enemyPrefab.prefab).GetComponent<ObjectHandler>();
             character.transform.position = newPosition;
             LevelManager.instance.currentLevel.characters.Add(character);
-            character.CreateBaseObject();
+            character.CreateBaseObject(enemyPrefab);
         }
     }
 }
