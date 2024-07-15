@@ -65,7 +65,7 @@ public class ObjectHandler : MonoBehaviour
 
     private void FixedUpdate() {
         if (baseStats == null) return;
-        
+
         rigidBody.velocity = Vector2.zero;
         
         if (!objectStatusHandler.HasMovement())
@@ -183,8 +183,14 @@ public class ObjectHandler : MonoBehaviour
         Heal(0f); // Temp fix for ui
     }
 
-    protected virtual void Setup(BaseStats baseStats) {
-        this.baseStats = baseStats;
+    protected virtual void Setup(BaseStats startingStats) {
+        if (startingStats == null) {
+            if (prefabId == "")
+                Debug.LogError("No prefab ID assigned");
+            startingStats = PrefabManager.Instance.FindBaseStatsById(prefabId);
+        }
+
+        baseStats = startingStats;
 
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         rigidBody = GetComponentInChildren<Rigidbody2D>();

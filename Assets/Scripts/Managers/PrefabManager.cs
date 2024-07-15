@@ -17,15 +17,15 @@ public class PrefabManager : MonoBehaviour
         Instance = this;
 
         for (int i = 0; i < allItems.Count; i++) {
-            allItems[i].prefabId = allItems[i].prefab.prefab.GetComponent<ObjectHandler>().prefabId;
+            allItems[i].prefabId = allItems[i].baseStats.prefabId;
         }
 
         for (int i = 0; i < allCharacters.Count; i++) {
-            allCharacters[i].prefabId = allCharacters[i].prefab.prefab.GetComponent<ObjectHandler>().prefabId;
+            allCharacters[i].prefabId = allCharacters[i].baseStats.prefabId;
         }
 
         for (int i = 0; i < allProps.Count; i++) {
-            allProps[i].prefabId = allProps[i].prefab.prefab.GetComponent<ObjectHandler>().prefabId;
+            allProps[i].prefabId = allProps[i].baseStats.prefabId;
         }
 
         for (int i = 0; i < allThings.Count; i++) {
@@ -33,23 +33,46 @@ public class PrefabManager : MonoBehaviour
         }
     }
 
-
-    public (BaseStats, GameObject) SpawnPrefab(string prefabId) {
+    public BaseStats FindBaseStatsById(string prefabId) {
         foreach (PrefabInfo info in allItems) {
             if (info.prefabId == prefabId) {
-                return (info.prefab, Instantiate(info.prefab.prefab));
+                return info.baseStats;
             }
         }
 
         foreach (PrefabInfo info in allCharacters) {
             if (info.prefabId == prefabId) {
-                return (info.prefab, Instantiate(info.prefab.prefab));
+                return info.baseStats;
             }
         }
 
         foreach (PrefabInfo info in allProps) {
             if (info.prefabId == prefabId) {
-                return (info.prefab, Instantiate(info.prefab.prefab));
+                return info.baseStats;
+            }
+        }
+
+        Debug.LogWarning("No prefab found with that ID");
+        return null;
+    }
+
+
+    public (BaseStats, GameObject) SpawnPrefab(string prefabId) {
+        foreach (PrefabInfo info in allItems) {
+            if (info.prefabId == prefabId) {
+                return (info.baseStats, Instantiate(info.baseStats.prefab));
+            }
+        }
+
+        foreach (PrefabInfo info in allCharacters) {
+            if (info.prefabId == prefabId) {
+                return (info.baseStats, Instantiate(info.baseStats.prefab));
+            }
+        }
+
+        foreach (PrefabInfo info in allProps) {
+            if (info.prefabId == prefabId) {
+                return (info.baseStats, Instantiate(info.baseStats.prefab));
             }
         }
 
@@ -72,7 +95,7 @@ public class PrefabManager : MonoBehaviour
 [Serializable]
 public class PrefabInfo {
     public string prefabId;
-    public BaseStats prefab;
+    public BaseStats baseStats;
 }
 
 [Serializable]
