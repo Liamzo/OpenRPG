@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5eac169f66d096428752ed9c9ae5a10, type: 3}
   m_Name: BackCapeObjectStats
   m_EditorClassIdentifier: 
-  objectName: Glasses
+  objectName: Leather Cape
   sprite: {fileID: 21300000, guid: 8f3f7ea05f9d4744292cc78d6cf2138f, type: 3}
   prefab: {fileID: 1486458305870933434, guid: de2ce4b5bf80240468afe5b4533a799a, type: 3}
   prefabId: back_01

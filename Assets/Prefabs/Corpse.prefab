@@ -227,6 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f633c35ac0a60824d93a06b1ecdffca6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseStats: {fileID: 11400000, guid: 24c0f4baa08204b489361d5fab77ad74, type: 2}
   spriteRenderer: {fileID: 5775826345583424535}
   inventoryHandler: {fileID: 1350731496514159475}
 --- !u!114 &4696133648735968956
@@ -243,7 +244,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabId: 
   objectHandlerId: 0
-  baseStats: {fileID: 11400000, guid: 24c0f4baa08204b489361d5fab77ad74, type: 2}
   objectName: 
   objectType: 0
   movement: {x: 0, y: 0, z: 0}
