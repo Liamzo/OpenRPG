@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ee8732153d826945ae698722c5107a3, type: 3}
-  m_Name: PlayerStartingInventory
+  m_Script: {fileID: 11500000, guid: 9ea94353c5c0f954c92425fedb5eabaf, type: 3}
+  m_Name: Consume Health Action
   m_EditorClassIdentifier: 
-  coins: 100
-  items:
-  - {fileID: 11400000, guid: 0d4e3065d98cd5143b3e0f58a6345ba5, type: 2}
-  - {fileID: 11400000, guid: b42bef83dc38f414189c823ef751ff62, type: 2}
+  menuName: Consume
+  currentHealthGain: 25
+  currentStaminaGain: 0

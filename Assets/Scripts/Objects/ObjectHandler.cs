@@ -86,6 +86,10 @@ public class ObjectHandler : MonoBehaviour
 
     public virtual void Heal(float amount) {
         currentHealth = Mathf.Clamp(currentHealth + amount, 0f, statsObject[ObjectStatNames.Health].GetValue());
+
+        // Edge cases where healing might cause damage
+        if (currentHealth <= 0) 
+            Die();
     }
 
     public virtual void TakeDamge (float damage, WeaponHandler weapon, CharacterHandler damageDealer) {
@@ -191,6 +195,7 @@ public class ObjectHandler : MonoBehaviour
         }
 
         baseStats = startingStats;
+        prefabId = baseStats.prefabId;
 
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         rigidBody = GetComponentInChildren<Rigidbody2D>();

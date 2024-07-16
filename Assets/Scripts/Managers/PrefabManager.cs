@@ -52,7 +52,7 @@ public class PrefabManager : MonoBehaviour
             }
         }
 
-        Debug.LogWarning("No prefab found with that ID");
+        Debug.LogWarning("No prefab found with that ID: " + prefabId);
         return null;
     }
 
@@ -76,7 +76,7 @@ public class PrefabManager : MonoBehaviour
             }
         }
 
-        Debug.LogWarning("No prefab found with that ID");
+        Debug.LogWarning("No prefab found with that ID: " + prefabId);
         return (null, null);
     }
 
@@ -87,7 +87,7 @@ public class PrefabManager : MonoBehaviour
             }
         }
 
-        Debug.LogWarning("No prefab found with that ID");
+        Debug.LogWarning("No prefab found with that ID: " + prefabId);
         return null;
     }
 }

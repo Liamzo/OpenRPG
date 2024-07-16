@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5eac169f66d096428752ed9c9ae5a10, type: 3}
+  m_Name: ItemHealthObjectStats
+  m_EditorClassIdentifier: 
+  objectName: Health Potion
+  sprite: {fileID: 21300000, guid: 45c995b76b893fd4b9e8d3e0f9f6463b, type: 3}
+  prefab: {fileID: 1486458305870933434, guid: de2ce4b5bf80240468afe5b4533a799a, type: 3}
+  prefabId: potion_01
+  description: A health potion
+  type: 0
+  expValue: 0
+  stats:
+  - statName: 0
+    value: 2
+  - statName: 1
+    value: 0
+  - statName: 2
+    value: 1
+  statBlocks:
+  - rid: 2539556635058110486
+  references:
+    version: 2
+    RefIds:
+    - rid: 2539556635058110486
+      type: {class: BaseItemStats, ns: , asm: Assembly-CSharp}
+      data:
+        icon: {fileID: 21300000, guid: 45c995b76b893fd4b9e8d3e0f9f6463b, type: 3}
+        itemActions:
+        - {fileID: 11400000, guid: f6cba466fb7883f4296ccbd0a15e3d9c, type: 2}
+        - {fileID: 11400000, guid: 394bdde43074ad04ca06c57e06a485a1, type: 2}
+        - {fileID: 11400000, guid: 79804920e0fee0d40b8b71b516aacc08, type: 2}
+        defaultAction: {fileID: 11400000, guid: f6cba466fb7883f4296ccbd0a15e3d9c, type: 2}
+        possibleSlots: 
+        baseValue: 50
+        objectStatBonuses: []
+        characterStatBonuses: []
+        attributeBonuses: []
