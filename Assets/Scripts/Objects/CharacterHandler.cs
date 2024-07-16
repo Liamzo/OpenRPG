@@ -41,8 +41,6 @@ public class CharacterHandler : ObjectHandler
             Vector2 hitPosition = projectile == null ? damageDealer.rigidBody.position : projectile.transform.position;
             Vector3 attackerDir = hitPosition - rigidBody.position;
 
-            Debug.Log(hitPosition);
-
             float angleBetween = Vector3.Angle(GetComponent<BaseBrain>().lookingDirection, attackerDir);
 
             if (angleBetween <= objectStatusHandler.blockAngle)

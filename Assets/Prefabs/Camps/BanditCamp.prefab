@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a693f970360d3ab4d97e66cd80c5e8b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabId: camp01
+  prefabId: camp_01
   exclusionDist: 6
 --- !u!1001 &2604953684874708884
 PrefabInstance:

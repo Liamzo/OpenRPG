@@ -31,7 +31,26 @@ MonoBehaviour:
   things:
   - prefab: {fileID: 4077313069437475185, guid: 9a30541e78eaca243bffb264c73cd863, type: 3}
     position: {x: 45, y: 50}
-  generationEvents: []
+  generationEvents:
+  - rid: 2539556635058110487
+  - rid: 2539556635058110488
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 2539556635058110487
+      type: {class: TreesGenEvent, ns: , asm: Assembly-CSharp}
+      data:
+        treePrefabs:
+        - prefab: {fileID: 1307998372530817856, guid: d7a5f0dd7d5edaf43bf860c729a56cf0, type: 3}
+          chance: 1
+        - prefab: {fileID: 8632036033638678713, guid: a8e024b17474c8c4a8d7d67f45f79dd0, type: 3}
+          chance: 1
+        treeCoverage: 30
+    - rid: 2539556635058110488
+      type: {class: ShackSpawnEvent, ns: , asm: Assembly-CSharp}
+      data:
+        shackPrefabs:
+        - prefab: {fileID: 2159335888821213467, guid: fc025cf6d3d4c3547942fb00158e3781, type: 3}
+          chance: 1
+        minAmount: 1
+        maxAmount: 3

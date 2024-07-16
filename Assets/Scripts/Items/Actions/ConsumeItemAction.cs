@@ -18,6 +18,10 @@ public class ConsumeItemAction : BaseItemAction
 
             character.ChangeStamina(currentStaminaGain);
         }
+
+        action.item.owner.GetComponent<InventoryHandler>().Remove(action.item);
+
+        Destroy(action.item.gameObject);
     }
 
     public override string MakeMenuName(ItemAction action)

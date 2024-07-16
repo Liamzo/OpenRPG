@@ -1,32 +1,21 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PrefabManager : MonoBehaviour
 {
     public static PrefabManager Instance { get; private set; }
 
-    public List<PrefabInfo> allItems;
-    public List<PrefabInfo> allCharacters;
-    public List<PrefabInfo> allProps;
-    public List<ThingInfo> allThings;
+    public List<BaseStats> allBaseStats;
+    public List<PrefabInfo> allThings;
 
 
     private void Awake() {
         Instance = this;
 
-        for (int i = 0; i < allItems.Count; i++) {
-            allItems[i].prefabId = allItems[i].baseStats.prefabId;
-        }
-
-        for (int i = 0; i < allCharacters.Count; i++) {
-            allCharacters[i].prefabId = allCharacters[i].baseStats.prefabId;
-        }
-
-        for (int i = 0; i < allProps.Count; i++) {
-            allProps[i].prefabId = allProps[i].baseStats.prefabId;
-        }
+        allBaseStats = Resources.LoadAll<BaseStats>("ObjectStats/").ToList();
 
         for (int i = 0; i < allThings.Count; i++) {
             allThings[i].prefabId = allThings[i].prefab.GetComponent<Thing>().prefabId;
@@ -34,21 +23,10 @@ public class PrefabManager : MonoBehaviour
     }
 
     public BaseStats FindBaseStatsById(string prefabId) {
-        foreach (PrefabInfo info in allItems) {
-            if (info.prefabId == prefabId) {
-                return info.baseStats;
-            }
-        }
-
-        foreach (PrefabInfo info in allCharacters) {
-            if (info.prefabId == prefabId) {
-                return info.baseStats;
-            }
-        }
-
-        foreach (PrefabInfo info in allProps) {
-            if (info.prefabId == prefabId) {
-                return info.baseStats;
+        foreach (BaseStats baseStats in allBaseStats)
+        {
+            if (baseStats.prefabId == prefabId) {
+                return baseStats;
             }
         }
 
@@ -58,21 +36,10 @@ public class PrefabManager : MonoBehaviour
 
 
     public (BaseStats, GameObject) SpawnPrefab(string prefabId) {
-        foreach (PrefabInfo info in allItems) {
-            if (info.prefabId == prefabId) {
-                return (info.baseStats, Instantiate(info.baseStats.prefab));
-            }
-        }
-
-        foreach (PrefabInfo info in allCharacters) {
-            if (info.prefabId == prefabId) {
-                return (info.baseStats, Instantiate(info.baseStats.prefab));
-            }
-        }
-
-        foreach (PrefabInfo info in allProps) {
-            if (info.prefabId == prefabId) {
-                return (info.baseStats, Instantiate(info.baseStats.prefab));
+        foreach (BaseStats baseStats in allBaseStats)
+        {
+            if (baseStats.prefabId == prefabId) {
+                return (baseStats, Instantiate(baseStats.prefab));
             }
         }
 
@@ -81,7 +48,7 @@ public class PrefabManager : MonoBehaviour
     }
 
     public GameObject SpawnThing(string prefabId) {
-        foreach (ThingInfo thing in allThings) {
+        foreach (PrefabInfo thing in allThings) {
             if (thing.prefabId == prefabId) {
                 return Instantiate(thing.prefab);
             }
@@ -94,12 +61,6 @@ public class PrefabManager : MonoBehaviour
 
 [Serializable]
 public class PrefabInfo {
-    public string prefabId;
-    public BaseStats baseStats;
-}
-
-[Serializable]
-public class ThingInfo {
     public string prefabId;
     public GameObject prefab;
 }

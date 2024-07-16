@@ -748,6 +748,7 @@ GameObject:
   - component: {fileID: 2159335888821213466}
   - component: {fileID: 2159335888821213468}
   - component: {fileID: 4606171811329727268}
+  - component: {fileID: 3935295642975390738}
   m_Layer: 0
   m_Name: Shed_01
   m_TagString: Untagged
@@ -819,6 +820,20 @@ MonoBehaviour:
     chance: 50
   - baseStats: {fileID: 11400000, guid: db9affbc44f6a8e4a98d29a5cc8e20d4, type: 2}
     chance: 50
+--- !u!114 &3935295642975390738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2159335888821213467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a693f970360d3ab4d97e66cd80c5e8b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabId: shed_01
+  exclusionDist: 2
 --- !u!1 &2921625678517006830
 GameObject:
   m_ObjectHideFlags: 0

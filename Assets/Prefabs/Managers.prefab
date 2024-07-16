@@ -4903,7 +4903,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cinemachineVirtualCamera: {fileID: 385445103}
-  startingLevel: {fileID: 11400000, guid: e0e07fdd859bfef419d3655dc3332e9f, type: 2}
+  startingLevel: {fileID: 11400000, guid: 221014cec74c1e24c9865750041b5eec, type: 2}
   playerBaseStats: {fileID: 11400000, guid: 95de858976419614e84657b179246d3b, type: 2}
   virtualCamera: {fileID: 385445103}
 --- !u!114 &1992593265
@@ -5335,31 +5335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b98c748dc7173684fafc70c975d7e9ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allItems:
-  - prefabId: 
-    baseStats: {fileID: 11400000, guid: 277f7bbd5ac2e8e488331af1d6290aaa, type: 2}
-  - prefabId: 
-    baseStats: {fileID: 11400000, guid: bf797cb1018438545b7d0a5178a8617a, type: 2}
-  - prefabId: 
-    baseStats: {fileID: 11400000, guid: fd8ac6b2016f68049bb41906ee6644df, type: 2}
-  - prefabId: 
-    baseStats: {fileID: 11400000, guid: c5a0ab9a93dcb27498238727931d872f, type: 2}
-  - prefabId: 
-    baseStats: {fileID: 11400000, guid: 0c918630b68231e46b61fc63798b02df, type: 2}
-  - prefabId: 
-    baseStats: {fileID: 11400000, guid: 566d40a0008146144868f1027802d88e, type: 2}
-  allCharacters:
-  - prefabId: 
-    baseStats: {fileID: 11400000, guid: 2f5c5583472adde4782057969a20be67, type: 2}
-  - prefabId: 
-    baseStats: {fileID: 11400000, guid: 906a2f066fb62184dafd194ea507c6a1, type: 2}
-  - prefabId: 
-    baseStats: {fileID: 11400000, guid: 7d9bc6958f352974a96a86bd63521ee7, type: 2}
-  allProps:
-  - prefabId: 
-    baseStats: {fileID: 11400000, guid: 00a912955e77a1349b494f0934ab0367, type: 2}
-  - prefabId: 
-    baseStats: {fileID: 11400000, guid: db9affbc44f6a8e4a98d29a5cc8e20d4, type: 2}
+  allBaseStats: []
   allThings:
   - prefabId: 
     prefab: {fileID: 1307998372530817856, guid: d7a5f0dd7d5edaf43bf860c729a56cf0, type: 3}
@@ -5389,12 +5365,35 @@ MonoBehaviour:
       chance: 1
     - baseStats: {fileID: 11400000, guid: 566d40a0008146144868f1027802d88e, type: 2}
       chance: 1
+    - baseStats: {fileID: 11400000, guid: 110ae31b69961fb489d53e0f06f929d1, type: 2}
+      chance: 1
+    - baseStats: {fileID: 11400000, guid: 7b47348771606e5409b776795748b7bd, type: 2}
+      chance: 1
+    - baseStats: {fileID: 11400000, guid: bd8f3af1c3dbd2e4b8099fbc6ea94a33, type: 2}
+      chance: 1
   - itemList:
     - baseStats: {fileID: 11400000, guid: 277f7bbd5ac2e8e488331af1d6290aaa, type: 2}
       chance: 1
     - baseStats: {fileID: 11400000, guid: bf797cb1018438545b7d0a5178a8617a, type: 2}
       chance: 1
     - baseStats: {fileID: 11400000, guid: 0c918630b68231e46b61fc63798b02df, type: 2}
+      chance: 1
+    - baseStats: {fileID: 11400000, guid: 86f9864865455ac478887cabbe5b0f42, type: 2}
+      chance: 1
+    - baseStats: {fileID: 11400000, guid: ed792c7c08d542d4e8b47f098d02766a, type: 2}
+      chance: 1
+    - baseStats: {fileID: 11400000, guid: 265820dc9a3ff094ba2f0b16b4aa4e38, type: 2}
+      chance: 1
+    - baseStats: {fileID: 11400000, guid: 7aaf6c79f5026f0418098b59118e5719, type: 2}
+      chance: 1
+    - baseStats: {fileID: 11400000, guid: 45450a060d838a54c9154551e39e08df, type: 2}
+      chance: 1
+    - baseStats: {fileID: 11400000, guid: 4e261fd8488c77443922072309a89d5a, type: 2}
+      chance: 1
+  - itemList:
+    - baseStats: {fileID: 11400000, guid: 502fb9c8419d130419aff1c723cfc530, type: 2}
+      chance: 1
+    - baseStats: {fileID: 11400000, guid: f6ba53124e4159847a764dd1406984bc, type: 2}
       chance: 1
 --- !u!1001 &413326266066957931
 PrefabInstance:
