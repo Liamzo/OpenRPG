@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class Talkable : BaseInteraction
 {
-    [SerializeField] private TextAsset inkJSON;
     ObjectHandler objectHandler;
 
     protected override void Awake() {
@@ -18,7 +17,7 @@ public class Talkable : BaseInteraction
     }
 
     public override void Interact(CharacterHandler character) {
-        DialogueHandler.GetInstance().EnterDialogueMode(inkJSON, objectHandler);
+        DialogueHandler.GetInstance().EnterDialogueMode(objectHandler.baseStats.GetStatBlock<BaseCharacterStats>().dialogue, objectHandler);
         objectHandler.objectStatusHandler.BlockControls();
         objectHandler.objectStatusHandler.BlockMovementControls();
 

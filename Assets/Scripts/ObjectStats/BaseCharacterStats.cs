@@ -4,6 +4,10 @@ using UnityEngine;
 
 [System.Serializable]
 public class BaseCharacterStats : StatBlock {
+	[Header("Dialogue")]
+	public Sprite profileSprite;
+	public TextAsset dialogue;
+
 	public List<CharacterStatValue> stats;
 
 	public List<AttributeValue> attributes;

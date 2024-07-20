@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using Ink.Runtime;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class DialogueHandler : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class DialogueHandler : MonoBehaviour
     [SerializeField] private GameObject continueIcon;
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private TextMeshProUGUI displayNameText;
+    [SerializeField] private Image displayTalkerSprite;
 
     [Header("Choices UI")]
     [SerializeField] private GameObject[] choices;
@@ -106,6 +108,10 @@ public class DialogueHandler : MonoBehaviour
         currentStory = new Story(inkJSON.text);
         currentTalker = talker;
         dialogueIsPlaying = true;
+
+
+        displayNameText.text = talker.baseStats.objectName;
+        displayTalkerSprite.sprite = talker.baseStats.GetStatBlock<BaseCharacterStats>().profileSprite;
         dialoguePanel.SetActive(true);
 
         dialogueVariables.StartListening(currentStory, currentTalker.objectHandlerId);
@@ -124,6 +130,7 @@ public class DialogueHandler : MonoBehaviour
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
+        displayTalkerSprite.sprite = null;
     }
     public void ExitDialogue() {
         if (dialogueIsPlaying)
