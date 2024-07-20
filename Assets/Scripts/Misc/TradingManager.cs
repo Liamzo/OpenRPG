@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
+using System;
 
 public class TradingManager : MonoBehaviour
 {
@@ -61,21 +61,33 @@ public class TradingManager : MonoBehaviour
             InventoryHandler traderInventory = trader.GetComponent<InventoryHandler>();
             InventoryHandler playerInventory = player.GetComponent<InventoryHandler>();
 
-            foreach(InventorySlotUI slot in traderMarkedItems) {
-                // Money
-                traderInventory.coins += slot.item.value;
-                playerInventory.coins -= slot.item.value;
+            if (totalValueMarked < 0f && playerInventory.coins < Mathf.Abs(totalValueMarked)) {
+                AudioManager.instance.PlayClipRandom(AudioID.TradeWithdrawItem);
 
+                // TODO: Popup box saying not enough coins
+
+                return;
+            }
+
+            if (totalValueMarked > 0f && traderInventory.coins < Mathf.Abs(totalValueMarked)) {
+                AudioManager.instance.PlayClipRandom(AudioID.TradeWithdrawItem);
+
+                // TODO: Popup box saying not enough coins
+
+                return;
+            }
+
+            traderInventory.coins = Mathf.Clamp(traderInventory.coins - totalValueMarked, 0, 999999999);
+            playerInventory.coins = Mathf.Clamp(playerInventory.coins + totalValueMarked, 0, 999999999);
+
+
+            foreach(InventorySlotUI slot in traderMarkedItems) {
                 // Transfer to player
                 if (slot.item.PickUp(player) == true)
                     traderInventory.Remove(slot.item);
             }
 
             foreach(InventorySlotUI slot in playerMarkedItems) {
-                // Money
-                traderInventory.coins -= slot.item.value;
-                playerInventory.coins += slot.item.value;
-
                 // Transfer to open contianer
                 if (slot.item.PickUp(trader) == true)
                     playerInventory.Remove(slot.item);
@@ -187,6 +199,13 @@ public class TradingManager : MonoBehaviour
         traderGoldText.text  = trader.GetComponent<InventoryHandler>().coins.ToString();
 
         playerGoldText.text  = player.GetComponent<InventoryHandler>().coins.ToString();
+        if (player.GetComponent<InventoryHandler>().coins + totalValueMarked < 0f) {
+            playerGoldText.color = markedValueNegativeColor;
+        } else {
+            playerGoldText.color = Color.white;
+        }
+
+
         playerWeightText.text = player.GetComponent<InventoryHandler>().carryWeightCurrent.ToString() + " / " + player.GetComponent<InventoryHandler>().carryWeightMax.ToString();
     }
 
@@ -237,6 +256,18 @@ public class TradingManager : MonoBehaviour
         } else {
             markedValueText.color = Color.white;
         }
+
+        if (player.GetComponent<InventoryHandler>().coins + totalValueMarked < 0f) {
+            playerGoldText.color = markedValueNegativeColor;
+        } else {
+            playerGoldText.color = Color.white;
+        }
+        if (trader.GetComponent<InventoryHandler>().coins - totalValueMarked < 0f) {
+            traderGoldText.color = markedValueNegativeColor;
+        } else {
+            traderGoldText.color = Color.white;
+        }
+
     }
 
     void ClearMarkedItems() {
