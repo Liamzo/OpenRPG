@@ -27,6 +27,10 @@ public class ItemAction
     public void Action() {
         action.Action(this);
     }
+
+    public bool CanPerform() {
+        return action.CanPerform(this);
+    }
 }
 
 public enum ItemActionDataType {

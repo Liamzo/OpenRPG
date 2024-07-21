@@ -25,4 +25,9 @@ public class EquipItemAction : BaseItemAction
             return menuName;
         }
     }
+
+    public override bool CanPerform(ItemAction action)
+    {
+        return !action.item.equipped;
+    }
 }

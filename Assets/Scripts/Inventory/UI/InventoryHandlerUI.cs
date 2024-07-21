@@ -122,7 +122,8 @@ public class InventoryHandlerUI : InventoryHandler
             InventoryExtraOptionsMenuUI.GetInstance().ClearOptions();
 
             foreach (ItemAction action in slot.item.itemActions) {
-                InventoryExtraOptionsMenuUI.GetInstance().AddOption(action);
+                if (action.CanPerform())
+                    InventoryExtraOptionsMenuUI.GetInstance().AddOption(action);
             }
 
             // Add contextual actions, like transfer

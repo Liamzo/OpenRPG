@@ -11,4 +11,8 @@ public abstract class BaseItemAction : ScriptableObject
     public virtual string MakeMenuName(ItemAction action) {
         return menuName;
     }
+
+    public virtual bool CanPerform(ItemAction action) {
+        return true;
+    }
 }

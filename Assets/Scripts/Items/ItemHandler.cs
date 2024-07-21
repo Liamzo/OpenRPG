@@ -24,6 +24,7 @@ public class ItemHandler : MonoBehaviour, ISaveable
         }
     }
 
+    public bool equipped { get; private set; }
 
     // Events
     public event System.Action OnUnequip = delegate { };
@@ -64,6 +65,7 @@ public class ItemHandler : MonoBehaviour, ISaveable
     }
 
     public void Equip() {
+        equipped = true;
         OnEquip();
 
         foreach (ObjectStatBonus objectStatBonus in baseItemStats.objectStatBonuses)
@@ -86,6 +88,7 @@ public class ItemHandler : MonoBehaviour, ISaveable
         }
     }
     public void Unequip() {
+        equipped = false;
         OnUnequip();
 
         foreach (ObjectStatBonus objectStatBonus in baseItemStats.objectStatBonuses)
