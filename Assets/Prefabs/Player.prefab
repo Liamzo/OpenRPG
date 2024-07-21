@@ -417,7 +417,7 @@ MonoBehaviour:
   dodgeDuration: 0.3
   dodgeSpeedMulti: 2.5
   dodgeDurationReleaseModifier: 0.75
-  dodgeStaminaCost: 25
+  dodgeStaminaCost: 10
 --- !u!114 &1479582196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,14 +432,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabId: 
   objectHandlerId: 0
-  baseStats: {fileID: 11400000, guid: 95de858976419614e84657b179246d3b, type: 2}
   objectName: 
   objectType: 0
   movement: {x: 0, y: 0, z: 0}
   currentHealth: 0
   objectStatusHandler: {fileID: 5729023158561328753}
-  baseCharacterStats: {fileID: 11400000, guid: 8221420ade17c174d8079dd656f2ebdf, type: 2}
-  baseAttributes: {fileID: 11400000, guid: 03df065ba32904d4aba4b37f7c703d38, type: 2}
   currentStamina: 0
   healthBar: {fileID: 0}
   staminaBar: {fileID: 0}

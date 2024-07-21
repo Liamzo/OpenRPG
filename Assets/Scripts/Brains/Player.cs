@@ -31,7 +31,7 @@ public class Player : BaseBrain
     public float dodgeSpeedMulti;
     [SerializeField] float dodgeDurationReleaseModifier;
     float dodgeCDTimer = 0.0f;
-    float dodgeCDDuration = 1.0f;
+    [SerializeField] float dodgeCDDuration = 0.2f;
     public float dodgeStaminaCost;
 
 
