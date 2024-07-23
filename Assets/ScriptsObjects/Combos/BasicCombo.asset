@@ -17,6 +17,7 @@ MonoBehaviour:
   comboChain:
     comboInputType: 0
     chargeAnimName: Combo_Charge01
+    chargeDuration: 0.7
     lightAttack:
       attackAnimName: Combo_Attack01
       swingDuration: 0.5
@@ -40,6 +41,7 @@ MonoBehaviour:
       data:
         comboInputType: 0
         chargeAnimName: Combo_Charge02
+        chargeDuration: 0.7
         lightAttack:
           attackAnimName: Combo_Attack02
           swingDuration: 0.5
@@ -61,6 +63,7 @@ MonoBehaviour:
       data:
         comboInputType: 0
         chargeAnimName: Combo_Charge03
+        chargeDuration: 0.7
         lightAttack:
           attackAnimName: Combo_Attack03
           swingDuration: 0.5
@@ -80,6 +83,7 @@ MonoBehaviour:
       data:
         comboInputType: 0
         chargeAnimName: Combo_Charge01
+        chargeDuration: 0
         lightAttack:
           attackAnimName: Combo_Attack01
           swingDuration: 0.7

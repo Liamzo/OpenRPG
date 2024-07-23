@@ -16,6 +16,7 @@ public class ComboSO : ScriptableObject
 public class ComboAttack {
     public ComboInputType comboInputType;
     public string chargeAnimName;
+    public float chargeDuration;
     public AttackDetails lightAttack;
     public AttackDetails heavyAttack;
     public float endHoldDuration;

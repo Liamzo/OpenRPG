@@ -40,7 +40,7 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
     void Update()
     {
         if (isCharging && !fullyCharged) {
-            chargeTimer += Time.deltaTime;
+            chargeTimer += ( 1f / currentComboAttack.chargeDuration ) * Time.deltaTime;
 
             if (chargeTimer > 1f) {
                 chargeTimer = 1f;
@@ -207,6 +207,7 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
                     currentComboAttack = combo.comboChain;
                     currentAttack = null;
                     weapon.animator.Play(currentComboAttack.chargeAnimName);
+                    weapon.animator.speed = 1.0f / currentComboAttack.chargeDuration;
                     charging = true;
                     return;
                 }
@@ -225,6 +226,7 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
                 currentComboAttack = currentComboAttack.comboChains[segment];
                 currentAttack = null;
                 weapon.animator.Play(currentComboAttack.chargeAnimName);
+                weapon.animator.speed = 1.0f / currentComboAttack.chargeDuration;
                 charging = true;
             }
 
@@ -274,6 +276,7 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
                 weapon.animator.speed = 1.0f;
             } else if (prevAttack != null) {
                 weapon.animator.Play(currentComboAttack.lightAttack.attackAnimName, 0, 1.1f); // TODO: Save if we did a normal or heavy attack
+                weapon.animator.speed = 1.0f / currentAttack.swingDuration;
             }
         }
 
@@ -291,6 +294,7 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
                 weapon.animator.speed = 1.0f;
             } else if (prevAttack != null) {
                 weapon.animator.Play(currentComboAttack.lightAttack.attackAnimName, 0, 1.1f); // TODO: Save if we did a normal or heavy attack
+                weapon.animator.speed = 1.0f / currentAttack.swingDuration;
             }
         }
         
@@ -308,6 +312,7 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
                 weapon.animator.speed = 1.0f;
             } else if (prevAttack != null) {
                 weapon.animator.Play(currentComboAttack.lightAttack.attackAnimName, 0, 1.1f); // TODO: Save if we did a normal or heavy attack
+                weapon.animator.speed = 1.0f / currentAttack.swingDuration;
             }
         }
     }
