@@ -34,6 +34,8 @@ MonoBehaviour:
     - rid: 2539556635058110464
       type: {class: BaseCharacterStats, ns: , asm: Assembly-CSharp}
       data:
+        profileSprite: {fileID: 0}
+        dialogue: {fileID: 0}
         stats:
         - statName: 0
           value: 100
@@ -57,4 +59,4 @@ MonoBehaviour:
         - attributeName: 4
           value: 0
         - attributeName: 5
-          value: 0
+          value: 4

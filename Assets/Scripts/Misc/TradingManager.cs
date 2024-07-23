@@ -161,7 +161,7 @@ public class TradingManager : MonoBehaviour
             InventorySlotUI slotUI = slotGO.GetComponent<InventorySlotUI>();
             traderItemSlots.Add(slotUI);
 
-            slotUI.AddItem(item);
+            slotUI.AddItem(item, 2.0f - GetValueModifier(item));
             slotUI.OnClick += OnPointerClick;
 
             slotGO.SetActive(true);
@@ -181,7 +181,7 @@ public class TradingManager : MonoBehaviour
             InventorySlotUI slotUI = slotGO.GetComponent<InventorySlotUI>();
             playerItemSlots.Add(slotUI);
 
-            slotUI.AddItem(item);
+            slotUI.AddItem(item, GetValueModifier(item));
             slotUI.OnClick += OnPointerClick;
 
             slotGO.SetActive(true);
@@ -224,24 +224,24 @@ public class TradingManager : MonoBehaviour
         if (traderItemSlots.Contains(slot)) {
             if (traderMarkedItems.Contains(slot) == false) {
                 traderMarkedItems.Add(slot);
-                totalValueMarked -= slot.item.value;
+                totalValueMarked -= Mathf.RoundToInt(slot.item.value * (2.0f - GetValueModifier(slot.item)));
                 slot.background.color = markedColor;
                 AudioManager.instance.PlayClipRandom(AudioID.TradeOfferItem);
             } else {
                 traderMarkedItems.Remove(slot);
-                totalValueMarked += slot.item.value;
+                totalValueMarked += Mathf.RoundToInt(slot.item.value * (2.0f - GetValueModifier(slot.item)));
                 slot.background.color = unmarkedColor;
                 AudioManager.instance.PlayClipRandom(AudioID.TradeWithdrawItem);
             }
         } else if (playerItemSlots.Contains(slot)) {
             if (playerMarkedItems.Contains(slot) == false) {
                 playerMarkedItems.Add(slot);
-                totalValueMarked += slot.item.value;
+                totalValueMarked += Mathf.RoundToInt(slot.item.value * GetValueModifier(slot.item));
                 slot.background.color = markedColor;
                 AudioManager.instance.PlayClipRandom(AudioID.TradeOfferItem);
             } else {
                 playerMarkedItems.Remove(slot);
-                totalValueMarked -= slot.item.value;
+                totalValueMarked -= Mathf.RoundToInt(slot.item.value * GetValueModifier(slot.item));
                 slot.background.color = unmarkedColor;
                 AudioManager.instance.PlayClipRandom(AudioID.TradeWithdrawItem);
             }
@@ -282,5 +282,14 @@ public class TradingManager : MonoBehaviour
 
         totalValueMarked = 0;
         markedValueText.text = totalValueMarked.ToString();
+    }
+
+
+    float GetValueModifier(ItemHandler item) {
+        float modifier = 0.2f + (0.1f * Player.instance.character.Attributes.GetAttribute(AttributeNames.Ego)); // Add something with reputation
+
+        modifier = Mathf.Clamp(modifier, 0f, 0.9f);
+
+        return modifier;
     }
 }

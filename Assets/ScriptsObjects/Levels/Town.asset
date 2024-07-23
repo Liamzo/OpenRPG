@@ -26,7 +26,7 @@ MonoBehaviour:
     position: {x: 72, y: 72}
   characters:
   - baseStats: {fileID: 11400000, guid: 7d9bc6958f352974a96a86bd63521ee7, type: 2}
-    position: {x: 65, y: 75}
+    position: {x: 75, y: 75}
   props: []
   things:
   - prefab: {fileID: 4077313069437475185, guid: 9a30541e78eaca243bffb264c73cd863, type: 3}

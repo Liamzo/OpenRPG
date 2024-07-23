@@ -19,7 +19,7 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler
 
     public event System.Action<InventorySlotUI, PointerEventData> OnClick = delegate { };
 
-    public void AddItem (ItemHandler newItem) {
+    public void AddItem (ItemHandler newItem, float valueModifier = 1.0f) {
         item = newItem;
 
         icon.sprite = item.baseItemStats.icon;
@@ -28,7 +28,7 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler
         nameText.SetText(newItem.objectHandler.objectName);
         nameText.enabled = true;
 
-        valueText.SetText(item.value.ToString());
+        valueText.SetText((item.value * valueModifier).ToString());
         valueText.enabled = true;
 
         weightText.SetText(item.objectHandler.statsObject[ObjectStatNames.Weight].GetValue().ToString());
