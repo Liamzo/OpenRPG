@@ -142,6 +142,6 @@ public class ItemHandler : MonoBehaviour, ISaveable
 
     public void LoadComponent(JSONNode data)
     {
-        
+        CreateBase();
     }
 }

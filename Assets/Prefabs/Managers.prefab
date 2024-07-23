@@ -6262,7 +6262,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8553726619171799900, guid: c2f9c245c838a8b45b84bcd0c90f6e02, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 600
+      value: 700
       objectReference: {fileID: 0}
     - target: {fileID: 8553726619171799900, guid: c2f9c245c838a8b45b84bcd0c90f6e02, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6444,7 +6444,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2198628456924426471, guid: 7271355289f882e49bbb79863892c1d6, type: 3}
       propertyPath: m_SizeDelta.y
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3452651439769616694, guid: 7271355289f882e49bbb79863892c1d6, type: 3}
+      propertyPath: m_SizeDelta.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3452651439769616694, guid: 7271355289f882e49bbb79863892c1d6, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 390
       objectReference: {fileID: 0}
     - target: {fileID: 3452651440540884338, guid: 7271355289f882e49bbb79863892c1d6, type: 3}
       propertyPath: m_Pivot.x
@@ -6480,7 +6488,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3452651440540884338, guid: 7271355289f882e49bbb79863892c1d6, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 600
+      value: 700
       objectReference: {fileID: 0}
     - target: {fileID: 3452651440540884338, guid: 7271355289f882e49bbb79863892c1d6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6533,6 +6541,10 @@ PrefabInstance:
     - target: {fileID: 3452651440540884349, guid: 7271355289f882e49bbb79863892c1d6, type: 3}
       propertyPath: m_Name
       value: InventoryUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 3452651440540884349, guid: 7271355289f882e49bbb79863892c1d6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7271355289f882e49bbb79863892c1d6, type: 3}

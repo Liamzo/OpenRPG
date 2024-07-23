@@ -202,7 +202,7 @@ public class WeaponHandler : MonoBehaviour, ISaveable
 
     public void LoadComponent(JSONNode data)
     {
-        
+        CreateBase();
     }
 
 }
