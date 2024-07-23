@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 5927141251361881811}
   - component: {fileID: 3810210589898357988}
   - component: {fileID: 4843179194743572674}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: NPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -706,7 +706,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3269189910262112151}
   - component: {fileID: 2147799466506946083}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -741,7 +741,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1.4909809}
+  m_Offset: {x: 0, y: 1.5}
   serializedVersion: 2
   m_Radius: 0.68514705
 --- !u!1 &5885145032520518140
