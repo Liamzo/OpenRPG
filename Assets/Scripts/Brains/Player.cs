@@ -208,6 +208,8 @@ public class Player : BaseBrain
 
             dodgeCDTimer = dodgeCDDuration;
 
+            InputManager.GetInstance().RegisterSubmitPressed();
+
             footSteps.Emit(25);
         }
     }
