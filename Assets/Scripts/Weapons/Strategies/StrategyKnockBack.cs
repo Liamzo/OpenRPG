@@ -1,17 +1,14 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnTriggerReleaseSelfKnockBack : BaseStrategy
+public class StrategyKnockBack : BaseStrategy
 {
     [SerializeField] WeaponEvents triggerEvent;
 
     public override void Create() {
         base.Create();
         
-        weapon.triggerHolders[triggerSlot].OnTriggerRelease += DoKnockBack;
-
         switch (triggerEvent)
         {
             case WeaponEvents.OnAttack:
@@ -29,17 +26,29 @@ public class OnTriggerReleaseSelfKnockBack : BaseStrategy
         }
     }
 
+
+    // On Attack
     private void DoKnockBack()
     {
-        weapon.item.owner.GetComponent<Physicsable>().Knock(-transform.up, weapon.statsWeapon[WeaponStatNames.SelfKnockForce].GetValue());
+        throw new System.Exception("This Strategy does not work with this event");
     }
 
+    // On Trigger and Release
     void DoKnockBack(float charge) {
-        DoKnockBack();
+        throw new System.Exception("This Strategy does not work with this event");
     }
 
+    // On Hit Target
     private void DoKnockBack(ObjectHandler target, HitOutcome hitOutcome, float charge, GameObject projectile)
     {
-        DoKnockBack();
+        if (target == null) return;
+        
+        Vector3 hitPosition = projectile == null ? weapon.item.owner.transform.position : projectile.transform.position;
+
+        if (hitOutcome == HitOutcome.Hit) {
+            target.GetComponent<Physicsable>().KnockBack(hitPosition, weapon.statsWeapon[WeaponStatNames.KnockBack].GetValue());
+        } else if (hitOutcome == HitOutcome.Block) {
+            target.GetComponent<Physicsable>().KnockBack(hitPosition, weapon.statsWeapon[WeaponStatNames.KnockBack].GetValue()/2f);
+        }
     }
 }

@@ -83,7 +83,7 @@ MonoBehaviour:
       data:
         comboInputType: 0
         chargeAnimName: Combo_Charge01
-        chargeDuration: 0
+        chargeDuration: 0.7
         lightAttack:
           attackAnimName: Combo_Attack01
           swingDuration: 0.7
