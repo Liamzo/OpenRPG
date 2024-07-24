@@ -9,7 +9,9 @@ public class AttackTypeBlock : BaseStrategy, IAttackType
     public float blockAngle;
 
 
-    private void Start() {
+    public override void Create() {
+        base.Create();
+        
         weapon.triggerHolders[triggerSlot].OnTrigger += DoAttack;
         weapon.triggerHolders[triggerSlot].OnTriggerRelease += ReleaseBlock;
         weapon.triggerHolders[triggerSlot].OnAttackCancel += ReleaseBlock;

@@ -7,7 +7,9 @@ public class OnTriggerReleaseSelfKnockBack : BaseStrategy
 {
     [SerializeField] WeaponEvents triggerEvent;
 
-    private void Start() {
+    public override void Create() {
+        base.Create();
+        
         weapon.triggerHolders[triggerSlot].OnTriggerRelease += DoKnockBack;
 
         switch (triggerEvent)

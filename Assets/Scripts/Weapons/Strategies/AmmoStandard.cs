@@ -9,7 +9,9 @@ public class AmmoStandard : BaseStrategy, IAmmo
 
     int _internalLock = 0;
 
-    void Start() {
+    public override void Create() {
+        base.Create();
+        
         currentAmmo = (int)weapon.statsWeapon[WeaponStatNames.ClipSize].GetValue();
 
         weapon.OnReload += Reload;

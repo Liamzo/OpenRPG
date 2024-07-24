@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class DamageTypeStandard : BaseStrategy, IDamageType
 {
-    void Start()
-    {
+    public override void Create() {
+        base.Create();
+        
         weapon.triggerHolders[triggerSlot].OnHitTarget += DealDamage;
     }
 

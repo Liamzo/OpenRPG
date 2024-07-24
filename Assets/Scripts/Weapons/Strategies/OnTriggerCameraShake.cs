@@ -5,8 +5,9 @@ using UnityEngine;
 public class OnTriggerCameraShake : BaseStrategy
 {
     // Start is called before the first frame update
-    void Start()
-    {
+    public override void Create() {
+        base.Create();
+        
         weapon.triggerHolders[triggerSlot].OnTrigger += CameraShake;
     }
 

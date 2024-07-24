@@ -9,7 +9,9 @@ public class AttackTypeShotgun : BaseStrategy, IAttackType
     public ParticleSystem fireEffect;
     ParticleSystem.EmissionModule fireEffectEmission;
 
-    private void Start() {
+    public override void Create() {
+        base.Create();
+        
         fireEffectEmission = fireEffect.emission;
 
         weapon.triggerHolders[triggerSlot].OnTrigger += DoAttack;

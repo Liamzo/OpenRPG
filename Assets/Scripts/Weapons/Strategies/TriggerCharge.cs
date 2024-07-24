@@ -9,7 +9,9 @@ public class TriggerCharge : BaseStrategy, ITrigger
     float chargeTimer = 0f;
 
 
-    private void Start() {
+    public override void Create() {
+        base.Create();
+        
         weapon.triggerHolders[triggerSlot].OnAttackCancel += AttackCancel;
     }
 

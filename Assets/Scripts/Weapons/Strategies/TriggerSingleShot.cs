@@ -7,7 +7,9 @@ public class TriggerSingleShot : BaseStrategy, ITrigger
     bool canAttack = true;
 
 
-    private void Start() {
+    public override void Create() {
+        base.Create();
+        
         weapon.triggerHolders[triggerSlot].OnAttackCancel += AttackCancel;
     }
     

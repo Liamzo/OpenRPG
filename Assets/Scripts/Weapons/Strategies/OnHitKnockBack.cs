@@ -6,7 +6,9 @@ public class OnHitKnockBack : BaseStrategy
 {
     [SerializeField] WeaponEvents triggerEvent;
 
-    private void Start() {
+    public override void Create() {
+        base.Create();
+        
         switch (triggerEvent)
         {
             case WeaponEvents.OnAttack:

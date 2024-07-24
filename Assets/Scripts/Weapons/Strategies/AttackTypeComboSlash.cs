@@ -31,7 +31,9 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
     bool fullyCharged = false;
     float chargeTimer = 0f;
     
-    private void Start() {
+    public override void Create() {
+        base.Create();
+        
         weapon.item.OnUnequip += InteruptCombo;
 
         weapon.triggerHolders[triggerSlot].OnAttackCancel += AttackCancel;

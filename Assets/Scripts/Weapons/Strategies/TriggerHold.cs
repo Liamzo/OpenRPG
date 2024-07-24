@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class TriggerHold : BaseStrategy, ITrigger
 {
-    private void Start() {
+    public override void Create() {
+        base.Create();
+        
         weapon.triggerHolders[triggerSlot].OnAttackCancel += AttackCancel;
     }
 

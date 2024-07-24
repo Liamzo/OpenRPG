@@ -6,7 +6,9 @@ using UnityEngine;
 public class AttackTypeSlash : BaseStrategy, IAttackType
 {
     float lastCharge = 1f;
-    private void Start() {
+    public override void Create() {
+        base.Create();
+        
         weapon.triggerHolders[triggerSlot].OnTriggerRelease += DoAttack;
         weapon.triggerHolders[triggerSlot].OnAttack += SpawnSlashAnimEvent;
     }

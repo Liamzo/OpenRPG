@@ -8,7 +8,9 @@ public class AttackTypeProjectile : BaseStrategy, IAttackType
     public GameObject bulletPrefab;
     public float bulletSpeed;
 
-    private void Start() {
+    public override void Create() {
+        base.Create();
+        
         weapon.triggerHolders[triggerSlot].OnTrigger += DoAttack;
     }
 
