@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class AttackTypeProjectile : BaseStrategy, IAttackType
 {
-    public MuzzleFlash muzzleFlash;
+    [SerializeField] private GameObject muzzleFlashPrefab;
+    MuzzleFlash muzzleFlash;
+
     public GameObject bulletPrefab;
     public float bulletSpeed;
 
     public override void Create() {
         base.Create();
         
+        muzzleFlash = Instantiate(muzzleFlashPrefab, weapon.attackPoint.transform).GetComponent<MuzzleFlash>();
+
         weapon.triggerHolders[triggerSlot].OnTrigger += DoAttack;
     }
 

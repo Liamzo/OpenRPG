@@ -5,11 +5,17 @@ using UnityEngine;
 
 public class AttackTypeShotgun : BaseStrategy, IAttackType
 {
-    public MuzzleFlash muzzleFlash;
-    public ParticleSystem fireEffect;
+    [SerializeField] private GameObject muzzleFlashPrefab;
+    MuzzleFlash muzzleFlash;
+
+    [SerializeField] private GameObject fireEffectPrefab;
+    ParticleSystem fireEffect;
 
     public override void Create() {
         base.Create();
+
+        muzzleFlash = Instantiate(muzzleFlashPrefab, weapon.attackPoint.transform).GetComponent<MuzzleFlash>();
+        fireEffect = Instantiate(fireEffectPrefab, weapon.attackPoint.transform).GetComponent<ParticleSystem>();
 
         weapon.triggerHolders[triggerSlot].OnTrigger += DoAttack;
     }
