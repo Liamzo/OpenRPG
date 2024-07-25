@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f049264d52964d5438325e49a25ce1e3, type: 3}
+  m_Name: AttackType Shotgun
+  m_EditorClassIdentifier: 
+  triggerSlot: 0
+  muzzleFlashPrefab: {fileID: 313659951529756610, guid: 2c24555792342054d936328d12c5bdcd, type: 3}
+  fireEffectPrefab: {fileID: 1673420432977597763, guid: fa620e0cf1847e74981a4164c705a4f2, type: 3}

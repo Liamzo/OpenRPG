@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: Auto Gun
   sprite: {fileID: 21300000, guid: 04bdfc0709689ca4ca0f5568a928e94c, type: 3}
-  prefab: {fileID: 6617126573172718267, guid: f81865d54996fbb4c99fb68bdfc2702d, type: 3}
+  prefab: {fileID: 1486458305870933434, guid: b7b58165901f8f747b2b03206a1e3e5e, type: 3}
   prefabId: autogun_01
   description: A fast shooting machien gun
   type: 0
@@ -50,6 +50,18 @@ MonoBehaviour:
     - rid: 2539556635058110472
       type: {class: BaseWeaponStats, ns: , asm: Assembly-CSharp}
       data:
+        startingStrategies:
+        - {fileID: 11400000, guid: 7859d799b387fe843b8ed4d179e729cc, type: 2}
+        - {fileID: 11400000, guid: bbe1ffb5038860142a70121918be628b, type: 2}
+        - {fileID: 11400000, guid: f3987edeb9e4f60489cfb30667a58ffe, type: 2}
+        - {fileID: 11400000, guid: cbe3d0ffcdb8efa40b50647eb088c1d1, type: 2}
+        - {fileID: 11400000, guid: e6cdf66cff6d3ba4e85a9a7ed3e1dcda, type: 2}
+        - {fileID: 11400000, guid: 8291b679f8b3e0f4091ab4017e4bd43c, type: 2}
+        - {fileID: 11400000, guid: 431d9d1dcc5817442b4d346ee8ff1f27, type: 2}
+        - {fileID: 11400000, guid: 9454931b50e55ed4c84856f7e66fbecb, type: 2}
+        - {fileID: 11400000, guid: 0de10e7734c0c1c4793267391d58c784, type: 2}
+        - {fileID: 11400000, guid: 95d21003af7f3224f9174c87d1296b80, type: 2}
+        - {fileID: 11400000, guid: ffd18d1317266684e9859ad204c16f5c, type: 2}
         stats:
         - statName: 1
           value: 1

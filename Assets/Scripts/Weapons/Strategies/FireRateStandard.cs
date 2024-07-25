@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[CreateAssetMenu(fileName = "FireRate Standard", menuName = "Strategies/FireRate Standard")]
 public class FireRateStandard : BaseStrategy, IFireRate
 {
     float fireTimer = 0f;

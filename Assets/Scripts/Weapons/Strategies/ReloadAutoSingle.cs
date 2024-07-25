@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[CreateAssetMenu(fileName = "Reload Auto Single", menuName = "Strategies/Reload Auto Single")]
 public class ReloadAutoSingle : BaseStrategy, IReload
 {
     float reloadTimer = 0f;

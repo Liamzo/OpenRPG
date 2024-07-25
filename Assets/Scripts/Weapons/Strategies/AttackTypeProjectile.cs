@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[CreateAssetMenu(fileName = "AttackType Projectile", menuName = "Strategies/AttackType Projectile")]
 public class AttackTypeProjectile : BaseStrategy, IAttackType
 {
     [SerializeField] private GameObject muzzleFlashPrefab;

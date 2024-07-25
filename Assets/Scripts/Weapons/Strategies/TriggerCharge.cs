@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[CreateAssetMenu(fileName = "Trigger Charge", menuName = "Strategies/Trigger Charge")]
 public class TriggerCharge : BaseStrategy, ITrigger
 {
     bool isCharging = false;

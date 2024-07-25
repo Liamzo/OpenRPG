@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[CreateAssetMenu(fileName = "AttackType Grappling Hook", menuName = "Strategies/AttackType Grappling Hook")]
 public class AttackTypeGrapplingHook : BaseStrategy, IAttackType
 {
     [Header("Scripts Ref:")]

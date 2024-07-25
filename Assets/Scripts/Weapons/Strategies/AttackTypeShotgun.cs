@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+
+[CreateAssetMenu(fileName = "AttackType Shotgun", menuName = "Strategies/AttackType Shotgun")]
 public class AttackTypeShotgun : BaseStrategy, IAttackType
 {
     [SerializeField] private GameObject muzzleFlashPrefab;

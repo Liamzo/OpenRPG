@@ -430,6 +430,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabId: 
   objectHandlerId: 0
+  hitboxCollider: {fileID: 2147799466506946083}
   objectName: 
   objectType: 0
   movement: {x: 0, y: 0, z: 0}

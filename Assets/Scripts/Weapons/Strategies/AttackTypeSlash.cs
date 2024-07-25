@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider2D))]
+[CreateAssetMenu(fileName = "AttackType Slash", menuName = "Strategies/AttackType Slash")]
 public class AttackTypeSlash : BaseStrategy, IAttackType
 {
     float lastCharge = 1f;

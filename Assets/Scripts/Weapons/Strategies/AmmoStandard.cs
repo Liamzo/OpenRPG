@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[CreateAssetMenu(fileName = "Ammo Standard", menuName = "Strategies/Ammo Standard")]
 public class AmmoStandard : BaseStrategy, IAmmo
 {
     int currentAmmo;

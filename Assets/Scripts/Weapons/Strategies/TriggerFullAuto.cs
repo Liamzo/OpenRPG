@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[CreateAssetMenu(fileName = "Trigger FullAuto", menuName = "Strategies/Trigger FullAuto")]
 public class TriggerFullAuto : BaseStrategy, ITrigger
 {
     public override void Create(WeaponHandler weapon) {
