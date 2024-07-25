@@ -37,6 +37,8 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
         weapon.item.OnUnequip += InteruptCombo;
 
         weapon.triggerHolders[triggerSlot].OnAttackCancel += AttackCancel;
+
+        weapon.meleeHitbox.GetComponent<WeaponHitDetector>().TriggerEntered += OnTriggerEnter2D;
     }
 
     public override void Update()

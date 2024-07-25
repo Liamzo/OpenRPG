@@ -11,6 +11,8 @@ public class AttackTypeSlash : BaseStrategy, IAttackType
         
         weapon.triggerHolders[triggerSlot].OnTriggerRelease += DoAttack;
         weapon.triggerHolders[triggerSlot].OnAttack += SpawnSlashAnimEvent;
+
+        weapon.meleeHitbox.GetComponent<WeaponHitDetector>().TriggerEntered += OnTriggerEnter2D;
     }
 
     public void DoAttack(float charge)

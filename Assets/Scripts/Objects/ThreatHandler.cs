@@ -17,6 +17,9 @@ public class ThreatHandler : MonoBehaviour
     public LineOfSightInfo LineOfSightToTarget {get; private set;}
 
 
+    LayerMask visionMask;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +27,9 @@ public class ThreatHandler : MonoBehaviour
         factionHandler = GetComponent<FactionHandler>();
 
         characterHandler.OnTakeDamage += OnTakeDamage;
+
+
+        visionMask = LayerMask.GetMask("Default") | LayerMask.GetMask("Object");
     }
 
     // Update is called once per frame
@@ -69,11 +75,9 @@ public class ThreatHandler : MonoBehaviour
         Vector3 rightPos = characterHandler.Collider.bounds.center + (Quaternion.AngleAxis(-90f, Vector3.forward) * targetDir).normalized;
         Vector3 rightDir = (target.Collider.bounds.center - rightPos).normalized;
 
-        LayerMask mask = LayerMask.GetMask("Default");
-
-        RaycastHit2D hit = Physics2D.Raycast(characterHandler.Collider.bounds.center, targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), mask);
-        RaycastHit2D hitLeft = Physics2D.Raycast(leftPos, leftDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue()+1f, mask);
-        RaycastHit2D hitRight = Physics2D.Raycast(rightPos, rightDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue()+1f, mask);
+        RaycastHit2D hit = Physics2D.Raycast(characterHandler.Collider.bounds.center, targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), visionMask);
+        RaycastHit2D hitLeft = Physics2D.Raycast(leftPos, leftDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue()+1f, visionMask);
+        RaycastHit2D hitRight = Physics2D.Raycast(rightPos, rightDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue()+1f, visionMask);
 
 
         if (hit.collider == null) {
@@ -106,11 +110,9 @@ public class ThreatHandler : MonoBehaviour
         Vector3 rightPos = startingPos + (Quaternion.AngleAxis(-90f, Vector3.forward) * targetDir).normalized;
         Vector3 rightDir = (target.Collider.bounds.center - rightPos).normalized;
 
-        LayerMask mask = LayerMask.GetMask("Default");
-
-        RaycastHit2D hit = Physics2D.Raycast(startingPos, targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), mask);
-        RaycastHit2D hitLeft = Physics2D.Raycast(leftPos, leftDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue()+1f, mask);
-        RaycastHit2D hitRight = Physics2D.Raycast(rightPos, rightDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue()+1f, mask);
+        RaycastHit2D hit = Physics2D.Raycast(startingPos, targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), visionMask);
+        RaycastHit2D hitLeft = Physics2D.Raycast(leftPos, leftDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue()+1f, visionMask);
+        RaycastHit2D hitRight = Physics2D.Raycast(rightPos, rightDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue()+1f, visionMask);
 
         if (hit.collider == null) {
             return new LineOfSightInfo(false, targetInRange, null, hit);
@@ -143,9 +145,7 @@ public class ThreatHandler : MonoBehaviour
             // Raycast to the target within Sight range and see if clear path
             Vector3 targetDir = (otherCharacter.transform.position - transform.position).normalized;
 
-            LayerMask mask = LayerMask.GetMask("Default");
-
-            RaycastHit2D hit = Physics2D.Raycast(characterHandler.Collider.bounds.center, targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), mask);
+            RaycastHit2D hit = Physics2D.Raycast(characterHandler.Collider.bounds.center, targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), visionMask);
 
             if (hit.collider != null && hit.collider.gameObject == otherCharacter.gameObject) {
                 // Can see the character, evaluate the threat
