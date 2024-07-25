@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[CreateAssetMenu(fileName = "Trigger Hold", menuName = "Strategies/Trigger Hold")]
 public class TriggerHold : BaseStrategy, ITrigger
 {
-    public override void Create() {
-        base.Create();
+    public override void Create(WeaponHandler weapon) {
+        base.Create(weapon);
         
         weapon.triggerHolders[triggerSlot].OnAttackCancel += AttackCancel;
     }

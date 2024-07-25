@@ -25,8 +25,8 @@ public class AttackTypeGrapplingHook : BaseStrategy, IAttackType
 
     private bool canGrapple = true;
 
-    public override void Create() {
-        base.Create();
+    public override void Create(WeaponHandler weapon) {
+        base.Create(weapon);
         
         grappleRope.enabled = false;
 

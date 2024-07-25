@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SimpleJSON;
 using Unity.VisualScripting;
+using System.Linq;
 
 [RequireComponent(typeof(ObjectHandler))]
 [RequireComponent(typeof(ItemHandler))]
@@ -15,9 +16,12 @@ public class WeaponHandler : MonoBehaviour, ISaveable
 
     public Animator animator; // Probably used by everything when fully implemented
     public Transform _handle;
-    public GameObject strategies;
+    
+    public Collider2D meleeHitbox;
 
     public bool Holstered {get; private set;}
+
+    [SerializeField] public List<BaseStrategy> strategies {get; private set;} = new List<BaseStrategy>();
 
 
     public List<TriggerHolder> triggerHolders = new List<TriggerHolder> {new TriggerHolder(), new TriggerHolder()};
@@ -61,6 +65,19 @@ public class WeaponHandler : MonoBehaviour, ISaveable
         
     }
 
+    private void Update() {
+        foreach (BaseStrategy strategy in strategies) {
+            strategy.Update();
+        }
+    }
+
+    private void LateUpdate() {
+        foreach (BaseStrategy strategy in strategies) {
+            strategy.LateUpdate();
+        }
+    }
+
+
     public float GetStatValue(WeaponStatNames statName) {
         return statsWeapon[statName].GetValue();
     }
@@ -96,7 +113,7 @@ public class WeaponHandler : MonoBehaviour, ISaveable
     }
 
     public bool CanReload() {
-        IAmmo ammo = strategies.GetComponent<IAmmo>();
+        IAmmo ammo = strategies.OfType<IAmmo>().FirstOrDefault();
 
         if (ammo == null) { return false; }
 
@@ -161,37 +178,28 @@ public class WeaponHandler : MonoBehaviour, ISaveable
             statsWeapon.Add(sv.statName, new Stat(sv.value));
         }
 
-
         // Set variables in trigger handlers
         triggerHolders = new List<TriggerHolder> {new TriggerHolder(), new TriggerHolder()};
-        
-        ITrigger[] triggers = strategies.GetComponents<ITrigger>();
+
+
+        foreach (BaseStrategy startingStrategy in baseWeaponStats.startingStrategies) {
+            BaseStrategy strategy = Instantiate(startingStrategy);
+
+            strategy.Create(this);
+
+            strategies.Add(strategy);
+        }
+
+        List<ITrigger> triggers = strategies.OfType<ITrigger>().ToList();
         foreach (ITrigger trigger in triggers)
         {
             triggerHolders[((BaseStrategy)trigger).triggerSlot].trigger = trigger;
         }
         
-        IAttackType[] attackTypes = strategies.GetComponents<IAttackType>();
-        foreach (IAttackType attackType in attackTypes)
-        {
-            triggerHolders[((BaseStrategy)attackType).triggerSlot].attackType = attackType;
-        }
-        
-        IDamageType[] damageTypes = strategies.GetComponents<IDamageType>();
-        foreach (IDamageType damageType in damageTypes)
-        {
-            triggerHolders[((BaseStrategy)damageType).triggerSlot].damageType = damageType;
-        }
-        
-        IAnticipation[] anticipations = strategies.GetComponents<IAnticipation>();
+        List<IAnticipation> anticipations = strategies.OfType<IAnticipation>().ToList();
         foreach (IAnticipation anticipation in anticipations)
         {
-            triggerHolders[((BaseStrategy)anticipation).triggerSlot].anticipation = anticipation;
-        }
-
-        foreach (BaseStrategy strategy in strategies.GetComponents<BaseStrategy>())
-        {
-            strategy.Create();
+            triggerHolders[anticipation.triggerSlot].anticipation = anticipation;
         }
     }   
 
@@ -232,8 +240,6 @@ public class TriggerHolder {
 
 
     public ITrigger trigger;
-    public IAttackType attackType;
-    public IDamageType damageType;
     public IAnticipation anticipation;
 
 

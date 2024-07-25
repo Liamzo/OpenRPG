@@ -10,8 +10,8 @@ public class AttackTypeProjectile : BaseStrategy, IAttackType
     public GameObject bulletPrefab;
     public float bulletSpeed;
 
-    public override void Create() {
-        base.Create();
+    public override void Create(WeaponHandler weapon) {
+        base.Create(weapon);
         
         muzzleFlash = Instantiate(muzzleFlashPrefab, weapon.attackPoint.transform).GetComponent<MuzzleFlash>();
 
@@ -25,7 +25,7 @@ public class AttackTypeProjectile : BaseStrategy, IAttackType
         bullet.weapon = weapon;
         bullet.bulletSpeed = bulletSpeed;
         bullet.weaponCharge = charge;
-        bullet.direction = -transform.up;
+        bullet.direction = -weapon.transform.up;
         muzzleFlash.Flash();
         weapon.CallOnAttack(triggerSlot);
     }

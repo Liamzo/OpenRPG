@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "Knockback", menuName = "Strategies/Knockback")]
 public class StrategyKnockBack : BaseStrategy
 {
     [SerializeField] WeaponEvents triggerEvent;
 
-    public override void Create() {
-        base.Create();
+    public override void Create(WeaponHandler weapon) {
+        base.Create(weapon);
         
         switch (triggerEvent)
         {

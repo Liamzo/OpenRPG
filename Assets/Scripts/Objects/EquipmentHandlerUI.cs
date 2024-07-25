@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class EquipmentHandlerUI : EquipmentHandler
 {
@@ -56,8 +57,8 @@ public class EquipmentHandlerUI : EquipmentHandler
             }
 
             currentRangedWeapon = newItem.GetComponent<WeaponHandler>();
-            currentRangedAmmo = currentRangedWeapon.strategies.GetComponent<IAmmo>();
-            currentRangedReload = currentRangedWeapon.strategies.GetComponent<IReload>();
+            currentRangedAmmo = currentRangedWeapon.strategies.OfType<IAmmo>().FirstOrDefault();
+            currentRangedReload = currentRangedWeapon.strategies.OfType<IReload>().FirstOrDefault();
 
             if (currentRangedAmmo == null) {
                 reloadBarTransform.gameObject.SetActive(false);

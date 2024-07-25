@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e4535a0b48a2cb44bb29bea96132908, type: 3}
+  m_Name: BasicCombo
+  m_EditorClassIdentifier: 
+  triggerSlot: 0
+  combo: {fileID: 11400000, guid: 83bbb10837d2d4849a2fc7c42bbd94c5, type: 2}

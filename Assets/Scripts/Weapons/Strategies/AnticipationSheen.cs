@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "Anticipation Sheen", menuName = "Strategies/Anticipation Sheen")]
 public class AnticipationSheen : IAnticipation
 {
     public override void AttackAnticipation() {
-        StartCoroutine(DoSheen());
+        weapon.StartCoroutine(DoSheen());
     }
 
     public IEnumerator DoSheen() {

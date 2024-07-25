@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[CreateAssetMenu(fileName = "DamageType Standard", menuName = "Strategies/DamageType Standard")]
 public class DamageTypeStandard : BaseStrategy, IDamageType
 {
-    public override void Create() {
-        base.Create();
+    public override void Create(WeaponHandler weapon) {
+        base.Create(weapon);
         
         weapon.triggerHolders[triggerSlot].OnHitTarget += DealDamage;
     }

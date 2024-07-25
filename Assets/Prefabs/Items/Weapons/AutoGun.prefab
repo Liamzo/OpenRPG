@@ -113,7 +113,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6617126573172718266}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3060658661529362470
 GameObject:
@@ -145,171 +145,8 @@ Transform:
   m_Children:
   - {fileID: 6354773970415537823}
   m_Father: {fileID: 6617126573172718266}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &3365166156655135142
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3365166156655135141}
-  - component: {fileID: 3365166156655135160}
-  - component: {fileID: 3365166156655135161}
-  - component: {fileID: 3365166156655135163}
-  - component: {fileID: 8819093974158804392}
-  - component: {fileID: 1340099079311556152}
-  - component: {fileID: 4810846815831808256}
-  - component: {fileID: 5091217813209746608}
-  - component: {fileID: 6727109781889689972}
-  - component: {fileID: 5652020094007937924}
-  m_Layer: 0
-  m_Name: Strategies
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3365166156655135141
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3365166156655135142}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6617126573172718266}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3365166156655135160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3365166156655135142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b50261b60681004cb00e29ea07ea0d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerSlot: 0
-  useCost: 1
---- !u!114 &3365166156655135161
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3365166156655135142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98db6edcb208a2e4aad0f30a0fdd6a85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerSlot: 0
-  muzzleFlashPrefab: {fileID: 0}
-  bulletPrefab: {fileID: 7319803943386155118, guid: fb028c1093ce9a1468561fc04d6a46f1, type: 3}
-  bulletSpeed: 50
---- !u!114 &3365166156655135163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3365166156655135142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 532b810239efbbf4898f8560d915aae5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerSlot: 0
---- !u!114 &8819093974158804392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3365166156655135142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53dafcfe69713894db71bd66726578f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerSlot: 0
---- !u!114 &1340099079311556152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3365166156655135142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dfeeb96406dd104583915d64f1efd90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerSlot: 0
---- !u!114 &4810846815831808256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3365166156655135142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30f3db205c461a14986f2c8967c5daa5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerSlot: 0
---- !u!114 &5091217813209746608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3365166156655135142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e97ec600dbd8c7940b7fd4cb31942511, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerSlot: 0
---- !u!114 &6727109781889689972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3365166156655135142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96283921a1f639e47a57feb7aad3c322, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerSlot: 0
-  audioID: 1
---- !u!114 &5652020094007937924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3365166156655135142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84de93896d1c93647be96cbf6250a9a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerSlot: 0
-  triggerEvent: 0
 --- !u!1 &4033213245311495261
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,7 +177,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6617126573172718266}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &4033213245311495251
 CircleCollider2D:
@@ -442,7 +279,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4914326772069939964}
-  - {fileID: 3365166156655135141}
   - {fileID: 3851494845544793067}
   - {fileID: 4033213245311495250}
   - {fileID: 8317546062647052654}
@@ -538,7 +374,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 6617126573172718263}
   _handle: {fileID: 3851494845544793067}
-  strategies: {fileID: 3365166156655135142}
+  meleeHitbox: {fileID: 0}
   triggerHolders:
   - anticipation: {fileID: 0}
   - anticipation: {fileID: 0}

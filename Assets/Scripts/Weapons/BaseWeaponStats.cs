@@ -4,6 +4,8 @@ using UnityEngine;
 
 [System.Serializable]
 public class BaseWeaponStats : StatBlock {
+	[SerializeField] public List<BaseStrategy> startingStrategies;
+
 	public List<WeaponStatValue> stats;
 
 	public float restingAngle;

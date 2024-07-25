@@ -9,8 +9,8 @@ public class AmmoStandard : BaseStrategy, IAmmo
 
     int _internalLock = 0;
 
-    public override void Create() {
-        base.Create();
+    public override void Create(WeaponHandler weapon) {
+        base.Create(weapon);
         
         currentAmmo = (int)weapon.statsWeapon[WeaponStatNames.ClipSize].GetValue();
 

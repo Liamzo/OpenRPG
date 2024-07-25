@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider2D))]
+[CreateAssetMenu(fileName = "Combo Slash", menuName = "Strategies/Combo Slash")]
 public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
 {
     float lastCharge = 1f;
@@ -31,15 +31,15 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
     bool fullyCharged = false;
     float chargeTimer = 0f;
     
-    public override void Create() {
-        base.Create();
+    public override void Create(WeaponHandler weapon) {
+        base.Create(weapon);
         
         weapon.item.OnUnequip += InteruptCombo;
 
         weapon.triggerHolders[triggerSlot].OnAttackCancel += AttackCancel;
     }
 
-    void Update()
+    public override void Update()
     {
         if (isCharging && !fullyCharged) {
             chargeTimer += ( 1f / currentComboAttack.chargeDuration ) * Time.deltaTime;
@@ -52,8 +52,8 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
         }  
     }
 
-    private void LateUpdate() {
-        if  (doingAttack && weapon.strategies.GetComponent<Collider2D>().enabled)
+    public override void LateUpdate() {
+        if  (doingAttack && weapon.meleeHitbox.enabled)
         {
             doingAttack = false;
             endingAttack = true;

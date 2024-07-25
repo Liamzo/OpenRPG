@@ -9,13 +9,13 @@ public class TriggerCharge : BaseStrategy, ITrigger
     float chargeTimer = 0f;
 
 
-    public override void Create() {
-        base.Create();
+    public override void Create(WeaponHandler weapon) {
+        base.Create(weapon);
         
         weapon.triggerHolders[triggerSlot].OnAttackCancel += AttackCancel;
     }
 
-    void Update()
+    public override void Update()
     {
         if (isCharging && !fullyCharged) {
             chargeTimer += Time.deltaTime;

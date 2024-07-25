@@ -6,13 +6,13 @@ public class ReloadAutoSingle : BaseStrategy, IReload
 {
     float reloadTimer = 0f;
 
-    public override void Create() {
-        base.Create();
+    public override void Create(WeaponHandler weapon) {
+        base.Create(weapon);
         
         weapon.triggerHolders[triggerSlot].OnAttack += ResetReloadTimer;
     }
 
-    public void Update()
+    public override void Update()
     {
         if (reloadTimer > 0f) {
             reloadTimer -= Time.deltaTime;

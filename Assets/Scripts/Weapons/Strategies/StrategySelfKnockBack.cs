@@ -3,12 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "Self Knockback", menuName = "Strategies/Self Knockback")]
 public class StrategySelfKnockBack : BaseStrategy
 {
     [SerializeField] WeaponEvents triggerEvent;
 
-    public override void Create() {
-        base.Create();
+    public override void Create(WeaponHandler weapon) {
+        base.Create(weapon);
 
         switch (triggerEvent)
         {
@@ -29,7 +30,7 @@ public class StrategySelfKnockBack : BaseStrategy
 
     private void DoKnockBack()
     {
-        weapon.item.owner.GetComponent<Physicsable>().Knock(-transform.up, weapon.statsWeapon[WeaponStatNames.SelfKnockForce].GetValue());
+        weapon.item.owner.GetComponent<Physicsable>().Knock(-weapon.transform.up, weapon.statsWeapon[WeaponStatNames.SelfKnockForce].GetValue());
     }
 
     void DoKnockBack(float charge) {

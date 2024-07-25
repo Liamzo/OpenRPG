@@ -7,13 +7,13 @@ public class FireRateStandard : BaseStrategy, IFireRate
     float fireTimer = 0f;
     bool waiting = false;
 
-    public override void Create() {
-        base.Create();
+    public override void Create(WeaponHandler weapon) {
+        base.Create(weapon);
         
         weapon.triggerHolders[triggerSlot].OnAttack += DidAttack;
     }
 
-    private void Update() {
+    public override void Update() {
         if (fireTimer > 0f) {
             fireTimer -= Time.deltaTime;
         }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "Block", menuName = "Strategies/Block")]
 public class AttackTypeBlock : BaseStrategy, IAttackType
 {
     bool isBlocking = false;
@@ -9,8 +10,8 @@ public class AttackTypeBlock : BaseStrategy, IAttackType
     public float blockAngle;
 
 
-    public override void Create() {
-        base.Create();
+    public override void Create(WeaponHandler weapon) {
+        base.Create(weapon);
         
         weapon.triggerHolders[triggerSlot].OnTrigger += DoAttack;
         weapon.triggerHolders[triggerSlot].OnTriggerRelease += ReleaseBlock;

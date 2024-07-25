@@ -11,8 +11,8 @@ public class AttackTypeShotgun : BaseStrategy, IAttackType
     [SerializeField] private GameObject fireEffectPrefab;
     ParticleSystem fireEffect;
 
-    public override void Create() {
-        base.Create();
+    public override void Create(WeaponHandler weapon) {
+        base.Create(weapon);
 
         muzzleFlash = Instantiate(muzzleFlashPrefab, weapon.attackPoint.transform).GetComponent<MuzzleFlash>();
         fireEffect = Instantiate(fireEffectPrefab, weapon.attackPoint.transform).GetComponent<ParticleSystem>();
@@ -33,12 +33,12 @@ public class AttackTypeShotgun : BaseStrategy, IAttackType
         weapon.CallOnAttack(triggerSlot);
     }
 
-    private void Update() {
+    public override void Update() {
         fireEffect.transform.localEulerAngles = new Vector3(0f, weapon.item.objectHandler.spriteRenderer.transform.eulerAngles.y, 60f);
     }
 
     List<ObjectHandler> EnemiesInCone() {
-        Collider2D[] objects = Physics2D.OverlapCircleAll(transform.position, weapon.statsWeapon[WeaponStatNames.Range].GetValue()); // Get all possible objects in range
+        Collider2D[] objects = Physics2D.OverlapCircleAll(weapon.transform.position, weapon.statsWeapon[WeaponStatNames.Range].GetValue()); // Get all possible objects in range
         List<ObjectHandler> enemyStats = new List<ObjectHandler>();
 
         foreach (Collider2D col in objects) {
@@ -48,11 +48,11 @@ public class AttackTypeShotgun : BaseStrategy, IAttackType
                 if (objectHandler == weapon.item.owner)
                     continue;
 
-                float dist = Vector3.Distance(objectHandler.transform.position, transform.position);
+                float dist = Vector3.Distance(objectHandler.transform.position, weapon.transform.position);
 
-                Vector2 dir = (objectHandler.transform.position - transform.position).normalized;
+                Vector2 dir = (objectHandler.transform.position - weapon.transform.position).normalized;
 
-                if (dist <= weapon.statsWeapon[WeaponStatNames.Range].GetValue() && (Vector3.Angle(-transform.up, dir) <= 90f / 2f || dist < 1f)) {
+                if (dist <= weapon.statsWeapon[WeaponStatNames.Range].GetValue() && (Vector3.Angle(-weapon.transform.up, dir) <= 90f / 2f || dist < 1f)) {
                     enemyStats.Add(objectHandler);
                 }
             }

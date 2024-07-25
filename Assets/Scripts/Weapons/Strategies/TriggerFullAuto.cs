@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TriggerFullAuto : BaseStrategy, ITrigger
 {
-    public override void Create() {
-        base.Create();
+    public override void Create(WeaponHandler weapon) {
+        base.Create(weapon);
         
         weapon.triggerHolders[triggerSlot].OnAttackCancel += AttackCancel;
     }
