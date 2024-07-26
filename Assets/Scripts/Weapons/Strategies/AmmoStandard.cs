@@ -7,7 +7,6 @@ using UnityEngine;
 public class AmmoStandard : BaseStrategy, IAmmo
 {
     int currentAmmo;
-    public int useCost;
 
     int _internalLock = 0;
 
@@ -32,16 +31,11 @@ public class AmmoStandard : BaseStrategy, IAmmo
         return (int)weapon.statsWeapon[WeaponStatNames.ClipSize].GetValue();
     }
 
-    public int GetUseCost()
-    {
-        return useCost;
-    }
-
     public void Reload(int amount)
     {
         currentAmmo = Mathf.Clamp(currentAmmo + amount, 0, (int)weapon.statsWeapon[WeaponStatNames.ClipSize].GetValue());
 
-        if (currentAmmo >= useCost) {
+        if (currentAmmo >= weapon.GetStatValue(WeaponStatNames.AmmoCost)) {
             if (_internalLock == 1) {
                 weapon._canAttack -= 1;
                 _internalLock -= 1;
@@ -51,9 +45,9 @@ public class AmmoStandard : BaseStrategy, IAmmo
 
     public void UseAmmo()
     {
-        currentAmmo = Mathf.Clamp(currentAmmo - useCost, 0, (int)weapon.statsWeapon[WeaponStatNames.ClipSize].GetValue());
+        currentAmmo = Mathf.Clamp(currentAmmo - (int)weapon.GetStatValue(WeaponStatNames.AmmoCost), 0, (int)weapon.statsWeapon[WeaponStatNames.ClipSize].GetValue());
 
-        if (currentAmmo < useCost) {
+        if (currentAmmo < (int)weapon.GetStatValue(WeaponStatNames.AmmoCost)) {
             if (_internalLock == 0) {
                 weapon._canAttack += 1;
                 _internalLock += 1;

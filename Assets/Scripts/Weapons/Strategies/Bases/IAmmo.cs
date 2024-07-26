@@ -7,5 +7,4 @@ public interface IAmmo {
     public int GetMaxAmmo();
     public void Reload(int ammout);
     public void UseAmmo();
-    public int GetUseCost();
 }

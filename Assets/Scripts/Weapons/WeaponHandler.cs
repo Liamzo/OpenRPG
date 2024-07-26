@@ -291,7 +291,8 @@ public enum WeaponStatNames {
     StaminaCostHold,
     StaminaCostAim,
     SelfKnockForce,
-    Blocking
+    Blocking,
+    AmmoCost
 }
 
 [System.Serializable]
