@@ -22,7 +22,6 @@ public class DamageTypeStandard : BaseStrategy, IDamageType
         }
 
         if (hitOutcome == HitOutcome.Hit) {
-            GameManager.instance.ShakeCamera(8.0f, 0.2f); // Move to future BaseDamage class
             GameManager.instance.HitStop(0.05f); // Move to future BaseDamage class
 
             if (target != null){
@@ -37,7 +36,6 @@ public class DamageTypeStandard : BaseStrategy, IDamageType
             }
 
         } else if (hitOutcome == HitOutcome.Block) {
-            GameManager.instance.ShakeCamera(5.0f, 0.15f); // Move to future BaseDamage class
             GameManager.instance.HitStop(0.05f); // Move to future BaseDamage class
 
             if (target != null){

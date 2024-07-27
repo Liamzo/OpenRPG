@@ -4,7 +4,9 @@ using UnityEngine;
 
 [System.Serializable]
 public class BaseWeaponStats : StatBlock {
-	[SerializeField] public List<BaseStrategy> startingStrategies;
+	public List<WeaponModSlot> neededModSlots;
+	public List<WeaponModSlot> optionalModSlots;
+	public List<WeaponMod> startingWeaponMods;
 
 	public List<WeaponStatValue> stats;
 

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3a48e7be25b8684ea2225db5f053601, type: 3}
+  m_Name: PistolAmmoBasic
+  m_EditorClassIdentifier: 
+  modId: pistol_ammo01
+  modName: Basic Ammo
+  modSlot: 4
+  strategies:
+  - {fileID: 11400000, guid: f3987edeb9e4f60489cfb30667a58ffe, type: 2}
+  - {fileID: 11400000, guid: 8291b679f8b3e0f4091ab4017e4bd43c, type: 2}
+  - {fileID: 11400000, guid: 0295f794e20d06146872f43fa28d1843, type: 2}
+  - {fileID: 11400000, guid: 431d9d1dcc5817442b4d346ee8ff1f27, type: 2}
+  - {fileID: 11400000, guid: 0de10e7734c0c1c4793267391d58c784, type: 2}
+  - {fileID: 11400000, guid: 95d21003af7f3224f9174c87d1296b80, type: 2}
+  weaponModBonuses: []

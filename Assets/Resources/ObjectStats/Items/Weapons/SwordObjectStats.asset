@@ -50,17 +50,12 @@ MonoBehaviour:
     - rid: 2539556635058110474
       type: {class: BaseWeaponStats, ns: , asm: Assembly-CSharp}
       data:
-        startingStrategies:
-        - {fileID: 11400000, guid: 9abe3441f9f916a41900d9fdd353c7fd, type: 2}
-        - {fileID: 11400000, guid: f3987edeb9e4f60489cfb30667a58ffe, type: 2}
-        - {fileID: 11400000, guid: 26faefe938d8aa64980e2ba49cbeaf9e, type: 2}
-        - {fileID: 11400000, guid: 4948f8f407c25e94091adcb7ee3b05da, type: 2}
-        - {fileID: 11400000, guid: ffd18d1317266684e9859ad204c16f5c, type: 2}
-        - {fileID: 11400000, guid: 482732a649152014c8b88c21e4932c0f, type: 2}
-        - {fileID: 11400000, guid: 95d21003af7f3224f9174c87d1296b80, type: 2}
-        - {fileID: 11400000, guid: 0de10e7734c0c1c4793267391d58c784, type: 2}
-        - {fileID: 11400000, guid: eaf75699633a851439ffb62ab09bf478, type: 2}
-        - {fileID: 11400000, guid: 295e17fdfdbe1a843af5c2e1d9414ef6, type: 2}
+        neededModSlots: 0700000008000000
+        optionalModSlots: 090000000a000000
+        startingWeaponMods:
+        - {fileID: 11400000, guid: 37f3bf065f7819643abcc473cd01519b, type: 2}
+        - {fileID: 11400000, guid: 4cb1496559c12c6448b5612449104196, type: 2}
+        - {fileID: 11400000, guid: a3678abc50225dd40b64405a13bcb147, type: 2}
         stats:
         - statName: 1
           value: 1

@@ -21,7 +21,8 @@ public class WeaponHandler : MonoBehaviour, ISaveable
 
     public bool Holstered {get; private set;}
 
-    [SerializeField] public List<BaseStrategy> strategies {get; private set;} = new List<BaseStrategy>();
+    public Dictionary<WeaponModSlot, WeaponMod> mods = new Dictionary<WeaponModSlot, WeaponMod>();
+
 
 
     public List<TriggerHolder> triggerHolders = new List<TriggerHolder> {new TriggerHolder(), new TriggerHolder()};
@@ -66,13 +67,13 @@ public class WeaponHandler : MonoBehaviour, ISaveable
     }
 
     private void Update() {
-        foreach (BaseStrategy strategy in strategies) {
+        foreach (BaseStrategy strategy in GetAllModStrategies()) {
             strategy.Update();
         }
     }
 
     private void LateUpdate() {
-        foreach (BaseStrategy strategy in strategies) {
+        foreach (BaseStrategy strategy in GetAllModStrategies()) {
             strategy.LateUpdate();
         }
     }
@@ -113,7 +114,7 @@ public class WeaponHandler : MonoBehaviour, ISaveable
     }
 
     public bool CanReload() {
-        IAmmo ammo = strategies.OfType<IAmmo>().FirstOrDefault();
+        IAmmo ammo = GetAllModStrategies().OfType<IAmmo>().FirstOrDefault();
 
         if (ammo == null) { return false; }
 
@@ -163,6 +164,18 @@ public class WeaponHandler : MonoBehaviour, ISaveable
     }
 
 
+    public List<BaseStrategy> GetAllModStrategies() {
+        List<BaseStrategy> strategies = new List<BaseStrategy>();
+
+        foreach (WeaponMod weaponMod in mods.Values)
+        {
+            if (weaponMod != null) {
+                strategies.AddRange(weaponMod.strategies);
+            }
+        }
+
+        return strategies;
+    }
 
 
     public void CreateBase()
@@ -181,22 +194,38 @@ public class WeaponHandler : MonoBehaviour, ISaveable
         // Set variables in trigger handlers
         triggerHolders = new List<TriggerHolder> {new TriggerHolder(), new TriggerHolder()};
 
-
-        foreach (BaseStrategy startingStrategy in baseWeaponStats.startingStrategies) {
-            BaseStrategy strategy = Instantiate(startingStrategy);
-
-            strategy.Create(this);
-
-            strategies.Add(strategy);
+        // Fill dictionary with all slots
+        foreach (WeaponModSlot weaponModSlot in baseWeaponStats.neededModSlots)
+        {
+            mods.Add(weaponModSlot, null);
+        }
+        foreach (WeaponModSlot weaponModSlot in baseWeaponStats.optionalModSlots)
+        {
+            mods.Add(weaponModSlot, null);
         }
 
-        List<ITrigger> triggers = strategies.OfType<ITrigger>().ToList();
+        // Add in the mods
+        foreach (WeaponMod startingWeaponMod in baseWeaponStats.startingWeaponMods)
+        {
+            WeaponMod weaponMod = Instantiate(startingWeaponMod);
+
+            weaponMod.Create(this);
+
+            mods[weaponMod.modSlot] = weaponMod;
+        }
+
+        // TODO (LAZY): Check all needed mods slots are filled here
+
+
+
+
+        List<ITrigger> triggers = GetAllModStrategies().OfType<ITrigger>().ToList();
         foreach (ITrigger trigger in triggers)
         {
             triggerHolders[((BaseStrategy)trigger).triggerSlot].trigger = trigger;
         }
         
-        List<IAnticipation> anticipations = strategies.OfType<IAnticipation>().ToList();
+        List<IAnticipation> anticipations = GetAllModStrategies().OfType<IAnticipation>().ToList();
         foreach (IAnticipation anticipation in anticipations)
         {
             triggerHolders[anticipation.triggerSlot].anticipation = anticipation;

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3a48e7be25b8684ea2225db5f053601, type: 3}
+  m_Name: SwordCrossBlock
+  m_EditorClassIdentifier: 
+  modId: sword_cross01
+  modName: Basic Cross Block
+  modSlot: 9
+  strategies:
+  - {fileID: 11400000, guid: eaf75699633a851439ffb62ab09bf478, type: 2}
+  - {fileID: 11400000, guid: 295e17fdfdbe1a843af5c2e1d9414ef6, type: 2}
+  weaponModBonuses: []

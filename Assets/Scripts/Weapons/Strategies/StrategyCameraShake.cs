@@ -37,7 +37,7 @@ public class StrategyCameraShake : BaseStrategy
 
     // On Trigger and Release
     void CameraShake(float charge) {
-        GameManager.instance.ShakeCamera(3.0f, 0.15f);
+        GameManager.instance.ShakeCamera(5.0f, 0.15f);
     }
 
     // On Hit Target

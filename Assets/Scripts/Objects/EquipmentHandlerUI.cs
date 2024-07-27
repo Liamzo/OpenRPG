@@ -57,8 +57,8 @@ public class EquipmentHandlerUI : EquipmentHandler
             }
 
             currentRangedWeapon = newItem.GetComponent<WeaponHandler>();
-            currentRangedAmmo = currentRangedWeapon.strategies.OfType<IAmmo>().FirstOrDefault();
-            currentRangedReload = currentRangedWeapon.strategies.OfType<IReload>().FirstOrDefault();
+            currentRangedAmmo = currentRangedWeapon.GetAllModStrategies().OfType<IAmmo>().FirstOrDefault();
+            currentRangedReload = currentRangedWeapon.GetAllModStrategies().OfType<IReload>().FirstOrDefault();
 
             if (currentRangedAmmo == null) {
                 reloadBarTransform.gameObject.SetActive(false);

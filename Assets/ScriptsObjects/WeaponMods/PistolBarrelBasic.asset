@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3a48e7be25b8684ea2225db5f053601, type: 3}
+  m_Name: PistolBarrelBasic
+  m_EditorClassIdentifier: 
+  modId: pistol_barrel01
+  modName: Basic Barrel
+  modSlot: 1
+  strategies:
+  - {fileID: 11400000, guid: bbe1ffb5038860142a70121918be628b, type: 2}
+  weaponModBonuses: []
