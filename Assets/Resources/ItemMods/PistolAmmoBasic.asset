@@ -17,7 +17,8 @@ MonoBehaviour:
   modDescription: 
   modIcon: {fileID: 21300000, guid: 15e6a7567a309554f96c5523b0975f87, type: 3}
   modSlot: 4
-  strategies:
+  strategies: []
+  startingStrategies:
   - {fileID: 11400000, guid: f3987edeb9e4f60489cfb30667a58ffe, type: 2}
   - {fileID: 11400000, guid: 8291b679f8b3e0f4091ab4017e4bd43c, type: 2}
   - {fileID: 11400000, guid: 0295f794e20d06146872f43fa28d1843, type: 2}

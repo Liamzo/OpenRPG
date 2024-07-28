@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class ModManager : MonoBehaviour
 {
-    public ModManager Instance { get; private set; }
+    public static ModManager Instance { get; private set; }
 
     public List<WeaponMod> allWeaponMods;
 
@@ -50,6 +50,18 @@ public class ModManager : MonoBehaviour
         List<WeaponMod> weaponMods = allWeaponMods.Where(x => x.modSlot == weaponModSlot).ToList();
 
         return weaponMods;
+    }
+
+    public WeaponMod FindModById(string modId) {
+        foreach (WeaponMod mod in allWeaponMods)
+        {
+            if (mod.modId == modId) {
+                return mod;
+            }
+        }
+
+        Debug.LogWarning("No mod found with that ID: " + modId);
+        return null;
     }
 
 
@@ -219,8 +231,7 @@ public class ModManager : MonoBehaviour
                 slot.Select();
                 selectedMod = slot;
             } else {
-                selectedMod?.Unselect();
-                selectedMod = null;
+                selectedModItem.weapon.ChangeMod(slot.mod);
             }
         }
         else if (eventData.button == PointerEventData.InputButton.Right) {
@@ -249,10 +260,31 @@ public class ModManager : MonoBehaviour
             modManagerUI.SetActive(false);
         }
 
+
         foreach (ModItemSlotUI slot in modItemSlots) {
             slot.ClearSlot();
         }
 
         modItemSlots.Clear();
+
+        selectedModItem = null;
+
+
+        foreach (CurrentModSlotUI slot in currentModSlots) {
+            slot.ClearSlot();
+        }
+
+        currentModSlots.Clear();
+
+        selectedCurrentMod = null;
+
+
+        foreach (ModSlotUI slot in modSlots) {
+            slot.ClearSlot();
+        }
+
+        modSlots.Clear();
+
+        selectedMod = null;
     }
 }

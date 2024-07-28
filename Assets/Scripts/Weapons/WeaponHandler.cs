@@ -177,6 +177,18 @@ public class WeaponHandler : MonoBehaviour, ISaveable
         return strategies;
     }
 
+    public void ChangeMod(WeaponMod newMod) {
+        WeaponMod oldMod = mods[newMod.modSlot];
+
+        oldMod?.Delete();
+
+        WeaponMod weaponMod = Instantiate(newMod);
+
+        weaponMod.Create(this);
+
+        mods[weaponMod.modSlot] = weaponMod;
+    }
+
 
     public void CreateBase()
     {
@@ -234,12 +246,66 @@ public class WeaponHandler : MonoBehaviour, ISaveable
 
     public string SaveComponent()
     {
-        return "";
+        string json = $"weapon: {{ mods: [";
+
+        foreach (WeaponMod mod in mods.Values) {
+            if (mod != null)
+                json += mod.modId + ",";
+        }
+
+        return json + "]}";
     }
 
     public void LoadComponent(JSONNode data)
     {
-        CreateBase();
+        item = GetComponent<ItemHandler>();
+
+        item.OnUnequip += OnUnequip;
+
+
+        baseWeaponStats = item.objectHandler.baseStats.GetStatBlock<BaseWeaponStats>();
+
+        foreach (WeaponStatValue sv in baseWeaponStats.stats) {
+            statsWeapon.Add(sv.statName, new Stat(sv.value));
+        }
+
+        // Set variables in trigger handlers
+        triggerHolders = new List<TriggerHolder> {new TriggerHolder(), new TriggerHolder()};
+
+        // Fill dictionary with all slots
+        foreach (WeaponModSlot weaponModSlot in baseWeaponStats.neededModSlots)
+        {
+            mods.Add(weaponModSlot, null);
+        }
+        foreach (WeaponModSlot weaponModSlot in baseWeaponStats.optionalModSlots)
+        {
+            mods.Add(weaponModSlot, null);
+        }
+
+
+        foreach (JSONNode node in data["weapon"]["mods"]) {
+            Debug.Log(node);
+            WeaponMod mod = ModManager.Instance.FindModById(node);
+
+            WeaponMod weaponMod = Instantiate(mod);
+
+            weaponMod.Create(this);
+
+            mods[weaponMod.modSlot] = weaponMod;
+        }
+
+
+        List<ITrigger> triggers = GetAllModStrategies().OfType<ITrigger>().ToList();
+        foreach (ITrigger trigger in triggers)
+        {
+            triggerHolders[((BaseStrategy)trigger).triggerSlot].trigger = trigger;
+        }
+        
+        List<IAnticipation> anticipations = GetAllModStrategies().OfType<IAnticipation>().ToList();
+        foreach (IAnticipation anticipation in anticipations)
+        {
+            triggerHolders[anticipation.triggerSlot].anticipation = anticipation;
+        }
     }
 
 }

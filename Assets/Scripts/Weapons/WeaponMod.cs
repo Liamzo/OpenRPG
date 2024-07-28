@@ -11,6 +11,7 @@ public class WeaponMod : ScriptableObject
     public Sprite modIcon;
     public WeaponModSlot modSlot;
     public List<BaseStrategy> strategies;
+    [SerializeField] List<BaseStrategy> startingStrategies;
     public List<WeaponModBonus> weaponModBonuses;
 
     protected WeaponHandler weapon;
@@ -19,22 +20,34 @@ public class WeaponMod : ScriptableObject
     {
         this.weapon = weapon;
 
-        List<BaseStrategy> instantiatedStrategies = new List<BaseStrategy>();
+        strategies = new List<BaseStrategy>();
 
-        foreach (BaseStrategy startingStrategy in strategies) {
+        foreach (BaseStrategy startingStrategy in startingStrategies) {
             BaseStrategy strategy = Instantiate(startingStrategy);
 
             strategy.Create(weapon);
 
-            instantiatedStrategies.Add(strategy);
+            strategies.Add(strategy);
         }
-
-        strategies = instantiatedStrategies; // Swap the prefab strategies with new versions
 
         foreach (WeaponModBonus weaponModBonus in weaponModBonuses)
         {
             weapon.statsWeapon[weaponModBonus.weaponStatName].AddModifier(new Modifier(weaponModBonus.modifierType, weaponModBonus.value));
         }
+    }
+
+    public virtual void Delete() {
+        foreach (BaseStrategy strategy in strategies)
+        {
+            Destroy(strategy);
+        }
+
+        foreach (WeaponModBonus weaponModBonus in weaponModBonuses)
+        {
+            weapon.statsWeapon[weaponModBonus.weaponStatName].RemoveModifier(new Modifier(weaponModBonus.modifierType, weaponModBonus.value));
+        }
+
+        Destroy(this);
     }
 }
 
