@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class ModManager : MonoBehaviour
 {
     public ModManager Instance { get; private set; }
+
+    public List<WeaponMod> allWeaponMods;
 
     public GameObject modManagerUI;
 
@@ -19,10 +22,17 @@ public class ModManager : MonoBehaviour
     List<CurrentModSlotUI> currentModSlots = new List<CurrentModSlotUI>();
     CurrentModSlotUI selectedCurrentMod;
 
+    public GameObject modSlotPrefab;
+    public GameObject modSlotsParent;
+    List<ModSlotUI> modSlots = new List<ModSlotUI>();
+    ModSlotUI selectedMod;
+
 
 
     private void Awake() {
         Instance = this;
+
+        allWeaponMods = Resources.LoadAll<WeaponMod>("ItemMods/").ToList();
     }
 
 
@@ -32,6 +42,14 @@ public class ModManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K)) {
             OnModManager();
         }
+    }
+
+
+    public List<WeaponMod> FindModsBySlot(WeaponModSlot weaponModSlot) 
+    {
+        List<WeaponMod> weaponMods = allWeaponMods.Where(x => x.modSlot == weaponModSlot).ToList();
+
+        return weaponMods;
     }
 
 
@@ -66,6 +84,7 @@ public class ModManager : MonoBehaviour
         }
 
         UpdateCurrentModsUI();
+        UpdateModUI();
         
     }
 
@@ -74,7 +93,8 @@ public class ModManager : MonoBehaviour
         if (modManagerUI.activeSelf == false)
             return;
 
-
+        selectedCurrentMod?.Unselect();
+        selectedCurrentMod = null;
         foreach (CurrentModSlotUI slot in currentModSlots) {
             slot.ClearSlot();
             slot.gameObject.SetActive(false);
@@ -98,6 +118,46 @@ public class ModManager : MonoBehaviour
                 slotUI.OnClick += OnPointerClickCurrentMod;
 
             slotGO.SetActive(true);
+        }
+
+        UpdateModUI();
+    }
+
+    void UpdateModUI() {
+        if (modManagerUI.activeSelf == false)
+            return;
+
+        selectedMod?.Unselect();
+        selectedMod = null;
+        foreach (ModSlotUI slot in modSlots) {
+            slot.ClearSlot();
+            slot.gameObject.SetActive(false);
+        }
+
+        modSlots.Clear();
+
+        if (selectedCurrentMod == null)
+            return;
+
+        foreach (WeaponMod mod in FindModsBySlot(selectedCurrentMod.mod.modSlot))
+        {
+            GameObject slotGO = Instantiate(modSlotPrefab, modSlotsParent.transform);
+
+            ModSlotUI slotUI = slotGO.GetComponent<ModSlotUI>();
+            modSlots.Add(slotUI);
+
+            slotUI.AddMod(mod);
+
+            slotUI.OnClick += OnPointerClickMod;
+
+            slotGO.SetActive(true);
+
+            if (selectedCurrentMod.mod.modId == mod.modId) {
+                selectedMod?.Unselect();
+                slotUI.Select();
+                selectedMod = slotUI;
+            }
+
         }
     }
 
@@ -142,6 +202,25 @@ public class ModManager : MonoBehaviour
             } else {
                 selectedCurrentMod?.Unselect();
                 selectedCurrentMod = null;
+            }
+        }
+        else if (eventData.button == PointerEventData.InputButton.Right) {
+            
+        }
+
+        UpdateModUI();
+    }
+
+    public void OnPointerClickMod(ModSlotUI slot, PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Left) {
+            if (selectedMod != slot) {
+                selectedMod?.Unselect();
+                slot.Select();
+                selectedMod = slot;
+            } else {
+                selectedMod?.Unselect();
+                selectedMod = null;
             }
         }
         else if (eventData.button == PointerEventData.InputButton.Right) {
