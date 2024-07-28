@@ -26,6 +26,8 @@ public class ModManager : MonoBehaviour
     public GameObject modSlotsParent;
     List<ModSlotUI> modSlots = new List<ModSlotUI>();
     ModSlotUI selectedMod;
+    WeaponHandler previousWeapon;
+    WeaponMod previousCurrentMod;
 
 
 
@@ -95,6 +97,15 @@ public class ModManager : MonoBehaviour
             }
         }
 
+
+        if (previousWeapon != null) {
+            ModItemSlotUI modItemSlotUI = modItemSlots.Find(x => x.weapon == previousWeapon);
+            modItemSlotUI?.Select();
+            selectedModItem = modItemSlotUI;
+            previousWeapon = null;
+        }
+
+
         UpdateCurrentModsUI();
         UpdateModUI();
         
@@ -105,8 +116,7 @@ public class ModManager : MonoBehaviour
         if (modManagerUI.activeSelf == false)
             return;
 
-        selectedCurrentMod?.Unselect();
-        selectedCurrentMod = null;
+
         foreach (CurrentModSlotUI slot in currentModSlots) {
             slot.ClearSlot();
             slot.gameObject.SetActive(false);
@@ -114,8 +124,10 @@ public class ModManager : MonoBehaviour
 
         currentModSlots.Clear();
 
-        if (selectedModItem == null)
+        if (selectedModItem == null) {
+            selectedCurrentMod = null;
             return;
+        }
 
         foreach (KeyValuePair<WeaponModSlot, WeaponMod> mod in selectedModItem.weapon.mods)
         {
@@ -131,6 +143,17 @@ public class ModManager : MonoBehaviour
 
             slotGO.SetActive(true);
         }
+
+
+        if (previousCurrentMod != null) {
+            CurrentModSlotUI currentModSlotUI = currentModSlots.Find(x => x.mod?.modId == previousCurrentMod.modId);
+            currentModSlotUI?.Select();
+            selectedCurrentMod = currentModSlotUI;
+            previousCurrentMod = null;
+        } else {
+            selectedCurrentMod = null;
+        }
+
 
         UpdateModUI();
     }
@@ -148,8 +171,10 @@ public class ModManager : MonoBehaviour
 
         modSlots.Clear();
 
-        if (selectedCurrentMod == null)
+        if (selectedCurrentMod == null){
+            selectedMod = null;
             return;
+        }
 
         foreach (WeaponMod mod in FindModsBySlot(selectedCurrentMod.mod.modSlot))
         {
@@ -196,12 +221,12 @@ public class ModManager : MonoBehaviour
                 selectedModItem?.Unselect();
                 selectedModItem = null;
             }
-
-            UpdateCurrentModsUI();
         }
         else if (eventData.button == PointerEventData.InputButton.Right) {
             
         }
+        
+        UpdateCurrentModsUI();
     }
 
     public void OnPointerClickCurrentMod(CurrentModSlotUI slot, PointerEventData eventData)
@@ -232,6 +257,9 @@ public class ModManager : MonoBehaviour
                 selectedMod = slot;
             } else {
                 selectedModItem.weapon.ChangeMod(slot.mod);
+                previousWeapon = selectedModItem.weapon;
+                previousCurrentMod = slot.mod;
+                UpdateModManagerUI();
             }
         }
         else if (eventData.button == PointerEventData.InputButton.Right) {
@@ -286,5 +314,8 @@ public class ModManager : MonoBehaviour
         modSlots.Clear();
 
         selectedMod = null;
+
+        previousWeapon = null;
+        previousCurrentMod = null;
     }
 }

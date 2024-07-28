@@ -30,7 +30,7 @@ public class ModSlotUI : MonoBehaviour, IPointerClickHandler
 
         nameText.text = mod.modName;
 
-        foreach (BaseStrategy strategy in mod.strategies)
+        foreach (BaseStrategy strategy in mod.startingStrategies)
         {
             GameObject strategyIcon = ObjectPoolManager.Instance.GetPooledObject(PoolIdentifiers.SmallIconUI);
 

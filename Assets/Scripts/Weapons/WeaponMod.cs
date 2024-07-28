@@ -11,7 +11,7 @@ public class WeaponMod : ScriptableObject
     public Sprite modIcon;
     public WeaponModSlot modSlot;
     public List<BaseStrategy> strategies;
-    [SerializeField] List<BaseStrategy> startingStrategies;
+    public List<BaseStrategy> startingStrategies;
     public List<WeaponModBonus> weaponModBonuses;
 
     protected WeaponHandler weapon;
