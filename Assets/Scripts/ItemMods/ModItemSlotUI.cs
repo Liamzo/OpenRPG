@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEngine.Events;
 using TMPro;
 
 public class ModItemSlotUI : MonoBehaviour, IPointerClickHandler
@@ -13,6 +12,11 @@ public class ModItemSlotUI : MonoBehaviour, IPointerClickHandler
     public TextMeshProUGUI nameText;
     public GameObject modItemList;
     public List<GameObject> modIcons;
+
+    public Image background;
+    public Color unselectedColor;
+    public Color selectedColor;
+
 
     public event System.Action<ModItemSlotUI, PointerEventData> OnClick = delegate { };
 
@@ -64,6 +68,16 @@ public class ModItemSlotUI : MonoBehaviour, IPointerClickHandler
 
         Destroy(gameObject);
     }
+
+
+    public void Select() {
+        background.color = selectedColor;
+    }
+
+    public void Unselect() {
+        background.color = unselectedColor;
+    }
+
 
     public void OnPointerClick(PointerEventData eventData)
     {

@@ -12,13 +12,17 @@ public class ModManager : MonoBehaviour
     public GameObject modItemSlotPrefab;
     public GameObject modItemSlotsParent;
     List<ModItemSlotUI> modItemSlots = new List<ModItemSlotUI>();
+    ModItemSlotUI selectedModItem;
+
+    public GameObject currentModSlotPrefab;
+    public GameObject currentModSlotsParent;
+    List<CurrentModSlotUI> currentModSlots = new List<CurrentModSlotUI>();
+    CurrentModSlotUI selectedCurrentMod;
 
 
 
     private void Awake() {
         Instance = this;
-
-        modManagerUI = GameObject.Find("Canvas").transform.Find("ModdingUI").gameObject;
     }
 
 
@@ -32,7 +36,8 @@ public class ModManager : MonoBehaviour
 
 
 
-    void UpdateModManagerUI() {
+    void UpdateModManagerUI() 
+    {
         if (modManagerUI.activeSelf == false)
             return;
 
@@ -59,7 +64,41 @@ public class ModManager : MonoBehaviour
                 CreateModItemSlot(weapon);
             }
         }
+
+        UpdateCurrentModsUI();
         
+    }
+
+    void UpdateCurrentModsUI() 
+    {
+        if (modManagerUI.activeSelf == false)
+            return;
+
+
+        foreach (CurrentModSlotUI slot in currentModSlots) {
+            slot.ClearSlot();
+            slot.gameObject.SetActive(false);
+        }
+
+        currentModSlots.Clear();
+
+        if (selectedModItem == null)
+            return;
+
+        foreach (KeyValuePair<WeaponModSlot, WeaponMod> mod in selectedModItem.weapon.mods)
+        {
+            GameObject slotGO = Instantiate(currentModSlotPrefab, currentModSlotsParent.transform);
+
+            CurrentModSlotUI slotUI = slotGO.GetComponent<CurrentModSlotUI>();
+            currentModSlots.Add(slotUI);
+
+            slotUI.AddMod(mod.Value, mod.Key);
+
+            if (mod.Value != null)
+                slotUI.OnClick += OnPointerClickCurrentMod;
+
+            slotGO.SetActive(true);
+        }
     }
 
     void CreateModItemSlot(WeaponHandler weapon) {
@@ -69,15 +108,41 @@ public class ModManager : MonoBehaviour
         modItemSlots.Add(slotUI);
 
         slotUI.AddWeapon(weapon);
-        slotUI.OnClick += OnPointerClick;
+        slotUI.OnClick += OnPointerClickModItem;
 
         slotGO.SetActive(true);
     }
 
-    public void OnPointerClick(ModItemSlotUI slot, PointerEventData eventData)
+    public void OnPointerClickModItem(ModItemSlotUI slot, PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Left) {
+            if (selectedModItem != slot) {
+                selectedModItem?.Unselect();
+                slot.Select();
+                selectedModItem = slot;
+            } else {
+                selectedModItem?.Unselect();
+                selectedModItem = null;
+            }
+
+            UpdateCurrentModsUI();
+        }
+        else if (eventData.button == PointerEventData.InputButton.Right) {
             
+        }
+    }
+
+    public void OnPointerClickCurrentMod(CurrentModSlotUI slot, PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Left) {
+            if (selectedCurrentMod != slot) {
+                selectedCurrentMod?.Unselect();
+                slot.Select();
+                selectedCurrentMod = slot;
+            } else {
+                selectedCurrentMod?.Unselect();
+                selectedCurrentMod = null;
+            }
         }
         else if (eventData.button == PointerEventData.InputButton.Right) {
             
