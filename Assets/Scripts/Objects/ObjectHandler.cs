@@ -98,7 +98,7 @@ public class ObjectHandler : MonoBehaviour
 
         currentHealth = Mathf.Clamp(currentHealth - damage, 0f, statsObject[ObjectStatNames.Health].GetValue());
 
-        GameObject go = ObjectPoolManager.instance.GetPooledObject(PoolIdentifiers.DamageNumber);
+        GameObject go = ObjectPoolManager.Instance.GetPooledObject(PoolIdentifiers.DamageNumber);
         //go.transform.parent = gameObject.transform;
         go.transform.position = transform.position;
         go.transform.position += Vector3.up*2;

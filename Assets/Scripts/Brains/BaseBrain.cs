@@ -58,7 +58,7 @@ public class BaseBrain : MonoBehaviour
             waitClock = waitTime;
         }
 
-        GameObject bloodEffect = ObjectPoolManager.instance.GetPooledObject(PoolIdentifiers.BloodEffect);
+        GameObject bloodEffect = ObjectPoolManager.Instance.GetPooledObject(PoolIdentifiers.BloodEffect);
         bloodEffect.transform.position = equipmentHandler.orbitPoint.position;
         // bloodEffect.transform.parent = equipmentHandler.orbitPoint;
         // bloodEffect.transform.localPosition = Vector3.zero;

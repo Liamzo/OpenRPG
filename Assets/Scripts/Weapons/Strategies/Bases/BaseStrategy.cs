@@ -7,6 +7,9 @@ using UnityEngine;
 public abstract class BaseStrategy : ScriptableObject
 {
     protected WeaponHandler weapon;
+    public string strategyName;
+    public string strategyDescription;
+    public Sprite strategyIcon;
 
     [SerializeField] public int triggerSlot = 0;
 

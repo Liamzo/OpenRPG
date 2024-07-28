@@ -205,13 +205,13 @@ public class QuestManager : MonoBehaviour
 
         foreach (QuestStep questStep in selectQuestEntry.quest.questSteps) {
             if (questStep.stepNum < selectQuestEntry.quest.stepOn) {
-                QuestStepUI questStepUI = ObjectPoolManager.instance.GetPooledObject(PoolIdentifiers.QuestStepUI).GetComponent<QuestStepUI>();
+                QuestStepUI questStepUI = ObjectPoolManager.Instance.GetPooledObject(PoolIdentifiers.QuestStepUI).GetComponent<QuestStepUI>();
                 questStepUI.transform.SetParent(questStepsParent.transform, false);
                 questStepUI.AddItem(questStep, true);
                 questSteps.Add(questStepUI);
                 questStepUI.gameObject.SetActive(true);
             } else if (questStep.stepNum == selectQuestEntry.quest.stepOn) {
-                QuestStepUI questStepUI = ObjectPoolManager.instance.GetPooledObject(PoolIdentifiers.QuestStepUI).GetComponent<QuestStepUI>();
+                QuestStepUI questStepUI = ObjectPoolManager.Instance.GetPooledObject(PoolIdentifiers.QuestStepUI).GetComponent<QuestStepUI>();
                 questStepUI.transform.SetParent(questStepsParent.transform, false);
                 questStepUI.AddItem(questStep, false);
                 questSteps.Add(questStepUI);

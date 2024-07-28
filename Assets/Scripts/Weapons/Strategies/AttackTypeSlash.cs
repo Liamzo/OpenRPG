@@ -23,7 +23,7 @@ public class AttackTypeSlash : BaseStrategy, IAttackType
     }
 
     public void SpawnSlashAnimEvent() {
-        GameObject go = ObjectPoolManager.instance.GetPooledObject(PoolIdentifiers.WeaponSwing);
+        GameObject go = ObjectPoolManager.Instance.GetPooledObject(PoolIdentifiers.WeaponSwing);
         go.transform.position = weapon.attackPoint.transform.position;
         //go.transform.parent = meleeWeapon.attackPoint; // Decide which feels better. Stay in place or follow sword
         go.transform.up = weapon.item.owner.GetComponent<BaseBrain>().lookingDirection;

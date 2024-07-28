@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class InventoryHandlerUI : InventoryHandler
 {
-    public static InventoryHandlerUI instance;
+    public static InventoryHandlerUI Instance { get; private set; }
 
     public GameObject inventoryUI;
     public GameObject inventorySlotsParent;
@@ -21,7 +21,7 @@ public class InventoryHandlerUI : InventoryHandler
 
         base.Awake();
 
-        instance = this;
+        Instance = this;
     }
 
     private void Update() {
@@ -58,7 +58,7 @@ public class InventoryHandlerUI : InventoryHandler
         itemSlots.Clear();
 
         foreach(ItemHandler item in inventory) {
-            GameObject slotGO = ObjectPoolManager.instance.GetPooledObject(PoolIdentifiers.ItemSlotUI);
+            GameObject slotGO = ObjectPoolManager.Instance.GetPooledObject(PoolIdentifiers.ItemSlotUI);
             slotGO.transform.SetParent(inventorySlotsParent.transform, false);
 
             InventorySlotUI slotUI = slotGO.GetComponent<InventorySlotUI>();
@@ -152,7 +152,7 @@ public class InventoryHandlerUI : InventoryHandler
                 player.Remove(item);
         } else {
             // Transfer to player
-            if (item.PickUp(InventoryHandlerUI.instance.GetComponent<ObjectHandler>()) == true)
+            if (item.PickUp(InventoryHandlerUI.Instance.GetComponent<ObjectHandler>()) == true)
                 ContainerHandler.instance.openedContainer.Remove(item);
         }
 

@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modId: pistol_magazine01
   modName: Basic Magazine
+  modDescription: 
+  modIcon: {fileID: 21300000, guid: 15e6a7567a309554f96c5523b0975f87, type: 3}
   modSlot: 2
   strategies:
   - {fileID: 11400000, guid: e6cdf66cff6d3ba4e85a9a7ed3e1dcda, type: 2}

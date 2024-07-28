@@ -7,6 +7,8 @@ public class WeaponMod : ScriptableObject
 {
     public string modId;
     public string modName;
+    public string modDescription;
+    public Sprite modIcon;
     public WeaponModSlot modSlot;
     public List<BaseStrategy> strategies;
     public List<WeaponModBonus> weaponModBonuses;
@@ -55,4 +57,5 @@ public class WeaponModBonus {
     public WeaponStatNames weaponStatName;
     public ModifierTypes modifierType;
     public float value;
+    public Sprite icon;
 }

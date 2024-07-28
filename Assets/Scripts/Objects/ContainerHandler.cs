@@ -50,7 +50,7 @@ public class ContainerHandler : MonoBehaviour
         itemSlots.Clear();
 
         foreach(ItemHandler item in openedContainer.inventory) {
-            GameObject slotGO = ObjectPoolManager.instance.GetPooledObject(PoolIdentifiers.ItemSlotUI);
+            GameObject slotGO = ObjectPoolManager.Instance.GetPooledObject(PoolIdentifiers.ItemSlotUI);
             slotGO.transform.SetParent(inventorySlotsParent.transform, false);
 
             InventorySlotUI slotUI = slotGO.GetComponent<InventorySlotUI>();
@@ -103,7 +103,7 @@ public class ContainerHandler : MonoBehaviour
                 player.Remove(item);
         } else {
             // Transfer to player
-            if (item.PickUp(InventoryHandlerUI.instance.GetComponent<ObjectHandler>()) == true)
+            if (item.PickUp(InventoryHandlerUI.Instance.GetComponent<ObjectHandler>()) == true)
                 ContainerHandler.instance.openedContainer.Remove(item);
         }
         

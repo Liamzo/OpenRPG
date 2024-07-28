@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modId: sword_blade01
   modName: Basic Blade
+  modDescription: 
+  modIcon: {fileID: 21300000, guid: 15e6a7567a309554f96c5523b0975f87, type: 3}
   modSlot: 8
   strategies:
   - {fileID: 11400000, guid: f3987edeb9e4f60489cfb30667a58ffe, type: 2}

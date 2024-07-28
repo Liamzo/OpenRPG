@@ -417,7 +417,7 @@ public class Player : BaseBrain
 
     void OnTab() {
         // Close down menus
-        InventoryHandlerUI.instance.CloseInventory();
+        InventoryHandlerUI.Instance.CloseInventory();
         CancelInteraction();
     }
 

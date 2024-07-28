@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObjectPoolManager : MonoBehaviour
 {
-    public static ObjectPoolManager instance;
+    public static ObjectPoolManager Instance { get; private set; }
 
     public List<PoolObject> poolObjects; // The prefab to pool
     //public int poolSize = 10; // The initial size of the object pool
@@ -13,7 +13,7 @@ public class ObjectPoolManager : MonoBehaviour
 
     private void Start()
     {
-        instance = this;
+        Instance = this;
 
         LevelManager.instance.LoadLevelPre += LevelLoaded;
         
@@ -91,5 +91,6 @@ public enum PoolIdentifiers {
     ItemSlotUI,
     WeaponSwing,
     BloodEffect,
-    QuestStepUI
+    QuestStepUI,
+    SmallIconUI,
 }

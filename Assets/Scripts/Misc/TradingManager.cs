@@ -155,7 +155,7 @@ public class TradingManager : MonoBehaviour
         traderItemSlots.Clear();
 
         foreach(ItemHandler item in trader.GetComponent<InventoryHandler>().inventory) {
-            GameObject slotGO = ObjectPoolManager.instance.GetPooledObject(PoolIdentifiers.ItemSlotUI);
+            GameObject slotGO = ObjectPoolManager.Instance.GetPooledObject(PoolIdentifiers.ItemSlotUI);
             slotGO.transform.SetParent(traderItemSlotsParent.transform, false);
 
             InventorySlotUI slotUI = slotGO.GetComponent<InventorySlotUI>();
@@ -175,7 +175,7 @@ public class TradingManager : MonoBehaviour
         playerItemSlots.Clear();
 
         foreach(ItemHandler item in player.GetComponent<InventoryHandler>().inventory) {
-            GameObject slotGO = ObjectPoolManager.instance.GetPooledObject(PoolIdentifiers.ItemSlotUI);
+            GameObject slotGO = ObjectPoolManager.Instance.GetPooledObject(PoolIdentifiers.ItemSlotUI);
             slotGO.transform.SetParent(playerItemSlotsParent.transform, false);
 
             InventorySlotUI slotUI = slotGO.GetComponent<InventorySlotUI>();

@@ -26,7 +26,7 @@ public class LeaveCorpse : MonoBehaviour
     IEnumerator SpawnCorpse () {
         yield return new WaitForSeconds(1f);
 
-        GameObject go = ObjectPoolManager.instance.GetPooledObject(PoolIdentifiers.Corpse);
+        GameObject go = ObjectPoolManager.Instance.GetPooledObject(PoolIdentifiers.Corpse);
         go.transform.position = transform.position;
         go.GetComponent<Corpse>().SetVars(objectHandler.spriteRenderer, GetComponent<InventoryHandler>().inventory);
         go.SetActive(true);
