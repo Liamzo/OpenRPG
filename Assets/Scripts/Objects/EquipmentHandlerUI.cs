@@ -52,6 +52,9 @@ public class EquipmentHandlerUI : EquipmentHandler
             bulletUIs.Clear();
 
             if (newItem == null) {
+                currentRangedWeapon = null;
+                currentRangedAmmo = null;
+                currentRangedReload = null;
                 reloadBar.value = 0f;
                 return;
             }
@@ -71,6 +74,10 @@ public class EquipmentHandlerUI : EquipmentHandler
                 GameObject go = Instantiate(bulletUIPrefab, bulletUIHolder);
 
                 bulletUIs.Add(go);
+
+                if (i >= currentRangedAmmo.GetCurrentAmmo()) {
+                    go.GetComponent<Image>().color = usedAmmoColor;
+                }
             }
 
             UpdatedReloadSlider();
