@@ -39,6 +39,15 @@ public class AttackTypeGrapplingHook : BaseStrategy, IAttackType
         weapon.item.OnUnequip += ReleaseGrapple;
     }
 
+    public override void Delete()
+    {
+        weapon.triggerHolders[triggerSlot].OnTrigger -= DoAttack;
+
+        weapon.triggerHolders[triggerSlot].OnTriggerRelease -= ReleaseGrapple;
+        weapon.OnHolseter -= ReleaseGrapple;
+        weapon.item.OnUnequip -= ReleaseGrapple;
+    }
+
     public void DoAttack(float charge)
     {
         if (!canGrapple) { return; }

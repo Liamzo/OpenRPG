@@ -22,6 +22,11 @@ public class WeaponMod : ScriptableObject
 
         strategies = new List<BaseStrategy>();
 
+        foreach (WeaponModBonus weaponModBonus in weaponModBonuses)
+        {
+            weapon.statsWeapon[weaponModBonus.weaponStatName].AddModifier(new Modifier(weaponModBonus.modifierType, weaponModBonus.value));
+        }
+
         foreach (BaseStrategy startingStrategy in startingStrategies) {
             BaseStrategy strategy = Instantiate(startingStrategy);
 
@@ -29,16 +34,12 @@ public class WeaponMod : ScriptableObject
 
             strategies.Add(strategy);
         }
-
-        foreach (WeaponModBonus weaponModBonus in weaponModBonuses)
-        {
-            weapon.statsWeapon[weaponModBonus.weaponStatName].AddModifier(new Modifier(weaponModBonus.modifierType, weaponModBonus.value));
-        }
     }
 
     public virtual void Delete() {
         foreach (BaseStrategy strategy in strategies)
         {
+            strategy.Delete();
             Destroy(strategy);
         }
 

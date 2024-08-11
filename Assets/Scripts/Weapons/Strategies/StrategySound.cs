@@ -34,6 +34,25 @@ public class StrategySound : BaseStrategy
         }
     }
 
+    public override void Delete()
+    {
+        switch (triggerEvent)
+        {
+            case WeaponEvents.OnAttack:
+                weapon.triggerHolders[triggerSlot].OnAttack -= PlaySound;
+                break;
+            case WeaponEvents.OnHitTarget:
+                weapon.triggerHolders[triggerSlot].OnHitTarget -= PlaySound;
+                break;
+            case WeaponEvents.OnTrigger:
+                weapon.triggerHolders[triggerSlot].OnTrigger -= PlaySound;
+                break;
+            case WeaponEvents.OnTriggerRelease:
+                weapon.triggerHolders[triggerSlot].OnTriggerRelease -= PlaySound;
+                break;
+        }
+    }
+
     // On Attack
     private void PlaySound()
     {

@@ -14,6 +14,11 @@ public class ReloadAutoFull : BaseStrategy, IReload
         weapon.triggerHolders[triggerSlot].OnAttack += ResetReloadTimer;
     }
 
+    public override void Delete()
+    {
+        weapon.triggerHolders[triggerSlot].OnAttack -= ResetReloadTimer;
+    }
+
     public override void Update()
     {
         if (reloadTimer > 0f) {

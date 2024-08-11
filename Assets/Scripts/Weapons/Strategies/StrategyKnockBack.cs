@@ -27,6 +27,25 @@ public class StrategyKnockBack : BaseStrategy
         }
     }
 
+    public override void Delete()
+    {
+        switch (triggerEvent)
+        {
+            case WeaponEvents.OnAttack:
+                weapon.triggerHolders[triggerSlot].OnAttack -= DoKnockBack;
+                break;
+            case WeaponEvents.OnHitTarget:
+                weapon.triggerHolders[triggerSlot].OnHitTarget -= DoKnockBack;
+                break;
+            case WeaponEvents.OnTrigger:
+                weapon.triggerHolders[triggerSlot].OnTrigger -= DoKnockBack;
+                break;
+            case WeaponEvents.OnTriggerRelease:
+                weapon.triggerHolders[triggerSlot].OnTriggerRelease -= DoKnockBack;
+                break;
+        }
+    }
+
 
     // On Attack
     private void DoKnockBack()

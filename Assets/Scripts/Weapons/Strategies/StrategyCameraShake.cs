@@ -28,6 +28,25 @@ public class StrategyCameraShake : BaseStrategy
         }
     }
 
+    public override void Delete()
+    {
+        switch (triggerEvent)
+        {
+            case WeaponEvents.OnAttack:
+                weapon.triggerHolders[triggerSlot].OnAttack -= CameraShake;
+                break;
+            case WeaponEvents.OnHitTarget:
+                weapon.triggerHolders[triggerSlot].OnHitTarget -= CameraShake;
+                break;
+            case WeaponEvents.OnTrigger:
+                weapon.triggerHolders[triggerSlot].OnTrigger -= CameraShake;
+                break;
+            case WeaponEvents.OnTriggerRelease:
+                weapon.triggerHolders[triggerSlot].OnTriggerRelease -= CameraShake;
+                break;
+        }
+    }
+
 
     // On Attack
     private void CameraShake()

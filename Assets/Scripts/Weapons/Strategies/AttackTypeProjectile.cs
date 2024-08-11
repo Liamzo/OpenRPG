@@ -20,6 +20,11 @@ public class AttackTypeProjectile : BaseStrategy, IAttackType
         weapon.triggerHolders[triggerSlot].OnTrigger += DoAttack;
     }
 
+    public override void Delete()
+    {
+        weapon.triggerHolders[triggerSlot].OnTrigger -= DoAttack;
+    }
+
     public void DoAttack(float charge)
     {
         GameObject go = Instantiate(bulletPrefab, weapon.attackPoint.position, Quaternion.identity);

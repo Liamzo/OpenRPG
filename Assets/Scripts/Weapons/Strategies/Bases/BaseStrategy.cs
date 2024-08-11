@@ -19,6 +19,10 @@ public abstract class BaseStrategy : ScriptableObject
         this.weapon = weapon;
     }
 
+    public virtual void Delete() {
+        
+    }
+
 
     public virtual void Update() {
 

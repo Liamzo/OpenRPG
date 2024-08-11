@@ -12,6 +12,11 @@ public class TriggerHold : BaseStrategy, ITrigger
         weapon.triggerHolders[triggerSlot].OnAttackCancel += AttackCancel;
     }
 
+    public override void Delete()
+    {
+        weapon.triggerHolders[triggerSlot].OnAttackCancel -= AttackCancel;
+    }
+
     
     public float AttackHoldCost()
     {

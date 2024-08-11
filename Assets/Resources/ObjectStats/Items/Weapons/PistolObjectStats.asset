@@ -74,7 +74,7 @@ MonoBehaviour:
         - statName: 14
           value: 0
         - statName: 3
-          value: 1
+          value: 0.2
         - statName: 4
           value: 1
         - statName: 5

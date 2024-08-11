@@ -28,6 +28,25 @@ public class StrategySelfKnockBack : BaseStrategy
         }
     }
 
+    public override void Delete()
+    {
+        switch (triggerEvent)
+        {
+            case WeaponEvents.OnAttack:
+                weapon.triggerHolders[triggerSlot].OnAttack -= DoKnockBack;
+                break;
+            case WeaponEvents.OnHitTarget:
+                weapon.triggerHolders[triggerSlot].OnHitTarget -= DoKnockBack;
+                break;
+            case WeaponEvents.OnTrigger:
+                weapon.triggerHolders[triggerSlot].OnTrigger -= DoKnockBack;
+                break;
+            case WeaponEvents.OnTriggerRelease:
+                weapon.triggerHolders[triggerSlot].OnTriggerRelease -= DoKnockBack;
+                break;
+        }
+    }
+
     private void DoKnockBack()
     {
         weapon.item.owner.GetComponent<Physicsable>().Knock(-weapon.transform.up, weapon.statsWeapon[WeaponStatNames.SelfKnockForce].GetValue());

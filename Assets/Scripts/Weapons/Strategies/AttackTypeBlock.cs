@@ -20,6 +20,15 @@ public class AttackTypeBlock : BaseStrategy, IAttackType
         weapon.item.OnUnequip += OnUnequip;
     }
 
+    public override void Delete()
+    {
+        weapon.triggerHolders[triggerSlot].OnTrigger -= DoAttack;
+        weapon.triggerHolders[triggerSlot].OnTriggerRelease -= ReleaseBlock;
+        weapon.triggerHolders[triggerSlot].OnAttackCancel -= ReleaseBlock;
+        weapon.item.OnEquip -= OnEquip;
+        weapon.item.OnUnequip -= OnUnequip;
+    }
+
     public void DoAttack(float charge)
     {
         if (!isBlocking) {

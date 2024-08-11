@@ -52,39 +52,57 @@ public class EquipmentHandlerUI : EquipmentHandler
             bulletUIs.Clear();
 
             if (newItem == null) {
+                currentRangedWeapon.OnMod -= ModChanged;
                 currentRangedWeapon = null;
                 currentRangedAmmo = null;
                 currentRangedReload = null;
                 reloadBar.value = 0f;
-                return;
+            } else {            
+                currentRangedWeapon = newItem.GetComponent<WeaponHandler>();
+                currentRangedAmmo = currentRangedWeapon.GetAllModStrategies().OfType<IAmmo>().FirstOrDefault();
+                currentRangedReload = currentRangedWeapon.GetAllModStrategies().OfType<IReload>().FirstOrDefault();
+                currentRangedWeapon.OnMod += ModChanged;
             }
 
-            currentRangedWeapon = newItem.GetComponent<WeaponHandler>();
-            currentRangedAmmo = currentRangedWeapon.GetAllModStrategies().OfType<IAmmo>().FirstOrDefault();
-            currentRangedReload = currentRangedWeapon.GetAllModStrategies().OfType<IReload>().FirstOrDefault();
-
-            if (currentRangedAmmo == null) {
-                reloadBarTransform.gameObject.SetActive(false);
-                return;
-            } else {
-                reloadBarTransform.gameObject.SetActive(true);
-            }
-
-            for (int i = 0; i < currentRangedWeapon.statsWeapon[WeaponStatNames.ClipSize].GetValue(); i++) {
-                GameObject go = Instantiate(bulletUIPrefab, bulletUIHolder);
-
-                bulletUIs.Add(go);
-
-                if (i >= currentRangedAmmo.GetCurrentAmmo()) {
-                    go.GetComponent<Image>().color = usedAmmoColor;
-                }
-            }
-
-            UpdatedReloadSlider();
-
-            rangedWeaponPrevAmmo = currentRangedAmmo.GetCurrentAmmo();
+            NewAmmoUI();
         }
     }
+
+    void ModChanged() {
+        foreach (GameObject bulletUI in bulletUIs) {
+            Destroy(bulletUI);
+        }
+
+        bulletUIs.Clear();
+
+        currentRangedAmmo = currentRangedWeapon.GetAllModStrategies().OfType<IAmmo>().FirstOrDefault();
+        currentRangedReload = currentRangedWeapon.GetAllModStrategies().OfType<IReload>().FirstOrDefault();
+
+        NewAmmoUI();
+    }
+
+    void NewAmmoUI() {
+        if (currentRangedAmmo == null) {
+            reloadBarTransform.gameObject.SetActive(false);
+            return;
+        } else {
+            reloadBarTransform.gameObject.SetActive(true);
+        }
+
+        rangedWeaponPrevAmmo = currentRangedAmmo.GetCurrentAmmo();
+
+        for (int i = 0; i < currentRangedWeapon.statsWeapon[WeaponStatNames.ClipSize].GetValue(); i++) {
+            GameObject go = Instantiate(bulletUIPrefab, bulletUIHolder);
+
+            bulletUIs.Add(go);
+
+            if (i >= currentRangedAmmo.GetCurrentAmmo()) {
+                go.GetComponent<Image>().color = usedAmmoColor;
+            }
+        }
+
+        UpdatedReloadSlider();
+}
 
     void UpdatedReloadSlider() {
         reloadBarTransform.sizeDelta = new Vector2(bulletUIHolder.sizeDelta.x, reloadBarTransform.sizeDelta.y);

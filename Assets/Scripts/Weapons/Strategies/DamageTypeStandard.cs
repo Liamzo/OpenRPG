@@ -12,6 +12,11 @@ public class DamageTypeStandard : BaseStrategy, IDamageType
         weapon.triggerHolders[triggerSlot].OnHitTarget += DealDamage;
     }
 
+    public override void Delete()
+    {
+        weapon.triggerHolders[triggerSlot].OnHitTarget -= DealDamage;
+    }
+
     public void DealDamage(ObjectHandler target, HitOutcome hitOutcome, float charge, GameObject projectile)
     {
         // Roll for Damage

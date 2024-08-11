@@ -55,7 +55,7 @@ public class TradingManager : MonoBehaviour
     }
 
     private void Update() {
-        if (InputManager.GetInstance().GetOfferTradePressed()) {
+        if (trader != null && InputManager.GetInstance().GetOfferTradePressed()) {
             // TODO: Stop if player not enough coins, if trader has not enough offer to do it anyway
             // TODO: Consider buying and selling power of Player based on attributes
             InventoryHandler traderInventory = trader.GetComponent<InventoryHandler>();

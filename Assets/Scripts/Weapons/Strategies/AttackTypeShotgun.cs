@@ -22,6 +22,11 @@ public class AttackTypeShotgun : BaseStrategy, IAttackType
         weapon.triggerHolders[triggerSlot].OnTrigger += DoAttack;
     }
 
+    public override void Delete()
+    {
+        weapon.triggerHolders[triggerSlot].OnTrigger -= DoAttack;
+    }
+
     public void DoAttack(float charge)
     {
         List<ObjectHandler> targets = EnemiesInCone();

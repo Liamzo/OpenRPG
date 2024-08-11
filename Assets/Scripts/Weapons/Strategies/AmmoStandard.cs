@@ -21,6 +21,19 @@ public class AmmoStandard : BaseStrategy, IAmmo
         LevelManager.instance.LoadLevelPre += LevelLoaded;
     }
 
+    public override void Delete()
+    {
+        weapon.OnReload -= Reload;
+        weapon.triggerHolders[triggerSlot].OnAttack -= UseAmmo;
+
+        LevelManager.instance.LoadLevelPre -= LevelLoaded;
+
+        if (_internalLock == 1) {
+            weapon._canAttack -= 1;
+            _internalLock -= 1;
+        }
+    }
+
     public int GetCurrentAmmo()
     {
         return currentAmmo;

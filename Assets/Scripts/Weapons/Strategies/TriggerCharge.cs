@@ -17,6 +17,11 @@ public class TriggerCharge : BaseStrategy, ITrigger
         weapon.triggerHolders[triggerSlot].OnAttackCancel += AttackCancel;
     }
 
+    public override void Delete()
+    {
+        weapon.triggerHolders[triggerSlot].OnAttackCancel -= AttackCancel;
+    }
+
     public override void Update()
     {
         if (isCharging && !fullyCharged) {

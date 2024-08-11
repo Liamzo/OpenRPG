@@ -15,6 +15,11 @@ public class FireRateStandard : BaseStrategy, IFireRate
         weapon.triggerHolders[triggerSlot].OnAttack += DidAttack;
     }
 
+    public override void Delete()
+    {
+        weapon.triggerHolders[triggerSlot].OnAttack -= DidAttack;
+    }
+
     public override void Update() {
         if (fireTimer > 0f) {
             fireTimer -= Time.deltaTime;

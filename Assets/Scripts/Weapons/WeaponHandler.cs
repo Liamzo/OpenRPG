@@ -30,6 +30,9 @@ public class WeaponHandler : MonoBehaviour, ISaveable
     // Events
     public event System.Action OnHolseter = delegate { };
     public void CallOnHolseter() { OnHolseter(); }
+
+    public event System.Action OnMod = delegate { };
+
     public event System.Action<int> OnReload = delegate { };
     public void CallOnReload(int amount) { OnReload(amount); }
 
@@ -187,6 +190,8 @@ public class WeaponHandler : MonoBehaviour, ISaveable
         weaponMod.Create(this);
 
         mods[weaponMod.modSlot] = weaponMod;
+
+        OnMod();
     }
 
 
