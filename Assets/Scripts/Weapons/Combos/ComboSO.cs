@@ -27,7 +27,7 @@ public class ComboAttack {
 [System.Serializable]
 public class AttackDetails {
     public string attackAnimName;
-    public float swingDuration = 0f;
+    public float swingModifier = 0f; // Higher is faster
     public float knockBackModifier = 0f;
     public float selfKnockBackModifier = 0f;
     public float staggerModifier = 0f;

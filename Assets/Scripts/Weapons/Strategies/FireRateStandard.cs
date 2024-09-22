@@ -42,7 +42,7 @@ public class FireRateStandard : BaseStrategy, IFireRate
 
     public void DidAttack()
     {
-        fireTimer = weapon.statsWeapon[WeaponStatNames.AttackTimer].GetValue();
+        fireTimer = 1.0f / weapon.statsWeapon[WeaponStatNames.AttackSpeed].GetValue(); // Lower is faster
         weapon._canAttack += 1;
         waiting = true;
     }

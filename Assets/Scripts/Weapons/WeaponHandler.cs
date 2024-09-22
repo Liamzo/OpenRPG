@@ -380,7 +380,7 @@ public enum WeaponStatNames {
     PenetrationValue,
     DamageRollCount,
     DamageRollValue,
-    AttackTimer,
+    AttackSpeed,
     Stagger,
     KnockBack,
     Range,

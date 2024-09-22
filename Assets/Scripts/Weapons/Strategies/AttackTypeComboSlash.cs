@@ -331,10 +331,10 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
     }
 
     float CalculateAnimationSwingSpeed() {
-        return 1.0f / currentAttack.swingDuration;
+        return weapon.GetStatValue(WeaponStatNames.AttackSpeed) * currentAttack.swingModifier; // Higher is faster
     }
     float CalculateAnimationChargeSpeed() {
-        return 1.0f / 1f / currentComboAttack.chargeDuration;
+        return (1.0f / currentComboAttack.chargeDuration) * (weapon.GetStatValue(WeaponStatNames.AttackSpeed) * 0.5f);
     }
 
 
