@@ -24,7 +24,15 @@ MonoBehaviour:
   items:
   - baseStats: {fileID: 11400000, guid: 277f7bbd5ac2e8e488331af1d6290aaa, type: 2}
     position: {x: 51, y: 51}
-  characters: []
+  characters:
+  - baseStats: {fileID: 11400000, guid: 2f5c5583472adde4782057969a20be67, type: 2}
+    position: {x: -10, y: -10}
+  - baseStats: {fileID: 11400000, guid: 2f5c5583472adde4782057969a20be67, type: 2}
+    position: {x: -10, y: -11}
+  - baseStats: {fileID: 11400000, guid: 2f5c5583472adde4782057969a20be67, type: 2}
+    position: {x: -11, y: -10}
+  - baseStats: {fileID: 11400000, guid: 906a2f066fb62184dafd194ea507c6a1, type: 2}
+    position: {x: -11, y: -11}
   props:
   - baseStats: {fileID: 11400000, guid: 00a912955e77a1349b494f0934ab0367, type: 2}
     position: {x: 50, y: 55}
