@@ -53,7 +53,7 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
     public override void Update()
     {
         if (isCharging && !fullyCharged) {
-            chargeTimer += ( 1f / currentComboAttack.chargeDuration ) * Time.deltaTime;
+            chargeTimer += CalculateAnimationChargeSpeed() * Time.deltaTime;
 
             if (chargeTimer > 1f) {
                 chargeTimer = 1f;
@@ -220,7 +220,7 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
                     currentComboAttack = combo.comboChain;
                     currentAttack = null;
                     weapon.animator.Play(currentComboAttack.chargeAnimName);
-                    weapon.animator.speed = 1.0f / currentComboAttack.chargeDuration;
+                    weapon.animator.speed = CalculateAnimationChargeSpeed();
                     charging = true;
                     return;
                 }
@@ -239,7 +239,7 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
                 currentComboAttack = currentComboAttack.comboChains[segment];
                 currentAttack = null;
                 weapon.animator.Play(currentComboAttack.chargeAnimName);
-                weapon.animator.speed = 1.0f / currentComboAttack.chargeDuration;
+                weapon.animator.speed = CalculateAnimationChargeSpeed();
                 charging = true;
             }
 
@@ -332,6 +332,9 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
 
     float CalculateAnimationSwingSpeed() {
         return 1.0f / currentAttack.swingDuration;
+    }
+    float CalculateAnimationChargeSpeed() {
+        return 1.0f / 1f / currentComboAttack.chargeDuration;
     }
 
 
