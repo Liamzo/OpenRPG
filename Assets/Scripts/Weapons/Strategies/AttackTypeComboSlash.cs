@@ -142,7 +142,7 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
         }
 
         weapon.animator.Play(currentAttack.attackAnimName);
-        weapon.animator.speed = 1.0f / currentAttack.swingDuration;
+        weapon.animator.speed = CalculateAnimationSwingSpeed();
 
         weapon.statsWeapon[WeaponStatNames.KnockBack].AddModifier(new Modifier(ModifierTypes.Multiplier, currentAttack.knockBackModifier));
         weapon.statsWeapon[WeaponStatNames.SelfKnockForce].AddModifier(new Modifier(ModifierTypes.Multiplier, currentAttack.selfKnockBackModifier));
@@ -289,7 +289,7 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
                 weapon.animator.speed = 1.0f;
             } else if (prevAttack != null) {
                 weapon.animator.Play(currentComboAttack.lightAttack.attackAnimName, 0, 1.1f); // TODO: Save if we did a normal or heavy attack
-                weapon.animator.speed = 1.0f / currentAttack.swingDuration;
+                weapon.animator.speed = CalculateAnimationSwingSpeed();
             }
         }
 
@@ -307,7 +307,7 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
                 weapon.animator.speed = 1.0f;
             } else if (prevAttack != null) {
                 weapon.animator.Play(currentComboAttack.lightAttack.attackAnimName, 0, 1.1f); // TODO: Save if we did a normal or heavy attack
-                weapon.animator.speed = 1.0f / currentAttack.swingDuration;
+                weapon.animator.speed = CalculateAnimationSwingSpeed();
             }
         }
         
@@ -325,9 +325,13 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
                 weapon.animator.speed = 1.0f;
             } else if (prevAttack != null) {
                 weapon.animator.Play(currentComboAttack.lightAttack.attackAnimName, 0, 1.1f); // TODO: Save if we did a normal or heavy attack
-                weapon.animator.speed = 1.0f / currentAttack.swingDuration;
+                weapon.animator.speed = CalculateAnimationSwingSpeed();
             }
         }
+    }
+
+    float CalculateAnimationSwingSpeed() {
+        return 1.0f / currentAttack.swingDuration;
     }
 
 
