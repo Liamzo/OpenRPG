@@ -65,6 +65,8 @@ MonoBehaviour:
           value: 4
         - statName: 0
           value: 1
+        - statName: 3
+          value: 5
         - statName: 11
           value: 5
         - statName: 10
@@ -73,8 +75,6 @@ MonoBehaviour:
           value: 15
         - statName: 14
           value: 0
-        - statName: 3
-          value: 0.2
         - statName: 4
           value: 1
         - statName: 5

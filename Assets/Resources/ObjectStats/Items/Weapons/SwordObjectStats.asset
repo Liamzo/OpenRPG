@@ -63,6 +63,8 @@ MonoBehaviour:
           value: 6
         - statName: 0
           value: 1
+        - statName: 3
+          value: 4
         - statName: 11
           value: 5
         - statName: 10

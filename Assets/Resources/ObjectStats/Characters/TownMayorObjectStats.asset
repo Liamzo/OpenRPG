@@ -42,7 +42,7 @@ MonoBehaviour:
         - statName: 1
           value: 15
         - statName: 2
-          value: 5
+          value: 7
         - statName: 3
           value: 1.5
         - statName: 4

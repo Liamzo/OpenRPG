@@ -50,17 +50,9 @@ MonoBehaviour:
     - rid: 2539556635058110476
       type: {class: BaseWeaponStats, ns: , asm: Assembly-CSharp}
       data:
-        startingStrategies:
-        - {fileID: 11400000, guid: 1dc45b12c11e5c24e8e8ffcaa2320968, type: 2}
-        - {fileID: 11400000, guid: 49815c35ad349f84995b0939eb475e13, type: 2}
-        - {fileID: 11400000, guid: f3987edeb9e4f60489cfb30667a58ffe, type: 2}
-        - {fileID: 11400000, guid: cf929ce8f67b68840ae07f874afb35eb, type: 2}
-        - {fileID: 11400000, guid: e6cdf66cff6d3ba4e85a9a7ed3e1dcda, type: 2}
-        - {fileID: 11400000, guid: 0b009c2274e8a994bbc857bbf896faba, type: 2}
-        - {fileID: 11400000, guid: e0a72a85d6a52cb41bbd438c2c9a5f78, type: 2}
-        - {fileID: 11400000, guid: 0de10e7734c0c1c4793267391d58c784, type: 2}
-        - {fileID: 11400000, guid: 95d21003af7f3224f9174c87d1296b80, type: 2}
-        - {fileID: 11400000, guid: ffd18d1317266684e9859ad204c16f5c, type: 2}
+        neededModSlots: 
+        optionalModSlots: 
+        startingWeaponMods: []
         stats:
         - statName: 1
           value: 1
@@ -68,6 +60,8 @@ MonoBehaviour:
           value: 6
         - statName: 0
           value: 1
+        - statName: 3
+          value: 10
         - statName: 11
           value: 10
         - statName: 10
@@ -76,8 +70,6 @@ MonoBehaviour:
           value: 10
         - statName: 14
           value: 0
-        - statName: 3
-          value: 0.1
         - statName: 4
           value: 0.5
         - statName: 5

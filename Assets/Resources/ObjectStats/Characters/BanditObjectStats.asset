@@ -34,13 +34,15 @@ MonoBehaviour:
     - rid: 2539556635058110465
       type: {class: BaseCharacterStats, ns: , asm: Assembly-CSharp}
       data:
+        profileSprite: {fileID: 0}
+        dialogue: {fileID: 0}
         stats:
         - statName: 0
           value: 100
         - statName: 1
           value: 15
         - statName: 2
-          value: 5
+          value: 7
         - statName: 3
           value: 1.5
         - statName: 4
