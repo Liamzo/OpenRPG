@@ -114,8 +114,7 @@ public class CharacterHandler : ObjectHandler
         OnTakeDamage += OnDamageFlash;
     }
 
-    IEnumerator 
-    DoFlash() {
+    IEnumerator DoFlash() {
         spriteRenderer.color = Color.red;
 
         yield return new WaitForSeconds(0.1f);
