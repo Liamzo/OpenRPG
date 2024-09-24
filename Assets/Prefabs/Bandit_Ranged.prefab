@@ -456,7 +456,7 @@ GameObject:
   - component: {fileID: 6373156455409393215}
   - component: {fileID: 8265747989853778689}
   - component: {fileID: 727438517584383456}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bandit_Ranged
   m_TagString: Untagged
   m_Icon: {fileID: 0}

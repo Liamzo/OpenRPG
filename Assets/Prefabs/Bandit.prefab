@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 6398661309109024164}
   - component: {fileID: 891896985806456306}
   - component: {fileID: 118165342880759752}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bandit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -378,7 +378,7 @@ MonoBehaviour:
   targetLookingDirection: {x: 0, y: 0, z: 0}
   thoughtLocked: {fileID: 0}
   previousThought: {fileID: 0}
-  attackCoolDown: 7
+  attackCoolDown: 5
   attackCoolDownRange: 2
   attackTimer: 0
 --- !u!114 &2883755834010546419
