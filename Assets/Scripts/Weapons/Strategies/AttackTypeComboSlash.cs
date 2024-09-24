@@ -339,7 +339,7 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
 
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.TryGetComponent<ObjectHandler>(out ObjectHandler otherObjectHandler) || other.gameObject.transform.parent.TryGetComponent<ObjectHandler>(out otherObjectHandler)) {
+        if (other.gameObject.TryGetComponent<ObjectHandler>(out ObjectHandler otherObjectHandler) || (other.gameObject.transform.parent != null && other.gameObject.transform.parent.TryGetComponent<ObjectHandler>(out otherObjectHandler))) {
             if (otherObjectHandler == weapon.item.owner) return;
             
             weapon.CallOnHitTarget(triggerSlot, otherObjectHandler, lastCharge);
