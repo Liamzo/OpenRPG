@@ -13,8 +13,8 @@ public class ThreatHandlerPlayer : MonoBehaviour
     CinemachineVirtualCamera virtualCamera;
     CinemachineFramingTransposer transposer;
 
-    float CHECK_ENEMIES_CD = 0.5f;
-    float checkEnemiesTimer = 0.0f;
+    //float CHECK_ENEMIES_CD = 0.5f;
+    //float checkEnemiesTimer = 0.0f;
     LayerMask enemiesMask;
     LayerMask visionMask;
     [SerializeField] List<EnemyRangeInfo> enemiesInRange = new();
@@ -69,7 +69,7 @@ public class ThreatHandlerPlayer : MonoBehaviour
             // Raycast to the target within Sight range and see if clear path
             Vector3 targetDir = (otherCharacter.transform.position - transform.position).normalized;
 
-            RaycastHit2D hit = Physics2D.Raycast(characterHandler.Collider.bounds.center, targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), enemiesMask);
+            RaycastHit2D hit = Physics2D.Raycast(characterHandler.Collider.bounds.center, targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), visionMask);
 
             if (hit.collider != null && hit.collider.gameObject == otherCharacter.gameObject) {
                 // Enemy in sight
