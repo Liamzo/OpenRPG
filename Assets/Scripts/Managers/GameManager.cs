@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using System;
+using UnityEditor.ShaderGraph.Internal;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
     public bool gamePaused {get; private set;} = false;
 
     public bool waitingHitStop {get; private set;} = false;
+    public bool waitingTimeScaleChange {get; private set;} = false;
 
 
     public LevelData startingLevel;
@@ -99,5 +101,24 @@ public class GameManager : MonoBehaviour
 
         waitingHitStop = false;
         Time.timeScale = 1.0f;
+    }
+
+
+    public void ChangeTimeScale(float duration, float timeScale) {
+        if (waitingTimeScaleChange)
+            return;
+            
+        StartCoroutine(WaitChangeTimeScale(duration, timeScale));
+    }
+
+    private IEnumerator WaitChangeTimeScale(float duration, float timeScale) 
+    {
+        waitingTimeScaleChange = true;
+        Time.timeScale = timeScale;
+
+        yield return new WaitForSecondsRealtime(duration);
+
+        waitingTimeScaleChange = false;
+        Time.timeScale = 1f;
     }
 }

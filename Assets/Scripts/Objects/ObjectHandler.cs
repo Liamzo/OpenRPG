@@ -137,6 +137,8 @@ public class ObjectHandler : MonoBehaviour
         // Check for Dodge
         if (objectStatusHandler.isDodging) {
             // Dodge
+            GameManager.instance.ChangeTimeScale(0.25f, 0.1f);
+
             return HitOutcome.Dodge;
         }
 

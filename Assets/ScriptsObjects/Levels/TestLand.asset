@@ -38,7 +38,7 @@ MonoBehaviour:
     position: {x: 50, y: 55}
   things:
   - prefab: {fileID: 4077313069437475185, guid: 9a30541e78eaca243bffb264c73cd863, type: 3}
-    position: {x: 45, y: 50}
+    position: {x: 60, y: 50}
   generationEvents:
   - rid: 2539556635058110487
   - rid: 2539556635058110488
@@ -53,7 +53,7 @@ MonoBehaviour:
           chance: 1
         - prefab: {fileID: 8632036033638678713, guid: a8e024b17474c8c4a8d7d67f45f79dd0, type: 3}
           chance: 1
-        treeCoverage: 30
+        treeCoverage: 20
     - rid: 2539556635058110488
       type: {class: ShackSpawnEvent, ns: , asm: Assembly-CSharp}
       data:
