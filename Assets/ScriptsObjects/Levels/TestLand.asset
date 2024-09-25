@@ -26,13 +26,13 @@ MonoBehaviour:
     position: {x: 51, y: 51}
   characters:
   - baseStats: {fileID: 11400000, guid: 2f5c5583472adde4782057969a20be67, type: 2}
-    position: {x: -10, y: -10}
+    position: {x: 40, y: 40}
   - baseStats: {fileID: 11400000, guid: 2f5c5583472adde4782057969a20be67, type: 2}
-    position: {x: -10, y: -11}
+    position: {x: 40, y: 41}
   - baseStats: {fileID: 11400000, guid: 2f5c5583472adde4782057969a20be67, type: 2}
-    position: {x: -11, y: -10}
+    position: {x: 41, y: 40}
   - baseStats: {fileID: 11400000, guid: 906a2f066fb62184dafd194ea507c6a1, type: 2}
-    position: {x: -11, y: -11}
+    position: {x: 41, y: 41}
   props:
   - baseStats: {fileID: 11400000, guid: 00a912955e77a1349b494f0934ab0367, type: 2}
     position: {x: 50, y: 55}
