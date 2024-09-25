@@ -22,6 +22,12 @@ public class ThreatHandlerPlayer : MonoBehaviour
     private float smoothTimeSize = 0.5f;
 
 
+    public bool inCombat = false;
+    bool leavingCombat = false;
+    float leavingTimer = 0f;
+    float leavingDuration = 3f;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +52,15 @@ public class ThreatHandlerPlayer : MonoBehaviour
         // }
 
         CheckEnemiesInRange();
+
+        if (leavingCombat) {
+            if (leavingTimer > 0f) {
+                leavingTimer -= Time.deltaTime;
+            } else {
+                leavingCombat = false;
+                inCombat = false;
+            }
+        }
     }
 
     private void CheckEnemiesInRange()
@@ -81,10 +96,20 @@ public class ThreatHandlerPlayer : MonoBehaviour
 
         if (enemiesInRange.Count == 0) {
             transposer.m_TrackedObjectOffset = new Vector3();
-            virtualCamera.m_Lens.OrthographicSize = Mathf.SmoothDamp(virtualCamera.m_Lens.OrthographicSize, 14f, ref sizeVelocity, smoothTimeSize);
+            virtualCamera.m_Lens.OrthographicSize = Mathf.SmoothDamp(virtualCamera.m_Lens.OrthographicSize, 14f, ref sizeVelocity, smoothTimeSize * 2f);
+
+            if (!leavingCombat) {
+                leavingCombat = true;
+                leavingTimer = leavingDuration;
+            }
+
             //transposer.m_LookaheadTime = 0.5f;
+
             return;
         }
+
+        inCombat = true;
+        leavingCombat = false;
 
         // Calculate centre point of the enemies in line of sight
         Vector2 centre = new();
