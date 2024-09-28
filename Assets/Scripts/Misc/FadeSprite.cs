@@ -1,20 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class FadeSprite : MonoBehaviour
 {
-    // public BoxCollider2D fadeCollider;  // Collider area for detecting player
-    // public float fadeDuration = 0.2f;     // Time taken to fade in/out
-    // private List<SpriteRenderer> spritesToHide;
-    // private List<Texture2D> textures;
-    // private List<Color[]> originalPixels;
-    // private bool isFading = false;
-
     public BoxCollider2D fadeCollider;  // Collider area for detecting player
-    public float fadeDuration = 1f;     // Time taken to fade in/out
-    private SpriteRenderer spriteRenderer;
-    private Texture2D texture;
+    private float fadeDuration = 0.5f;     // Time taken to fade in/out
+    private List<SpriteRenderer> spriteRenderers;
     private bool isFading = false;
     private bool isFaded = false;
     
@@ -22,10 +15,7 @@ public class FadeSprite : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-
-        // Copy the texture of the sprite
-        texture = spriteRenderer.sprite.texture;
+        spriteRenderers = GetComponentsInChildren<SpriteRenderer>().ToList();
     }
 
     // Update is called once per frame
@@ -90,8 +80,11 @@ public class FadeSprite : MonoBehaviour
         // Convert world space bounds to texture pixel space
         Vector4 pixelRect = WorldBoundsToPixelRect(bounds);
 
-        spriteRenderer.material.SetFloat("_Alpha", alpha);
-        spriteRenderer.material.SetVector("_Bounds", pixelRect);
+        foreach(SpriteRenderer spriteRenderer in spriteRenderers) {
+            spriteRenderer.material.SetFloat("_Alpha", alpha);
+            spriteRenderer.material.SetVector("_Bounds", pixelRect);
+        }
+
     }
 
     // Convert world space bounds to pixel space rect in the texture
