@@ -12,10 +12,9 @@ public class FadeSprite : MonoBehaviour
     // private bool isFading = false;
 
     public BoxCollider2D fadeCollider;  // Collider area for detecting player
-    public float fadeDuration = 0.5f;     // Time taken to fade in/out
+    public float fadeDuration = 1f;     // Time taken to fade in/out
     private SpriteRenderer spriteRenderer;
     private Texture2D texture;
-    private Color[] originalPixels;
     private bool isFading = false;
     private bool isFaded = false;
     
@@ -27,7 +26,6 @@ public class FadeSprite : MonoBehaviour
 
         // Copy the texture of the sprite
         texture = spriteRenderer.sprite.texture;
-        originalPixels = texture.GetPixels(); // Store the original texture colors
     }
 
     // Update is called once per frame
@@ -90,60 +88,18 @@ public class FadeSprite : MonoBehaviour
     void FadeSection(Bounds bounds, float alpha)
     {
         // Convert world space bounds to texture pixel space
-        Rect pixelRect = WorldBoundsToPixelRect(bounds);
+        Vector4 pixelRect = WorldBoundsToPixelRect(bounds);
 
-        for (int y = (int)pixelRect.yMin; y < (int)pixelRect.yMax; y++)
-        {
-            for (int x = (int)pixelRect.xMin; x < (int)pixelRect.xMax; x++)
-            {
-                // Modify the alpha of the pixels in the specified region
-                Color pixelColor = texture.GetPixel(x, y);
-                pixelColor.a = Mathf.Lerp(Mathf.Min(originalPixels[x + y * texture.width].a, 0.4f), originalPixels[x + y * texture.width].a, alpha);
-                texture.SetPixel(x, y, pixelColor);
-            }
-        }
-
-        // Apply the changes to the texture
-        texture.Apply();
+        spriteRenderer.material.SetFloat("_Alpha", alpha);
+        spriteRenderer.material.SetVector("_Bounds", pixelRect);
     }
 
     // Convert world space bounds to pixel space rect in the texture
-    Rect WorldBoundsToPixelRect(Bounds worldBounds)
+    Vector4 WorldBoundsToPixelRect(Bounds worldBounds)
     {
-        Vector2 min = WorldToTextureCoord(worldBounds.min);
-        Vector2 max = WorldToTextureCoord(worldBounds.max);
+        Vector2 min = worldBounds.min;
+        Vector2 max = worldBounds.max;
 
-        return new Rect(min.x, min.y, max.x - min.x, max.y - min.y);
-    }
-
-    // Convert world position to texture pixel coordinates
-    Vector2 WorldToTextureCoord(Vector3 worldPos)
-    {
-        // Vector2 localPos = transform.InverseTransformPoint(worldPos);
-        // float pixelsPerUnit = spriteRenderer.sprite.pixelsPerUnit;
-
-        // return new Vector2(localPos.x * pixelsPerUnit, localPos.y * pixelsPerUnit);
-
-        // Get the local position of the world point relative to the object's origin
-        Vector2 localPos = transform.InverseTransformPoint(worldPos);
-
-        // Get the sprite's rect in the texture
-        Rect spriteRect = spriteRenderer.sprite.rect;
-
-        // Get the pivot point of the sprite (normalized from 0 to 1)
-        Vector2 pivot = spriteRenderer.sprite.pivot;
-
-        // Convert local position to pixel space, taking into account the sprite's pivot
-        float pixelsPerUnit = spriteRenderer.sprite.pixelsPerUnit;
-        Vector2 pixelPos = localPos * pixelsPerUnit;
-
-        // Adjust for the sprite pivot (so the coordinates align with the texture correctly)
-        pixelPos += pivot;
-
-        // Clip the coordinates to the sprite's rect
-        pixelPos.x = Mathf.Clamp(pixelPos.x, 0, spriteRect.width);
-        pixelPos.y = Mathf.Clamp(pixelPos.y, 0, spriteRect.height);
-
-        return pixelPos;
+        return new Vector4(min.x, min.y, max.x, max.y);
     }
 }

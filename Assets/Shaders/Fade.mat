@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MasterSprite
-  m_Shader: {fileID: -6465566751694194690, guid: ba9f32c323546da48a00c12488f3cf38, type: 3}
+  m_Name: Fade
+  m_Shader: {fileID: -6465566751694194690, guid: f69d2a567a603f449b7515b557d4aa0f, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -38,10 +38,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 1
+    - _Alpha: -0.04
     - _DoOutline: 0
     - _Sheen: 1.39
     m_Colors:
-    - _Bounds: {r: -1, g: -0.4, b: 1, a: 1}
+    - _Bounds: {r: 0, g: 0, b: 2, a: 24}
     - _Outline_Colour: {r: 0.9716981, g: 0.9209129, b: 0.041251317, a: 1}
   m_BuildTextureStacks: []
