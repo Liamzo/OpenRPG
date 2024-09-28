@@ -45,6 +45,7 @@ public class CharacterHandler : ObjectHandler
 
             if (angleBetween <= objectStatusHandler.blockAngle)
             {
+                GameManager.instance.ChangeTimeScale(0.25f, 0.1f);
                 return HitOutcome.Block;
             }
         }

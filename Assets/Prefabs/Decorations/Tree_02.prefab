@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1882086107303218096
+--- !u!1 &4953109712553546106
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3048149572917159053}
-  - component: {fileID: 7896599733613920663}
-  m_Layer: 0
+  - component: {fileID: 6683193058374974722}
+  - component: {fileID: 5912167046995486432}
+  - component: {fileID: 6319344403664012889}
+  m_Layer: 3
   m_Name: FadeCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3048149572917159053
+--- !u!4 &6683193058374974722
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1882086107303218096}
+  m_GameObject: {fileID: 4953109712553546106}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,20 +33,20 @@ Transform:
   m_Father: {fileID: 8632036033638678691}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &7896599733613920663
+--- !u!61 &5912167046995486432
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1882086107303218096}
+  m_GameObject: {fileID: 4953109712553546106}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.039239883, y: 7.267768}
+  m_Offset: {x: -0.0147304535, y: 7.26777}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -56,8 +57,22 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8.773373, y: 10.869623}
+  m_Size: {x: 8.82745, y: 10.869627}
   m_EdgeRadius: 0
+--- !u!114 &6319344403664012889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4953109712553546106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d7eb993b8a05d04f998ccf2cf2cc0ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeCollider: {fileID: 5912167046995486432}
+  objectsBehind: []
 --- !u!1 &8632036033638678713
 GameObject:
   m_ObjectHideFlags: 0
@@ -70,7 +85,6 @@ GameObject:
   - component: {fileID: 8632036033638678692}
   - component: {fileID: 8632036033638678690}
   - component: {fileID: 1690824344685470914}
-  - component: {fileID: 7557207314798715629}
   m_Layer: 0
   m_Name: Tree_02
   m_TagString: Untagged
@@ -91,7 +105,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8632036033975183972}
-  - {fileID: 3048149572917159053}
+  - {fileID: 6683193058374974722}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -156,19 +170,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabId: tree02
   exclusionDist: 3
---- !u!114 &7557207314798715629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8632036033638678713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d7eb993b8a05d04f998ccf2cf2cc0ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeCollider: {fileID: 7896599733613920663}
 --- !u!1 &8632036033975183973
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,7 +281,7 @@ MonoBehaviour:
   - {x: 0.94784164, y: 1.1259079, z: 0}
   m_ShapePathHash: -1396770539
   m_Mesh: {fileID: 0}
-  m_InstanceId: 149438
+  m_InstanceId: 155540
   m_LocalBounds:
     m_Center: {x: 0.061965942, y: 1.5598974, z: 0}
     m_Extent: {x: 0.8858757, y: 0.43398952, z: 0}

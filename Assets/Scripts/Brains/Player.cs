@@ -5,12 +5,16 @@ using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(CharacterHandler))]
+[RequireComponent(typeof(ThreatHandlerPlayer))]
 
 public class Player : BaseBrain
 {
     public static Player instance; // Can be only 1 player
 
     private bool _pointerOverUI;
+
+    public ThreatHandlerPlayer threatHandler {get; private set;}
+
 
     [Header("Interactions")]
     public float interactionDistance = 2f;
@@ -44,6 +48,8 @@ public class Player : BaseBrain
         base.Awake();
 
         instance = this;
+
+        threatHandler = GetComponent<ThreatHandlerPlayer>();
 
         DontDestroyOnLoad(gameObject);
     }

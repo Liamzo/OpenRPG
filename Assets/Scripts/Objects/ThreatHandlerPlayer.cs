@@ -17,7 +17,7 @@ public class ThreatHandlerPlayer : MonoBehaviour
     //float checkEnemiesTimer = 0.0f;
     LayerMask enemiesMask;
     LayerMask visionMask;
-    [SerializeField] List<EnemyRangeInfo> enemiesInRange = new();
+    public List<EnemyRangeInfo> enemiesInRange { get; private set; } = new();
     private float sizeVelocity = 0.0f;
     private float smoothTimeSize = 0.5f;
 
@@ -51,7 +51,7 @@ public class ThreatHandlerPlayer : MonoBehaviour
         //     checkEnemiesTimer = CHECK_ENEMIES_CD;
         // }
 
-        CheckEnemiesInRange();
+        FindEnemiesInRange();
 
         if (leavingCombat) {
             if (leavingTimer > 0f) {
@@ -63,7 +63,7 @@ public class ThreatHandlerPlayer : MonoBehaviour
         }
     }
 
-    private void CheckEnemiesInRange()
+    private void FindEnemiesInRange()
     {
         enemiesInRange.Clear();
 
@@ -136,6 +136,19 @@ public class ThreatHandlerPlayer : MonoBehaviour
         targetSpread = Mathf.Min(14f, targetSpread);
         virtualCamera.m_Lens.OrthographicSize = Mathf.SmoothDamp(virtualCamera.m_Lens.OrthographicSize, targetSpread, ref sizeVelocity, smoothTimeSize);
     }
+
+    public bool CheckInLineOfSight(ObjectHandler objectHandler) {
+        foreach (EnemyRangeInfo enemyRangeInfo in enemiesInRange) {
+            if (enemyRangeInfo.objectHandler == objectHandler) {
+                if (enemyRangeInfo.inLineOfSight) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
 }
 
 public struct EnemyRangeInfo {

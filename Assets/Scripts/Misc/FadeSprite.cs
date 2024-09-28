@@ -10,19 +10,33 @@ public class FadeSprite : MonoBehaviour
     private List<SpriteRenderer> spriteRenderers;
     private bool isFading = false;
     private bool isFaded = false;
+
+    public List<ObjectHandler> objectsBehind = new();
     
 
     // Start is called before the first frame update
     void Start()
     {
-        spriteRenderers = GetComponentsInChildren<SpriteRenderer>().ToList();
+        spriteRenderers = transform.parent.GetComponentsInChildren<SpriteRenderer>().ToList();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        bool shouldFade = objectsBehind.Contains(Player.instance.character);
+
+        if (!shouldFade) {
+            foreach (ObjectHandler objectHandler in objectsBehind) {
+                if (Player.instance.threatHandler.CheckInLineOfSight(objectHandler)) {
+                    shouldFade = true;
+                    break;
+                }
+            }
+        }
+
         // Check if the player is within the fadeCollider
-        if (fadeCollider.bounds.Contains(Player.instance.transform.position))
+        if (shouldFade)
         {
             if (!isFading && !isFaded)
                 StartCoroutine(FadeOut());
@@ -94,5 +108,19 @@ public class FadeSprite : MonoBehaviour
         Vector2 max = worldBounds.max;
 
         return new Vector4(min.x, min.y, max.x, max.y);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        CharacterHandler otherCharacter;
+        if (other.TryGetComponent<CharacterHandler>( out otherCharacter) || (other.transform.parent != null && other.transform.parent.TryGetComponent<CharacterHandler>(out otherCharacter))) {
+            objectsBehind.Add(otherCharacter);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other) {
+        CharacterHandler otherCharacter;
+        if (other.TryGetComponent<CharacterHandler>( out otherCharacter) || (other.transform.parent != null && other.transform.parent.TryGetComponent<CharacterHandler>(out otherCharacter))) {
+            objectsBehind.Remove(otherCharacter);
+        }
     }
 }

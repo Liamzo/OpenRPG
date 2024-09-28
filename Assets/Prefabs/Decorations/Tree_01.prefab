@@ -111,7 +111,7 @@ MonoBehaviour:
   - {x: 0.94784164, y: 1.1259079, z: 0}
   m_ShapePathHash: -1396770539
   m_Mesh: {fileID: 0}
-  m_InstanceId: 139930
+  m_InstanceId: 153752
   m_LocalBounds:
     m_Center: {x: 0.061965942, y: 1.5598974, z: 0}
     m_Extent: {x: 0.8858757, y: 0.43398952, z: 0}
@@ -127,7 +127,6 @@ GameObject:
   - component: {fileID: 1307998372530817885}
   - component: {fileID: 1307998372530817883}
   - component: {fileID: -965224599361573061}
-  - component: {fileID: 9007118278129468872}
   m_Layer: 0
   m_Name: Tree_01
   m_TagString: Untagged
@@ -213,20 +212,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabId: tree01
   exclusionDist: 3
---- !u!114 &9007118278129468872
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1307998372530817856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d7eb993b8a05d04f998ccf2cf2cc0ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeCollider: {fileID: 2139560985855292297}
-  fadeDuration: 0.2
 --- !u!1 &2668746373778770676
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,7 +222,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8466274026522824636}
   - component: {fileID: 2139560985855292297}
-  m_Layer: 0
+  - component: {fileID: 1359607729459654017}
+  m_Layer: 3
   m_Name: FadeCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,3 +271,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 8.440361, y: 12.2016735}
   m_EdgeRadius: 0
+--- !u!114 &1359607729459654017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2668746373778770676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d7eb993b8a05d04f998ccf2cf2cc0ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeCollider: {fileID: 2139560985855292297}
+  objectsBehind: []

@@ -749,7 +749,6 @@ GameObject:
   - component: {fileID: 2159335888821213468}
   - component: {fileID: 4606171811329727268}
   - component: {fileID: 3935295642975390738}
-  - component: {fileID: 59311612138226544}
   m_Layer: 0
   m_Name: Shed_01
   m_TagString: Untagged
@@ -836,19 +835,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabId: shed_01
   exclusionDist: 2
---- !u!114 &59311612138226544
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2159335888821213467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d7eb993b8a05d04f998ccf2cf2cc0ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeCollider: {fileID: 1924572551099918318}
 --- !u!1 &2921625678517006830
 GameObject:
   m_ObjectHideFlags: 0
@@ -890,6 +876,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3126934591316953582}
   - component: {fileID: 1924572551099918318}
+  - component: {fileID: 9088288716060869712}
   m_Layer: 0
   m_Name: FadeCollider
   m_TagString: Untagged
@@ -938,6 +925,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7.2, y: 4.315}
   m_EdgeRadius: 0
+--- !u!114 &9088288716060869712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3779698857221166157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d7eb993b8a05d04f998ccf2cf2cc0ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeCollider: {fileID: 1924572551099918318}
+  objectsBehind: []
 --- !u!1 &6897302646494842328
 GameObject:
   m_ObjectHideFlags: 0
@@ -1006,7 +1007,7 @@ MonoBehaviour:
   - {x: -0.9375, y: 1.3125, z: 0}
   m_ShapePathHash: 1961823700
   m_Mesh: {fileID: 0}
-  m_InstanceId: 151242
+  m_InstanceId: 151652
   m_LocalBounds:
     m_Center: {x: 0, y: 4.15625, z: 0}
     m_Extent: {x: 3.3125, y: 3.15625, z: 0}
