@@ -83,7 +83,7 @@ public class MeleeAttackTarget : BaseThought
                 weapon.AttackAnticipation(0);
             } else {
                 // Chase target
-                brain.movement += brain.GetDirectionFromPath() * brain.character.statsCharacter[CharacterStatNames.MovementSpeed].GetValue();
+                brain.movement += brain.FindPossibleDirectionFromIdeal(brain.GetDirectionFromPath()) * brain.character.statsCharacter[CharacterStatNames.MovementSpeed].GetValue() * 2f;
             }
         }
     }
