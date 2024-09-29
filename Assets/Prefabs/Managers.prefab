@@ -4414,6 +4414,7 @@ GameObject:
   - component: {fileID: 1017528808}
   - component: {fileID: 931480620}
   - component: {fileID: 2029456270}
+  - component: {fileID: 2033953355}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -5422,6 +5423,19 @@ MonoBehaviour:
   currentModSlotsParent: {fileID: 1514574744}
   modSlotPrefab: {fileID: 2837104891368903345, guid: 38981c1ff003488409fb17cab597d6ed, type: 3}
   modSlotsParent: {fileID: 800001755}
+--- !u!114 &2033953355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7547779233427188592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a46e6cba4e4e17f40871c7fd75bee0a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statsInfo: {fileID: 11400000, guid: e6e9832c3a7f44d438e672449fd2eedf, type: 2}
 --- !u!1001 &413326266066957931
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6362,6 +6376,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1661347797}
     m_Modifications:
+    - target: {fileID: 10836842020049241, guid: dcd90d1d3f33a5b478cb6735de77dbb6, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1748050515804821232, guid: dcd90d1d3f33a5b478cb6735de77dbb6, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -6468,7 +6486,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3587770253283431545, guid: dcd90d1d3f33a5b478cb6735de77dbb6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8055263726745388877, guid: dcd90d1d3f33a5b478cb6735de77dbb6, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcd90d1d3f33a5b478cb6735de77dbb6, type: 3}

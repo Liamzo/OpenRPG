@@ -289,7 +289,6 @@ public class WeaponHandler : MonoBehaviour, ISaveable
 
 
         foreach (JSONNode node in data["weapon"]["mods"]) {
-            Debug.Log(node);
             WeaponMod mod = ModManager.Instance.FindModById(node);
 
             WeaponMod weaponMod = Instantiate(mod);
