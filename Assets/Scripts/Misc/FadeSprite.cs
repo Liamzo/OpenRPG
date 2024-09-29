@@ -10,6 +10,8 @@ public class FadeSprite : MonoBehaviour
     private List<SpriteRenderer> spriteRenderers;
     private bool isFading = false;
     private bool isFaded = false;
+    private float fadeInPauseDuration = 1f;
+    private float fadeInPauseTimer = 1f;
 
     public List<ObjectHandler> objectsBehind = new();
     
@@ -24,27 +26,31 @@ public class FadeSprite : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool shouldFade = objectsBehind.Contains(Player.instance.character);
+        bool shouldFadeOut = objectsBehind.Contains(Player.instance.character);
 
-        if (!shouldFade) {
+        if (!shouldFadeOut) {
             foreach (ObjectHandler objectHandler in objectsBehind) {
                 if (Player.instance.threatHandler.CheckInLineOfSight(objectHandler)) {
-                    shouldFade = true;
+                    shouldFadeOut = true;
                     break;
                 }
             }
         }
 
         // Check if the player is within the fadeCollider
-        if (shouldFade)
+        if (shouldFadeOut)
         {
             if (!isFading && !isFaded)
                 StartCoroutine(FadeOut());
         }
         else
         {
-            if (!isFading && isFaded)
-                StartCoroutine(FadeIn());
+            if (!isFading && isFaded) {
+                fadeInPauseTimer -= Time.deltaTime;
+
+                if (fadeInPauseTimer <= 0f)
+                    StartCoroutine(FadeIn());
+            }
         }
     }
 
@@ -86,6 +92,7 @@ public class FadeSprite : MonoBehaviour
         FadeSection(fadeCollider.bounds, 1f); // Ensure full fade in at the end
         isFading = false;
         isFaded = false;
+        fadeInPauseTimer = fadeInPauseDuration;
     }
 
     // Modify the alpha of pixels within a specified section of the texture
