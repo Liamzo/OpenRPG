@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class StatsManager : MonoBehaviour
 {
+    public static StatsManager Instance { get; private set; }
+
     public StatsInfoSO statsInfo;
+
+
+    private void Awake() {
+        Instance = this;
+    }
+
 
     public WeaponStatInfo FindStatInfo(WeaponStatNames statName) {
         foreach (WeaponStatInfo statInfo in statsInfo.weaponStatInfo)

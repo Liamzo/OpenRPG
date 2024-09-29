@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 7832950266726979551}
   - component: {fileID: 3284258271894579600}
   - component: {fileID: 3284258271894579601}
-  - component: {fileID: 3284258271894579603}
+  - component: {fileID: -3594387307416719260}
   m_Layer: 5
   m_Name: StatSlotUI
   m_TagString: Untagged
@@ -350,7 +350,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3284258271894579603
+--- !u!114 &-3594387307416719260
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -359,16 +359,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 7832950266726979548}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba68ac3af7b59b34e812c478ff81e75d, type: 3}
+  m_Script: {fileID: 11500000, guid: 80a456928ec10014d937b449b6d1510f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  icon: {fileID: 7832950267403341133}
   nameText: {fileID: 7384289511528475338}
-  modItemList: {fileID: 0}
-  modIcons: []
-  background: {fileID: 3284258271894579601}
-  unselectedColor: {r: 0.21960784, g: 0.21960784, b: 0.21960784, a: 0.3529412}
-  selectedColor: {r: 1, g: 0.74509805, b: 0, a: 0.50980395}
+  valueText: {fileID: 4367423575076512757}
+  baseColour: {r: 1, g: 1, b: 1, a: 1}
+  positiveColour: {r: 0, g: 1, b: 0.0323627, a: 1}
+  negativeColour: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &7832950266820897692
 GameObject:
   m_ObjectHideFlags: 0

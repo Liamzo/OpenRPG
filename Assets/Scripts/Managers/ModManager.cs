@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class ModManager : MonoBehaviour
 {
@@ -11,6 +13,12 @@ public class ModManager : MonoBehaviour
     public List<WeaponMod> allWeaponMods;
 
     public GameObject modManagerUI;
+
+    public GameObject statSlotPrefab;
+    public GameObject statSlotsParent;
+    List<StatSlotUI> statSlots = new List<StatSlotUI>();
+    public TextMeshProUGUI selectedWeaponName;
+    public Image selectedWeaponSprite;
 
     public GameObject modItemSlotPrefab;
     public GameObject modItemSlotsParent;
@@ -105,10 +113,46 @@ public class ModManager : MonoBehaviour
             previousWeapon = null;
         }
 
-
+        UpdateSelectedWeapon();
         UpdateCurrentModsUI();
         UpdateModUI();
         
+    }
+
+    void UpdateSelectedWeapon() 
+    {
+        if (modManagerUI.activeSelf == false)
+            return;
+
+
+        foreach (StatSlotUI slot in statSlots) {
+            slot.ClearSlot();
+            slot.gameObject.SetActive(false);
+        }
+
+        statSlots.Clear();
+        selectedWeaponName.text = "";
+        selectedWeaponSprite.enabled = false;
+
+        if (selectedModItem == null) {
+            return;
+        }
+
+
+        selectedWeaponName.text = selectedModItem.weapon.item.objectHandler.baseStats.objectName;
+        selectedWeaponSprite.sprite = selectedModItem.weapon.item.objectHandler.baseStats.sprite;
+        selectedWeaponSprite.enabled = true;
+
+        foreach ((WeaponStatNames statName, Stat stat) in selectedModItem.weapon.statsWeapon) {
+            GameObject slotGO = Instantiate(statSlotPrefab, statSlotsParent.transform);
+
+            StatSlotUI slotUI = slotGO.GetComponent<StatSlotUI>();
+            statSlots.Add(slotUI);
+
+            slotUI.AddStat(statName, stat.GetValue());
+
+            slotGO.SetActive(true);
+        }
     }
 
     void UpdateCurrentModsUI() 
@@ -226,6 +270,7 @@ public class ModManager : MonoBehaviour
             
         }
         
+        UpdateSelectedWeapon();
         UpdateCurrentModsUI();
     }
 
