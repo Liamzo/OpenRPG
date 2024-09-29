@@ -17,7 +17,7 @@ public class ThreatHandlerPlayer : MonoBehaviour
     //float checkEnemiesTimer = 0.0f;
     LayerMask enemiesMask;
     LayerMask visionMask;
-    public List<EnemyRangeInfo> enemiesInRange { get; private set; } = new();
+    public List<CharacterRangeInfo> charactersInRange { get; private set; } = new();
     private float sizeVelocity = 0.0f;
     private float smoothTimeSize = 0.5f;
 
@@ -65,7 +65,7 @@ public class ThreatHandlerPlayer : MonoBehaviour
 
     private void FindEnemiesInRange()
     {
-        enemiesInRange.Clear();
+        charactersInRange.Clear();
 
         foreach (Collider2D col in Physics2D.OverlapCircleAll(transform.position, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue())) {
             CharacterHandler otherCharacter = col.GetComponent<CharacterHandler>();
@@ -77,10 +77,6 @@ public class ThreatHandlerPlayer : MonoBehaviour
 
             float reputation = factionHandler.FindReputation(hitFactionHandler);
 
-            if (reputation > -100f) {
-                break;
-            }
-
             // Raycast to the target within Sight range and see if clear path
             Vector3 targetDir = (otherCharacter.transform.position - transform.position).normalized;
 
@@ -88,17 +84,17 @@ public class ThreatHandlerPlayer : MonoBehaviour
 
             if (hit.collider != null && hit.collider.gameObject == otherCharacter.gameObject) {
                 // Enemy in sight
-                enemiesInRange.Add(new EnemyRangeInfo(otherCharacter, true));
+                charactersInRange.Add(new CharacterRangeInfo(otherCharacter, true, reputation));
             } else {
-                enemiesInRange.Add(new EnemyRangeInfo(otherCharacter, false));
+                charactersInRange.Add(new CharacterRangeInfo(otherCharacter, false, reputation));
             }
         }
 
-        if (enemiesInRange.Count == 0) {
+        if (!EnemyInRange()) {
             transposer.m_TrackedObjectOffset = new Vector3();
             virtualCamera.m_Lens.OrthographicSize = Mathf.SmoothDamp(virtualCamera.m_Lens.OrthographicSize, 14f, ref sizeVelocity, smoothTimeSize * 2f);
 
-            if (!leavingCombat) {
+            if (!leavingCombat && inCombat) {
                 leavingCombat = true;
                 leavingTimer = leavingDuration;
             }
@@ -113,32 +109,35 @@ public class ThreatHandlerPlayer : MonoBehaviour
 
         // Calculate centre point of the enemies in line of sight
         Vector2 centre = new();
+        Vector2 minPoint = transform.position;
+        Vector2 maxPoint = transform.position;
+        for (int i = 0; i < charactersInRange.Count; i++) {
+            //if (!enemiesInRange[i].inLineOfSight) continue;
+            if (charactersInRange[i].reputation > -100f) continue;
 
-        enemiesInRange.ForEach(x => {centre += (Vector2)(x.objectHandler.transform.position - transform.position);}); // Try to make work: if (x.inLineOfSight)
-        centre /= enemiesInRange.Count;
+            centre += (Vector2)(charactersInRange[i].objectHandler.transform.position - transform.position);
+
+            minPoint.x = Mathf.Min(minPoint.x, charactersInRange[i].objectHandler.transform.position.x);
+            minPoint.y = Mathf.Min(minPoint.y, charactersInRange[i].objectHandler.transform.position.y);
+            maxPoint.x = Mathf.Max(maxPoint.x, charactersInRange[i].objectHandler.transform.position.x);
+            maxPoint.y = Mathf.Max(maxPoint.y, charactersInRange[i].objectHandler.transform.position.y);
+        }
+
+        //charactersInRange.ForEach(x => {centre += (Vector2)(x.objectHandler.transform.position - transform.position);}); // Try to make work: if (x.inLineOfSight)
+        centre /= charactersInRange.Count;
         centre /= 2; // Halfway between enemies and player
-
         transposer.m_TrackedObjectOffset = centre;
         //transposer.m_LookaheadTime = 0;
 
-        Vector2 minPoint = transform.position;
-        Vector2 maxPoint = transform.position;
-        for (int i = 0; i < enemiesInRange.Count; i++) {
-            //if (!enemiesInRange[i].inLineOfSight) continue;
+        float targetSize = Vector2.Distance(minPoint, maxPoint);
+        targetSize = Mathf.Clamp(targetSize / 1.35f, 6f, 14f);
+        //targetSpread = Mathf.Min(14f, targetSpread);
+        virtualCamera.m_Lens.OrthographicSize = Mathf.SmoothDamp(virtualCamera.m_Lens.OrthographicSize, targetSize, ref sizeVelocity, smoothTimeSize);
 
-            minPoint.x = Mathf.Min(minPoint.x, enemiesInRange[i].objectHandler.transform.position.x);
-            minPoint.y = Mathf.Min(minPoint.y, enemiesInRange[i].objectHandler.transform.position.y);
-            maxPoint.x = Mathf.Max(maxPoint.x, enemiesInRange[i].objectHandler.transform.position.x);
-            maxPoint.y = Mathf.Max(maxPoint.y, enemiesInRange[i].objectHandler.transform.position.y);
-        }
-        float targetSpread = Vector2.Distance(minPoint, maxPoint);
-        targetSpread = Mathf.Clamp(targetSpread / 1.4f, 6f, 14f);
-        targetSpread = Mathf.Min(14f, targetSpread);
-        virtualCamera.m_Lens.OrthographicSize = Mathf.SmoothDamp(virtualCamera.m_Lens.OrthographicSize, targetSpread, ref sizeVelocity, smoothTimeSize);
     }
 
     public bool CheckInLineOfSight(ObjectHandler objectHandler) {
-        foreach (EnemyRangeInfo enemyRangeInfo in enemiesInRange) {
+        foreach (CharacterRangeInfo enemyRangeInfo in charactersInRange) {
             if (enemyRangeInfo.objectHandler == objectHandler) {
                 if (enemyRangeInfo.inLineOfSight) {
                     return true;
@@ -149,14 +148,24 @@ public class ThreatHandlerPlayer : MonoBehaviour
         return false;
     }
 
+    public bool EnemyInRange() {
+        foreach (CharacterRangeInfo enemy in charactersInRange) {
+            if (enemy.reputation <= -100f) return true;
+        }
+
+        return false;
+    }
+
 }
 
-public struct EnemyRangeInfo {
+public struct CharacterRangeInfo {
     public ObjectHandler objectHandler;
     public bool inLineOfSight;
+    public float reputation;
 
-    public EnemyRangeInfo (ObjectHandler objectHandler, bool inLineOfSight) {
+    public CharacterRangeInfo (ObjectHandler objectHandler, bool inLineOfSight, float reputation) {
         this.objectHandler = objectHandler;
         this.inLineOfSight = inLineOfSight;
+        this.reputation = reputation;
     }
 } 
