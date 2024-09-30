@@ -190,6 +190,50 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2029456270, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: modSlotViewingColor.a
+      value: 0.50980395
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029456270, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: modSlotViewingColor.g
+      value: 0.74509805
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029456270, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: modSlotViewingColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029456270, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: modSlotSelectedColor.a
+      value: 0.50980395
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029456270, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: modSlotSelectedColor.b
+      value: 0.038714837
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029456270, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: modSlotSelectedColor.g
+      value: 0.5471698
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029456270, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: modSlotSelectedColor.r
+      value: 0.056401096
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029456270, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: modSlotUnselectedColor.a
+      value: 0.3529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029456270, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: modSlotUnselectedColor.b
+      value: 0.21960784
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029456270, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: modSlotUnselectedColor.g
+      value: 0.21960784
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029456270, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: modSlotUnselectedColor.r
+      value: 0.21960784
+      objectReference: {fileID: 0}
     - target: {fileID: 1757761347919877168, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
