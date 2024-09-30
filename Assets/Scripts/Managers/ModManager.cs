@@ -116,7 +116,6 @@ public class ModManager : MonoBehaviour
         UpdateSelectedWeapon();
         UpdateCurrentModsUI();
         UpdateModUI();
-        
     }
 
     void UpdateSelectedWeapon() 
