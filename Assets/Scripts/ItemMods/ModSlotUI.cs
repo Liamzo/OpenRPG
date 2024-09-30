@@ -15,8 +15,6 @@ public class ModSlotUI : MonoBehaviour, IPointerClickHandler
     public List<GameObject> effectIcons;
 
     public Image background;
-    public Color unselectedColor;
-    public Color selectedColor;
 
 
     public event System.Action<ModSlotUI, PointerEventData> OnClick = delegate { };
@@ -66,12 +64,16 @@ public class ModSlotUI : MonoBehaviour, IPointerClickHandler
     }
 
 
-    public void Select() {
-        background.color = selectedColor;
-    }
+    // public void Select() {
+    //     background.color = selectedColor;
+    // }
 
-    public void Unselect() {
-        background.color = unselectedColor;
+    // public void Unselect() {
+    //     background.color = unselectedColor;
+    // }
+
+    public void ChangeBackgroundColor(Color colour) {
+        background.color = colour;
     }
 
 

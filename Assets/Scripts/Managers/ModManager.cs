@@ -19,6 +19,9 @@ public class ModManager : MonoBehaviour
     List<StatSlotUI> statSlots = new List<StatSlotUI>();
     public TextMeshProUGUI selectedWeaponName;
     public Image selectedWeaponSprite;
+    public Color baseColour;
+    public Color positiveColour;
+    public Color negativeColour;
 
     public GameObject modItemSlotPrefab;
     public GameObject modItemSlotsParent;
@@ -36,6 +39,9 @@ public class ModManager : MonoBehaviour
     ModSlotUI selectedMod;
     WeaponHandler previousWeapon;
     WeaponMod previousCurrentMod;
+    public Color modSlotUnselectedColor;
+    public Color modSlotSelectedColor;
+    public Color modSlotViewingColor;
 
 
 
@@ -205,7 +211,7 @@ public class ModManager : MonoBehaviour
         if (modManagerUI.activeSelf == false)
             return;
 
-        selectedMod?.Unselect();
+        selectedMod?.ChangeBackgroundColor(modSlotUnselectedColor);
         selectedMod = null;
         foreach (ModSlotUI slot in modSlots) {
             slot.ClearSlot();
@@ -233,8 +239,8 @@ public class ModManager : MonoBehaviour
             slotGO.SetActive(true);
 
             if (selectedCurrentMod.mod.modId == mod.modId) {
-                selectedMod?.Unselect();
-                slotUI.Select();
+                selectedMod?.ChangeBackgroundColor(modSlotUnselectedColor);
+                slotUI.ChangeBackgroundColor(modSlotViewingColor);
                 selectedMod = slotUI;
             }
 
@@ -296,8 +302,9 @@ public class ModManager : MonoBehaviour
     {
         if (eventData.button == PointerEventData.InputButton.Left) {
             if (selectedMod != slot) {
-                selectedMod?.Unselect();
-                slot.Select();
+                selectedMod?.ChangeBackgroundColor(modSlotUnselectedColor);
+                modSlots.Find(x => x.mod.modId == selectedCurrentMod.mod.modId)?.ChangeBackgroundColor(modSlotSelectedColor);
+                slot.ChangeBackgroundColor(modSlotViewingColor);
                 selectedMod = slot;
             } else {
                 selectedModItem.weapon.ChangeMod(slot.mod);

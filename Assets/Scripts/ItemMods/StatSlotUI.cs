@@ -10,9 +10,6 @@ public class StatSlotUI : MonoBehaviour
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI valueText;
 
-    public Color baseColour;
-    public Color positiveColour;
-    public Color negativeColour;
 
     public void AddStat(WeaponStatNames statName, float value) {
         WeaponStatInfo statInfo = StatsManager.Instance.FindStatInfo(statName);
@@ -27,5 +24,9 @@ public class StatSlotUI : MonoBehaviour
 
     public void ClearSlot() {
         Destroy(gameObject);
+    }
+
+    public void ChangeValueColor(Color colour) {
+        valueText.color = colour;
     }
 }
