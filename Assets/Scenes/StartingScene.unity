@@ -191,6 +191,54 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2029456270, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: baseColour.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029456270, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: baseColour.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029456270, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: baseColour.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029456270, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: baseColour.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029456270, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: negativeColour.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029456270, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: negativeColour.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029456270, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: negativeColour.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029456270, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: negativeColour.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029456270, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: positiveColour.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029456270, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: positiveColour.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029456270, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: positiveColour.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029456270, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: positiveColour.r
+      value: 0.15044188
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029456270, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
       propertyPath: modSlotViewingColor.a
       value: 0.50980395
       objectReference: {fileID: 0}

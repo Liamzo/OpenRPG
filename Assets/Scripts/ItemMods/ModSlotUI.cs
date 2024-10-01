@@ -63,15 +63,6 @@ public class ModSlotUI : MonoBehaviour, IPointerClickHandler
         Destroy(gameObject);
     }
 
-
-    // public void Select() {
-    //     background.color = selectedColor;
-    // }
-
-    // public void Unselect() {
-    //     background.color = unselectedColor;
-    // }
-
     public void ChangeBackgroundColor(Color colour) {
         background.color = colour;
     }

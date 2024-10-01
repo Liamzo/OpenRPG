@@ -16,7 +16,7 @@ public class ModManager : MonoBehaviour
 
     public GameObject statSlotPrefab;
     public GameObject statSlotsParent;
-    List<StatSlotUI> statSlots = new List<StatSlotUI>();
+    List<StatSlotUI> statSlots = new ();
     public TextMeshProUGUI selectedWeaponName;
     public Image selectedWeaponSprite;
     public Color baseColour;
@@ -25,17 +25,17 @@ public class ModManager : MonoBehaviour
 
     public GameObject modItemSlotPrefab;
     public GameObject modItemSlotsParent;
-    List<ModItemSlotUI> modItemSlots = new List<ModItemSlotUI>();
+    List<ModItemSlotUI> modItemSlots = new ();
     ModItemSlotUI selectedModItem;
 
     public GameObject currentModSlotPrefab;
     public GameObject currentModSlotsParent;
-    List<CurrentModSlotUI> currentModSlots = new List<CurrentModSlotUI>();
+    List<CurrentModSlotUI> currentModSlots = new ();
     CurrentModSlotUI selectedCurrentMod;
 
     public GameObject modSlotPrefab;
     public GameObject modSlotsParent;
-    List<ModSlotUI> modSlots = new List<ModSlotUI>();
+    List<ModSlotUI> modSlots = new ();
     ModSlotUI selectedMod;
     WeaponHandler previousWeapon;
     WeaponMod previousCurrentMod;
@@ -158,6 +158,25 @@ public class ModManager : MonoBehaviour
 
             slotGO.SetActive(true);
         }
+
+        if (selectedMod != null && selectedCurrentMod != null && selectedMod.mod.modId != selectedCurrentMod.mod.modId) {
+            foreach (StatSlotUI statSlot in statSlots) {
+                WeaponStatNames statName = statSlot.statName;
+
+                List<Modifier> addMods = selectedMod.mod.weaponModBonuses.Where(x => x.weaponStatName == statName).ToList().ConvertAll(x => new Modifier(x.modifierType, x.value));
+                List<Modifier> removeMods = selectedCurrentMod.mod.weaponModBonuses.Where(x => x.weaponStatName == statName).ToList().ConvertAll(x => new Modifier(x.modifierType, x.value));
+
+                float oldValue = selectedModItem.weapon.GetStatValue(statName);
+                float newValue = selectedModItem.weapon.statsWeapon[statName].CheckValueAfterModifiers(addMods, removeMods);
+
+                statSlot.ChangeValue(newValue);
+                if (newValue < oldValue) {
+                    statSlot.ChangeValueColor(negativeColour);
+                } else if (newValue > oldValue) {
+                    statSlot.ChangeValueColor(positiveColour);
+                }
+            }
+        }
     }
 
     void UpdateCurrentModsUI() 
@@ -175,6 +194,7 @@ public class ModManager : MonoBehaviour
 
         if (selectedModItem == null) {
             selectedCurrentMod = null;
+            UpdateModUI();
             return;
         }
 
@@ -306,10 +326,12 @@ public class ModManager : MonoBehaviour
                 modSlots.Find(x => x.mod.modId == selectedCurrentMod.mod.modId)?.ChangeBackgroundColor(modSlotSelectedColor);
                 slot.ChangeBackgroundColor(modSlotViewingColor);
                 selectedMod = slot;
+                UpdateSelectedWeapon();
             } else {
                 selectedModItem.weapon.ChangeMod(slot.mod);
                 previousWeapon = selectedModItem.weapon;
                 previousCurrentMod = slot.mod;
+                selectedMod = null;
                 UpdateModManagerUI();
             }
         }

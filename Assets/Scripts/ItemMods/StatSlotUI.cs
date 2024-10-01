@@ -10,8 +10,12 @@ public class StatSlotUI : MonoBehaviour
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI valueText;
 
+    public WeaponStatNames statName;
+
 
     public void AddStat(WeaponStatNames statName, float value) {
+        this.statName = statName;
+
         WeaponStatInfo statInfo = StatsManager.Instance.FindStatInfo(statName);
 
         icon.sprite = statInfo.icon;
@@ -24,6 +28,10 @@ public class StatSlotUI : MonoBehaviour
 
     public void ClearSlot() {
         Destroy(gameObject);
+    }
+
+    public void ChangeValue(float newValue) {
+        valueText.text = newValue.ToString();
     }
 
     public void ChangeValueColor(Color colour) {

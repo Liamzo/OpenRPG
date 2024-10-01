@@ -75,6 +75,47 @@ public class Stat {
             OnChange();
         }
     }
+
+    public float CheckValueAfterModifiers(List<Modifier> addModifiers, List<Modifier> removeModifiers) {
+        List<float> tempFlatModifiers = new (flatModifiers);
+        List<float> tempPercentModifiers = new (percentModifiers);
+
+        foreach (Modifier modifier in removeModifiers) {
+            if (modifier.value != 0) {
+                if (modifier.type == ModifierTypes.Flat) {
+                    tempFlatModifiers.Remove(modifier.value);
+                } else if (modifier.type == ModifierTypes.Multiplier) {
+                    tempPercentModifiers.Remove(modifier.value);
+                }
+            }
+        }
+
+        foreach (Modifier modifier in addModifiers) {
+            if (modifier.value != 0) {
+                if (modifier.type == ModifierTypes.Flat) {
+                    tempFlatModifiers.Add(modifier.value);
+                } else if (modifier.type == ModifierTypes.Multiplier) {
+                    tempPercentModifiers.Add(modifier.value);
+                }
+            }
+        }
+
+        float finalValue = BaseValue;
+
+        if (BaseAttribute.HasValue) {
+            finalValue += Character.Attributes.GetAttribute(BaseAttribute.Value.attributeName) * BaseAttribute.Value.value;
+        }
+
+        tempFlatModifiers.ForEach(x => finalValue += x);
+
+        float multiplier = 100f;
+
+        tempPercentModifiers.ForEach(x => multiplier += x);
+
+        multiplier = Mathf.Clamp(multiplier, 0f, Mathf.Infinity);
+
+        return finalValue * (multiplier / 100f);
+    }
 }
 
 
