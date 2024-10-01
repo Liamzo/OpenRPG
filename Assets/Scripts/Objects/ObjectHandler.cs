@@ -25,7 +25,7 @@ public class ObjectHandler : MonoBehaviour
     public string objectName;
     public ObjectType objectType;
 
-    public Dictionary<ObjectStatNames, Stat> statsObject = new Dictionary<ObjectStatNames, Stat>();
+    public Dictionary<ObjectStatNames, Stat> statsObject;
 
     
     public Vector3 movement;
@@ -124,6 +124,7 @@ public class ObjectHandler : MonoBehaviour
     void Die() {
         // Become corpse
         // Drop items, etc.
+        hitboxCollider.enabled = false;
         OnDeath(this);
         StartCoroutine("CompleteDeath");
     }
@@ -213,6 +214,7 @@ public class ObjectHandler : MonoBehaviour
         spriteRenderer.sprite = baseStats.sprite;
         objectType = baseStats.type;
 
+        statsObject = new ();
         foreach (ObjectStatValue sv in baseStats.stats) {
             statsObject.Add(sv.statName, new Stat(sv.value));
         }
