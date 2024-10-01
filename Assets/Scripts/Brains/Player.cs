@@ -15,6 +15,8 @@ public class Player : BaseBrain
 
     public ThreatHandlerPlayer threatHandler {get; private set;}
 
+    LayerMask visionMask;
+
 
     [Header("Interactions")]
     public float interactionDistance = 2f;
@@ -59,6 +61,8 @@ public class Player : BaseBrain
         base.Start();
 
         character.OnTakeDamage += InteruptInteractionDamage;
+
+        visionMask = LayerMask.GetMask("Default");
     }
 
     // Update is called once per frame
@@ -364,10 +368,16 @@ public class Player : BaseBrain
 
             ItemHandler item = col.GetComponentInParent<ItemHandler>();
             if (item?.owner != null) continue;
-            
 
             float distance = Vector3.Distance(interactionHandler.transform.position, transform.position);
+            Vector3 targetDir = (interactionHandler.transform.position - transform.position).normalized;
 
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, targetDir, distance, visionMask);
+
+            if (hit.collider != null && hit.collider.gameObject != interactionHandler.gameObject) {
+                continue;
+            }
+            
             if (distance < closest) {
                 closest = distance;
                 closestObject = interactionHandler;
