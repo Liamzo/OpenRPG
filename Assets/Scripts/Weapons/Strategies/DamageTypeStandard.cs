@@ -41,7 +41,7 @@ public class DamageTypeStandard : BaseStrategy, IDamageType
             }
 
         } else if (hitOutcome == HitOutcome.Block) {
-            GameManager.instance.HitStop(0.05f); // Move to future BaseDamage class
+            //GameManager.instance.HitStop(0.05f); // Move to future BaseDamage class
 
             if (target != null){
                 target.objectStatusHandler.BlockMovementControls(weapon.GetStatValue(WeaponStatNames.Stagger)/2f);
