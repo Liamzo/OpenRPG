@@ -877,7 +877,7 @@ GameObject:
   - component: {fileID: 3126934591316953582}
   - component: {fileID: 1924572551099918318}
   - component: {fileID: 9088288716060869712}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FadeCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1007,7 +1007,7 @@ MonoBehaviour:
   - {x: -0.9375, y: 1.3125, z: 0}
   m_ShapePathHash: 1961823700
   m_Mesh: {fileID: 0}
-  m_InstanceId: 151652
+  m_InstanceId: 325038
   m_LocalBounds:
     m_Center: {x: 0, y: 4.15625, z: 0}
     m_Extent: {x: 3.3125, y: 3.15625, z: 0}

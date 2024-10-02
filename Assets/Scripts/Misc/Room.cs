@@ -44,7 +44,7 @@ public class Room : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.TryGetComponent<Player>( out Player player)) {
+        if (other.TryGetComponent<Player>(out Player player)) {
             targetAlpha = 0.0f;
             startingAlpha = 1.0f;
             
@@ -57,7 +57,7 @@ public class Room : MonoBehaviour
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        if (other.TryGetComponent<Player>(out Player p1) || (other.transform.parent != null && other.transform.parent.TryGetComponent<Player>(out Player p2))) {
+        if (other.TryGetComponent<Player>(out Player player)) {
             targetAlpha = 1.0f;
             startingAlpha = 0.0f;
             

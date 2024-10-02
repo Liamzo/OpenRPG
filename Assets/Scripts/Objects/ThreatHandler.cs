@@ -29,7 +29,7 @@ public class ThreatHandler : MonoBehaviour
         characterHandler.OnTakeDamage += OnTakeDamage;
 
 
-        visionMask = LayerMask.GetMask("Default") | LayerMask.GetMask("Object");
+        visionMask = LayerMask.GetMask("Default") | LayerMask.GetMask("Hitbox");
     }
 
     // Update is called once per frame
@@ -70,30 +70,30 @@ public class ThreatHandler : MonoBehaviour
 
         Vector3 targetDir = (target.transform.position - transform.position).normalized;
 
-        Vector3 leftPos = characterHandler.Collider.bounds.center + (Quaternion.AngleAxis(90f, Vector3.forward) * targetDir);
-        Vector3 leftDir = (target.Collider.bounds.center - leftPos).normalized;
-        Vector3 rightPos = characterHandler.Collider.bounds.center + (Quaternion.AngleAxis(-90f, Vector3.forward) * targetDir).normalized;
-        Vector3 rightDir = (target.Collider.bounds.center - rightPos).normalized;
+        Vector3 leftPos = characterHandler.hitboxCollider.bounds.center + (Quaternion.AngleAxis(90f, Vector3.forward) * targetDir);
+        Vector3 leftDir = (target.hitboxCollider.bounds.center - leftPos).normalized;
+        Vector3 rightPos = characterHandler.hitboxCollider.bounds.center + (Quaternion.AngleAxis(-90f, Vector3.forward) * targetDir).normalized;
+        Vector3 rightDir = (target.hitboxCollider.bounds.center - rightPos).normalized;
 
-        RaycastHit2D hit = Physics2D.Raycast(characterHandler.Collider.bounds.center, targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), visionMask);
+        RaycastHit2D hit = Physics2D.Raycast(characterHandler.hitboxCollider.bounds.center, targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), visionMask);
         RaycastHit2D hitLeft = Physics2D.Raycast(leftPos, leftDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue()+1f, visionMask);
         RaycastHit2D hitRight = Physics2D.Raycast(rightPos, rightDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue()+1f, visionMask);
 
 
         if (hit.collider == null) {
             return new LineOfSightInfo(false, targetInRange, null, hit);
-        } else if (hit.collider.gameObject != target.gameObject) {
-            return new LineOfSightInfo(false, targetInRange, hit.collider.gameObject, hit);
+        } else if (hit.collider.transform.root.gameObject != target.gameObject) {
+            return new LineOfSightInfo(false, targetInRange, hit.collider.transform.root.gameObject, hit);
         }
 
-        if (hitLeft.collider != null && hitLeft.collider.gameObject == target.gameObject && hitRight.collider != null && hitRight.collider.gameObject == target.gameObject) {
+        if (hitLeft.collider != null && hitLeft.collider.transform.root.gameObject == target.gameObject && hitRight.collider != null && hitRight.collider.transform.root.gameObject == target.gameObject) {
             return new LineOfSightInfo(true, targetInRange, null, hit);
         }
 
-        if (hitLeft.collider != null && hitLeft.collider.gameObject != target.gameObject) {
-            return new LineOfSightInfo(false, targetInRange, hitLeft.collider.gameObject, hitLeft);
-        } else if (hitRight.collider != null && hitRight.collider.gameObject != target.gameObject) {
-            return new LineOfSightInfo(false, targetInRange, hitRight.collider.gameObject, hitRight);
+        if (hitLeft.collider != null && hitLeft.collider.transform.root.gameObject != target.gameObject) {
+            return new LineOfSightInfo(false, targetInRange, hitLeft.collider.transform.root.gameObject, hitLeft);
+        } else if (hitRight.collider != null && hitRight.collider.transform.root.gameObject != target.gameObject) {
+            return new LineOfSightInfo(false, targetInRange, hitRight.collider.transform.root.gameObject, hitRight);
         } else {
             return new LineOfSightInfo(false, targetInRange, null, hitLeft);
         }
@@ -102,13 +102,13 @@ public class ThreatHandler : MonoBehaviour
     public LineOfSightInfo CheckLineOfSightFromPosition(ObjectHandler target, Vector3 position) {
         bool targetInRange = Vector2.Distance(position, target.transform.position) < characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue();
 
-        Vector3 startingPos = position + new Vector3(0,characterHandler.Collider.bounds.extents.y / 2f,0);
+        Vector3 startingPos = position + new Vector3(0,characterHandler.hitboxCollider.bounds.extents.y / 2f,0);
         Vector3 targetDir = (target.transform.position - position).normalized;
 
         Vector3 leftPos = startingPos + (Quaternion.AngleAxis(90f, Vector3.forward) * targetDir);
-        Vector3 leftDir = (target.Collider.bounds.center - leftPos).normalized;
+        Vector3 leftDir = (target.hitboxCollider.bounds.center - leftPos).normalized;
         Vector3 rightPos = startingPos + (Quaternion.AngleAxis(-90f, Vector3.forward) * targetDir).normalized;
-        Vector3 rightDir = (target.Collider.bounds.center - rightPos).normalized;
+        Vector3 rightDir = (target.hitboxCollider.bounds.center - rightPos).normalized;
 
         RaycastHit2D hit = Physics2D.Raycast(startingPos, targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), visionMask);
         RaycastHit2D hitLeft = Physics2D.Raycast(leftPos, leftDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue()+1f, visionMask);
@@ -116,18 +116,18 @@ public class ThreatHandler : MonoBehaviour
 
         if (hit.collider == null) {
             return new LineOfSightInfo(false, targetInRange, null, hit);
-        } else if (hit.collider.gameObject != target.gameObject) {
-            return new LineOfSightInfo(false, targetInRange, hit.collider.gameObject, hit);
+        } else if (hit.collider.transform.root.gameObject != target.gameObject) {
+            return new LineOfSightInfo(false, targetInRange, hit.collider.transform.root.gameObject, hit);
         }
 
-        if (hitLeft.collider != null && hitLeft.collider.gameObject == target.gameObject && hitRight.collider != null && hitRight.collider.gameObject == target.gameObject) {
+        if (hitLeft.collider != null && hitLeft.collider.transform.root.gameObject == target.gameObject && hitRight.collider != null && hitRight.collider.transform.root.gameObject == target.gameObject) {
             return new LineOfSightInfo(true, targetInRange, null, hit);
         }
 
-        if (hitLeft.collider != null && hitLeft.collider.gameObject != target.gameObject) {
-            return new LineOfSightInfo(false, targetInRange, hitLeft.collider.gameObject, hitLeft);
-        } else if (hitRight.collider != null && hitRight.collider.gameObject != target.gameObject) {
-            return new LineOfSightInfo(false, targetInRange, hitRight.collider.gameObject, hitRight);
+        if (hitLeft.collider != null && hitLeft.collider.transform.root.gameObject != target.gameObject) {
+            return new LineOfSightInfo(false, targetInRange, hitLeft.collider.transform.root.gameObject, hitLeft);
+        } else if (hitRight.collider != null && hitRight.collider.transform.root.gameObject != target.gameObject) {
+            return new LineOfSightInfo(false, targetInRange, hitRight.collider.transform.root.gameObject, hitRight);
         } else {
             return new LineOfSightInfo(false, targetInRange, null, hitLeft);
         }
@@ -145,9 +145,9 @@ public class ThreatHandler : MonoBehaviour
             // Raycast to the target within Sight range and see if clear path
             Vector3 targetDir = (otherCharacter.transform.position - transform.position).normalized;
 
-            RaycastHit2D hit = Physics2D.Raycast(characterHandler.Collider.bounds.center, targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), visionMask);
+            RaycastHit2D hit = Physics2D.Raycast(characterHandler.hitboxCollider.bounds.center, targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), visionMask);
 
-            if (hit.collider != null && hit.collider.gameObject == otherCharacter.gameObject) {
+            if (hit.collider != null && hit.collider.transform.root.gameObject == otherCharacter.gameObject) {
                 // Can see the character, evaluate the threat
                 // For now, just picks the closest target
                 // TODO: Evalute threat of target based on level, equipment, reputation

@@ -10,6 +10,8 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
     Vector3 lockedLookingDirection;
 
 
+    [SerializeField] GameObject trailPrefab;
+    TrailRenderer trailRenderer;
     [SerializeField] ComboSO combo;
     bool charging = false;
 
@@ -33,6 +35,8 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
     
     public override void Create(WeaponHandler weapon) {
         base.Create(weapon);
+
+        trailRenderer = Instantiate(trailPrefab, weapon.item.objectHandler.spriteRenderer.transform).GetComponent<TrailRenderer>();
         
         weapon.item.OnUnequip += InteruptCombo;
 
@@ -143,6 +147,7 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
 
         weapon.animator.Play(currentAttack.attackAnimName);
         weapon.animator.speed = CalculateAnimationSwingSpeed();
+        trailRenderer.enabled = true;
 
         weapon.statsWeapon[WeaponStatNames.KnockBack].AddModifier(new Modifier(ModifierTypes.Multiplier, currentAttack.knockBackModifier));
         weapon.statsWeapon[WeaponStatNames.SelfKnockForce].AddModifier(new Modifier(ModifierTypes.Multiplier, currentAttack.selfKnockBackModifier));
@@ -170,6 +175,7 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
     void ResetComboToIdle() {
         weapon.animator.SetTrigger("Idle");
         weapon.animator.speed = 1.0f;
+        trailRenderer.enabled = false;
 
         ResetCombo();
     }
@@ -221,6 +227,7 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
                     currentAttack = null;
                     weapon.animator.Play(currentComboAttack.chargeAnimName);
                     weapon.animator.speed = CalculateAnimationChargeSpeed();
+                    trailRenderer.enabled = false;
                     charging = true;
                     return;
                 }
@@ -240,6 +247,7 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
                 currentAttack = null;
                 weapon.animator.Play(currentComboAttack.chargeAnimName);
                 weapon.animator.speed = CalculateAnimationChargeSpeed();
+                trailRenderer.enabled = false;
                 charging = true;
             }
 
@@ -278,6 +286,7 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
         isCharging = false;
         fullyCharged = false;
         chargeTimer = 0f;
+        trailRenderer.enabled = true;
 
         if (charging) {
             currentComboAttack = prevComboAttack;

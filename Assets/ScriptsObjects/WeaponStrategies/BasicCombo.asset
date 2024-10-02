@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e4535a0b48a2cb44bb29bea96132908, type: 3}
   m_Name: BasicCombo
   m_EditorClassIdentifier: 
+  strategyName: 
+  strategyDescription: 
+  strategyIcon: {fileID: 0}
   triggerSlot: 0
+  trailPrefab: {fileID: 83407227981251614, guid: bb66135ff2b348149be6ed7fb093dd53, type: 3}
   combo: {fileID: 11400000, guid: 83bbb10837d2d4849a2fc7c42bbd94c5, type: 2}

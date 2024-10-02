@@ -37,8 +37,8 @@ public class ThreatHandlerPlayer : MonoBehaviour
         virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
         transposer = virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
 
-        enemiesMask = LayerMask.GetMask("Object");
-        visionMask = LayerMask.GetMask("Default") | LayerMask.GetMask("Object");
+        enemiesMask = LayerMask.GetMask("Hitbox");
+        visionMask = LayerMask.GetMask("Default") | LayerMask.GetMask("Hitbox");
     }
 
     // Update is called once per frame
@@ -80,9 +80,9 @@ public class ThreatHandlerPlayer : MonoBehaviour
             // Raycast to the target within Sight range and see if clear path
             Vector3 targetDir = (otherCharacter.transform.position - transform.position).normalized;
 
-            RaycastHit2D hit = Physics2D.Raycast(characterHandler.Collider.bounds.center, targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), visionMask);
+            RaycastHit2D hit = Physics2D.Raycast(characterHandler.hitboxCollider.bounds.center, targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), visionMask);
 
-            if (hit.collider != null && hit.collider.gameObject == otherCharacter.gameObject) {
+            if (hit.collider != null && hit.collider.transform.root.gameObject == otherCharacter.gameObject) {
                 // Enemy in sight
                 charactersInRange.Add(new CharacterRangeInfo(otherCharacter, true, reputation));
             } else {
