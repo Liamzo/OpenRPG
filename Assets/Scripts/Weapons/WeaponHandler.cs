@@ -17,7 +17,7 @@ public class WeaponHandler : MonoBehaviour, ISaveable
     public Animator animator; // Probably used by everything when fully implemented
     public Transform _handle;
     
-    public Collider2D meleeHitbox;
+    public BoxCollider2D meleeHitbox;
 
     public bool Holstered {get; private set;}
 
@@ -247,6 +247,15 @@ public class WeaponHandler : MonoBehaviour, ISaveable
         {
             triggerHolders[anticipation.triggerSlot].anticipation = anticipation;
         }
+
+        animator.runtimeAnimatorController = baseWeaponStats.animationController;
+
+        item.objectHandler.spriteRenderer.transform.eulerAngles = baseWeaponStats.spriteRotation;
+
+        meleeHitbox.offset = new Vector2(baseWeaponStats.colliderSize.x, baseWeaponStats.colliderSize.y);
+        meleeHitbox.size = new Vector2(baseWeaponStats.colliderSize.z, baseWeaponStats.colliderSize.w);
+
+        attackPoint.localPosition = baseWeaponStats.attackPoint;
     }   
 
     public string SaveComponent()

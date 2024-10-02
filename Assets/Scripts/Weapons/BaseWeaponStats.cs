@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 [System.Serializable]
@@ -10,7 +11,10 @@ public class BaseWeaponStats : StatBlock {
 
 	public List<WeaponStatValue> stats;
 
-	public float restingAngle;
+	public AnimatorController animationController;
+	public Vector3 spriteRotation;
+	public Vector3 attackPoint;
+	public Vector4 colliderSize;
 
 	public BaseWeaponStats() {
 		stats = new List<WeaponStatValue>() {

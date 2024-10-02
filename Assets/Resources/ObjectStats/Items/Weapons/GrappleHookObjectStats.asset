@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: Grappling Hook
   sprite: {fileID: 21300000, guid: e92fc44f12c21dd44a49e390f39f7ffd, type: 3}
-  prefab: {fileID: 7550645386958731258, guid: 784a5fdf9943ded4ea808dd06405badf, type: 3}
+  prefab: {fileID: 4328129691896571672, guid: 828d290f2e4ca1a4baf519d5c210c007, type: 3}
   prefabId: grapplinghook_01
   description: A fancy grappling hook
   type: 0
@@ -50,6 +50,9 @@ MonoBehaviour:
     - rid: 2539556635058110475
       type: {class: BaseWeaponStats, ns: , asm: Assembly-CSharp}
       data:
+        neededModSlots: 
+        optionalModSlots: 
+        startingWeaponMods: []
         stats:
         - statName: 1
           value: 1
@@ -73,4 +76,7 @@ MonoBehaviour:
           value: 0
         - statName: 12
           value: 5
-        restingAngle: 0
+        animationController: {fileID: 0}
+        spriteRotation: {x: 0, y: 180, z: 90}
+        attackPoint: {x: 0.13, y: -0.57, z: 0}
+        colliderSize: {x: 0, y: 0, z: 0, w: 0}

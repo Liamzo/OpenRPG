@@ -81,6 +81,7 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
             if (endingAttack) {
                 weapon.animator.speed = 1.0f;
                 endingAttack = false;
+                trailRenderer.enabled = false;
 
                 weapon.statsWeapon[WeaponStatNames.KnockBack].RemoveModifier(new Modifier(ModifierTypes.Multiplier, currentAttack.knockBackModifier));
                 weapon.statsWeapon[WeaponStatNames.SelfKnockForce].RemoveModifier(new Modifier(ModifierTypes.Multiplier, currentAttack.selfKnockBackModifier));

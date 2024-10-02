@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: Iron Sword
   sprite: {fileID: 21300000, guid: 37e9fb16acbe38c45815380a7e9eb232, type: 3}
-  prefab: {fileID: 4328129691896571672, guid: c2c826d08684ae7438b6605db6557142, type: 3}
+  prefab: {fileID: 4328129691896571672, guid: 828d290f2e4ca1a4baf519d5c210c007, type: 3}
   prefabId: sword_01
   description: A basic iron sword
   type: 0
@@ -79,4 +79,7 @@ MonoBehaviour:
           value: 80
         - statName: 13
           value: 50
-        restingAngle: 30
+        animationController: {fileID: 9100000, guid: f9ef938c87396da4d8049c30a2356d6f, type: 2}
+        restingAngle: 0
+        attackPoint: {x: 0.5, y: -1.5, z: 0}
+        colliderSize: {x: 0.5, y: -1.3, z: 3, w: 3.4}
