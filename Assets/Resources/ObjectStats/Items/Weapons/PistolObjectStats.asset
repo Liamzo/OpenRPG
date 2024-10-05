@@ -89,7 +89,7 @@ MonoBehaviour:
           value: -30
         - statName: 15
           value: 1
-        animationController: {fileID: 0}
+        animationController: {fileID: 9100000, guid: 713b772b1d0f74133a8ce94956352a48, type: 2}
         spriteRotation: {x: 0, y: 180, z: 90}
         attackPoint: {x: 0.13, y: -0.57, z: 0}
         colliderSize: {x: 0, y: 0, z: 0, w: 0}

@@ -131,6 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd20245ab72fc0742b53fb611d0adb26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoneCollider: {fileID: 0}
   spritesToHide:
   - {fileID: 309783310777557189}
   - {fileID: 2159335887440585996}
@@ -877,6 +878,7 @@ GameObject:
   - component: {fileID: 3126934591316953582}
   - component: {fileID: 1924572551099918318}
   - component: {fileID: 9088288716060869712}
+  - component: {fileID: 3133772470472395302}
   m_Layer: 3
   m_Name: FadeCollider
   m_TagString: Untagged
@@ -932,13 +934,28 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3779698857221166157}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d7eb993b8a05d04f998ccf2cf2cc0ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fadeCollider: {fileID: 1924572551099918318}
   objectsBehind: []
+--- !u!114 &3133772470472395302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3779698857221166157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7049b67253f62b418954d5bd474c0a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeCollider: {fileID: 1924572551099918318}
+  objectsBehind: []
+  rooms: []
 --- !u!1 &6897302646494842328
 GameObject:
   m_ObjectHideFlags: 0
@@ -1007,7 +1024,7 @@ MonoBehaviour:
   - {x: -0.9375, y: 1.3125, z: 0}
   m_ShapePathHash: 1961823700
   m_Mesh: {fileID: 0}
-  m_InstanceId: 325038
+  m_InstanceId: 373132
   m_LocalBounds:
     m_Center: {x: 0, y: 4.15625, z: 0}
     m_Extent: {x: 3.3125, y: 3.15625, z: 0}

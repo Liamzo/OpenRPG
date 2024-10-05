@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.U2D.Path;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 public class Room : MonoBehaviour
 {
+    public PolygonCollider2D zoneCollider;
+
     public List<SpriteRenderer> spritesToHide;
 
     float switchingTimer = 1.0f;
@@ -14,6 +17,15 @@ public class Room : MonoBehaviour
 
     public ShadowCaster2D shadowCaster2Dext;
     public ShadowCaster2D shadowCaster2Dint;
+
+
+    public event System.Action<Collider2D> OnEnter = delegate { };
+    public event System.Action<Collider2D> OnExit = delegate { };
+
+
+    private void Awake() {
+        zoneCollider = GetComponent<PolygonCollider2D>();
+    }
 
     private void Update() {
         if (spritesToHide.Count == 0) { return ; }
@@ -44,6 +56,8 @@ public class Room : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
+        OnEnter(other);
+
         if (other.TryGetComponent<Player>(out Player player)) {
             targetAlpha = 0.0f;
             startingAlpha = 1.0f;
@@ -57,6 +71,8 @@ public class Room : MonoBehaviour
     }
 
     private void OnTriggerExit2D(Collider2D other) {
+        OnExit(other);
+
         if (other.TryGetComponent<Player>(out Player player)) {
             targetAlpha = 1.0f;
             startingAlpha = 0.0f;

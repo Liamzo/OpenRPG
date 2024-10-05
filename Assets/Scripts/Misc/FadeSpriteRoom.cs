@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class FadeSprite : MonoBehaviour
+
+public class FadeSpriteRoom : MonoBehaviour
 {
     public BoxCollider2D fadeCollider;  // Collider area for detecting player
     private float fadeDuration = 0.5f;     // Time taken to fade in/out
@@ -14,6 +15,12 @@ public class FadeSprite : MonoBehaviour
     private float fadeInPauseTimer = 0.5f;
 
     public List<ObjectHandler> objectsBehind = new();
+    List<Collider2D> collidersInsideHidden = new();
+    List<SpriteRenderer> spritesInsideHidden = new();
+
+
+
+    public Room room;
     
 
     // Start is called before the first frame update
@@ -21,6 +28,25 @@ public class FadeSprite : MonoBehaviour
     {
         spriteRenderers = transform.parent.GetComponentsInChildren<SpriteRenderer>().ToList();
         
+
+        List<Room> allRooms = transform.parent.GetComponentsInChildren<Room>().ToList();
+
+        Room biggestRoom = allRooms[0];
+        float biggestSize = biggestRoom.zoneCollider.bounds.size.magnitude;
+
+        for (int i = 1; i < allRooms.Count; i++) {
+            Room testRoom = allRooms[i];
+
+            if (testRoom.zoneCollider.bounds.size.magnitude > biggestSize) {
+                biggestRoom = testRoom;
+                biggestSize = biggestRoom.zoneCollider.bounds.size.magnitude;
+            }
+        }
+
+        room = biggestRoom;
+
+        room.OnEnter += ColliderEnteredRoom;
+        room.OnExit += ColliderLeftRoom;
     }
 
     // Update is called once per frame
@@ -59,6 +85,20 @@ public class FadeSprite : MonoBehaviour
         isFading = true;
         float elapsedTime = 0f;
 
+        List<Collider2D> colliders = new ();
+
+        room.zoneCollider.OverlapCollider(new ContactFilter2D(), colliders);
+
+        foreach (Collider2D collider in colliders) {
+            if (collider.GetComponent<ObjectHandler>() != null || collider.GetComponent<Thing>() != null) {
+                List<SpriteRenderer> sprites = collider.GetComponentsInChildren<SpriteRenderer>().ToList();
+                sprites.ForEach(sprite => sprite.enabled = false);
+                collidersInsideHidden.Add(collider);
+                spritesInsideHidden.AddRange(sprites);
+            }
+        }
+        
+
         // Gradually fade out the section of the texture
         while (elapsedTime < fadeDuration)
         {
@@ -93,6 +133,11 @@ public class FadeSprite : MonoBehaviour
         isFading = false;
         isFaded = false;
         fadeInPauseTimer = fadeInPauseDuration;
+
+        foreach (SpriteRenderer spriteRenderer in spritesInsideHidden) {
+            spriteRenderer.enabled = true;
+        }
+        spritesInsideHidden.Clear();
     }
 
     // Modify the alpha of pixels within a specified section of the texture
@@ -128,6 +173,23 @@ public class FadeSprite : MonoBehaviour
         CharacterHandler otherCharacter;
         if (other.transform.root.TryGetComponent<CharacterHandler>( out otherCharacter)) {
             objectsBehind.Remove(otherCharacter);
+        }
+    }
+
+    void ColliderEnteredRoom (Collider2D collider) {
+        if (!collidersInsideHidden.Contains(collider)) {
+            List<SpriteRenderer> sprites = collider.GetComponentsInChildren<SpriteRenderer>().ToList();
+            sprites.ForEach(sprite => sprite.enabled = false);
+            collidersInsideHidden.Add(collider);
+            spritesInsideHidden.AddRange(sprites);
+        }
+    }
+    void ColliderLeftRoom (Collider2D collider) {
+        if (collidersInsideHidden.Contains(collider)) {
+            List<SpriteRenderer> sprites = collider.GetComponentsInChildren<SpriteRenderer>().ToList();
+            sprites.ForEach(sprite => sprite.enabled = true);
+            sprites.ForEach(sprite => spritesInsideHidden.Remove(sprite));
+            collidersInsideHidden.Remove(collider);
         }
     }
 }
