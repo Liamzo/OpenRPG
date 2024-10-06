@@ -355,7 +355,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 356c6a3fbae2a4246b1cb0daa285aee1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -856,7 +856,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 356c6a3fbae2a4246b1cb0daa285aee1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -940,7 +940,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 356c6a3fbae2a4246b1cb0daa285aee1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1069,6 +1069,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd20245ab72fc0742b53fb611d0adb26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoneCollider: {fileID: 0}
   spritesToHide:
   - {fileID: 7239146473823345268}
   - {fileID: 6273816817183381183}
@@ -1126,7 +1127,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 356c6a3fbae2a4246b1cb0daa285aee1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1210,7 +1211,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 356c6a3fbae2a4246b1cb0daa285aee1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1294,7 +1295,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 356c6a3fbae2a4246b1cb0daa285aee1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1378,7 +1379,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 356c6a3fbae2a4246b1cb0daa285aee1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1462,7 +1463,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 356c6a3fbae2a4246b1cb0daa285aee1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1579,6 +1580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd20245ab72fc0742b53fb611d0adb26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoneCollider: {fileID: 0}
   spritesToHide:
   - {fileID: 2986981219486591266}
   shadowCaster2Dext: {fileID: 931788705025475376}
@@ -2104,6 +2106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd20245ab72fc0742b53fb611d0adb26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoneCollider: {fileID: 0}
   spritesToHide:
   - {fileID: 7440579872665331716}
   shadowCaster2Dext: {fileID: 931788705025475376}
@@ -2230,7 +2233,7 @@ MonoBehaviour:
   - {x: -2.4375, y: 2, z: 0}
   m_ShapePathHash: 1896934819
   m_Mesh: {fileID: 0}
-  m_InstanceId: -705186
+  m_InstanceId: 415204
   m_LocalBounds:
     m_Center: {x: 0, y: 8.15625, z: 0}
     m_Extent: {x: 10.8125, y: 7.15625, z: 0}
@@ -2286,7 +2289,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 356c6a3fbae2a4246b1cb0daa285aee1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

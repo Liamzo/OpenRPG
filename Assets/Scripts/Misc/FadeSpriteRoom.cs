@@ -82,6 +82,7 @@ public class FadeSpriteRoom : MonoBehaviour
 
     IEnumerator FadeOut()
     {
+        Debug.Log("boop");
         isFading = true;
         float elapsedTime = 0f;
 
