@@ -719,7 +719,7 @@ MonoBehaviour:
   - {x: 5.0625, y: 1, z: 0}
   m_ShapePathHash: 723006543
   m_Mesh: {fileID: 0}
-  m_InstanceId: 414616
+  m_InstanceId: 428970
   m_LocalBounds:
     m_Center: {x: 0, y: 5.65625, z: 0}
     m_Extent: {x: 8.3125, y: 4.65625, z: 0}
@@ -1168,19 +1168,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1306849778431595323, guid: ae1deb08734a4164c91bd6ea778472eb, type: 3}
       propertyPath: m_Size.x
-      value: 17.591177
+      value: 17.514984
       objectReference: {fileID: 0}
     - target: {fileID: 1306849778431595323, guid: ae1deb08734a4164c91bd6ea778472eb, type: 3}
       propertyPath: m_Size.y
-      value: 7.3384743
+      value: 7.211487
       objectReference: {fileID: 0}
     - target: {fileID: 1306849778431595323, guid: ae1deb08734a4164c91bd6ea778472eb, type: 3}
       propertyPath: m_Offset.x
-      value: 0.037493706
+      value: -0.00060224533
       objectReference: {fileID: 0}
     - target: {fileID: 1306849778431595323, guid: ae1deb08734a4164c91bd6ea778472eb, type: 3}
       propertyPath: m_Offset.y
-      value: 10.930607
+      value: 10.917911
+      objectReference: {fileID: 0}
+    - target: {fileID: 2588106402796306163, guid: ae1deb08734a4164c91bd6ea778472eb, type: 3}
+      propertyPath: fadeCollider
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2590328497241439547, guid: ae1deb08734a4164c91bd6ea778472eb, type: 3}
       propertyPath: m_RootOrder

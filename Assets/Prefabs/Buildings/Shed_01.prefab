@@ -935,7 +935,7 @@ MonoBehaviour:
   - {x: -0.9375, y: 1.3125, z: 0}
   m_ShapePathHash: 1961823700
   m_Mesh: {fileID: 0}
-  m_InstanceId: 396910
+  m_InstanceId: 422770
   m_LocalBounds:
     m_Center: {x: 0, y: 4.15625, z: 0}
     m_Extent: {x: 3.3125, y: 3.15625, z: 0}
@@ -1133,6 +1133,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2159335888821213466}
     m_Modifications:
+    - target: {fileID: 2588106402796306163, guid: ae1deb08734a4164c91bd6ea778472eb, type: 3}
+      propertyPath: fadeCollider
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2590328497241439547, guid: ae1deb08734a4164c91bd6ea778472eb, type: 3}
       propertyPath: m_RootOrder
       value: 8

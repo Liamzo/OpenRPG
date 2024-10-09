@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class FadeSpriteRoom : MonoBehaviour
 {
-    public BoxCollider2D fadeCollider;  // Collider area for detecting player
+    public Collider2D fadeCollider;  // Collider area for detecting player
     private float fadeDuration = 0.5f;     // Time taken to fade in/out
     private List<SpriteRenderer> spriteRenderers;
     private bool isFading = false;
@@ -26,6 +26,8 @@ public class FadeSpriteRoom : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        fadeCollider = GetComponent<Collider2D>();
+
         spriteRenderers = transform.parent.GetComponentsInChildren<SpriteRenderer>().ToList();
         
 
