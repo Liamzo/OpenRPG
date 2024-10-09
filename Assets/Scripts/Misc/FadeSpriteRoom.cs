@@ -82,13 +82,15 @@ public class FadeSpriteRoom : MonoBehaviour
 
     IEnumerator FadeOut()
     {
-        Debug.Log("boop");
         isFading = true;
         float elapsedTime = 0f;
 
         List<Collider2D> colliders = new ();
 
         room.zoneCollider.OverlapCollider(new ContactFilter2D(), colliders);
+
+        collidersInsideHidden.Clear();
+        spritesInsideHidden.Clear();
 
         foreach (Collider2D collider in colliders) {
             if (collider.GetComponent<ObjectHandler>() != null || collider.GetComponent<Thing>() != null) {
@@ -139,6 +141,7 @@ public class FadeSpriteRoom : MonoBehaviour
             spriteRenderer.enabled = true;
         }
         spritesInsideHidden.Clear();
+        collidersInsideHidden.Clear();
     }
 
     // Modify the alpha of pixels within a specified section of the texture
@@ -178,11 +181,11 @@ public class FadeSpriteRoom : MonoBehaviour
     }
 
     void ColliderEnteredRoom (Collider2D collider) {
-        if (!collidersInsideHidden.Contains(collider)) {
+        if (!collidersInsideHidden.Contains(collider) && (isFading || isFaded)) {
             List<SpriteRenderer> sprites = collider.GetComponentsInChildren<SpriteRenderer>().ToList();
             sprites.ForEach(sprite => sprite.enabled = false);
-            collidersInsideHidden.Add(collider);
             spritesInsideHidden.AddRange(sprites);
+            collidersInsideHidden.Add(collider);
         }
     }
     void ColliderLeftRoom (Collider2D collider) {
