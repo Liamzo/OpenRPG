@@ -26,3 +26,7 @@ MonoBehaviour:
     modifierType: 1
     value: 100
     icon: {fileID: 21300000, guid: 2d6f2213bf14be34dbc1c191285b469a, type: 3}
+  - weaponStatName: 9
+    modifierType: 1
+    value: 100
+    icon: {fileID: 21300000, guid: 2d6f2213bf14be34dbc1c191285b469a, type: 3}
