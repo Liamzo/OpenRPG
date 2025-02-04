@@ -50,6 +50,9 @@ public class WeaponHandler : MonoBehaviour, ISaveable
     public int _canAttack = 0; // 0 = Can Attack. Add 1 when blocking, -1 when allowing
     bool _animationAttackLock = false;
     public void animationBlockAttack() {
+        if (_animationAttackLock != false)
+            return;
+
         _animationAttackLock = true;
         item.owner.objectStatusHandler.BlockControls();
 
@@ -57,6 +60,9 @@ public class WeaponHandler : MonoBehaviour, ISaveable
             item.owner.objectStatusHandler.BlockMovementControls();
     }
     public void animationUnblockAttack() {
+        if (_animationAttackLock != true)
+            return;
+
         _animationAttackLock = false;
         item.owner.objectStatusHandler.UnblockControls();
         if (GetStatValue(WeaponStatNames.Blocking) > 0f)
@@ -344,7 +350,7 @@ public class TriggerHolder {
         OnHitTarget(target, hitOutcome, charge, projectile);
 
         if (hitOutcome == HitOutcome.Parry) {
-            
+            AttackCancel();
         }
     }
 

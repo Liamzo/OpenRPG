@@ -287,7 +287,7 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
         isCharging = false;
         fullyCharged = false;
         chargeTimer = 0f;
-        trailRenderer.enabled = true;
+        trailRenderer.enabled = false;
 
         if (charging) {
             currentComboAttack = prevComboAttack;
@@ -304,36 +304,41 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
         }
 
         if (doingAttack) {
-            currentComboAttack = prevComboAttack;
-            currentAttack = prevAttack;
-            doingAttack = false;
-
+            // TODO: Don't know if this works
             weapon.statsWeapon[WeaponStatNames.KnockBack].RemoveModifier(new Modifier(ModifierTypes.Multiplier, currentAttack.knockBackModifier));
             weapon.statsWeapon[WeaponStatNames.SelfKnockForce].RemoveModifier(new Modifier(ModifierTypes.Multiplier, currentAttack.selfKnockBackModifier));
             weapon.statsWeapon[WeaponStatNames.Stagger].RemoveModifier(new Modifier(ModifierTypes.Multiplier, currentAttack.staggerModifier));
 
+            weapon.animationUnblockAttack();
+
+            currentComboAttack = prevComboAttack;
+            currentAttack = prevAttack;
+            doingAttack = false;
+
             if (currentComboAttack == null) {
-                weapon.animator.SetTrigger("Idle");
-                weapon.animator.speed = 1.0f;
+                ResetComboToIdle();
             } else if (prevAttack != null) {
+                // TODO: Don't know if this works, need to implement either enemy combos or enemy blocking first
                 weapon.animator.Play(currentComboAttack.lightAttack.attackAnimName, 0, 1.1f); // TODO: Save if we did a normal or heavy attack
                 weapon.animator.speed = CalculateAnimationSwingSpeed();
             }
         }
         
         if (endingAttack) {
-            currentComboAttack = prevComboAttack;
-            currentAttack = prevAttack;
-            endingAttack = false;
-
             weapon.statsWeapon[WeaponStatNames.KnockBack].RemoveModifier(new Modifier(ModifierTypes.Multiplier, currentAttack.knockBackModifier));
             weapon.statsWeapon[WeaponStatNames.SelfKnockForce].RemoveModifier(new Modifier(ModifierTypes.Multiplier, currentAttack.selfKnockBackModifier));
             weapon.statsWeapon[WeaponStatNames.Stagger].RemoveModifier(new Modifier(ModifierTypes.Multiplier, currentAttack.staggerModifier));
 
+            weapon.animationUnblockAttack();
+
+            currentComboAttack = prevComboAttack;
+            currentAttack = prevAttack;
+            endingAttack = false;
+
             if (currentComboAttack == null) {
-                weapon.animator.SetTrigger("Idle");
-                weapon.animator.speed = 1.0f;
+                ResetComboToIdle();
             } else if (prevAttack != null) {
+                // TODO: Don't know if this works, need to implement either enemy combos or enemy blocking first
                 weapon.animator.Play(currentComboAttack.lightAttack.attackAnimName, 0, 1.1f); // TODO: Save if we did a normal or heavy attack
                 weapon.animator.speed = CalculateAnimationSwingSpeed();
             }
