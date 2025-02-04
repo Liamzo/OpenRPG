@@ -12,7 +12,18 @@ public class ObjectStatusHandler : MonoBehaviour
     public bool isDodging  {get; set;} = false;
 
     public bool isBlocking {get; set;} = false;
+    public float blockTimer {get; private set;} = 0f;
+    public float timeSinceLastBlock {get; private set;} = Mathf.Infinity;
     public float blockAngle = 0f;
+
+
+    private void Update() {
+        if (isBlocking) {
+            blockTimer += Time.deltaTime;
+        } else {
+            timeSinceLastBlock += Time.deltaTime;
+        }
+    }
 
 
 
@@ -93,10 +104,14 @@ public class ObjectStatusHandler : MonoBehaviour
     public void Block(float angle) {
         isBlocking = true;
         blockAngle = angle;
+
+        blockTimer = 0f;
     }
 
     public void StopBlock() {
         isBlocking = false;
         blockAngle = 0f;
+
+        timeSinceLastBlock = 0f;
     }
 }

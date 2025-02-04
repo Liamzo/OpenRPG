@@ -10,5 +10,6 @@ public interface IDamageType
 public enum HitOutcome {
     Hit,
     Block,
-    Dodge
+    Dodge,
+    Parry
 }

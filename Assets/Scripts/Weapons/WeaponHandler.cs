@@ -341,7 +341,11 @@ public class TriggerHolder {
         else
             hitOutcome = HitOutcome.Hit;
 
-        OnHitTarget(target, hitOutcome, charge, projectile); 
+        OnHitTarget(target, hitOutcome, charge, projectile);
+
+        if (hitOutcome == HitOutcome.Parry) {
+            
+        }
     }
 
     public event System.Action OnAttackCancel = delegate { };
