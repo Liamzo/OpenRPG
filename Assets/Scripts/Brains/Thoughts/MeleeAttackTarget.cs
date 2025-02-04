@@ -29,7 +29,7 @@ public class MeleeAttackTarget : BaseThought
             return 0f;
         }
 
-        if (brain.attackTimer <= 0 && brain.distToTarget <= maxMeleeRange) {
+        if (brain.attackTimer <= 0) { // && brain.distToTarget <= maxMeleeRange) {
             value += 100f;
         }
 
