@@ -348,12 +348,6 @@ public class TriggerHolder {
             hitOutcome = HitOutcome.Hit;
 
         OnHitTarget(target, hitOutcome, charge, projectile);
-
-        if (hitOutcome == HitOutcome.Parry) {
-            AttackCancel();
-            weapon.item.owner.objectStatusHandler.BlockControls(1f); // Move somewhere else. Probably make an Effect Handler for things like Stunned, etc. that handles setting the objectStatusHandler
-            weapon.item.owner.objectStatusHandler.BlockMovementControls(1f); // Move somewhere else
-        }
     }
 
     public event System.Action OnAttackCancel = delegate { };

@@ -25,4 +25,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 482732a649152014c8b88c21e4932c0f, type: 2}
   - {fileID: 11400000, guid: 95d21003af7f3224f9174c87d1296b80, type: 2}
   - {fileID: 11400000, guid: 0de10e7734c0c1c4793267391d58c784, type: 2}
+  - {fileID: 11400000, guid: 8ac18128c35932742b9c17cf0340a8d4, type: 2}
   weaponModBonuses: []
