@@ -30,7 +30,7 @@ public class DamageTypeStandard : BaseStrategy, IDamageType
             GameManager.instance.HitStop(0.05f); // Move to future BaseDamage class
 
             if (target != null){
-                target.objectStatusHandler.BlockControls(weapon.GetStatValue(WeaponStatNames.Stagger)); // Move somewhere else
+                target.objectStatusHandler.BlockControls(weapon.GetStatValue(WeaponStatNames.Stagger)); // Move somewhere else. Probably make an Effect Handler for things like Stunned, etc. that handles setting the objectStatusHandler
                 target.objectStatusHandler.BlockMovementControls(weapon.GetStatValue(WeaponStatNames.Stagger)); // Move somewhere else
 
                 target.TakeDamge(damage, weapon, (CharacterHandler) weapon.item.owner); // Move to future BaseDamage class

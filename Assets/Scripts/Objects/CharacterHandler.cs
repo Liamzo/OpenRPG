@@ -38,10 +38,25 @@ public class CharacterHandler : ObjectHandler
     public override HitOutcome GetHit(WeaponHandler weapon, CharacterHandler damageDealer, GameObject projectile) 
     {
         if (objectStatusHandler.isBlocking) {
-            Vector2 hitPosition = projectile == null ? damageDealer.rigidBody.position : projectile.transform.position;
-            Vector3 attackerDir = hitPosition - rigidBody.position;
+            // Vector2 hitPosition = projectile == null ? damageDealer.rigidBody.position : projectile.transform.position;
+            // Vector3 attackerDir = (hitPosition - rigidBody.position).normalized;
 
+            // float angleBetween = Vector3.Angle(GetComponent<BaseBrain>().lookingDirection, attackerDir);
+
+            // Debug.Log($"{rigidBody.position}");
+            // Debug.Log($"{hitPosition.x},{hitPosition.y}");
+            // Debug.Log($"{attackerDir.x},{attackerDir.y}");
+            // Debug.Log($"{angleBetween}");
+
+            Vector2 hitPosition = projectile == null ? damageDealer.hitboxCollider.bounds.center : projectile.transform.position;
+            Vector3 attackerDir = (hitPosition - (Vector2)hitboxCollider.bounds.center).normalized;
             float angleBetween = Vector3.Angle(GetComponent<BaseBrain>().lookingDirection, attackerDir);
+
+            // Debug.Log($"-");
+            // Debug.Log($"{hitboxCollider.bounds.center}");
+            // Debug.Log($"{hitPosition2.x},{hitPosition2.y}");
+            // Debug.Log($"{attackerDir2.x},{attackerDir2.y}");
+            // Debug.Log($"{angleBetween2}");
 
             if (angleBetween <= objectStatusHandler.blockAngle)
             {

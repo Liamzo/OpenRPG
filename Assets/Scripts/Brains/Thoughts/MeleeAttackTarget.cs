@@ -7,7 +7,7 @@ public class MeleeAttackTarget : BaseThought
     bool attacking;
     float delayTimer = 0f;
 
-    public float maxMeleeRange;
+    public float maxMeleeRange; // Currently used by Ranged Bandit to determine when to melee and ranged, could probably do this a better way during Evaluation. If lower than something like the Max Circle Distance, Melee Bandits will sometimes never attack
 
     protected override void Start() {
         base.Start();
@@ -29,7 +29,7 @@ public class MeleeAttackTarget : BaseThought
             return 0f;
         }
 
-        if (brain.attackTimer <= 0) { // && brain.distToTarget <= maxMeleeRange) {
+        if (brain.attackTimer <= 0 && brain.distToTarget <= maxMeleeRange) {
             value += 100f;
         }
 

@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fa123fc322bb404b9275c72c034b42d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxMeleeRange: 8
+  maxMeleeRange: 9
 --- !u!114 &2021465408
 MonoBehaviour:
   m_ObjectHideFlags: 0
