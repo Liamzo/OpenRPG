@@ -12,6 +12,11 @@ public class StrategyOnParriedCancelAttack : BaseStrategy
         weapon.triggerHolders[triggerSlot].OnHitTarget += DoCancelAttack;
     }
 
+    public override void Delete()
+    {
+        weapon.triggerHolders[triggerSlot].OnHitTarget -= DoCancelAttack;
+    }
+
 
     private void DoCancelAttack(ObjectHandler target, HitOutcome hitOutcome, float charge, GameObject projectile)
     {
