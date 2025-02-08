@@ -43,20 +43,15 @@ public class CharacterHandler : ObjectHandler
 
             // float angleBetween = Vector3.Angle(GetComponent<BaseBrain>().lookingDirection, attackerDir);
 
-            // Debug.Log($"{rigidBody.position}");
-            // Debug.Log($"{hitPosition.x},{hitPosition.y}");
-            // Debug.Log($"{attackerDir.x},{attackerDir.y}");
-            // Debug.Log($"{angleBetween}");
-
             Vector2 hitPosition = projectile == null ? damageDealer.hitboxCollider.bounds.center : projectile.transform.position;
             Vector3 attackerDir = (hitPosition - (Vector2)hitboxCollider.bounds.center).normalized;
             float angleBetween = Vector3.Angle(GetComponent<BaseBrain>().lookingDirection, attackerDir);
 
             // Debug.Log($"-");
             // Debug.Log($"{hitboxCollider.bounds.center}");
-            // Debug.Log($"{hitPosition2.x},{hitPosition2.y}");
-            // Debug.Log($"{attackerDir2.x},{attackerDir2.y}");
-            // Debug.Log($"{angleBetween2}");
+            // Debug.Log($"{hitPosition.x},{hitPosition.y}");
+            // Debug.Log($"{attackerDir.x},{attackerDir.y}");
+            // Debug.Log($"{angleBetween}");
 
             if (angleBetween <= objectStatusHandler.blockAngle)
             {
