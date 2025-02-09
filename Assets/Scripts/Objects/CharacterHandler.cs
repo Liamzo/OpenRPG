@@ -14,6 +14,12 @@ public class CharacterHandler : ObjectHandler
     
     public float currentStamina;
 
+
+    // Events
+    public event System.Action<WeaponHandler, ObjectHandler, GameObject> OnBlock = delegate { };
+    public event System.Action<WeaponHandler, ObjectHandler, GameObject> OnParry = delegate { };
+
+
     protected override void Awake()
     {
         base.Awake();
@@ -66,11 +72,14 @@ public class CharacterHandler : ObjectHandler
                         sparksEffect.transform.position = sparksPosition;
                         sparksEffect.SetActive(true);
 
+                        OnParry(weapon, damageDealer, projectile);
+
                         return HitOutcome.Parry;
                     }
                 }
 
                 GameManager.instance.ChangeTimeScale(0.25f, 0.1f);
+                OnBlock(weapon, damageDealer, projectile);
                 return HitOutcome.Block;
             }
         }

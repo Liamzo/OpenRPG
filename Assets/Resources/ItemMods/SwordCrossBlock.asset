@@ -21,4 +21,5 @@ MonoBehaviour:
   startingStrategies:
   - {fileID: 11400000, guid: eaf75699633a851439ffb62ab09bf478, type: 2}
   - {fileID: 11400000, guid: 295e17fdfdbe1a843af5c2e1d9414ef6, type: 2}
+  - {fileID: 11400000, guid: 3a78bf0c96c279044812fa5235c208ad, type: 2}
   weaponModBonuses: []
