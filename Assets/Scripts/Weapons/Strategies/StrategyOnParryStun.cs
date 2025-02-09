@@ -38,7 +38,7 @@ public class StrategyOnParryStun : BaseStrategy
     }
 
 
-    private void DoStun(WeaponHandler weapon, ObjectHandler damageDealer, GameObject projectile)
+    private void DoStun(WeaponHandler attackingWeapon, ObjectHandler damageDealer, GameObject projectile)
     {
         damageDealer.objectStatusHandler.BlockControls(stunDuration); // Move somewhere else. Probably make an Effect Handler for things like Stunned, etc. that handles setting the objectStatusHandler
         damageDealer.objectStatusHandler.BlockMovementControls(stunDuration); // Move somewhere else

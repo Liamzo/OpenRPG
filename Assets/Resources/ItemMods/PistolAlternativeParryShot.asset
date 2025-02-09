@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3a48e7be25b8684ea2225db5f053601, type: 3}
+  m_Name: PistolAlternativeParryShot
+  m_EditorClassIdentifier: 
+  modId: pistol_alternative_parry01
+  modName: Quick Draw
+  modDescription: 
+  modIcon: {fileID: 21300000, guid: 15e6a7567a309554f96c5523b0975f87, type: 3}
+  modSlot: 5
+  strategies: []
+  startingStrategies:
+  - {fileID: 11400000, guid: f209713696935504dbba99335c6e3aa0, type: 2}
+  weaponModBonuses: []

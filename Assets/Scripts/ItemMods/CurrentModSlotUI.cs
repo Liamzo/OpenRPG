@@ -9,6 +9,7 @@ using TMPro;
 public class CurrentModSlotUI : MonoBehaviour, IPointerClickHandler
 {
     public WeaponMod mod;
+    public WeaponModSlot slot;
 
     public Image icon;
     public TextMeshProUGUI nameText;

@@ -159,12 +159,14 @@ public class ModManager : MonoBehaviour
             slotGO.SetActive(true);
         }
 
-        if (selectedMod != null && selectedCurrentMod != null && selectedMod.mod.modId != selectedCurrentMod.mod.modId) {
+        if (selectedMod != null && selectedCurrentMod != null && selectedMod.mod.modId != selectedCurrentMod.mod?.modId) {
             foreach (StatSlotUI statSlot in statSlots) {
                 WeaponStatNames statName = statSlot.statName;
 
                 List<Modifier> addMods = selectedMod.mod.weaponModBonuses.Where(x => x.weaponStatName == statName).ToList().ConvertAll(x => new Modifier(x.modifierType, x.value));
-                List<Modifier> removeMods = selectedCurrentMod.mod.weaponModBonuses.Where(x => x.weaponStatName == statName).ToList().ConvertAll(x => new Modifier(x.modifierType, x.value));
+                List<Modifier> removeMods = selectedCurrentMod.mod?.weaponModBonuses.Where(x => x.weaponStatName == statName).ToList().ConvertAll(x => new Modifier(x.modifierType, x.value));
+                if (removeMods == null)
+                    removeMods = new();
 
                 float oldValue = selectedModItem.weapon.GetStatValue(statName);
                 float newValue = selectedModItem.weapon.statsWeapon[statName].CheckValueAfterModifiers(addMods, removeMods);
@@ -206,9 +208,9 @@ public class ModManager : MonoBehaviour
             currentModSlots.Add(slotUI);
 
             slotUI.AddMod(mod.Value, mod.Key);
+            slotUI.slot = mod.Key;
 
-            if (mod.Value != null)
-                slotUI.OnClick += OnPointerClickCurrentMod;
+            slotUI.OnClick += OnPointerClickCurrentMod;
 
             slotGO.SetActive(true);
         }
@@ -245,7 +247,7 @@ public class ModManager : MonoBehaviour
             return;
         }
 
-        foreach (WeaponMod mod in FindModsBySlot(selectedCurrentMod.mod.modSlot))
+        foreach (WeaponMod mod in FindModsBySlot(selectedCurrentMod.slot))
         {
             GameObject slotGO = Instantiate(modSlotPrefab, modSlotsParent.transform);
 
@@ -258,7 +260,7 @@ public class ModManager : MonoBehaviour
 
             slotGO.SetActive(true);
 
-            if (selectedCurrentMod.mod.modId == mod.modId) {
+            if (selectedCurrentMod.mod != null && selectedCurrentMod.mod.modId == mod.modId) {
                 selectedMod?.ChangeBackgroundColor(modSlotUnselectedColor);
                 slotUI.ChangeBackgroundColor(modSlotViewingColor);
                 selectedMod = slotUI;
@@ -323,7 +325,7 @@ public class ModManager : MonoBehaviour
         if (eventData.button == PointerEventData.InputButton.Left) {
             if (selectedMod != slot) {
                 selectedMod?.ChangeBackgroundColor(modSlotUnselectedColor);
-                modSlots.Find(x => x.mod.modId == selectedCurrentMod.mod.modId)?.ChangeBackgroundColor(modSlotSelectedColor);
+                modSlots.Find(x => x.mod.modId == selectedCurrentMod.mod?.modId)?.ChangeBackgroundColor(modSlotSelectedColor);
                 slot.ChangeBackgroundColor(modSlotViewingColor);
                 selectedMod = slot;
                 UpdateSelectedWeapon();
