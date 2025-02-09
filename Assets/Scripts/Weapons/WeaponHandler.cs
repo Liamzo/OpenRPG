@@ -327,6 +327,14 @@ public class WeaponHandler : MonoBehaviour, ISaveable
         }
     }
 
+
+
+
+    
+    // This probably isn't the best, think of a smarter way
+    public void RunCoroutine(IEnumerator coroutine) {
+        StartCoroutine(coroutine);
+    }
 }
 
 [System.Serializable]

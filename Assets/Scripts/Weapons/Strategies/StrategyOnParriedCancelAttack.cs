@@ -22,8 +22,33 @@ public class StrategyOnParriedCancelAttack : BaseStrategy
     {
         if (hitOutcome != HitOutcome.Parry) return;
 
-        weapon.AttackCancel(triggerSlot);
+        weapon.RunCoroutine(ReverseAnimation(weapon));
+    }
+
+
+    IEnumerator ReverseAnimation(WeaponHandler weapon) {
         weapon.item.owner.objectStatusHandler.BlockControls(1f); // Move somewhere else. Probably make an Effect Handler for things like Stunned, etc. that handles setting the objectStatusHandler
         weapon.item.owner.objectStatusHandler.BlockMovementControls(1f); // Move somewhere else
+
+        float startPlaybackTime = weapon.animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+        float elapsedTime = 0f;
+
+        while (true) {
+            elapsedTime += Time.deltaTime;
+            float normalizedTime = Mathf.Lerp(startPlaybackTime, 0.05f, elapsedTime / 0.2f);
+
+            weapon.animator.Play(weapon.animator.GetCurrentAnimatorClipInfo(0)[0].clip.name, 0, normalizedTime); // Update animation playback
+            weapon.animator.speed = 0; // Stop automatic animation speed control
+
+            if (elapsedTime >= 0.2f)
+            {
+                //weapon.animator.speed = 1; // Reset to normal speed
+                break;
+            }
+
+            yield return null;
+        }
+
+        weapon.AttackCancel(triggerSlot);
     }
 }

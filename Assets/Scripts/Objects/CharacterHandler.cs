@@ -55,16 +55,16 @@ public class CharacterHandler : ObjectHandler
 
             if (angleBetween <= objectStatusHandler.blockAngle)
             {
-                GameManager.instance.ChangeTimeScale(0.25f, 0.1f);
-
                 // Did block, check if a Parry
                 if (objectStatusHandler.blockTimer <= 0.3f) {
                     if (objectStatusHandler.timeSinceLastBlock > 0.1f) {
                         // Did a Parry
+                        GameManager.instance.ChangeTimeScale(0.4f, 0.1f);
                         return HitOutcome.Parry;
                     }
                 }
 
+                GameManager.instance.ChangeTimeScale(0.25f, 0.1f);
                 return HitOutcome.Block;
             }
         }
