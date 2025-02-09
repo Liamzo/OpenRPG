@@ -370,6 +370,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7547779233427188607, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: poolObjects.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7547779233427188607, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: poolObjects.Array.data[7].prefab
+      value: 
+      objectReference: {fileID: 497193873539803545, guid: 0c439075f98865b4081234520679479f, type: 3}
+    - target: {fileID: 7547779233427188607, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: poolObjects.Array.data[7].poolSize
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7547779233427188607, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: poolObjects.Array.data[7].identifier
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7547779233427188607, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: poolObjects.Array.data[7].resetOnNewLevel
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7547779233764941387, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
       propertyPath: m_SizeDelta.x
       value: -25

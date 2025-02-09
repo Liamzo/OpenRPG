@@ -59,7 +59,13 @@ public class CharacterHandler : ObjectHandler
                 if (objectStatusHandler.blockTimer <= 0.3f) {
                     if (objectStatusHandler.timeSinceLastBlock > 0.1f) {
                         // Did a Parry
-                        GameManager.instance.ChangeTimeScale(0.4f, 0.1f);
+                        GameManager.instance.ChangeTimeScale(0.5f, 0.4f);
+
+                        GameObject sparksEffect = ObjectPoolManager.Instance.GetPooledObject(PoolIdentifiers.EffectSparks);
+                        Vector2 sparksPosition = ((hitPosition - (Vector2)hitboxCollider.bounds.center) / 2f) + (Vector2)hitboxCollider.bounds.center;
+                        sparksEffect.transform.position = sparksPosition;
+                        sparksEffect.SetActive(true);
+
                         return HitOutcome.Parry;
                     }
                 }

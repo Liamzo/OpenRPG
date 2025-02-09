@@ -93,4 +93,5 @@ public enum PoolIdentifiers {
     BloodEffect,
     QuestStepUI,
     SmallIconUI,
+    EffectSparks
 }
