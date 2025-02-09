@@ -179,7 +179,7 @@ public class Player : BaseBrain
             character.objectStatusHandler.BlockMovementControls();
             character.objectStatusHandler.isDodging = true;
             character.ChangeStamina(-dodgeStaminaCost);
-            character.objectStatusHandler.BlockRegainStamina(0.5f);
+            character.objectStatusHandler.BlockRegainStamina(2f);
 
             footSteps.Emit(25);
 
@@ -299,7 +299,7 @@ public class Player : BaseBrain
 
                 if (weaponHoldCost != 0f) {
                     character.ChangeStamina(-weaponHoldCost);
-                    character.objectStatusHandler.BlockRegainStamina(0.2f);
+                    character.objectStatusHandler.BlockRegainStamina(Mathf.Min(weaponHoldCost, 2f));
                 }
 
                 SpriteLookAtMouse();
@@ -320,7 +320,7 @@ public class Player : BaseBrain
 
                 if (weaponReleaseCost != 0f) {
                     character.ChangeStamina(-weaponReleaseCost);
-                    character.objectStatusHandler.BlockRegainStamina(0.2f);
+                    character.objectStatusHandler.BlockRegainStamina(Mathf.Min(weaponReleaseCost, 2f));
                 }
 
                 SpriteLookAtMouse();    
