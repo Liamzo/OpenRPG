@@ -27,8 +27,8 @@ public class StrategyOnParriedCancelAttack : BaseStrategy
 
 
     IEnumerator ReverseAnimation(WeaponHandler weapon) {
-        weapon.item.owner.objectStatusHandler.BlockControls(1f); // Move somewhere else. Probably make an Effect Handler for things like Stunned, etc. that handles setting the objectStatusHandler
-        weapon.item.owner.objectStatusHandler.BlockMovementControls(1f); // Move somewhere else
+        weapon.item.owner.objectStatusHandler.BlockControls(0.2f); // Move somewhere else. Probably make an Effect Handler for things like Stunned, etc. that handles setting the objectStatusHandler
+        weapon.item.owner.objectStatusHandler.BlockMovementControls(0.2f); // Move somewhere else
 
         float startPlaybackTime = weapon.animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
         float elapsedTime = 0f;
