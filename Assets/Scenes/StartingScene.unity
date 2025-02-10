@@ -3672,9 +3672,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameMenuUI: {fileID: 5998122507579366568}
-  menuHeaders: []
-  lowlightText: {r: 0, g: 0, b: 0, a: 0}
-  highlightText: {r: 0, g: 0, b: 0, a: 0}
+  lowlightText: {r: 1, g: 1, b: 1, a: 0.60784316}
+  highlightText: {r: 1, g: 1, b: 1, a: 1}
+  menuHeaders:
+  - {fileID: 2110697937}
+  - {fileID: 962449733}
+  - {fileID: 1284166200}
+  - {fileID: 2000861625}
+  - {fileID: 2014812169}
 --- !u!1 &1909215817
 GameObject:
   m_ObjectHideFlags: 0
@@ -4933,10 +4938,10 @@ MonoBehaviour:
       - m_Target: {fileID: 1805188156}
         m_TargetAssemblyTypeName: GameMenuManager, Assembly-CSharp
         m_MethodName: HeaderClicked
-        m_Mode: 3
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 2110697935}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -6251,7 +6256,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &5998122507805828026
 CanvasRenderer:
   m_ObjectHideFlags: 0

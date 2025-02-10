@@ -94,7 +94,7 @@ public class Quest
 
         foreach (JSONNode completeEvent in json["onComplete"]) {
             if (completeEvent.HasKey("removeLevel")) {
-                MapManager.instance.RemoveLevel(completeEvent["removeLevel"]);
+                MapManager.Instance.RemoveLevel(completeEvent["removeLevel"]);
             }
             if (completeEvent.HasKey("exp")) {
                 

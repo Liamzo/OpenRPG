@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class MapManager : MonoBehaviour
 {
-    public static MapManager instance;
+    public static MapManager Instance;
 
     public GameObject mapUI;
     public GameObject mapPointParent;
@@ -17,7 +17,7 @@ public class MapManager : MonoBehaviour
 
 
     private void Awake() {
-        instance = this;
+        Instance = this;
     }
 
     // Start is called before the first frame update
@@ -33,9 +33,7 @@ public class MapManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (InputManager.GetInstance().GetMapPressed()) {
-            OnMap();
-        }
+        
     }
 
 
@@ -45,13 +43,13 @@ public class MapManager : MonoBehaviour
             AudioManager.instance.PlayClipRandom(AudioID.CloseUI);
         } else {
             OpenMap();
-            AudioManager.instance.PlayClipRandom(AudioID.OpenMap);
         }
     }
 
     public void OpenMap() {
         if (mapUI.activeSelf == false) {
             mapUI.SetActive(true);
+            AudioManager.instance.PlayClipRandom(AudioID.OpenMap);
         }
 
         foreach (MapPointUI mapPoint in mapPointUIs) {

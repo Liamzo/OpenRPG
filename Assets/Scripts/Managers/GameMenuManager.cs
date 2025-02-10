@@ -16,7 +16,8 @@ public class GameMenuManager : MonoBehaviour
     public Color highlightText;
     public List<TextMeshProUGUI> menuHeaders = new (); // make new GameMenuHeaderUI class with Text and UI reference
 
-    public List<GameMenuHeaderHolder> menuPanels = new ();
+    
+    public GameMenuPanels? currentPanel = null;
 
 
     void Awake () {
@@ -32,8 +33,98 @@ public class GameMenuManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        bool panelChanged = false;
+
+        if (InputManager.GetInstance().GetMapPressed()) 
+        {
+            if (currentPanel == GameMenuPanels.Map) {
+                // Close Game Menu
+                MapManager.Instance.CloseMap();
+                CloseGameMenu();
+                return;
+            }
+
+            if (currentPanel != null)
+                ClosePanelByEnum(currentPanel.Value); // Close currently open Panel first
+            MapManager.Instance.OpenMap();
+            currentPanel = GameMenuPanels.Map;
+            panelChanged = true;
+        } 
+        else if (InputManager.GetInstance().GetJournalPressed()) 
+        {
+            if (currentPanel == GameMenuPanels.Journal) {
+                // Close Game Menu
+                QuestManager.GetInstance().CloseJournal();
+                CloseGameMenu();
+                return;
+            }
+            
+            if (currentPanel != null)
+                ClosePanelByEnum(currentPanel.Value); // Close currently open Panel first
+            QuestManager.GetInstance().OpenJournal();
+            currentPanel = GameMenuPanels.Journal;
+            panelChanged = true;
+        } 
+        else if (Input.GetKeyDown(KeyCode.K)) 
+        {
+            if (currentPanel == GameMenuPanels.Tinkering) {
+                // Close Game Menu
+                ModManager.Instance.CloseModManager();
+                CloseGameMenu();
+                return;
+            }
+            
+            if (currentPanel != null)
+                ClosePanelByEnum(currentPanel.Value); // Close currently open Panel first
+            ModManager.Instance.OpenModManager();
+            currentPanel = GameMenuPanels.Tinkering;
+            panelChanged = true;
+        }
+    
+        if (panelChanged) {
+            if (gameMenuUI.activeSelf == false)
+                gameMenuUI.SetActive(true);
+
+            SetHeaders();
+        }
     }
+
+
+    void SetHeaders() {
+        menuHeaders[2].SetText(currentPanel.ToString());
+
+        for (int i = 0; i < 5; i++) {
+            if (i == 2) continue;
+
+            int index = (int) currentPanel + i - 2;
+            if (index < 0) 
+                index = System.Enum.GetValues(typeof(GameMenuPanels)).Length + index;
+            index %= System.Enum.GetValues(typeof(GameMenuPanels)).Length;
+
+            menuHeaders[i].SetText(((GameMenuPanels) index).ToString());
+        }
+    }
+
+
+    void CloseGameMenu () {
+        gameMenuUI.SetActive(false);
+        currentPanel = null;
+
+        AudioManager.instance.PlayClipRandom(AudioID.CloseUI);
+    }
+
+
+
+    void ClosePanelByEnum (GameMenuPanels panel) {
+        if (panel == GameMenuPanels.Journal) { 
+            QuestManager.GetInstance().CloseJournal();
+        } else if (panel == GameMenuPanels.Map) {
+            MapManager.Instance.CloseMap();
+        } else if (panel == GameMenuPanels.Tinkering) {
+            ModManager.Instance.CloseModManager();
+        }
+    }
+
 
     public void HeaderClicked(GameObject text) {
         Debug.Log("boop");

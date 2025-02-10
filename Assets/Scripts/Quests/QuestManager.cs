@@ -57,9 +57,7 @@ public class QuestManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (InputManager.GetInstance().GetJournalPressed()) {
-            OnJournal();
-        }
+        
     }
 
     Quest FindQuest(string name) {
@@ -143,7 +141,7 @@ public class QuestManager : MonoBehaviour
 
 
     // UI
-    void OnJournal() {
+    public void OnJournal() {
         if (jounralUI.activeSelf == true) {
             CloseJournal();
         } else {

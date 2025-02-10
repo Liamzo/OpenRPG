@@ -25,7 +25,7 @@ public abstract class QuestStep
 
         foreach (JSONNode beginEvent in json["onBegin"]) {
             if (beginEvent.HasKey("addLevel")) {
-                MapManager.instance.AddLevel(beginEvent["addLevel"]);
+                MapManager.Instance.AddLevel(beginEvent["addLevel"]);
             }
         }
     }
