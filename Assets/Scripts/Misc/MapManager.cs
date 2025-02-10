@@ -26,8 +26,6 @@ public class MapManager : MonoBehaviour
         foreach (LevelData level in startingLevels) {
             AddLevel(level);
         }
-
-        LevelManager.instance.LoadLevelPre += LevelLoaded;
     }
 
     // Update is called once per frame
@@ -101,10 +99,5 @@ public class MapManager : MonoBehaviour
 
         LevelManager.instance.LoadLevel(mapPoint.levelData);
         AudioManager.instance.PlayClipRandom(AudioID.Travel);
-    }
-
-
-    public void LevelLoaded() {
-        CloseMap();
     }
 }

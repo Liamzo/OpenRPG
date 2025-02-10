@@ -27,7 +27,7 @@ public class GameMenuManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        LevelManager.instance.LoadLevelPre += LevelLoaded;
     }
 
     // Update is called once per frame
@@ -128,6 +128,16 @@ public class GameMenuManager : MonoBehaviour
 
     public void HeaderClicked(GameObject text) {
         Debug.Log("boop");
+    }
+
+
+
+
+    public void LevelLoaded() {
+        if (currentPanel != null)
+            ClosePanelByEnum(currentPanel.Value);
+        
+        CloseGameMenu ();
     }
 }
 
