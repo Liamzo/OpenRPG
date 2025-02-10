@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class GameMenuManager : MonoBehaviour
 {
-    public static GameMenuManager instance;
+    public static GameMenuManager Instance;
 
 
     // Game Menu UI
@@ -21,7 +21,7 @@ public class GameMenuManager : MonoBehaviour
 
 
     void Awake () {
-        instance = this;
+        Instance = this;
     }
 
     // Start is called before the first frame update
@@ -114,6 +114,23 @@ public class GameMenuManager : MonoBehaviour
     }
 
 
+    void OpenPanelByEnum(GameMenuPanels panel) {
+        if (panel == GameMenuPanels.Journal) { 
+            ClosePanelByEnum(currentPanel.Value); // Close currently open Panel first
+            QuestManager.GetInstance().OpenJournal();
+            currentPanel = GameMenuPanels.Journal;
+        } else if (panel == GameMenuPanels.Map) {
+            ClosePanelByEnum(currentPanel.Value); // Close currently open Panel first
+            MapManager.Instance.OpenMap();
+            currentPanel = GameMenuPanels.Map;
+        } else if (panel == GameMenuPanels.Tinkering) {
+            ClosePanelByEnum(currentPanel.Value); // Close currently open Panel first
+            ModManager.Instance.OpenModManager();
+            currentPanel = GameMenuPanels.Tinkering;
+        }
+
+        SetHeaders();
+    }
 
     void ClosePanelByEnum (GameMenuPanels panel) {
         if (panel == GameMenuPanels.Journal) { 
@@ -126,8 +143,15 @@ public class GameMenuManager : MonoBehaviour
     }
 
 
-    public void HeaderClicked(GameObject text) {
-        Debug.Log("boop");
+    public void HeaderClicked(int index) {
+        if (index == 0) return; // Maybe reload the current panel
+
+        int newHeader = (int) currentPanel + index;
+        if (newHeader < 0) 
+            newHeader = System.Enum.GetValues(typeof(GameMenuPanels)).Length + newHeader;
+        newHeader %= System.Enum.GetValues(typeof(GameMenuPanels)).Length;
+
+        OpenPanelByEnum((GameMenuPanels) newHeader);
     }
 
 

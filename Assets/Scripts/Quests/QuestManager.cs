@@ -23,6 +23,8 @@ public class QuestManager : MonoBehaviour
 
     [Header("UI")]
     public GameObject jounralUI;
+    public TextMeshProUGUI activeHeader;
+    public TextMeshProUGUI completedHeader;
     public GameObject questEntriesActiveParent;
     public GameObject questEntriesCompletedParent;
     public GameObject questEntryPrefab;
@@ -141,14 +143,6 @@ public class QuestManager : MonoBehaviour
 
 
     // UI
-    public void OnJournal() {
-        if (jounralUI.activeSelf == true) {
-            CloseJournal();
-        } else {
-            OpenJournal();
-        }
-    }
-
     public void OpenJournal() {
         if (jounralUI.activeSelf == false) {
             jounralUI.SetActive(true);
@@ -185,21 +179,23 @@ public class QuestManager : MonoBehaviour
     }
 
     void UpdateQuestDetails() {
-        if (selectQuestEntry == null) {
-            questDetailsUI.SetActive(false);
-            return;
-        }
-
-        questDetailsUI.SetActive(true);
-        questNameText.text = selectQuestEntry.quest.name;
-        questDescriptionText.text = selectQuestEntry.quest.description;
-        
         foreach (QuestStepUI questStepUI in questSteps) {
             questStepUI.ClearQuestStep();
             questStepUI.gameObject.SetActive(false);
         }
 
         questSteps.Clear();
+
+
+        if (selectQuestEntry == null) {
+            questNameText.text = "";
+            questDescriptionText.text = "";
+            return;
+        }
+
+        questNameText.text = selectQuestEntry.quest.name;
+        questDescriptionText.text = selectQuestEntry.quest.description;
+
 
         foreach (QuestStep questStep in selectQuestEntry.quest.questSteps) {
             if (questStep.stepNum < selectQuestEntry.quest.stepOn) {
@@ -226,6 +222,9 @@ public class QuestManager : MonoBehaviour
             questEntriesActiveParent.SetActive(true);
             questEntriesCompletedParent.SetActive(false);
 
+            activeHeader.color = GameMenuManager.Instance.highlightText;
+            completedHeader.color = GameMenuManager.Instance.lowlightText;
+
             // if (selectQuestEntry != null){
             //     selectQuestEntry.background.color = unmarkedColor;
             //     selectQuestEntry = null;
@@ -236,6 +235,9 @@ public class QuestManager : MonoBehaviour
         if (!showActive && questEntriesActiveParent.activeSelf == true) {
             questEntriesActiveParent.SetActive(false);
             questEntriesCompletedParent.SetActive(true);
+
+            activeHeader.color = GameMenuManager.Instance.lowlightText;
+            completedHeader.color = GameMenuManager.Instance.highlightText;
 
             // if (selectQuestEntry != null){
             //     selectQuestEntry.background.color = unmarkedColor;
