@@ -15,6 +15,8 @@ public class GameMenuManager : MonoBehaviour
     public Color lowlightText;
     public Color highlightText;
     public List<TextMeshProUGUI> menuHeaders = new (); // make new GameMenuHeaderUI class with Text and UI reference
+    public Image leftArrow;
+    public Image rightArrow;
 
     
     public GameMenuPanels? currentPanel = null;
@@ -22,6 +24,9 @@ public class GameMenuManager : MonoBehaviour
 
     void Awake () {
         Instance = this;
+
+        leftArrow.alphaHitTestMinimumThreshold = 0.1f;
+        rightArrow.alphaHitTestMinimumThreshold = 0.1f;
     }
 
     // Start is called before the first frame update
