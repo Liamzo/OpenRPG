@@ -5257,6 +5257,7 @@ MonoBehaviour:
   - {fileID: 47198173}
   leftArrow: {fileID: 269301993}
   rightArrow: {fileID: 1816767968}
+  currentPanelGO: {fileID: 0}
 --- !u!1001 &413326266066957931
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6576,7 +6577,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1805188156}
         m_TargetAssemblyTypeName: GameMenuManager, Assembly-CSharp
-        m_MethodName: HeaderClicked
+        m_MethodName: ArrowClicked
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6678,6 +6679,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1972617275640630185, guid: 055312e1c413aae4d903373817bec9aa, type: 3}
   m_PrefabInstance: {fileID: 1972617274596570973}
   m_PrefabAsset: {fileID: 0}
+--- !u!225 &1914827138
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115389172}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!114 &1134192273 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1972617275663634892, guid: 055312e1c413aae4d903373817bec9aa, type: 3}
@@ -6766,6 +6779,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1972617275165896977, guid: 055312e1c413aae4d903373817bec9aa, type: 3}
   m_PrefabInstance: {fileID: 1972617274596570973}
   m_PrefabAsset: {fileID: 0}
+--- !u!225 &1933514835
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714374220}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1803877839 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1972617274991069842, guid: 055312e1c413aae4d903373817bec9aa, type: 3}
@@ -6833,7 +6858,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1805188156}
         m_TargetAssemblyTypeName: GameMenuManager, Assembly-CSharp
-        m_MethodName: HeaderClicked
+        m_MethodName: ArrowClicked
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6923,6 +6948,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4077612657469948888, guid: 055312e1c413aae4d903373817bec9aa, type: 3}
   m_PrefabInstance: {fileID: 1972617274596570973}
   m_PrefabAsset: {fileID: 0}
+--- !u!225 &1681901598
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2591456471019598981}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!224 &5998122508481244019 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5214526605479386158, guid: 055312e1c413aae4d903373817bec9aa, type: 3}

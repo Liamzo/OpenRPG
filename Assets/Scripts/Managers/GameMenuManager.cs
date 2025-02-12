@@ -20,6 +20,7 @@ public class GameMenuManager : MonoBehaviour
 
     
     public GameMenuPanels? currentPanel = null;
+    public GameObject currentPanelGO = null;
     Coroutine runningScrambleCoroutine = null;
 
 
@@ -50,10 +51,7 @@ public class GameMenuManager : MonoBehaviour
                 return;
             }
 
-            if (currentPanel != null)
-                ClosePanelByEnum(currentPanel.Value); // Close currently open Panel first
-            MapManager.Instance.OpenMap();
-            currentPanel = GameMenuPanels.Map;
+            StartCoroutine(PanelTransition(GameMenuPanels.Map));
             panelChanged = true;
         } 
         else if (InputManager.GetInstance().GetJournalPressed()) 
@@ -65,10 +63,7 @@ public class GameMenuManager : MonoBehaviour
                 return;
             }
             
-            if (currentPanel != null)
-                ClosePanelByEnum(currentPanel.Value); // Close currently open Panel first
-            QuestManager.GetInstance().OpenJournal();
-            currentPanel = GameMenuPanels.Journal;
+            StartCoroutine(PanelTransition(GameMenuPanels.Journal));
             panelChanged = true;
         } 
         else if (Input.GetKeyDown(KeyCode.K)) 
@@ -80,10 +75,7 @@ public class GameMenuManager : MonoBehaviour
                 return;
             }
             
-            if (currentPanel != null)
-                ClosePanelByEnum(currentPanel.Value); // Close currently open Panel first
-            ModManager.Instance.OpenModManager();
-            currentPanel = GameMenuPanels.Tinkering;
+            StartCoroutine(PanelTransition(GameMenuPanels.Tinkering));
             panelChanged = true;
         }
     
@@ -91,18 +83,60 @@ public class GameMenuManager : MonoBehaviour
             if (gameMenuUI.activeSelf == false)
                 gameMenuUI.SetActive(true);
 
-            SetHeaders();
+            //SetHeaders();
         }
     }
 
+    IEnumerator PanelTransition(GameMenuPanels openPanel) {
+        float fadeOutDuration = 0.1f;
+        float pauseDuration = 0.2f;
+        float fadeInDuration = 0.1f;
 
-    void SetHeaders() {
+        float timer = 0f;
+
+        SetHeaders(openPanel);
+
+        if (currentPanel != null) {
+            while (timer < fadeOutDuration) {
+                timer += Time.deltaTime;
+
+                currentPanelGO.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(1f, 0f, timer / fadeOutDuration);
+
+                yield return null;
+            }
+
+            ClosePanelByEnum(currentPanel.Value); // Close currently open Panel first
+            timer = 0f;
+            
+            yield return new WaitForSeconds(pauseDuration);
+        }
+
+
+        OpenPanelByEnum(openPanel);
+
+        while (timer < fadeInDuration) {
+            timer += Time.deltaTime;
+
+            currentPanelGO.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(0f, 1f, timer / fadeInDuration);
+
+            yield return null;
+        }
+
+        currentPanelGO.GetComponent<CanvasGroup>().alpha = 1f;
+    }
+
+
+    void SetHeaders(GameMenuPanels newPanel) {
         if (runningScrambleCoroutine != null)
             StopCoroutine(runningScrambleCoroutine);
 
-        runningScrambleCoroutine = StartCoroutine(ScrambleTextTransition());
+        runningScrambleCoroutine = StartCoroutine(ScrambleTextTransition(newPanel));
     }
-    IEnumerator ScrambleTextTransition() {
+    IEnumerator ScrambleTextTransition(GameMenuPanels newPanel) {
+        float elapsedTime = 0f;
+        float scramableDuration = 0.4f;
+        float scramblePause = 0.05f;
+
         // List<string> currentWords = new ();
         // foreach (TextMeshProUGUI text in menuHeaders) {
         //     currentWords.Add(text.text);
@@ -110,7 +144,7 @@ public class GameMenuManager : MonoBehaviour
 
         List<string> newWords = new ();
         for (int i = 0; i < 5; i++) {
-            int index = (int) currentPanel + i - 2;
+            int index = (int) newPanel + i - 2;
             if (index < 0) 
                 index = System.Enum.GetValues(typeof(GameMenuPanels)).Length + index;
             index %= System.Enum.GetValues(typeof(GameMenuPanels)).Length;
@@ -125,12 +159,6 @@ public class GameMenuManager : MonoBehaviour
             possibleCharacters.Add((char)glyph.unicode);
         }
 
-
-        float elapsedTime = 0f;
-        float scramableDuration = 0.4f;
-        float scramblePause = 0.05f;
-
-        int numberOfScrambels = (int) (scramableDuration / scramblePause);
 
         while (elapsedTime < scramableDuration)
         {
@@ -161,27 +189,28 @@ public class GameMenuManager : MonoBehaviour
     void CloseGameMenu () {
         gameMenuUI.SetActive(false);
         currentPanel = null;
+        currentPanelGO = null;
+
+        runningScrambleCoroutine = null;
 
         AudioManager.instance.PlayClipRandom(AudioID.CloseUI);
     }
 
 
     void OpenPanelByEnum(GameMenuPanels panel) {
-        if (panel == GameMenuPanels.Journal) { 
-            ClosePanelByEnum(currentPanel.Value); // Close currently open Panel first
+        if (panel == GameMenuPanels.Journal) {
             QuestManager.GetInstance().OpenJournal();
             currentPanel = GameMenuPanels.Journal;
+            currentPanelGO = QuestManager.GetInstance().jounralUI;
         } else if (panel == GameMenuPanels.Map) {
-            ClosePanelByEnum(currentPanel.Value); // Close currently open Panel first
             MapManager.Instance.OpenMap();
             currentPanel = GameMenuPanels.Map;
+            currentPanelGO = MapManager.Instance.mapUI;
         } else if (panel == GameMenuPanels.Tinkering) {
-            ClosePanelByEnum(currentPanel.Value); // Close currently open Panel first
             ModManager.Instance.OpenModManager();
             currentPanel = GameMenuPanels.Tinkering;
+            currentPanelGO = ModManager.Instance.modManagerUI;
         }
-
-        SetHeaders();
     }
 
     void ClosePanelByEnum (GameMenuPanels panel) {
@@ -195,15 +224,22 @@ public class GameMenuManager : MonoBehaviour
     }
 
 
+    public void ArrowClicked(int index) {
+        HeaderClicked(index);
+
+        AudioManager.instance.PlayClipRandom(AudioID.UI_Click);
+    }
+
     public void HeaderClicked(int index) {
         if (index == 0) return; // Maybe reload the current panel
 
-        int newHeader = (int) currentPanel + index;
-        if (newHeader < 0) 
-            newHeader = System.Enum.GetValues(typeof(GameMenuPanels)).Length + newHeader;
-        newHeader %= System.Enum.GetValues(typeof(GameMenuPanels)).Length;
+        int newPanel = (int) currentPanel + index;
+        if (newPanel < 0) 
+            newPanel = System.Enum.GetValues(typeof(GameMenuPanels)).Length + newPanel;
+        newPanel %= System.Enum.GetValues(typeof(GameMenuPanels)).Length;
 
-        OpenPanelByEnum((GameMenuPanels) newHeader);
+        //OpenPanelByEnum((GameMenuPanels) newPanel);
+        StartCoroutine(PanelTransition((GameMenuPanels) newPanel));
     }
 
 
