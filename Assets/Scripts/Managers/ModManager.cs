@@ -341,14 +341,6 @@ public class ModManager : MonoBehaviour
     }
 
 
-    public void OnModManager() {
-        if (modManagerUI.activeSelf == true) {
-            CloseModManager();
-        } else {
-            OpenModManager();
-        }
-    }
-
     public void OpenModManager() {
         if (modManagerUI.activeSelf == false) {
             modManagerUI.SetActive(true);

@@ -35,19 +35,10 @@ public class MapManager : MonoBehaviour
     }
 
 
-    public void OnMap() {
-        if (mapUI.activeSelf == true) {
-            CloseMap();
-            AudioManager.instance.PlayClipRandom(AudioID.CloseUI);
-        } else {
-            OpenMap();
-        }
-    }
-
     public void OpenMap() {
         if (mapUI.activeSelf == false) {
             mapUI.SetActive(true);
-            AudioManager.instance.PlayClipRandom(AudioID.OpenMap);
+            //AudioManager.instance.PlayClipRandom(AudioID.OpenMap);
         }
 
         foreach (MapPointUI mapPoint in mapPointUIs) {
