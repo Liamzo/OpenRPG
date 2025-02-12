@@ -430,8 +430,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 378411572}
     - target: {fileID: 1874553603, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1874553603, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 900
+      value: -130
       objectReference: {fileID: 0}
     - target: {fileID: 1904297718, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
       propertyPath: m_fontAsset
