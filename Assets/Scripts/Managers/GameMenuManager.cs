@@ -20,6 +20,7 @@ public class GameMenuManager : MonoBehaviour
 
     
     public GameMenuPanels? currentPanel = null;
+    Coroutine runningScrambleCoroutine = null;
 
 
     void Awake () {
@@ -96,18 +97,64 @@ public class GameMenuManager : MonoBehaviour
 
 
     void SetHeaders() {
-        menuHeaders[2].SetText(currentPanel.ToString());
+        if (runningScrambleCoroutine != null)
+            StopCoroutine(runningScrambleCoroutine);
 
+        runningScrambleCoroutine = StartCoroutine(ScrambleTextTransition());
+    }
+    IEnumerator ScrambleTextTransition() {
+        // List<string> currentWords = new ();
+        // foreach (TextMeshProUGUI text in menuHeaders) {
+        //     currentWords.Add(text.text);
+        // }
+
+        List<string> newWords = new ();
         for (int i = 0; i < 5; i++) {
-            if (i == 2) continue;
-
             int index = (int) currentPanel + i - 2;
             if (index < 0) 
                 index = System.Enum.GetValues(typeof(GameMenuPanels)).Length + index;
             index %= System.Enum.GetValues(typeof(GameMenuPanels)).Length;
 
-            menuHeaders[i].SetText(((GameMenuPanels) index).ToString());
+            newWords.Add(((GameMenuPanels) index).ToString());
         }
+
+
+        // Get all characters in the current TMP font
+        List<char> possibleCharacters = new List<char>();
+        foreach (TMP_Character glyph in menuHeaders[0].font.characterTable) {
+            possibleCharacters.Add((char)glyph.unicode);
+        }
+
+
+        float elapsedTime = 0f;
+        float scramableDuration = 0.4f;
+        float scramblePause = 0.05f;
+
+        int numberOfScrambels = (int) (scramableDuration / scramblePause);
+
+        while (elapsedTime < scramableDuration)
+        {
+            // Scramble letters
+            foreach (TextMeshProUGUI text in menuHeaders) {
+                //char[] randomChars = new char[text.text.Length];
+                char[] randomChars = new char[10];
+
+                for (int i = 0; i < randomChars.Length; i++) {
+                    randomChars[i] = possibleCharacters[Random.Range(0, possibleCharacters.Count)];
+                }
+
+                text.text = new string(randomChars);
+            }
+            
+            elapsedTime += scramblePause;
+            yield return new WaitForSeconds(scramblePause);
+        }
+
+        for (int i = 0; i < 5; i++) {
+            menuHeaders[i].SetText(newWords[i]);
+        }
+
+        runningScrambleCoroutine = null;
     }
 
 
