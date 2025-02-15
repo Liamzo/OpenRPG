@@ -76,6 +76,22 @@ public class Quest
         }
     }
 
+    void BackStep() {
+        // Probably need to add a Cancel function to steps
+        questStepsActive.Clear();
+
+        stepOn -= 1;
+
+        QuestManager.GetInstance().QuestProgress(name, stepOn);
+
+        foreach (QuestStep step in questSteps) {
+            if (step.stepNum == stepOn) {
+                step.Begin(); // Probably will cause issues with some steps
+                questStepsActive.Add(step);
+            }
+        }
+    }
+
     public void CompleteStep(QuestStep step) {
         if (!questStepsActive.Contains(step)) {
             Debug.LogWarning("Step completed was not Active");
