@@ -19,7 +19,7 @@ public class InkExternalFunctions
 
 
     public void StartQuest(string questName) {
-        QuestManager.GetInstance().BeingQuest(questName);
+        QuestManager.GetInstance().BeginQuest(questName);
     }
     public void DialogueChoiceMade(string questName, string questStep, int choiceId) {
         QuestManager.GetInstance().DialogueChoiceListener(questName, questStep, choiceId);

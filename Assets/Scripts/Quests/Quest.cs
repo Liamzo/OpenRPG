@@ -48,7 +48,7 @@ public class Quest
         }
     }
 
-    public void BeingQuest() {
+    public void BeginQuest() {
         Debug.Log("Beginning Quest: " + name);
 
 

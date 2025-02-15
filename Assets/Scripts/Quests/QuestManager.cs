@@ -87,9 +87,9 @@ public class QuestManager : MonoBehaviour
         return null;
     }
 
-    public void BeingQuest(string name) {
+    public void BeginQuest(string name) {
         Quest quest = FindQuest(name);
-        quest.BeingQuest();
+        quest.BeginQuest();
         questsActive.Add(quest);
 
 
@@ -225,6 +225,9 @@ public class QuestManager : MonoBehaviour
             activeHeader.color = GameMenuManager.Instance.highlightText;
             completedHeader.color = GameMenuManager.Instance.lowlightText;
 
+            activeHeader.fontMaterial = GameMenuManager.Instance.highlightMaterial;
+            completedHeader.fontMaterial = GameMenuManager.Instance.lowlightMaterial;
+
             // if (selectQuestEntry != null){
             //     selectQuestEntry.background.color = unmarkedColor;
             //     selectQuestEntry = null;
@@ -238,6 +241,9 @@ public class QuestManager : MonoBehaviour
 
             activeHeader.color = GameMenuManager.Instance.lowlightText;
             completedHeader.color = GameMenuManager.Instance.highlightText;
+
+            activeHeader.fontMaterial = GameMenuManager.Instance.lowlightMaterial;
+            completedHeader.fontMaterial = GameMenuManager.Instance.highlightMaterial;
 
             // if (selectQuestEntry != null){
             //     selectQuestEntry.background.color = unmarkedColor;

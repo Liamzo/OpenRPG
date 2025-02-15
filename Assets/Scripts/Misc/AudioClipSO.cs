@@ -49,7 +49,7 @@ public enum AudioID {
     AmbientBird,
     MusicTown,
     MusicForest,
-
+    PanelChange,
 }
 
 public enum AudioSourceType {

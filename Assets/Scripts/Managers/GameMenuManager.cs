@@ -12,16 +12,21 @@ public class GameMenuManager : MonoBehaviour
 
     // Game Menu UI
     public GameObject gameMenuUI;
-    public Color lowlightText;
-    public Color highlightText;
     public List<TextMeshProUGUI> menuHeaders = new (); // make new GameMenuHeaderUI class with Text and UI reference
     public Image leftArrow;
     public Image rightArrow;
+
+
+    public Color lowlightText;
+    public Color highlightText;
+    public Material lowlightMaterial;
+    public Material highlightMaterial;
 
     
     public GameMenuPanels? currentPanel = null;
     public GameObject currentPanelGO = null;
     Coroutine runningScrambleCoroutine = null;
+    Coroutine runningTransitionCoroutine = null;
 
 
     void Awake () {
@@ -51,7 +56,10 @@ public class GameMenuManager : MonoBehaviour
                 return;
             }
 
-            StartCoroutine(PanelTransition(GameMenuPanels.Map));
+            if (runningTransitionCoroutine != null)
+                return;
+
+            runningTransitionCoroutine = StartCoroutine(PanelTransition(GameMenuPanels.Map));
             panelChanged = true;
         } 
         else if (InputManager.GetInstance().GetJournalPressed()) 
@@ -62,8 +70,11 @@ public class GameMenuManager : MonoBehaviour
                 CloseGameMenu();
                 return;
             }
-            
-            StartCoroutine(PanelTransition(GameMenuPanels.Journal));
+
+            if (runningTransitionCoroutine != null)
+                return;
+
+            runningTransitionCoroutine = StartCoroutine(PanelTransition(GameMenuPanels.Journal));
             panelChanged = true;
         } 
         else if (Input.GetKeyDown(KeyCode.K)) 
@@ -74,16 +85,17 @@ public class GameMenuManager : MonoBehaviour
                 CloseGameMenu();
                 return;
             }
-            
-            StartCoroutine(PanelTransition(GameMenuPanels.Tinkering));
+
+            if (runningTransitionCoroutine != null)
+                return;
+
+            runningTransitionCoroutine = StartCoroutine(PanelTransition(GameMenuPanels.Tinkering));
             panelChanged = true;
         }
     
         if (panelChanged) {
             if (gameMenuUI.activeSelf == false)
                 gameMenuUI.SetActive(true);
-
-            //SetHeaders();
         }
     }
 
@@ -96,7 +108,12 @@ public class GameMenuManager : MonoBehaviour
 
         SetHeaders(openPanel);
 
-        if (currentPanel != null) {
+        AudioManager.instance.PlayClipRandom(AudioID.PanelChange);
+
+        GameMenuPanels? oldPanel = currentPanel;
+        currentPanel = openPanel;
+
+        if (oldPanel != null) {
             while (timer < fadeOutDuration) {
                 timer += Time.deltaTime;
 
@@ -105,7 +122,7 @@ public class GameMenuManager : MonoBehaviour
                 yield return null;
             }
 
-            ClosePanelByEnum(currentPanel.Value); // Close currently open Panel first
+            ClosePanelByEnum(oldPanel.Value); // Close currently open Panel first
             timer = 0f;
             
             yield return new WaitForSeconds(pauseDuration);
@@ -123,6 +140,8 @@ public class GameMenuManager : MonoBehaviour
         }
 
         currentPanelGO.GetComponent<CanvasGroup>().alpha = 1f;
+
+        runningTransitionCoroutine = null;
     }
 
 
@@ -187,28 +206,30 @@ public class GameMenuManager : MonoBehaviour
 
 
     void CloseGameMenu () {
+        if (runningTransitionCoroutine != null) {
+            StopCoroutine(runningTransitionCoroutine);
+            runningTransitionCoroutine = null;
+        }
+
         gameMenuUI.SetActive(false);
         currentPanel = null;
         currentPanelGO = null;
-
-        runningScrambleCoroutine = null;
 
         AudioManager.instance.PlayClipRandom(AudioID.CloseUI);
     }
 
 
     void OpenPanelByEnum(GameMenuPanels panel) {
+        currentPanel = panel;
+
         if (panel == GameMenuPanels.Journal) {
             QuestManager.GetInstance().OpenJournal();
-            currentPanel = GameMenuPanels.Journal;
             currentPanelGO = QuestManager.GetInstance().jounralUI;
         } else if (panel == GameMenuPanels.Map) {
             MapManager.Instance.OpenMap();
-            currentPanel = GameMenuPanels.Map;
             currentPanelGO = MapManager.Instance.mapUI;
         } else if (panel == GameMenuPanels.Tinkering) {
             ModManager.Instance.OpenModManager();
-            currentPanel = GameMenuPanels.Tinkering;
             currentPanelGO = ModManager.Instance.modManagerUI;
         }
     }
@@ -233,13 +254,14 @@ public class GameMenuManager : MonoBehaviour
     public void HeaderClicked(int index) {
         if (index == 0) return; // Maybe reload the current panel
 
+        if (runningTransitionCoroutine != null) return;
+
         int newPanel = (int) currentPanel + index;
         if (newPanel < 0) 
             newPanel = System.Enum.GetValues(typeof(GameMenuPanels)).Length + newPanel;
         newPanel %= System.Enum.GetValues(typeof(GameMenuPanels)).Length;
 
-        //OpenPanelByEnum((GameMenuPanels) newPanel);
-        StartCoroutine(PanelTransition((GameMenuPanels) newPanel));
+        runningTransitionCoroutine = StartCoroutine(PanelTransition((GameMenuPanels) newPanel));
     }
 
 
