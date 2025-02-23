@@ -35,6 +35,17 @@ What can I do for you?
         ~slay_the_bandits_stage = 2
         ~dialogueChoiceMade("Slay the Bandits", "Return to Bob", 0)
         -> opts
+    *   { slay_the_bandits_stage >= 2 } [Any other jobs for me?]
+        Now that you mention it, we could use some more equipment to help defend ourselves
+        If you could bring us 5 swords, that would help a lot
+            + +     [Sure, I can do that]
+                Cheers mate. You'll be sure to find some on the bandits out in the woods
+                ~gather_swords_stage = 0
+                ~startQuest("Gather Swords")
+                -> opts
+            + +     [Sounds like a hassle]
+                -> opts
+                
     *   [Tell me about this place]
         There's not much to say really
         -> opts

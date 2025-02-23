@@ -44,6 +44,10 @@ public class Quest
                     QuestStepTalk talk = new QuestStepTalk(stepData, this);
                     questSteps.Add(talk);
                     break;
+                case "Gather":
+                    QuestStepGather gather = new QuestStepGather(stepData, this);
+                    questSteps.Add(gather);
+                    break;
             }
         }
     }

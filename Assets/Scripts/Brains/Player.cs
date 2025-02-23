@@ -49,6 +49,7 @@ public class Player : BaseBrain
     protected override void Awake() {
         base.Awake();
 
+        Debug.Log("boop");
         instance = this;
 
         threatHandler = GetComponent<ThreatHandlerPlayer>();

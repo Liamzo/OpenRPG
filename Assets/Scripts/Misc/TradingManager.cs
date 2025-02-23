@@ -51,6 +51,8 @@ public class TradingManager : MonoBehaviour
     }
 
     private void Start() {
+        Debug.Log(Player.instance);
+        Debug.Log(Player.GetInstance());
         player = Player.GetInstance().GetComponent<ObjectHandler>();
     }
 

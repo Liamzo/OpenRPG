@@ -24,8 +24,6 @@ public class LevelManager : MonoBehaviour
         // Unload previous level (save data)
         currentLevel?.SaveLevel();
 
-        // Probably here to turn off ObjectPool stuff like corpses and blood
-
         LoadLevelPre();
 
         // Load new level
@@ -54,6 +52,10 @@ public class LevelManager : MonoBehaviour
         } else {
             currentLevel.LoadLevel();
         }
+
+        // Do Quest Level Events here, maybe with a LoadLevelPost Event
+        // A Quest Level Event needs to have a Recurring or Once option
+        // To handle levels that regen every time vs save data
 
         Player.instance.transform.position = currentLevel.levelData.spawnPosition;
     }

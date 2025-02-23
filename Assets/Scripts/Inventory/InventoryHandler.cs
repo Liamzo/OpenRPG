@@ -12,6 +12,12 @@ public class InventoryHandler : MonoBehaviour, ISaveable
 
     public int coins;
 
+
+    // Events
+    public event System.Action<ItemHandler> OnItemAdded = delegate { };
+    public event System.Action<ItemHandler> OnItemRemoved = delegate { };
+
+
     public float carryWeightCurrent {
         get {
             float weight = 0;
@@ -42,6 +48,7 @@ public class InventoryHandler : MonoBehaviour, ISaveable
     public virtual bool Add (ItemHandler item) {
         if (inventory.Count < slots) {
             inventory.Add(item);
+            OnItemAdded(item);
             return true;
         } else {
             Debug.Log("Not enough room in inventory");
@@ -50,7 +57,8 @@ public class InventoryHandler : MonoBehaviour, ISaveable
     }
 
     public virtual void Remove (ItemHandler item) {
-        inventory.Remove(item);
+        if (inventory.Remove(item))
+            OnItemRemoved(item);
     }
 
     public string SaveComponent()
