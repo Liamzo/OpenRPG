@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b95b1f7555643904ba1dbfeef1df8a03, type: 3}
-  m_Name: Double Shot 1
+  m_Name: Large Magazine
   m_EditorClassIdentifier: 
-  researchId: test01
-  researchName: Double Shot
-  researchDescription: Double Shot
-  researchState: 0
+  researchId: pistol01
+  researchName: Large Magazine
+  researchDescription: Large Magazine
+  researchCategory: 0
+  researchState: 1

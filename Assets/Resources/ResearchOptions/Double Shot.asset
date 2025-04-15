@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b95b1f7555643904ba1dbfeef1df8a03, type: 3}
   m_Name: Double Shot
   m_EditorClassIdentifier: 
-  researchId: test03
-  researchName: Test 03
+  researchId: pistol02
+  researchName: Double Shot
   researchDescription: Double Shot
-  researchState: 0
+  researchCategory: 0
+  researchState: 2

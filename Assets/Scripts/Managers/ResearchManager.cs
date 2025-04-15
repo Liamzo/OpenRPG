@@ -63,8 +63,13 @@ public class ResearchManager : MonoBehaviour
         if (researchManagerUI.activeSelf == false)
             return;
 
+        foreach (ResearchOptionUI researchOptionUI in researchOptionUIs) {
+            Destroy(researchOptionUI.gameObject); // Maybe add these to the Object Pool
+        } 
+        researchOptionUIs.Clear();
+
         
-        foreach (ResearchOption researchOption in researchOptions) {
+        foreach (ResearchOption researchOption in researchOptions.Where(x => x.researchCategory == selectedCategory)) {
             GameObject researchGO = Instantiate(researchOptionPrefab, researchOptionsParent.transform);
 
             ResearchOptionUI researchUI = researchGO.GetComponent<ResearchOptionUI>();
@@ -79,13 +84,12 @@ public class ResearchManager : MonoBehaviour
 
 
     public void OnPointerClickResearchCategory(ResearchCategoryUI researchCategoryUI, PointerEventData eventData) {
-        Debug.Log(researchCategoryUI.researchCategory);
-
         if (researchCategoryUI.researchCategory == selectedCategory) {
             // Selected the same Header
             selectedCategoryUI.UnselectHeader();
             selectedCategoryUI = null;
             selectedCategory = null;
+            UpdateResearchManagerUI();
             return;
         }
 
@@ -95,6 +99,8 @@ public class ResearchManager : MonoBehaviour
         selectedCategoryUI = researchCategoryUI;
         selectedCategory = researchCategoryUI.researchCategory;
         selectedCategoryUI.SelectHeader();
+
+        UpdateResearchManagerUI();
     }
 
 
