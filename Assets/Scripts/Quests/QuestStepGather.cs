@@ -21,8 +21,8 @@ public class QuestStepGather : QuestStep
     {
         base.Begin();
         
-        Player.instance.GetComponent<InventoryHandler>().OnItemAdded += CheckInventory;
-        Player.instance.GetComponent<InventoryHandler>().OnItemRemoved += CheckInventory;
+        Player.Instance.GetComponent<InventoryHandler>().OnItemAdded += CheckInventory;
+        Player.Instance.GetComponent<InventoryHandler>().OnItemRemoved += CheckInventory;
 
         CheckInventory(null);
     }
@@ -31,8 +31,8 @@ public class QuestStepGather : QuestStep
     {
         base.Complete();
 
-        Player.instance.GetComponent<InventoryHandler>().OnItemAdded -= CheckInventory;
-        Player.instance.GetComponent<InventoryHandler>().OnItemRemoved -= CheckInventory;
+        Player.Instance.GetComponent<InventoryHandler>().OnItemAdded -= CheckInventory;
+        Player.Instance.GetComponent<InventoryHandler>().OnItemRemoved -= CheckInventory;
     }
 
     public override (string, string) GetText()
@@ -43,7 +43,7 @@ public class QuestStepGather : QuestStep
     void CheckInventory(ItemHandler item) {
         currentAmount = 0;
 
-        foreach (ItemHandler inventoryItem in Player.instance.GetComponent<InventoryHandler>().inventory) {
+        foreach (ItemHandler inventoryItem in Player.Instance.GetComponent<InventoryHandler>().inventory) {
             if (inventoryItem.objectHandler.prefabId == target)
                 currentAmount++;
         }

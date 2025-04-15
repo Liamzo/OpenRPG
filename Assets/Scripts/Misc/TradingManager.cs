@@ -50,18 +50,13 @@ public class TradingManager : MonoBehaviour
         tradePanel.SetActive(false);
     }
 
-    private void Start() {
-        Debug.Log(Player.instance);
-        Debug.Log(Player.GetInstance());
-        player = Player.GetInstance().GetComponent<ObjectHandler>();
-    }
 
     private void Update() {
         if (trader != null && InputManager.GetInstance().GetOfferTradePressed()) {
             // TODO: Stop if player not enough coins, if trader has not enough offer to do it anyway
             // TODO: Consider buying and selling power of Player based on attributes
             InventoryHandler traderInventory = trader.GetComponent<InventoryHandler>();
-            InventoryHandler playerInventory = player.GetComponent<InventoryHandler>();
+            InventoryHandler playerInventory = Player.Instance.GetComponent<InventoryHandler>();
 
             if (totalValueMarked < 0f && playerInventory.coins < Mathf.Abs(totalValueMarked)) {
                 AudioManager.instance.PlayClipRandom(AudioID.TradeWithdrawItem);
@@ -176,7 +171,7 @@ public class TradingManager : MonoBehaviour
 
         playerItemSlots.Clear();
 
-        foreach(ItemHandler item in player.GetComponent<InventoryHandler>().inventory) {
+        foreach(ItemHandler item in Player.Instance.GetComponent<InventoryHandler>().inventory) {
             GameObject slotGO = ObjectPoolManager.Instance.GetPooledObject(PoolIdentifiers.ItemSlotUI);
             slotGO.transform.SetParent(playerItemSlotsParent.transform, false);
 
@@ -200,15 +195,15 @@ public class TradingManager : MonoBehaviour
 
         traderGoldText.text  = trader.GetComponent<InventoryHandler>().coins.ToString();
 
-        playerGoldText.text  = player.GetComponent<InventoryHandler>().coins.ToString();
-        if (player.GetComponent<InventoryHandler>().coins + totalValueMarked < 0f) {
+        playerGoldText.text  = Player.Instance.GetComponent<InventoryHandler>().coins.ToString();
+        if (Player.Instance.GetComponent<InventoryHandler>().coins + totalValueMarked < 0f) {
             playerGoldText.color = markedValueNegativeColor;
         } else {
             playerGoldText.color = Color.white;
         }
 
 
-        playerWeightText.text = player.GetComponent<InventoryHandler>().carryWeightCurrent.ToString() + " / " + player.GetComponent<InventoryHandler>().carryWeightMax.ToString();
+        playerWeightText.text = Player.Instance.GetComponent<InventoryHandler>().carryWeightCurrent.ToString() + " / " + Player.Instance.GetComponent<InventoryHandler>().carryWeightMax.ToString();
     }
 
     public void OnPointerClick(InventorySlotUI slot, PointerEventData eventData)
@@ -259,7 +254,7 @@ public class TradingManager : MonoBehaviour
             markedValueText.color = Color.white;
         }
 
-        if (player.GetComponent<InventoryHandler>().coins + totalValueMarked < 0f) {
+        if (Player.Instance.GetComponent<InventoryHandler>().coins + totalValueMarked < 0f) {
             playerGoldText.color = markedValueNegativeColor;
         } else {
             playerGoldText.color = Color.white;
@@ -288,7 +283,7 @@ public class TradingManager : MonoBehaviour
 
 
     float GetValueModifier(ItemHandler item) {
-        float modifier = 0.2f + (0.1f * Player.instance.character.Attributes.GetAttribute(AttributeNames.Ego)); // Add something with reputation
+        float modifier = 0.2f + (0.1f * Player.Instance.character.Attributes.GetAttribute(AttributeNames.Ego)); // Add something with reputation
 
         modifier = Mathf.Clamp(modifier, 0f, 0.9f);
 

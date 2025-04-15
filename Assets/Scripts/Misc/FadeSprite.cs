@@ -26,11 +26,11 @@ public class FadeSprite : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool shouldFadeOut = objectsBehind.Contains(Player.instance.character);
+        bool shouldFadeOut = objectsBehind.Contains(Player.Instance.character);
 
         if (!shouldFadeOut) {
             foreach (ObjectHandler objectHandler in objectsBehind) {
-                if (Player.instance.threatHandler.CheckInLineOfSight(objectHandler)) {
+                if (Player.Instance.threatHandler.CheckInLineOfSight(objectHandler)) {
                     shouldFadeOut = true;
                     break;
                 }

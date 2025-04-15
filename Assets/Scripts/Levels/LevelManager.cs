@@ -57,7 +57,7 @@ public class LevelManager : MonoBehaviour
         // A Quest Level Event needs to have a Recurring or Once option
         // To handle levels that regen every time vs save data
 
-        Player.instance.transform.position = currentLevel.levelData.spawnPosition;
+        Player.Instance.transform.position = currentLevel.levelData.spawnPosition;
     }
 
 

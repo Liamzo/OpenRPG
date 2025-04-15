@@ -159,7 +159,7 @@ public class DialogueHandler : MonoBehaviour
             // handle case where the last line is an external function
             if (nextLine.Equals("") && !currentStory.canContinue)
             {
-                Player.instance.CancelInteraction();
+                Player.Instance.CancelInteraction();
             }
             // otherwise, handle the normal case for continuing the story
             else 
@@ -172,7 +172,7 @@ public class DialogueHandler : MonoBehaviour
         }
         else 
         {
-            Player.instance.CancelInteraction();
+            Player.Instance.CancelInteraction();
         }
     }
 

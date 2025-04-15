@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 
 public class Player : BaseBrain
 {
-    public static Player instance; // Can be only 1 player
+    public static Player Instance; // Can be only 1 player
 
     private bool _pointerOverUI;
 
@@ -43,14 +43,13 @@ public class Player : BaseBrain
 
     public static Player GetInstance() 
     {
-        return instance;
+        return Instance;
     }
 
     protected override void Awake() {
         base.Awake();
 
-        Debug.Log("boop");
-        instance = this;
+        Instance = this;
 
         threatHandler = GetComponent<ThreatHandlerPlayer>();
 

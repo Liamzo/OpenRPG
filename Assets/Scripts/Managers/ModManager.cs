@@ -94,16 +94,16 @@ public class ModManager : MonoBehaviour
         modItemSlots.Clear();
 
         // First do equipped, then do inventory. Show all moddable items
-        WeaponHandler weapon = Player.instance.equipmentHandler.GetEquipment(EquipmentSlot.RightHand)?.GetComponent<WeaponHandler>();
+        WeaponHandler weapon = Player.Instance.equipmentHandler.GetEquipment(EquipmentSlot.RightHand)?.GetComponent<WeaponHandler>();
         if (weapon != null) 
             CreateModItemSlot(weapon);
 
-        weapon = Player.instance.equipmentHandler.GetEquipment(EquipmentSlot.RightRangedWeapon)?.GetComponent<WeaponHandler>();
+        weapon = Player.Instance.equipmentHandler.GetEquipment(EquipmentSlot.RightRangedWeapon)?.GetComponent<WeaponHandler>();
         if (weapon != null) 
             CreateModItemSlot(weapon);
 
         
-        foreach(ItemHandler item in Player.instance.GetComponent<InventoryHandler>().inventory) {
+        foreach(ItemHandler item in Player.Instance.GetComponent<InventoryHandler>().inventory) {
             if (item.TryGetComponent<WeaponHandler>(out weapon)) {
                 CreateModItemSlot(weapon);
             }

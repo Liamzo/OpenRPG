@@ -92,6 +92,21 @@ public class GameMenuManager : MonoBehaviour
             runningTransitionCoroutine = StartCoroutine(PanelTransition(GameMenuPanels.Tinkering));
             panelChanged = true;
         }
+        else if (Input.GetKeyDown(KeyCode.H)) 
+        {
+            if (currentPanel == GameMenuPanels.Research) {
+                // Close Game Menu
+                ResearchManager.Instance.CloseResearchManager();
+                CloseGameMenu();
+                return;
+            }
+
+            if (runningTransitionCoroutine != null)
+                return;
+
+            runningTransitionCoroutine = StartCoroutine(PanelTransition(GameMenuPanels.Research));
+            panelChanged = true;
+        }
     
         if (panelChanged) {
             if (gameMenuUI.activeSelf == false)
@@ -231,6 +246,9 @@ public class GameMenuManager : MonoBehaviour
         } else if (panel == GameMenuPanels.Tinkering) {
             ModManager.Instance.OpenModManager();
             currentPanelGO = ModManager.Instance.modManagerUI;
+        } else if (panel == GameMenuPanels.Research) {
+            ResearchManager.Instance.OpenResearchManager();
+            currentPanelGO = ResearchManager.Instance.researchManagerUI;
         }
     }
 
@@ -241,6 +259,8 @@ public class GameMenuManager : MonoBehaviour
             MapManager.Instance.CloseMap();
         } else if (panel == GameMenuPanels.Tinkering) {
             ModManager.Instance.CloseModManager();
+        } else if (panel == GameMenuPanels.Research) {
+            ResearchManager.Instance.CloseResearchManager();
         }
     }
 
@@ -278,7 +298,8 @@ public class GameMenuManager : MonoBehaviour
 public enum GameMenuPanels {
     Journal,
     Map,
-    Tinkering
+    Tinkering,
+    Research
 }
 
 [System.Serializable]

@@ -123,7 +123,7 @@ public class Quest
                 (BaseStats baseStats, GameObject go) = PrefabManager.Instance.SpawnPrefab(completeEvent["item"]);
                 ItemHandler item = GameObject.Instantiate(go).GetComponent<ItemHandler>();
                 item.GetComponent<ObjectHandler>().CreateBaseObject(baseStats);
-                item.PickUp(Player.instance.character);
+                item.PickUp(Player.Instance.character);
             }
         }
 
