@@ -20,12 +20,23 @@ public class ResearchOptionUI : MonoBehaviour, IPointerClickHandler
         this.researchOption = researchOption;
 
         nameText.text = researchOption.researchName;
-        progressText.text = researchOption.researchDescription;
+        progressText.text = researchOption.GetProgress();
     }
 
 
     public void OnPointerClick(PointerEventData eventData)
     {
         OnClick(this, eventData);
+    }
+
+    public void Select() {
+        
+    }
+    public void Deselect() {
+        
+    }
+
+    public bool TryComplete() {
+        return researchOption.TryComplete();
     }
 }

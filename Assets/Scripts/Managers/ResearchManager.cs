@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Linq;
+using System.ComponentModel;
+using TMPro;
+using Unity.VisualScripting;
 
 public class ResearchManager : MonoBehaviour
 {
@@ -18,10 +21,6 @@ public class ResearchManager : MonoBehaviour
     [Header("Category Headers")]
     public GameObject categoryHeaderPrefab;
     public GameObject categoryHeadersParent;
-    public Color lowlightText;
-    public Color highlightText;
-    public Material lowlightMaterial;
-    public Material highlightMaterial;
     List<ResearchCategoryUI> categoryHeaderUIs = new ();
 
     public ResearchCategory? selectedCategory = null;
@@ -35,16 +34,29 @@ public class ResearchManager : MonoBehaviour
     public GameObject researchOptionsParent;
     List<ResearchOptionUI> researchOptionUIs = new ();
 
+    [Header("Research Options Dropdown")]
+    public GameObject researchTagPrefab;
+    public GameObject researchTagsParent;
+    List<ResearchOptionUI> researchTagUIs = new ();
+    public TextMeshProUGUI filterTagText;
 
 
     // Select Research Option Details
-
+    [Header("Selected Research Option Details")]
+    public TextMeshProUGUI selectedResearchName;
+    public TextMeshProUGUI selectedResearchDescription;
+    public TextMeshProUGUI selectedResearchProgress;
+    public TextMeshProUGUI selectedResearchButton;
+    public ResearchOptionUI selectedResearchOption;
 
     void Awake()
     {
         Instance = this;
 
-        researchOptions = Resources.LoadAll<ResearchOption>("ResearchOptions/").ToList(); // Save this as a list of instances instead so we can track progress there
+        List<ResearchOption> researchOptionsTemp = Resources.LoadAll<ResearchOption>("ResearchOptions/").ToList(); // Save this as a list of instances instead so we can track progress there
+        researchOptionsTemp.ForEach(researchOption => researchOptions.Add(Instantiate(researchOption)));
+        researchOptions.ForEach(researchOption => researchOption.Create());
+        
 
         foreach (ResearchCategory researchCategory in System.Enum.GetValues(typeof(ResearchCategory))) {
             GameObject categoryGO = Instantiate(categoryHeaderPrefab, categoryHeadersParent.transform);
@@ -57,9 +69,15 @@ public class ResearchManager : MonoBehaviour
 
             categoryGO.SetActive(true);
         }
+
+        selectedResearchName.text = "";
+        selectedResearchDescription.text = "";
+        selectedResearchProgress.text = "";
+        selectedResearchButton.GetComponent<Button>().interactable = false;
     }
 
     void UpdateResearchManagerUI() {
+        // Clear everything up
         if (researchManagerUI.activeSelf == false)
             return;
 
@@ -68,8 +86,14 @@ public class ResearchManager : MonoBehaviour
         } 
         researchOptionUIs.Clear();
 
-        
-        foreach (ResearchOption researchOption in researchOptions.Where(x => x.researchCategory == selectedCategory)) {
+        ClearSelectedResearch();
+
+
+        if (selectedCategory == null) return;
+
+
+        // Generate new things
+        foreach (ResearchOption researchOption in researchOptions.Where(x => x.researchCategories.Contains(selectedCategory.Value))) {
             GameObject researchGO = Instantiate(researchOptionPrefab, researchOptionsParent.transform);
 
             ResearchOptionUI researchUI = researchGO.GetComponent<ResearchOptionUI>();
@@ -84,6 +108,8 @@ public class ResearchManager : MonoBehaviour
 
 
     public void OnPointerClickResearchCategory(ResearchCategoryUI researchCategoryUI, PointerEventData eventData) {
+        ClearSelectedResearch();
+
         if (researchCategoryUI.researchCategory == selectedCategory) {
             // Selected the same Header
             selectedCategoryUI.UnselectHeader();
@@ -105,8 +131,31 @@ public class ResearchManager : MonoBehaviour
 
 
     public void OnPointerClickResearchOption(ResearchOptionUI researchOptionUI, PointerEventData eventData) {
-        Debug.Log(researchOptionUI.researchOption.researchName);
+        if (researchOptionUI == selectedResearchOption) {
+            ClearSelectedResearch();
+            return;
+        }
+
+        selectedResearchOption?.Deselect();
+
+        selectedResearchOption = researchOptionUI;
+        selectedResearchOption.Select();
+
+        selectedResearchName.text = selectedResearchOption.researchOption.researchName;
+        selectedResearchDescription.text = selectedResearchOption.researchOption.researchDescription;
+        selectedResearchProgress.text = selectedResearchOption.researchOption.GetProgress();
+        selectedResearchButton.GetComponent<Button>().interactable = true;
     }
+
+    public void ClickedResearchButton() {
+        selectedResearchOption.TryComplete();
+    }
+
+    public void OnPointerClickTagFilter() {
+        Debug.Log("boop");
+        //researchTagsParent.SetActive(true);
+    }
+
 
 
     public void OpenResearchManager() {
@@ -129,6 +178,20 @@ public class ResearchManager : MonoBehaviour
             Destroy(researchOptionUI.gameObject);
         } 
         researchOptionUIs.Clear();
+
+        ClearSelectedResearch();
+    }
+
+
+
+    void ClearSelectedResearch() {
+        selectedResearchOption?.Deselect();
+        selectedResearchOption = null;
+
+        selectedResearchName.text = "";
+        selectedResearchDescription.text = "";
+        selectedResearchProgress.text = "";
+        selectedResearchButton.GetComponent<Button>().interactable = false;
     }
 }
 
@@ -136,5 +199,5 @@ public class ResearchManager : MonoBehaviour
 public enum ResearchCategory {
     Pistol,
     Sword,
-    ConsumableItems
+    [Description("Consumable Items")] ConsumableItems
 }

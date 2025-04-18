@@ -15,5 +15,11 @@ MonoBehaviour:
   researchId: pistol02
   researchName: Double Shot
   researchDescription: Double Shot
-  researchCategory: 0
-  researchState: 2
+  researchCategories: 00000000
+  researchTags: 
+  researchState: 0
+  researchRequirements: []
+  assembleRequirements: []
+  references:
+    version: 2
+    RefIds: []

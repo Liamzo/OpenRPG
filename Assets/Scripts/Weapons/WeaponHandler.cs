@@ -186,7 +186,7 @@ public class WeaponHandler : MonoBehaviour, ISaveable
         return strategies;
     }
 
-    public void ChangeMod(WeaponMod newMod) {
+    public WeaponMod ChangeMod(WeaponMod newMod) {
         WeaponMod oldMod = mods[newMod.modSlot];
 
         oldMod?.Delete();
@@ -198,6 +198,8 @@ public class WeaponHandler : MonoBehaviour, ISaveable
         mods[weaponMod.modSlot] = weaponMod;
 
         OnMod();
+
+        return oldMod;
     }
 
 

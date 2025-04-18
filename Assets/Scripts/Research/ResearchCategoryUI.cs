@@ -20,7 +20,7 @@ public class ResearchCategoryUI : MonoBehaviour, IPointerClickHandler
 
         text = GetComponent<TextMeshProUGUI>();
 
-        text.text = category.ToString();
+        text.text = category.GetPrettyName();
     }
 
 

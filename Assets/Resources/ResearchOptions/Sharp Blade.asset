@@ -15,5 +15,6 @@ MonoBehaviour:
   researchId: sword01
   researchName: Test 02
   researchDescription: Sharp Blade
-  researchCategory: 1
+  researchCategories: 01000000
+  researchTags: 
   researchState: 0

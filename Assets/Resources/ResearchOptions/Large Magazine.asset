@@ -15,5 +15,25 @@ MonoBehaviour:
   researchId: pistol01
   researchName: Large Magazine
   researchDescription: Large Magazine
-  researchCategory: 0
+  researchCategories: 00000000
+  researchTags: 
   researchState: 1
+  researchRequirements:
+  - rid: 2615096430062993408
+  assembleRequirements:
+  - rid: 2615096476447014912
+  references:
+    version: 2
+    RefIds:
+    - rid: 2615096430062993408
+      type: {class: ResearchRequirementUninstall, ns: , asm: Assembly-CSharp}
+      data:
+        total: 1
+        current: 0
+        modId: pistol_magazine02
+    - rid: 2615096476447014912
+      type: {class: AssembleRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        total: 1
+        current: 0
+        itemId: potion_01

@@ -45,6 +45,9 @@ public class ModManager : MonoBehaviour
 
 
 
+    public event System.Action<WeaponMod, WeaponMod> OnModChanged = delegate { };
+
+
     private void Awake() {
         Instance = this;
 
@@ -328,10 +331,12 @@ public class ModManager : MonoBehaviour
                 selectedMod = slot;
                 UpdateSelectedWeapon();
             } else {
-                selectedModItem.weapon.ChangeMod(slot.mod);
+                WeaponMod newMod = slot.mod;
+                WeaponMod oldMod = selectedModItem.weapon.ChangeMod(newMod);
                 previousWeapon = selectedModItem.weapon;
                 previousCurrentMod = slot.mod;
                 selectedMod = null;
+                OnModChanged(oldMod, newMod);
                 UpdateModManagerUI();
             }
         }
