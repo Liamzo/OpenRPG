@@ -20,6 +20,8 @@ public class AssembleRequirement : ResearchRequirement
 
         inventoryHandler.OnItemAdded += CheckInventory;
         inventoryHandler.OnItemRemoved += CheckInventory;
+
+        CheckInventory(null);
     }
 
     public override void End() {

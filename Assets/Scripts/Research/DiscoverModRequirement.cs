@@ -21,6 +21,8 @@ public class DiscoverModRequirement : DiscoverRequirement
 
         inventoryHandler.OnItemAdded += CheckInventory;
         inventoryHandler.OnItemRemoved += CheckInventory;
+
+        CheckInventory(null);
     }
 
     public override void End() {

@@ -20,6 +20,8 @@ public class DiscoverItemRequirement : DiscoverRequirement
 
         inventoryHandler.OnItemAdded += CheckInventory;
         inventoryHandler.OnItemRemoved += CheckInventory;
+
+        CheckInventory(null);
     }
 
     public override void End() {
