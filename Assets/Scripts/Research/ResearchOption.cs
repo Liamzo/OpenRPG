@@ -19,6 +19,7 @@ public class ResearchOption : ScriptableObject
     [SerializeReference] public List<DiscoverRequirement> discoverRequirements;
     [SerializeReference] public List<ResearchRequirement> researchRequirements;
     [SerializeReference] public List<AssembleRequirement> assembleRequirements;
+    [SerializeReference] public List<ResearchUnlock> unlockRewards;
 
 
     // Maybe when saving/loading games, this will take in an optional json string to load from
@@ -55,7 +56,7 @@ public class ResearchOption : ScriptableObject
             assembleRequirements.ForEach(assembleRequirement => assembleRequirement.Begin());
         }
         else if (state == ResearchState.Unlocked) {
-            
+            unlockRewards.ForEach(unlockReward => unlockReward.Unlock());
         }
 
         researchState = state;

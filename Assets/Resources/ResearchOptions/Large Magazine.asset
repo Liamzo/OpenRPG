@@ -17,13 +17,15 @@ MonoBehaviour:
   researchDescription: Large Magazine
   researchCategories: 00000000
   researchTags: 
-  researchState: 0
+  researchState: 2
   discoverRequirements:
   - rid: 2615096476447014914
   researchRequirements:
   - rid: 2615096430062993408
   assembleRequirements:
   - rid: 2615096476447014912
+  unlockRewards:
+  - rid: 2615096476447014915
   references:
     version: 2
     RefIds:
@@ -44,4 +46,8 @@ MonoBehaviour:
       data:
         total: 1
         current: 0
+        modId: pistol_magazine02
+    - rid: 2615096476447014915
+      type: {class: ResearchUnlockMod, ns: , asm: Assembly-CSharp}
+      data:
         modId: pistol_magazine02

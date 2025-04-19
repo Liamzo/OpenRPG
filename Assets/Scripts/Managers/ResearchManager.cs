@@ -154,7 +154,8 @@ public class ResearchManager : MonoBehaviour
     }
 
     public void ClickedResearchButton() {
-        selectedResearchOption.TryComplete();
+        if (selectedResearchOption.TryComplete())
+            UpdateResearchManagerUI();
     }
 
     public void OnPointerClickTagFilter() {

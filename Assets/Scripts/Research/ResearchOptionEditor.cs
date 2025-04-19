@@ -11,6 +11,9 @@ public class ResearchOptionEditor : Editor
     public int discoverIndex = 0;
     public string[] researchOptions = new string[] {"Uninstall"};
     public int researchIndex = 0;
+    public string[] unlockOptions = new string[] {"Mod"};
+    public int unlockIndex = 0;
+
 
     public override void OnInspectorGUI() {
         base.OnInspectorGUI();
@@ -18,6 +21,7 @@ public class ResearchOptionEditor : Editor
         ResearchOption researchOption = (ResearchOption) target;
 
 
+        GUILayout.Label("Discovery");
         discoverIndex = EditorGUILayout.Popup(discoverIndex, discoverOptions);
 
         if(GUILayout.Button("Add Discover Requirement")) {
@@ -33,6 +37,7 @@ public class ResearchOptionEditor : Editor
         }
 
         
+        GUILayout.Label("Research");
         researchIndex = EditorGUILayout.Popup(researchIndex, researchOptions);
 
         if(GUILayout.Button("Add Research Requirement")) {
@@ -44,8 +49,23 @@ public class ResearchOptionEditor : Editor
             }
         }
 
+
+        GUILayout.Label("Assembly");
         if(GUILayout.Button("Add Assemble Requirement")) {
             researchOption.assembleRequirements.Add(new AssembleRequirement());
+        }
+
+
+        GUILayout.Label("Unlock");
+        unlockIndex = EditorGUILayout.Popup(unlockIndex, unlockOptions);
+
+        if(GUILayout.Button("Add Unlock Reward")) {
+            switch (unlockIndex)
+            {
+                case 0:
+                    researchOption.unlockRewards.Add(new ResearchUnlockMod());
+                    break;
+            }
         }
     }
 }

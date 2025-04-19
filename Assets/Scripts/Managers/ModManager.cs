@@ -11,6 +11,7 @@ public class ModManager : MonoBehaviour
     public static ModManager Instance { get; private set; }
 
     public List<WeaponMod> allWeaponMods;
+    public List<WeaponMod> knownWeaponMods;
 
     public GameObject modManagerUI;
 
@@ -68,6 +69,12 @@ public class ModManager : MonoBehaviour
 
         return weaponMods;
     }
+    public List<WeaponMod> FindKnownModsBySlot(WeaponModSlot weaponModSlot) 
+    {
+        List<WeaponMod> weaponMods = knownWeaponMods.Where(x => x.modSlot == weaponModSlot).ToList();
+
+        return weaponMods;
+    }
 
     public WeaponMod FindModById(string modId) {
         foreach (WeaponMod mod in allWeaponMods)
@@ -79,6 +86,27 @@ public class ModManager : MonoBehaviour
 
         Debug.LogWarning("No mod found with that ID: " + modId);
         return null;
+    }
+    public WeaponMod FindKnownModById(string modId) {
+        foreach (WeaponMod mod in knownWeaponMods)
+        {
+            if (mod.modId == modId) {
+                return mod;
+            }
+        }
+
+        Debug.LogWarning("No mod found with that ID: " + modId);
+        return null;
+    }
+
+    public void UnlockMod(string modId) {
+        WeaponMod mod = FindModById(modId);
+
+        if (mod == null) return;
+
+        if (knownWeaponMods.Contains(mod)) return;
+
+        knownWeaponMods.Add(mod);
     }
 
 
@@ -248,7 +276,7 @@ public class ModManager : MonoBehaviour
             return;
         }
 
-        foreach (WeaponMod mod in FindModsBySlot(selectedCurrentMod.slot))
+        foreach (WeaponMod mod in FindKnownModsBySlot(selectedCurrentMod.slot))
         {
             GameObject slotGO = Instantiate(modSlotPrefab, modSlotsParent.transform);
 
@@ -266,7 +294,26 @@ public class ModManager : MonoBehaviour
                 slotUI.ChangeBackgroundColor(modSlotViewingColor);
                 selectedMod = slotUI;
             }
+        }
 
+        // Check if currently equipped mod is one we know
+        if (selectedCurrentMod.mod != null) {
+            if (FindKnownModById(selectedCurrentMod.mod.modId) == null) {
+                GameObject slotGO = Instantiate(modSlotPrefab, modSlotsParent.transform);
+
+                ModSlotUI slotUI = slotGO.GetComponent<ModSlotUI>();
+                modSlots.Add(slotUI);
+
+                slotUI.AddMod(selectedCurrentMod.mod);
+
+                slotUI.OnClick += OnPointerClickMod;
+
+                slotGO.SetActive(true);
+
+                selectedMod?.ChangeBackgroundColor(modSlotUnselectedColor);
+                slotUI.ChangeBackgroundColor(modSlotViewingColor);
+                selectedMod = slotUI;
+            }
         }
     }
 
