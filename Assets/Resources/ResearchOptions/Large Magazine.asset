@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b95b1f7555643904ba1dbfeef1df8a03, type: 3}
   m_Name: Large Magazine
   m_EditorClassIdentifier: 
-  researchId: pistol01
+  researchId: r_pistol_magazine02
   researchName: Large Magazine
   researchDescription: Large Magazine
   researchCategories: 00000000
   researchTags: 
-  researchState: 2
+  researchState: 0
   discoverRequirements:
   - rid: 2615096476447014914
   researchRequirements:

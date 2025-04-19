@@ -55,7 +55,7 @@ MonoBehaviour:
         startingWeaponMods:
         - {fileID: 11400000, guid: 2a2ef88075d95564a8cd0f67f5780d87, type: 2}
         - {fileID: 11400000, guid: d3f43a27ecad71341a86c23117972eb3, type: 2}
-        - {fileID: 11400000, guid: eb7e24d8fb9db4443922cad9744fbf21, type: 2}
+        - {fileID: 11400000, guid: 7bd201b3de2edbe489f8d125c3a737d8, type: 2}
         - {fileID: 11400000, guid: e427444713026344e84ee29238887341, type: 2}
         - {fileID: 11400000, guid: 8b6fc7beea2efb041b9f8e079ef22590, type: 2}
         stats:

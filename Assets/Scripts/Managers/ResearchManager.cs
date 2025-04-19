@@ -82,6 +82,28 @@ public class ResearchManager : MonoBehaviour
         researchOptions.ForEach(researchOption => researchOption.Create());
     }
 
+
+    public ResearchOption FindResearchById(string researchId) {
+        foreach (ResearchOption research in researchOptions)
+        {
+            if (research.researchId == researchId) {
+                return research;
+            }
+        }
+
+        Debug.LogWarning("No research found with that ID: " + researchId);
+        return null;
+    }
+
+    public bool SetResearchState(string researchId, ResearchState state) {
+        ResearchOption researchOption = FindResearchById(researchId);
+
+        if (researchOption == null) return false;  
+
+        return researchOption.SetState(state);
+    }
+
+
     void UpdateResearchManagerUI() {
         // Clear everything up
         if (researchManagerUI.activeSelf == false)
