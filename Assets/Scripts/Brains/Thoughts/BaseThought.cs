@@ -6,6 +6,8 @@ public abstract class BaseThought : MonoBehaviour
 {
     protected NonPlayerBrain brain;
 
+    public bool canReact;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {

@@ -188,6 +188,7 @@ GameObject:
   - component: {fileID: 8237379910735449938}
   - component: {fileID: 7371308030475851263}
   - component: {fileID: 5930101008861849973}
+  - component: {fileID: 3807326547979669470}
   m_Layer: 0
   m_Name: Thoughts
   m_TagString: Untagged
@@ -222,6 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a71790b28c960f847aa9f305ce45400e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canReact: 1
   radiusMax: 4
   pauseDuration: 2
   minPauseWait: 1
@@ -238,6 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fa123fc322bb404b9275c72c034b42d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canReact: 0
   maxMeleeRange: 7
 --- !u!114 &3141492362439029711
 MonoBehaviour:
@@ -251,6 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25806cfe74d662c4292e93a24040aa89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canReact: 0
   minAttackRange: 6
 --- !u!114 &8237379910735449938
 MonoBehaviour:
@@ -264,6 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a511a9a4bc513478b13000c7638a9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canReact: 1
   minRange: 9
   maxRange: 12
 --- !u!114 &7371308030475851263
@@ -278,6 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6b089bf1b01e2489084be41ee126db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canReact: 1
   minChaseDistance: 9
 --- !u!114 &5930101008861849973
 MonoBehaviour:
@@ -291,7 +297,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b11f188d4d2e1f429abf31a5cf9ce3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canReact: 1
   idealDistance: 9
+--- !u!114 &3807326547979669470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7371308030475851137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6710567ee0b7934192d3144ef959224, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canReact: 0
 --- !u!1 &8523436994534951754
 GameObject:
   m_ObjectHideFlags: 0

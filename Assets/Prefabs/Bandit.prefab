@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2021465411}
   - component: {fileID: 2021465408}
   - component: {fileID: 2021465410}
+  - component: {fileID: 4147258264417287786}
   m_Layer: 0
   m_Name: Thoughts
   m_TagString: Untagged
@@ -47,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a71790b28c960f847aa9f305ce45400e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canReact: 1
   radiusMax: 4
   pauseDuration: 2
   minPauseWait: 1
@@ -63,6 +65,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fa123fc322bb404b9275c72c034b42d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canReact: 0
   maxMeleeRange: 9
 --- !u!114 &2021465408
 MonoBehaviour:
@@ -76,6 +79,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6b089bf1b01e2489084be41ee126db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canReact: 1
   minChaseDistance: 7
 --- !u!114 &2021465410
 MonoBehaviour:
@@ -89,6 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 976fe1e9848ab1445a5994b5df914cdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canReact: 1
   circleDistance: 7
   circleDistanceRange: 2
   minCircleDistance: 3
@@ -99,6 +104,19 @@ MonoBehaviour:
   circleDirection: 1
   minDirectionDuration: 3
   maxDirectionDuration: 5
+--- !u!114 &4147258264417287786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2021465406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6710567ee0b7934192d3144ef959224, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canReact: 0
 --- !u!1 &1154453470631134197
 GameObject:
   m_ObjectHideFlags: 0

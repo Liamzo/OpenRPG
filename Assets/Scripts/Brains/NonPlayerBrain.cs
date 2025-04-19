@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,7 +13,8 @@ public class NonPlayerBrain : BaseBrain
     protected NavMeshPath pathToTarget;
     public float distToTarget {get; private set;}
 
-    protected BaseThought[] thoughts;
+    protected BaseThought[] activeThoughts;
+    protected BaseThought[] reactionThoughts;
     public BaseThought thoughtLocked = null;
     public BaseThought previousThought = null;
 
@@ -26,7 +28,12 @@ public class NonPlayerBrain : BaseBrain
     {
         base.Awake();
 
-        thoughts = GetComponentsInChildren<BaseThought>();
+        BaseThought[] allThoughts = GetComponentsInChildren<BaseThought>();
+
+        activeThoughts = allThoughts.Where(thought => thought is not BaseReaction).ToArray();
+        reactionThoughts = allThoughts.Where(thought => thought is BaseReaction).ToArray();
+
+        //activeThoughts = GetComponentsInChildren<BaseThought>();
 
         threatHandler = GetComponent<ThreatHandler>();
 
@@ -65,7 +72,7 @@ public class NonPlayerBrain : BaseBrain
         if (thoughtLocked == null) {
             float bestScore = 0f;
 
-            foreach (BaseThought thought in thoughts) {
+            foreach (BaseThought thought in activeThoughts) {
                 float score = thought.Evaluate();
 
                 if (score > bestScore) {
