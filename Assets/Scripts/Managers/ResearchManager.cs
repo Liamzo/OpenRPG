@@ -53,9 +53,9 @@ public class ResearchManager : MonoBehaviour
     {
         Instance = this;
 
-        List<ResearchOption> researchOptionsTemp = Resources.LoadAll<ResearchOption>("ResearchOptions/").ToList(); // Save this as a list of instances instead so we can track progress there
-        researchOptionsTemp.ForEach(researchOption => researchOptions.Add(Instantiate(researchOption)));
-        researchOptions.ForEach(researchOption => researchOption.Create());
+        // List<ResearchOption> researchOptionsTemp = Resources.LoadAll<ResearchOption>("ResearchOptions/").ToList(); // Save this as a list of instances instead so we can track progress there
+        // researchOptionsTemp.ForEach(researchOption => researchOptions.Add(Instantiate(researchOption)));
+        // researchOptions.ForEach(researchOption => researchOption.Create());
         
 
         foreach (ResearchCategory researchCategory in System.Enum.GetValues(typeof(ResearchCategory))) {
@@ -74,6 +74,12 @@ public class ResearchManager : MonoBehaviour
         selectedResearchDescription.text = "";
         selectedResearchProgress.text = "";
         selectedResearchButton.GetComponent<Button>().interactable = false;
+    }
+
+    private void Start() {
+        List<ResearchOption> researchOptionsTemp = Resources.LoadAll<ResearchOption>("ResearchOptions/").ToList(); // Save this as a list of instances instead so we can track progress there
+        researchOptionsTemp.ForEach(researchOption => researchOptions.Add(Instantiate(researchOption)));
+        researchOptions.ForEach(researchOption => researchOption.Create());
     }
 
     void UpdateResearchManagerUI() {
@@ -99,7 +105,7 @@ public class ResearchManager : MonoBehaviour
             ResearchOptionUI researchUI = researchGO.GetComponent<ResearchOptionUI>();
             researchOptionUIs.Add(researchUI);
 
-            researchUI.AddResearchOpption(researchOption);
+            researchUI.AddResearchOption(researchOption);
             researchUI.OnClick += OnPointerClickResearchOption;
 
             researchGO.SetActive(true);
@@ -141,8 +147,8 @@ public class ResearchManager : MonoBehaviour
         selectedResearchOption = researchOptionUI;
         selectedResearchOption.Select();
 
-        selectedResearchName.text = selectedResearchOption.researchOption.researchName;
-        selectedResearchDescription.text = selectedResearchOption.researchOption.researchDescription;
+        selectedResearchName.text = selectedResearchOption.researchOption.GetName();
+        selectedResearchDescription.text = selectedResearchOption.researchOption.GetDescription();;
         selectedResearchProgress.text = selectedResearchOption.researchOption.GetProgress();
         selectedResearchButton.GetComponent<Button>().interactable = true;
     }

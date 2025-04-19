@@ -16,10 +16,11 @@ public class ResearchOptionUI : MonoBehaviour, IPointerClickHandler
     public event System.Action<ResearchOptionUI, PointerEventData> OnClick = delegate { };
 
 
-    public void AddResearchOpption(ResearchOption researchOption) {
+    public void AddResearchOption(ResearchOption researchOption) {
         this.researchOption = researchOption;
 
-        nameText.text = researchOption.researchName;
+
+        nameText.text = researchOption.GetName();
         progressText.text = researchOption.GetProgress();
     }
 

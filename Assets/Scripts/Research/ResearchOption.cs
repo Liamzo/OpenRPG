@@ -16,13 +16,18 @@ public class ResearchOption : ScriptableObject
     public ResearchState researchState;
 
 
+    [SerializeReference] public List<DiscoverRequirement> discoverRequirements;
     [SerializeReference] public List<ResearchRequirement> researchRequirements;
     [SerializeReference] public List<AssembleRequirement> assembleRequirements;
 
 
     // Maybe when saving/loading games, this will take in an optional json string to load from
     public void Create() { 
-        if (researchState == ResearchState.Discovered) {
+        if (researchState == ResearchState.Unknown) {
+            discoverRequirements.ForEach(discoverRequirement => discoverRequirement.Begin());
+            discoverRequirements.ForEach(discoverRequirement => discoverRequirement.OnDiscover += OnDiscover);
+        }
+        else if (researchState == ResearchState.Discovered) {
             researchRequirements.ForEach(researchRequirement => researchRequirement.Begin());
         } 
         else if (researchState == ResearchState.Researched) {
@@ -33,7 +38,10 @@ public class ResearchOption : ScriptableObject
     public bool SetState(ResearchState state) {
         if (state <= researchState) return false;
 
-        if (researchState == ResearchState.Discovered) {
+        if (researchState == ResearchState.Unknown) {
+            discoverRequirements.ForEach(discoverRequirement => discoverRequirement.End());
+        } 
+        else if (researchState == ResearchState.Discovered) {
             researchRequirements.ForEach(researchRequirement => researchRequirement.End());
         } 
         else if (researchState == ResearchState.Researched) {
@@ -46,11 +54,29 @@ public class ResearchOption : ScriptableObject
         else if (state == ResearchState.Researched) {
             assembleRequirements.ForEach(assembleRequirement => assembleRequirement.Begin());
         }
+        else if (state == ResearchState.Unlocked) {
+            
+        }
 
         researchState = state;
 
 
         return true;
+    }
+
+
+    void OnDiscover() {
+        bool completed = true;
+
+        foreach (DiscoverRequirement discoverRequirement in discoverRequirements) {
+            if (discoverRequirement.current < discoverRequirement.total) {
+                completed = false;
+                break;
+            }
+        }
+
+        if (completed)
+            SetState(ResearchState.Discovered);
     }
 
 
@@ -92,6 +118,17 @@ public class ResearchOption : ScriptableObject
         return false;
     }
 
+
+    public string GetName() {
+        if (researchState == ResearchState.Unknown) return "?";
+
+        return researchName;
+    }
+    public string GetDescription() {
+        if (researchState == ResearchState.Unknown) return "";
+
+        return researchDescription;
+    }
 
     public string GetProgress() {
         string requirements = "";

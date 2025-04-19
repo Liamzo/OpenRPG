@@ -7,22 +7,36 @@ using UnityEditor;
 [CustomEditor(typeof(ResearchOption)), CanEditMultipleObjects]
 public class ResearchOptionEditor : Editor
 {
-    public string[] options = new string[] {"Uninstall"};
-    public int index = 0;
+    public string[] discoverOptions = new string[] {"Item", "Mod"};
+    public int discoverIndex = 0;
+    public string[] researchOptions = new string[] {"Uninstall"};
+    public int researchIndex = 0;
 
     public override void OnInspectorGUI() {
         base.OnInspectorGUI();
 
         ResearchOption researchOption = (ResearchOption) target;
 
-        //EditorGUILayout.LabelField("i", comboSO.comboName.ToString());
 
-        //string s = EditorGUILayout.TextField(label:"Object Name: ", "defulat");
+        discoverIndex = EditorGUILayout.Popup(discoverIndex, discoverOptions);
+
+        if(GUILayout.Button("Add Discover Requirement")) {
+            switch (discoverIndex)
+            {
+                case 0:
+                    researchOption.discoverRequirements.Add(new DiscoverItemRequirement());
+                    break;
+                case 1:
+                    researchOption.discoverRequirements.Add(new DiscoverModRequirement());
+                    break;
+            }
+        }
+
         
-        index = EditorGUILayout.Popup(index, options);
+        researchIndex = EditorGUILayout.Popup(researchIndex, researchOptions);
 
         if(GUILayout.Button("Add Research Requirement")) {
-            switch (index)
+            switch (researchIndex)
             {
                 case 0:
                     researchOption.researchRequirements.Add(new ResearchRequirementUninstall());
