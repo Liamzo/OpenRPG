@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class BaseReaction : BaseThought
 {
-    
+    public float chance;
 }

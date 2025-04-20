@@ -4,10 +4,10 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(ThreatHandler))]
+[RequireComponent(typeof(ThreatHandlerNPC))]
 public class NonPlayerBrain : BaseBrain
 {
-    public ThreatHandler threatHandler {get; private set;}
+    public ThreatHandlerNPC threatHandler {get; private set;}
 
     protected NavMeshAgent agent;
     protected NavMeshPath pathToTarget;
@@ -35,7 +35,7 @@ public class NonPlayerBrain : BaseBrain
 
         //activeThoughts = GetComponentsInChildren<BaseThought>();
 
-        threatHandler = GetComponent<ThreatHandler>();
+        threatHandler = GetComponent<ThreatHandlerNPC>();
 
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
@@ -44,6 +44,17 @@ public class NonPlayerBrain : BaseBrain
         
         ResetAttackCoolDown();
     }
+
+    protected override void Start() {
+        base.Start();
+        
+        threatHandler.OnReact += AttemptReaction;
+    }
+
+    void AttemptReaction() {
+        Debug.Log("react");
+    }
+
 
     protected override void Update() {
         base.Update();

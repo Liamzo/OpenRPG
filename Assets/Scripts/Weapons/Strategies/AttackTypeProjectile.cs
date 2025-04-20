@@ -35,5 +35,7 @@ public class AttackTypeProjectile : BaseStrategy, IAttackType
         bullet.direction = -weapon.transform.up;
         muzzleFlash.Flash();
         weapon.CallOnAttack(triggerSlot);
+
+        weapon.item.owner.GetComponent<ThreatHandler>().CallOnStartAttack();
     }
 }

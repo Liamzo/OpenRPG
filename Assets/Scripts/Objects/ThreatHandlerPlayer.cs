@@ -5,11 +5,8 @@ using UnityEngine;
 using Cinemachine;
 
 [RequireComponent(typeof(Player))]
-public class ThreatHandlerPlayer : MonoBehaviour
+public class ThreatHandlerPlayer : ThreatHandler
 {
-    private CharacterHandler characterHandler;
-    private FactionHandler factionHandler;
-
     CinemachineVirtualCamera virtualCamera;
     CinemachineFramingTransposer transposer;
 

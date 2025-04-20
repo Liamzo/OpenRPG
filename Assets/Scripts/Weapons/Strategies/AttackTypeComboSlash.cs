@@ -165,6 +165,8 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
             CharacterHandler character = (CharacterHandler) weapon.item.owner;
             character.statsCharacter[CharacterStatNames.MovementSpeed].AddModifier(new Modifier(ModifierTypes.Multiplier, -90f));
         }
+
+        weapon.item.owner.GetComponent<ThreatHandler>().CallOnStartAttack();
     }
 
     void InteruptCombo() {
