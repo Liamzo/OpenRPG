@@ -70,7 +70,7 @@ MonoBehaviour:
         - statName: 10
           value: 10
         - statName: 6
-          value: 3
+          value: 4
         - statName: 14
           value: 1
         - statName: 4
@@ -80,6 +80,6 @@ MonoBehaviour:
         - statName: 13
           value: 50
         animationController: {fileID: 9100000, guid: f9ef938c87396da4d8049c30a2356d6f, type: 2}
-        restingAngle: 0
+        spriteRotation: {x: 0, y: 0, z: 0}
         attackPoint: {x: 0.5, y: -1.5, z: 0}
         colliderSize: {x: 0.5, y: -1.3, z: 3, w: 3.4}

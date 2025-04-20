@@ -9,14 +9,14 @@ public abstract class ThreatHandler : MonoBehaviour
 
 
     // Events
-    public event System.Action OnStartAttack = delegate { };
-    public event System.Action OnReact = delegate { };
+    public event System.Action<WeaponHandler, GameObject> OnStartAttack = delegate { };
+    public event System.Action<WeaponHandler, GameObject> OnReact = delegate { };
 
-    public void CallOnStartAttack() {
-        OnStartAttack();
+    public void CallOnStartAttack(WeaponHandler weapon, GameObject projectile = null) {
+        OnStartAttack(weapon, projectile);
     }
 
-    protected void ReactToAttack() {
-        OnReact();
+    protected void ReactToAttack(WeaponHandler weapon, GameObject projectile = null) {
+        OnReact(weapon, projectile);
     }
 }

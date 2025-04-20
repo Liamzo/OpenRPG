@@ -14,7 +14,7 @@ public class NonPlayerBrain : BaseBrain
     public float distToTarget {get; private set;}
 
     protected BaseThought[] activeThoughts;
-    protected BaseThought[] reactionThoughts;
+    protected BaseReaction[] reactionThoughts;
     public BaseThought thoughtLocked = null;
     public BaseThought previousThought = null;
 
@@ -31,9 +31,7 @@ public class NonPlayerBrain : BaseBrain
         BaseThought[] allThoughts = GetComponentsInChildren<BaseThought>();
 
         activeThoughts = allThoughts.Where(thought => thought is not BaseReaction).ToArray();
-        reactionThoughts = allThoughts.Where(thought => thought is BaseReaction).ToArray();
-
-        //activeThoughts = GetComponentsInChildren<BaseThought>();
+        reactionThoughts = allThoughts.Where(thought => thought is BaseReaction).Cast<BaseReaction>().ToArray();
 
         threatHandler = GetComponent<ThreatHandlerNPC>();
 
@@ -51,13 +49,15 @@ public class NonPlayerBrain : BaseBrain
         threatHandler.OnReact += AttemptReaction;
     }
 
-    void AttemptReaction() {
+    void AttemptReaction(WeaponHandler weapon, GameObject projectile) {
+        if (previousThought?.canReact == false) return;
+
         if (thoughtLocked == null) {
             BaseThought bestThought = null;
             float bestScore = 0f;
 
-            foreach (BaseThought thought in reactionThoughts) {
-                float score = thought.Evaluate();
+            foreach (BaseReaction thought in reactionThoughts) {
+                float score = thought.Evaluate(weapon, projectile);
 
                 if (score > bestScore) {
                     bestThought = thought;

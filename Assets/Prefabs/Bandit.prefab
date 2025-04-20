@@ -117,6 +117,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canReact: 0
+  coolDown: 3
+  meleeChance: 66
+  rangedChance: 33
+  canParry: 0
 --- !u!1 &1154453470631134197
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,6 +424,7 @@ MonoBehaviour:
   currentHealth: 0
   objectStatusHandler: {fileID: 0}
   currentStamina: 0
+  canParry: 1
 --- !u!114 &8463640423895685246
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,5 +4,11 @@ using UnityEngine;
 
 public abstract class BaseReaction : BaseThought
 {
-    public float chance = 100f;
+    public abstract float Evaluate(WeaponHandler weapon, GameObject projectile);
+
+
+    // Probably a better way to do this
+    public override float Evaluate() {
+        return 0f;
+    }
 }

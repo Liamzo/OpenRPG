@@ -36,6 +36,6 @@ public class AttackTypeProjectile : BaseStrategy, IAttackType
         muzzleFlash.Flash();
         weapon.CallOnAttack(triggerSlot);
 
-        weapon.item.owner.GetComponent<ThreatHandler>().CallOnStartAttack();
+        weapon.item.owner.GetComponent<ThreatHandler>().CallOnStartAttack(weapon, go);
     }
 }
