@@ -52,7 +52,21 @@ public class NonPlayerBrain : BaseBrain
     }
 
     void AttemptReaction() {
-        Debug.Log("react");
+        if (thoughtLocked == null) {
+            BaseThought bestThought = null;
+            float bestScore = 0f;
+
+            foreach (BaseThought thought in reactionThoughts) {
+                float score = thought.Evaluate();
+
+                if (score > bestScore) {
+                    bestThought = thought;
+                    bestScore = score;
+                }
+            }
+
+            thoughtLocked = bestThought;
+        }
     }
 
 

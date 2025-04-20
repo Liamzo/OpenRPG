@@ -6,11 +6,17 @@ public class ReactionBlock : BaseReaction
 {
     public override float Evaluate()
     {
-        throw new System.NotImplementedException();
+        float value = 0f;
+
+        value += 100f;
+
+        return value;
     }
 
     public override void Execute()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("block");
+
+        brain.thoughtLocked = null;
     }
 }
