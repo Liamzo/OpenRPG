@@ -38,6 +38,10 @@ public class FactionHandler : MonoBehaviour
             foreach (FactionSO otherFaction in otherFactionHandler.joinedFactions)
             {
                 joinedFactionRep += FactionManager.instance.FindRepuation(faction, otherFaction);
+
+                if (faction == otherFaction) {
+                    joinedFactionRep += 100;
+                }
             }
         }
 

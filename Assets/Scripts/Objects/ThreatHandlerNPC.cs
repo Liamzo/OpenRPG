@@ -24,7 +24,7 @@ public class ThreatHandlerNPC : ThreatHandler
         factionHandler = GetComponent<FactionHandler>();
 
         characterHandler.OnTakeDamage += OnTakeDamage;
-
+        characterHandler.OnDeath += OnDeath;
 
         visionMask = LayerMask.GetMask("Default") | LayerMask.GetMask("Hitbox");
     }
@@ -35,8 +35,8 @@ public class ThreatHandlerNPC : ThreatHandler
         if (Target == null) {
             Target = FindTargetInRange();
 
-            if (Target != null && Target is CharacterHandler) {
-                Target.GetComponent<ThreatHandler>().OnStartAttack += ReactToAttack;
+            if (Target != null) {
+                FoundNewTarget();
             }
         }
 
@@ -44,7 +44,6 @@ public class ThreatHandlerNPC : ThreatHandler
 
 
         LineOfSightToTarget = CheckLineOfSightToTarget(Target);
-
 
         if (LineOfSightToTarget.TargetInLineOfSight) {
             TargetLastSeen = LineOfSightToTarget.hit.collider.bounds.center;
@@ -64,9 +63,7 @@ public class ThreatHandlerNPC : ThreatHandler
 
                 Target = FindTargetInRange();
                 if (Target != null) { 
-                    LineOfSightToTarget = CheckLineOfSightToTarget(Target);
-                    if (Target is CharacterHandler)
-                        Target.GetComponent<ThreatHandler>().OnStartAttack += ReactToAttack;
+                    FoundNewTarget();
                 }
             }
         }
@@ -178,6 +175,54 @@ public class ThreatHandlerNPC : ThreatHandler
         return bestTarget;
     }
 
+    void FoundNewTarget() {
+        LineOfSightToTarget = CheckLineOfSightToTarget(Target);
+
+        if (Target is CharacterHandler)
+            Target.GetComponent<ThreatHandler>().OnStartAttack += ReactToAttack;
+
+
+        // Alert nearby allies
+        foreach (Collider2D col in Physics2D.OverlapCircleAll(transform.position, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue())) {
+            CharacterHandler otherCharacter = col.GetComponent<CharacterHandler>();
+
+            if (otherCharacter == null) continue;
+
+
+            // Raycast to the target within Sight range and see if clear path
+            Vector3 targetDir = (otherCharacter.transform.position - transform.position).normalized;
+
+            RaycastHit2D hit = Physics2D.Raycast(characterHandler.hitboxCollider.bounds.center, targetDir, characterHandler.statsCharacter[CharacterStatNames.Sight].GetValue(), visionMask);
+
+            if (hit.collider != null && hit.collider.transform.root.gameObject == otherCharacter.gameObject) {
+                FactionHandler hitFactionHandler = otherCharacter.GetComponent<FactionHandler>();
+
+                if (hitFactionHandler == null) continue;
+
+                float reputation = factionHandler.FindReputation(hitFactionHandler);
+
+                if (reputation >= 100f) {
+                    ThreatHandlerNPC threatHandler = otherCharacter.GetComponent<ThreatHandlerNPC>();
+
+                    if (threatHandler != null) {
+                        threatHandler.AlertToEnemy(Target);
+                    }
+                }
+            }
+        }
+    }
+
+
+    public void AlertToEnemy(ObjectHandler objectHandler) {
+        // TODO: Evalue against current target
+        if (Target != null) return;
+
+        Target = objectHandler;
+        TargetLastSeen = objectHandler.GetComponent<Collider2D>().bounds.center;
+        FoundNewTarget();
+    }
+
+
     void OnTakeDamage(float damage, WeaponHandler weapon, CharacterHandler attacker) {
         FactionHandler hitFactionHandler = attacker.GetComponent<FactionHandler>();
 
@@ -188,10 +233,22 @@ public class ThreatHandlerNPC : ThreatHandler
         if (reputation <= -100f) {
             if (Target != null && Target is CharacterHandler)
                 Target.GetComponent<ThreatHandler>().OnStartAttack -= ReactToAttack;
+
             Target = attacker;
-            Target.GetComponent<ThreatHandler>().OnStartAttack += ReactToAttack;
+            TargetLastSeen = attacker.GetComponent<Collider2D>().bounds.center;
+            FoundNewTarget();
         }
     }
+
+
+    void OnDeath(ObjectHandler obj) {
+        if (Target != null && Target is CharacterHandler)
+            Target.GetComponent<ThreatHandler>().OnStartAttack -= ReactToAttack;
+    }
+
+
+
+
 }
 
 

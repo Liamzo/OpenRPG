@@ -62,7 +62,7 @@ public class MeleeAttackTarget : BaseThought
             attacking = true;
             brain.thoughtLocked = this;
             weapon.AttackAnticipation(0);
-            StartCoroutine(DoAttacks());
+            doAttacks = StartCoroutine(DoAttacks());
         } else {
             // Chase target
             brain.movement += brain.FindPossibleDirectionFromIdeal(brain.GetDirectionFromPath()) * brain.character.statsCharacter[CharacterStatNames.MovementSpeed].GetValue() * 2f;
