@@ -46,7 +46,16 @@ public class NonPlayerBrain : BaseBrain
     protected override void Start() {
         base.Start();
         
+        character.OnTakeDamage += InteruptThought;
         threatHandler.OnReact += AttemptReaction;
+    }
+
+    protected void InteruptThought(float damage, WeaponHandler weapon, CharacterHandler damageDealer) {
+        if (thoughtLocked != null) {
+            thoughtLocked.Cancel();
+        }
+
+        thoughtLocked = null;
     }
 
     void AttemptReaction(WeaponHandler weapon, GameObject projectile) {

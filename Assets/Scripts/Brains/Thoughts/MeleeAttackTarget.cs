@@ -8,6 +8,10 @@ public class MeleeAttackTarget : BaseThought
     float delayTimer = 0f;
 
     public float maxMeleeRange; // Currently used by Ranged Bandit to determine when to melee and ranged, could probably do this a better way during Evaluation. If lower than something like the Max Circle Distance, Melee Bandits will sometimes never attack
+    public int maxAttacks;
+
+    Coroutine doAttacks = null;
+
 
     protected override void Start() {
         base.Start();
@@ -38,6 +42,8 @@ public class MeleeAttackTarget : BaseThought
 
     public override void Execute()
     {
+        if (attacking) return;
+
         brain.equipmentHandler.rightMeleeSpot.weapon.Unholster(); // Temp, do better
         
         brain.SetTargetLookingDirection(brain.threatHandler.TargetLastSeen.Value);
@@ -49,42 +55,56 @@ public class MeleeAttackTarget : BaseThought
 
         WeaponHandler weapon = brain.equipmentHandler.rightMeleeSpot.weapon;
 
-        if (attacking) {
-            if (!brain.character.objectStatusHandler.HasControls()) {
-                // If we lose controls during anticipation, cancel the attack thought
-                //brain.attackTimer = brain.attackCoolDown; // Could doing something with this
-                delayTimer = 0f;
-                attacking = false;
-                brain.thoughtLocked = null;
-                return;
-            }
+        float dist = Vector2.Distance(brain.threatHandler.Target.transform.position, transform.position);
 
-            delayTimer += Time.deltaTime;
-
-            if (delayTimer >= 0.2f) {
-                // Do the attack
-                if (weapon != null) {
-                    weapon.AttackHold(0);
-                    weapon.AttackRelease(0);
-                }
-
-                brain.ResetAttackCoolDown();
-                delayTimer = 0f;
-                attacking = false;
-                brain.thoughtLocked = null;
-            }
+        if (dist <= weapon.statsWeapon[WeaponStatNames.Range].GetValue()) {
+            // Start the attack
+            attacking = true;
+            brain.thoughtLocked = this;
+            weapon.AttackAnticipation(0);
+            StartCoroutine(DoAttacks());
         } else {
-            float dist = Vector2.Distance(brain.threatHandler.Target.transform.position, transform.position);
-
-            if (dist <= weapon.statsWeapon[WeaponStatNames.Range].GetValue()) {
-                // Start the attack
-                attacking = true;
-                brain.thoughtLocked = this;
-                weapon.AttackAnticipation(0);
-            } else {
-                // Chase target
-                brain.movement += brain.FindPossibleDirectionFromIdeal(brain.GetDirectionFromPath()) * brain.character.statsCharacter[CharacterStatNames.MovementSpeed].GetValue() * 2f;
-            }
+            // Chase target
+            brain.movement += brain.FindPossibleDirectionFromIdeal(brain.GetDirectionFromPath()) * brain.character.statsCharacter[CharacterStatNames.MovementSpeed].GetValue() * 2f;
         }
+        
+    }
+
+    public override void Cancel()
+    {
+        if (!attacking) return;
+
+        if (doAttacks != null) StopCoroutine(doAttacks);
+        doAttacks = null;
+
+        attacking = false;
+        brain.thoughtLocked = null;
+        brain.ResetAttackCoolDown();
+    }
+
+    public IEnumerator DoAttacks() {
+        delayTimer = 0.2f;
+
+        int attacks = Random.Range(0, maxAttacks);
+
+        for (int i = 0; i <= attacks; i++) {
+            while (delayTimer > 0f) {
+                delayTimer -= Time.deltaTime;
+
+                yield return null;
+            }
+
+            WeaponHandler weapon = brain.equipmentHandler.rightMeleeSpot.weapon;        
+
+            // Do the attack
+            if (weapon != null) {
+                weapon.AttackHold(0);
+                weapon.AttackRelease(0);
+            }
+
+            delayTimer = 0.5f;
+        }
+
+        Cancel();
     }
 }

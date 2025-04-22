@@ -17,4 +17,8 @@ public abstract class BaseThought : MonoBehaviour
     public abstract float Evaluate();
 
     public abstract void Execute();
+
+    public virtual void Cancel () {
+
+    }
 }

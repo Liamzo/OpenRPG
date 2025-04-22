@@ -16,6 +16,8 @@ public class ReactionBlock : BaseReaction
     WeaponHandler attackingWeapon;
     GameObject projectile;
 
+    Coroutine holdBlock = null;
+
 
     public override float Evaluate(WeaponHandler weapon, GameObject projectile)
     {
@@ -60,7 +62,25 @@ public class ReactionBlock : BaseReaction
         Vector3 lookingDirection = projectile == null ? brain.threatHandler.TargetLastSeen.Value : projectile.transform.position;
         brain.SetTargetLookingDirection(lookingDirection);
 
-        StartCoroutine(HoldBlock(1f));
+        holdBlock = StartCoroutine(HoldBlock(1f));
+    }
+
+    public override void Cancel()
+    {
+        if (!blocking) return;
+
+        StopCoroutine(holdBlock);
+        holdBlock = null;
+
+        blocking = false;
+        brain.thoughtLocked = null;
+
+        WeaponHandler weapon = brain.equipmentHandler.rightMeleeSpot.weapon;
+        weapon.item.owner.GetComponent<CharacterHandler>().canParry -= 1;
+        
+        weapon.AttackRelease(1);
+
+        StartCoroutine(CoolDown());
     }
 
     IEnumerator HoldBlock(float duration) {
@@ -68,20 +88,13 @@ public class ReactionBlock : BaseReaction
         brain.equipmentHandler.rightMeleeSpot.weapon.Unholster(); // Temp, do better
         brain.equipmentHandler.ToggleMeleeRanged(true);
         WeaponHandler weapon = brain.equipmentHandler.rightMeleeSpot.weapon;
-        bool defaultCanParry = weapon.item.owner.GetComponent<CharacterHandler>().canParry;
-        weapon.item.owner.GetComponent<CharacterHandler>().canParry = canParry;
+        weapon.item.owner.GetComponent<CharacterHandler>().canParry += 1;
 
         weapon.AttackHold(1);
 
         yield return new WaitForSeconds(duration);
 
-        blocking = false;
-        brain.thoughtLocked = null;
-        weapon.item.owner.GetComponent<CharacterHandler>().canParry = defaultCanParry;
-        
-        weapon.AttackRelease(1);
-
-        StartCoroutine(CoolDown());
+        Cancel();
     }
 
     public IEnumerator CoolDown() {

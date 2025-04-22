@@ -67,6 +67,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canReact: 0
   maxMeleeRange: 9
+  maxAttacks: 3
 --- !u!114 &2021465408
 MonoBehaviour:
   m_ObjectHideFlags: 0

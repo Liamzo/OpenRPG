@@ -235,6 +235,9 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
                     return;
                 }
 
+                if (currentComboAttack.comboChains.Count == 0) return;
+
+                
                 // Check which section we're in based on endHoldTimer/comboAttack.endHoldDuration, switch to that lastAttack
                 float endHoldTimerPercent =  endHoldTimer / currentComboAttack.endHoldDuration;
                 float segmentLength = currentComboAttack.endHoldDuration / currentComboAttack.comboChains.Count;
@@ -242,7 +245,6 @@ public class AttackTypeComboSlash : BaseStrategy, ITrigger, IAttackType
                 int segment = Mathf.RoundToInt(endHoldTimerPercent / segmentLength);
                 segment = Mathf.Clamp(segment, 0, currentComboAttack.comboChains.Count-1);
 
-                if (currentComboAttack.comboChains.Count == 0) return;
 
                 prevComboAttack = currentComboAttack;
                 prevAttack = currentAttack;

@@ -23,7 +23,7 @@ MonoBehaviour:
   musicAudioList: 20000000
   items: []
   characters:
-  - baseStats: {fileID: 11400000, guid: 2f5c5583472adde4782057969a20be67, type: 2}
+  - baseStats: {fileID: 11400000, guid: 906a2f066fb62184dafd194ea507c6a1, type: 2}
     position: {x: 41, y: 41}
   props: []
   things: []

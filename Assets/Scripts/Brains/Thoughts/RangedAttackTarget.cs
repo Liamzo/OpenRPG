@@ -8,6 +8,10 @@ public class RangedAttackTarget : BaseThought
     float delayTimer = 0f;
 
     public float minAttackRange;
+
+    public int maxAttacks;
+
+    Coroutine doAttacks = null;
     
     protected override void Start() {
         base.Start();
@@ -31,6 +35,8 @@ public class RangedAttackTarget : BaseThought
 
     public override void Execute()
     {
+        if (attacking) return;
+
         brain.SetTargetLookingDirection(brain.threatHandler.TargetLastSeen.Value);
 
         if (brain.character.objectStatusHandler.HasMovementControls())
@@ -40,16 +46,12 @@ public class RangedAttackTarget : BaseThought
 
         WeaponHandler weapon = brain.equipmentHandler.rightMeleeSpot.weapon;
 
+        attacking = true;
+        brain.thoughtLocked = this;
+        weapon.AttackAnticipation(0);
+        StartCoroutine(DoAttacks());
+
         if (attacking) {
-            if (!brain.character.objectStatusHandler.HasControls()) {
-                // If we lose controls during anticipation, cancel the attack thought
-                //brain.attackTimer = brain.attackCoolDown; // Could doing something with this
-                delayTimer = 0f;
-                attacking = false;
-                brain.thoughtLocked = null;
-                return;
-            }
-            
             delayTimer += Time.deltaTime;
 
             if (delayTimer >= 0.2f) {
@@ -64,10 +66,44 @@ public class RangedAttackTarget : BaseThought
                 attacking = false;
                 brain.thoughtLocked = null;
             }
-        } else {
-            attacking = true;
-            brain.thoughtLocked = this;
-            weapon.AttackAnticipation(0);
         }
+    }
+
+    public override void Cancel()
+    {
+        if (!attacking) return;
+
+        if (doAttacks != null) StopCoroutine(doAttacks);
+        doAttacks = null;
+
+        attacking = false;
+        brain.thoughtLocked = null;
+        brain.ResetAttackCoolDown();
+    }
+
+    public IEnumerator DoAttacks() {
+        WeaponHandler weapon = brain.equipmentHandler.rightMeleeSpot.weapon;        
+        int attacks = Random.Range(0, maxAttacks);
+        
+        delayTimer = 0.2f;
+
+        for (int i = 0; i <= attacks; i++) {
+            while (delayTimer > 0f) {
+                delayTimer -= Time.deltaTime;
+
+                yield return null;
+            }
+
+            // Do the attack
+            if (weapon != null) {
+                brain.SetLookingDirection(brain.threatHandler.TargetLastSeen.Value);
+                weapon.AttackHold(0);
+                weapon.AttackRelease(0);
+            }
+
+            delayTimer = 0.2f;
+        }
+
+        Cancel();
     }
 }

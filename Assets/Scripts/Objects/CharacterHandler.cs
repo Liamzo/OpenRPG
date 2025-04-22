@@ -15,7 +15,7 @@ public class CharacterHandler : ObjectHandler
     public float currentStamina;
 
 
-    public bool canParry = true;// Might be better way to do this
+    public int canParry = 0;// Might be better way to do this
 
 
     // Events
@@ -65,7 +65,7 @@ public class CharacterHandler : ObjectHandler
             if (angleBetween <= objectStatusHandler.blockAngle)
             {
                 // Did block, check if a Parry
-                if (canParry && objectStatusHandler.blockTimer <= 0.2f) {
+                if (canParry == 0 && objectStatusHandler.blockTimer <= 0.2f) {
                     if (objectStatusHandler.timeSinceLastBlock > 0.1f) {
                         // Did a Parry
                         GameManager.instance.ChangeTimeScale(0.5f, 0.4f);

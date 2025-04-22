@@ -242,6 +242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canReact: 0
   maxMeleeRange: 7
+  maxAttacks: 2
 --- !u!114 &3141492362439029711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,6 +257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canReact: 0
   minAttackRange: 6
+  maxAttacks: 4
 --- !u!114 &8237379910735449938
 MonoBehaviour:
   m_ObjectHideFlags: 0
