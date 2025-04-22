@@ -30,15 +30,9 @@ public class Player : BaseBrain
 
 
     [Header("Dodging")]
-    Vector3 dodgeMovement;
-    public bool wasDodging = false;
-    public float dodgeTimer = 0.0f;
-    public float dodgeDuration;
-    public float dodgeSpeedMulti;
     [SerializeField] float dodgeDurationReleaseModifier;
     float dodgeCDTimer = 0.0f;
     [SerializeField] float dodgeCDDuration = 0.2f;
-    public float dodgeStaminaCost;
 
 
     public static Player GetInstance() 
@@ -93,8 +87,8 @@ public class Player : BaseBrain
             InteractionControls();
         }
 
-        if (dodgeTimer > 0.0f || wasDodging == true)
-            DodgeUpdate();
+        // if (dodgeTimer > 0.0f || wasDodging == true)
+        //     DodgeUpdate();
 
         if (InputManager.GetInstance().GetTabPressed())
             OnTab();
@@ -186,41 +180,21 @@ public class Player : BaseBrain
             AudioManager.instance.PlayClipRandom(AudioID.Roll, character.audioSource);
         } 
     }
-    void DodgeUpdate() {
-        // Do: Lerp between cur and max speed and back again
-        // Too hard to make feel better than simple option for now
-        // if (dodgeTimer < dodgeDuration / 2.0f) {
-        //     movement = dodgeStartingMovement * Mathf.Lerp(1f, dodgeSpeedMulti, dodgeTimer*2);
-        // } else {
-        //     movement = dodgeStartingMovement * Mathf.Lerp(dodgeSpeedMulti, 1f, (dodgeTimer - (dodgeDuration / 2.0f)) * 2);
-        // }
-
-        Vector3 newMove = dodgeMovement * Time.deltaTime;
-        character.movement += newMove;
-
+    protected override void DodgeUpdate() {
         if (wasDodging) {
             if (InputManager.GetInstance().GetDashPressed()) {
-                dodgeTimer += Time.deltaTime * dodgeDurationReleaseModifier;
+                dodgeTimer -= Time.deltaTime - (Time.deltaTime * dodgeDurationReleaseModifier);
             } else {
                 wasDodging = false;
-                dodgeTimer += Time.deltaTime;
             }
-        } else {
-            dodgeTimer += Time.deltaTime;
         }
 
-        if (dodgeTimer >= dodgeDuration) {
-            wasDodging = false;
-            dodgeTimer = 0.0f;
-            _animator.SetBool("Rolling", false);
-            character.objectStatusHandler.UnblockMovementControls();
-            character.objectStatusHandler.isDodging = false;
+        base.DodgeUpdate();
 
+        if (character.objectStatusHandler.isDodging == false) {
             dodgeCDTimer = dodgeCDDuration;
 
             InputManager.GetInstance().RegisterSubmitPressed();
-
-            footSteps.Emit(25);
         }
     }
 

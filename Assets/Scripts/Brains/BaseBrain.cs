@@ -9,7 +9,7 @@ public class BaseBrain : MonoBehaviour
     public CharacterHandler character {get; private set;}
     public EquipmentHandler equipmentHandler {get; private set;}
 
-    protected Animator _animator;
+    public Animator _animator {get; protected set;}
     
 
     public ParticleSystem footSteps;
@@ -20,6 +20,14 @@ public class BaseBrain : MonoBehaviour
     public Vector3 targetLookingDirection;
 
     float waitClock;
+
+    [Header("Dodging")]
+    public Vector3 dodgeMovement;
+    public bool wasDodging = false;
+    public float dodgeTimer = 0.0f;
+    public float dodgeDuration;
+    public float dodgeSpeedMulti;
+    public float dodgeStaminaCost;
     
 
     protected virtual void Awake() {
@@ -43,6 +51,34 @@ public class BaseBrain : MonoBehaviour
             if (waitClock <= 0f) {
                 _animator.SetTrigger("Recover");
             }
+        }
+
+        if (dodgeTimer > 0.0f || wasDodging == true)
+            DodgeUpdate();
+    }
+
+    protected virtual void DodgeUpdate() {
+        // Do: Lerp between cur and max speed and back again
+        // Too hard to make feel better than simple option for now
+        // if (dodgeTimer < dodgeDuration / 2.0f) {
+        //     movement = dodgeStartingMovement * Mathf.Lerp(1f, dodgeSpeedMulti, dodgeTimer*2);
+        // } else {
+        //     movement = dodgeStartingMovement * Mathf.Lerp(dodgeSpeedMulti, 1f, (dodgeTimer - (dodgeDuration / 2.0f)) * 2);
+        // }
+
+        Vector3 newMove = dodgeMovement * Time.deltaTime;
+        character.movement += newMove;
+
+        dodgeTimer += Time.deltaTime;
+        
+        if (dodgeTimer >= dodgeDuration) {
+            wasDodging = false;
+            dodgeTimer = 0.0f;
+            _animator.SetBool("Rolling", false);
+            character.objectStatusHandler.UnblockMovementControls();
+            character.objectStatusHandler.isDodging = false;
+
+            footSteps.Emit(25);
         }
     }
 

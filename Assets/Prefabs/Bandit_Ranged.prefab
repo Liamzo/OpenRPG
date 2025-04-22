@@ -189,6 +189,7 @@ GameObject:
   - component: {fileID: 7371308030475851263}
   - component: {fileID: 5930101008861849973}
   - component: {fileID: 3807326547979669470}
+  - component: {fileID: 4034216854347845990}
   m_Layer: 0
   m_Name: Thoughts
   m_TagString: Untagged
@@ -315,9 +316,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canReact: 0
   coolDown: 4
-  meleeChance: 66
-  rangedChance: 33
+  meleeChance: 25
+  rangedChance: 15
   canParry: 0
+--- !u!114 &4034216854347845990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7371308030475851137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1df94b59c0ee32c47be9844243baaf98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canReact: 0
+  coolDown: 4
+  meleeChance: 50
+  rangedChance: 66
 --- !u!1 &8523436994534951754
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,6 +612,12 @@ MonoBehaviour:
   movement: {x: 0, y: 0, z: 0}
   lookingDirection: {x: 0, y: 0, z: 0}
   targetLookingDirection: {x: 0, y: 0, z: 0}
+  dodgeMovement: {x: 0, y: 0, z: 0}
+  wasDodging: 0
+  dodgeTimer: 0
+  dodgeDuration: 0.3
+  dodgeSpeedMulti: 2.5
+  dodgeStaminaCost: 10
   thoughtLocked: {fileID: 0}
   previousThought: {fileID: 0}
   attackCoolDown: 3.5
