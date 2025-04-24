@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ItemBlueprintPLM
   m_EditorClassIdentifier: 
   objectName: Blueprint
-  sprite: {fileID: 21300000, guid: 45c995b76b893fd4b9e8d3e0f9f6463b, type: 3}
+  sprite: {fileID: 21300000, guid: ac7e75862431bfe458b325dd1818915d, type: 3}
   prefab: {fileID: 1486458305870933434, guid: de2ce4b5bf80240468afe5b4533a799a, type: 3}
   prefabId: blueprint_01
   description: A blueprint for a Large Magazine mod for a Pistol
