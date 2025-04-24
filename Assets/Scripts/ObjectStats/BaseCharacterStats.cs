@@ -13,7 +13,7 @@ public class BaseCharacterStats : StatBlock {
 	public List<AttributeValue> attributes;
 
 	public BaseCharacterStats() {
-	stats = new List<CharacterStatValue>();
+		stats = new List<CharacterStatValue>();
 
 		foreach (CharacterStatNames characterStatName in System.Enum.GetValues(typeof(CharacterStatNames)))
 		{
