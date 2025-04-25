@@ -1,16 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D.Animation;
+
 
 [System.Serializable]
 public class BaseCharacterStats : StatBlock {
-	[Header("Dialogue")]
-	public Sprite profileSprite;
-	public TextAsset dialogue;
+	public SpriteLibraryAsset baseLibrary;
+	public SpriteLibraryAsset headLibrary;
 
 	public List<CharacterStatValue> stats;
 
 	public List<AttributeValue> attributes;
+
+	[Header("Dialogue")]
+	public Sprite profileSprite;
+	public TextAsset dialogue;
+
+
 
 	public BaseCharacterStats() {
 		stats = new List<CharacterStatValue>();
