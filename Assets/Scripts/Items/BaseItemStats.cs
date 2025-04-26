@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D.Animation;
 
 [System.Serializable]
 public class BaseItemStats : StatBlock
@@ -10,6 +11,8 @@ public class BaseItemStats : StatBlock
     public BaseItemAction defaultAction;
 
     public List<EquipmentSlot> possibleSlots;
+    public SpriteParts spritePart;
+    public SpriteLibraryAsset spriteLibrary;
 
     public int baseValue;
 

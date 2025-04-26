@@ -28,14 +28,30 @@ public class SpritePartAnimator : MonoBehaviour
     void Start() {
         spriteLibrary.spriteLibraryAsset = transform.root.GetComponent<CharacterHandler>().baseSpriteParts[spritePart];
 
-        transform.root.GetComponent<EquipmentHandler>().onEquipmentChanged += OnEquipmentChanged; // Doesn't trigger when equipping Starting Equipment
-        Debug.Log(transform.root.GetComponent<EquipmentHandler>().currentEquipment[(int)EquipmentSlot.RightHand]); // Does find the starting equipment, so will need to do a quick check here for libraries
+        //transform.root.GetComponent<EquipmentHandler>().onEquipmentChanged += OnEquipmentChanged; // Doesn't trigger when equipping Starting Equipment
+        //Debug.Log(transform.root.GetComponent<EquipmentHandler>().currentEquipment[(int)EquipmentSlot.RightHand]); // Does find the starting equipment, so will need to do a quick check here for libraries
+
+        EquipmentHandler equipmentHandler = transform.root.GetComponent<EquipmentHandler>();
+
+        for (int i = 0; i < equipmentHandler.currentEquipment.Length; i++) {
+            if (equipmentHandler.currentEquipment[i] != null) {
+                if (equipmentHandler.currentEquipment[i].baseItemStats.spritePart == spritePart) {
+                    spriteLibrary.spriteLibraryAsset = equipmentHandler.currentEquipment[i].baseItemStats.spriteLibrary;
+                    break;
+                }
+            }
+        }
+
+        equipmentHandler.onEquipmentChanged += OnEquipmentChanged;
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        if (spriteLibrary.spriteLibraryAsset == null) return;
+        if (spriteLibrary.spriteLibraryAsset == null) {
+            spriteRenderer.sprite = null;
+            return;
+        }
 
         resolver.SetCategoryAndLabel(baseResolver.GetCategory(), baseResolver.GetLabel());
         spriteRenderer.flipX = baseSpriteRenderer.flipX;
@@ -43,6 +59,17 @@ public class SpritePartAnimator : MonoBehaviour
 
 
     void OnEquipmentChanged(ItemHandler newItem, ItemHandler oldItem, EquipmentSlot equipmentSlot) {
-        Debug.Log("new equipment");
+        if (oldItem != null) {
+            if (oldItem.baseItemStats.spritePart == spritePart) {
+                spriteLibrary.spriteLibraryAsset = transform.root.GetComponent<CharacterHandler>().baseSpriteParts[spritePart];
+            }
+        }
+        
+        if (newItem != null) {
+            if (newItem.baseItemStats.spritePart == spritePart) {
+                spriteLibrary.spriteLibraryAsset = newItem.baseItemStats.spriteLibrary;
+            }
+        }
+
     }
 }

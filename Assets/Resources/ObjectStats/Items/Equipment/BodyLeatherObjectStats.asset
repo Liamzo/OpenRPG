@@ -42,6 +42,8 @@ MonoBehaviour:
         - {fileID: 11400000, guid: 8ded9ea133c00724ab265fc03ab041b3, type: 2}
         defaultAction: {fileID: 11400000, guid: fdd49667933645f44b86c89802be93ec, type: 2}
         possibleSlots: 03000000
+        spritePart: 2
+        spriteLibrary: {fileID: 7108339969198208228, guid: 5194d9e635e53a94b9c0992a0370760c, type: 3}
         baseValue: 75
         objectStatBonuses:
         - objectStatName: 1
