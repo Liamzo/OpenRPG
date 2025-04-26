@@ -28,9 +28,6 @@ public class SpritePartAnimator : MonoBehaviour
     void Start() {
         spriteLibrary.spriteLibraryAsset = transform.root.GetComponent<CharacterHandler>().baseSpriteParts[spritePart];
 
-        //transform.root.GetComponent<EquipmentHandler>().onEquipmentChanged += OnEquipmentChanged; // Doesn't trigger when equipping Starting Equipment
-        //Debug.Log(transform.root.GetComponent<EquipmentHandler>().currentEquipment[(int)EquipmentSlot.RightHand]); // Does find the starting equipment, so will need to do a quick check here for libraries
-
         EquipmentHandler equipmentHandler = transform.root.GetComponent<EquipmentHandler>();
 
         for (int i = 0; i < equipmentHandler.currentEquipment.Length; i++) {
