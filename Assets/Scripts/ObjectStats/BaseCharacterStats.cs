@@ -6,8 +6,8 @@ using UnityEngine.U2D.Animation;
 
 [System.Serializable]
 public class BaseCharacterStats : StatBlock {
-	public SpriteLibraryAsset baseLibrary;
-	public SpriteLibraryAsset headLibrary;
+
+	public List<BodyPartHolder> spriteParts;
 
 	public List<CharacterStatValue> stats;
 
@@ -34,4 +34,11 @@ public class BaseCharacterStats : StatBlock {
 		attributes.Add(new AttributeValue(attributeName, 0));
 		}
 	}
+}
+
+
+[System.Serializable]
+public struct BodyPartHolder {
+	public SpriteParts spritePart;
+	public List<SpriteLibraryAsset> spriteParts;
 }

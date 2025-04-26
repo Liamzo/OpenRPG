@@ -1,10 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using SimpleJSON;
 using UnityEngine;
+using UnityEngine.U2D.Animation;
 
 [RequireComponent(typeof(BaseBrain))]
 
-public class CharacterHandler : ObjectHandler
+public class CharacterHandler : ObjectHandler, ISaveable
 {
     public BaseBrain brain {get; private set;}
     private BaseCharacterStats baseCharacterStats;
@@ -12,6 +16,12 @@ public class CharacterHandler : ObjectHandler
 
     public Dictionary<CharacterStatNames, Stat> statsCharacter = new Dictionary<CharacterStatNames, Stat>();
     
+
+    public Dictionary<SpriteParts, SpriteLibraryAsset> baseSpriteParts;
+
+
+
+
     public float currentStamina;
 
 
@@ -150,6 +160,25 @@ public class CharacterHandler : ObjectHandler
         currentStamina = statsCharacter[CharacterStatNames.Stamina].GetValue();
 
         OnTakeDamage += OnDamageFlash;
+
+
+
+        // Character Customization
+        SpriteLibraryAsset nullLibrary = null;
+        baseSpriteParts = Enum.GetValues(typeof(SpriteParts)).Cast<SpriteParts>().ToDictionary(part => part, part => nullLibrary);
+
+        foreach (BodyPartHolder bodyPartHolder in baseCharacterStats.spriteParts) {
+            if (bodyPartHolder.spriteParts.Count == 0) {
+                continue;
+            }
+            else if (bodyPartHolder.spriteParts.Count == 1) {
+                baseSpriteParts[bodyPartHolder.spritePart] = bodyPartHolder.spriteParts[0];
+                continue;
+            }
+
+            int randomChoice = UnityEngine.Random.Range(0, bodyPartHolder.spriteParts.Count);
+            baseSpriteParts[bodyPartHolder.spritePart] = bodyPartHolder.spriteParts[randomChoice];
+        }
     }
 
     IEnumerator DoFlash() {
@@ -158,5 +187,36 @@ public class CharacterHandler : ObjectHandler
         yield return new WaitForSeconds(0.1f);
 
         spriteRenderer.color = Color.white;
+    }
+
+    public string SaveComponent()
+    {
+        string json = $"character: {{ baseSpriteParts: [";
+
+        foreach ((SpriteParts part, SpriteLibraryAsset library) in baseSpriteParts) {
+            if (baseSpriteParts[part] != null) {
+                string libraryId = CharacterCustomizationManager.Instance.FindIdBySpriteLibrary(library);
+                json += $"{{ part: {part}, library: {libraryId} }},";
+            } else {
+                json += $"{{ part: {part}, library: null }},";
+            }
+        }
+
+        return json + "]}";
+    }
+
+    public void LoadComponent(JSONNode data)
+    {
+        foreach (JSONNode node in data["character"]["baseSpriteParts"]) {
+            SpriteParts part = (SpriteParts) Enum.Parse(typeof(SpriteParts), node["part"]);
+            SpriteLibraryAsset library = CharacterCustomizationManager.Instance.FindSpriteLibraryById(node["library"]);
+
+            baseSpriteParts[part] = library;
+        }
+    }
+
+    public void CreateBase()
+    {
+        
     }
 }

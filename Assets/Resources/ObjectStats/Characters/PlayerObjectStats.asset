@@ -34,8 +34,16 @@ MonoBehaviour:
     - rid: 2539556635058110464
       type: {class: BaseCharacterStats, ns: , asm: Assembly-CSharp}
       data:
-        profileSprite: {fileID: 0}
-        dialogue: {fileID: 0}
+        spriteParts:
+        - spritePart: 0
+          spriteParts:
+          - {fileID: 7108339969198208228, guid: 4566bbe1ca9968e47a6d295b8ce789c6, type: 3}
+        - spritePart: 1
+          spriteParts:
+          - {fileID: 7108339969198208228, guid: ac8cf2aa7b8ed0a4ba9cb9b166d5928f, type: 3}
+        - spritePart: 2
+          spriteParts:
+          - {fileID: 7108339969198208228, guid: 5194d9e635e53a94b9c0992a0370760c, type: 3}
         stats:
         - statName: 0
           value: 100
@@ -60,3 +68,5 @@ MonoBehaviour:
           value: 0
         - attributeName: 5
           value: 4
+        profileSprite: {fileID: 0}
+        dialogue: {fileID: 0}

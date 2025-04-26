@@ -4179,6 +4179,7 @@ GameObject:
   - component: {fileID: 7547779233427188606}
   - component: {fileID: 7547779233427188600}
   - component: {fileID: 503614608231503339}
+  - component: {fileID: 1374396717}
   - component: {fileID: 1992593265}
   - component: {fileID: 7547779233427188604}
   - component: {fileID: 464453930}
@@ -4294,6 +4295,28 @@ MonoBehaviour:
   ambientWaitDurationRange: 15
   musicPauseDuration: 75
   musicPauseDurationRange: 30
+--- !u!114 &1374396717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7547779233427188592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1a752f8f4905c488565bb4a9532c0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allSpriteParts:
+  - spritePartId: base01
+    spritePart: 0
+    spriteLibrary: {fileID: 7108339969198208228, guid: 4566bbe1ca9968e47a6d295b8ce789c6, type: 3}
+  - spritePartId: hair01
+    spritePart: 1
+    spriteLibrary: {fileID: 7108339969198208228, guid: ac8cf2aa7b8ed0a4ba9cb9b166d5928f, type: 3}
+  - spritePartId: jacket01
+    spritePart: 2
+    spriteLibrary: {fileID: 7108339969198208228, guid: 5194d9e635e53a94b9c0992a0370760c, type: 3}
 --- !u!114 &1992593265
 MonoBehaviour:
   m_ObjectHideFlags: 0
