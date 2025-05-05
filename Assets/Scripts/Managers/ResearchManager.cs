@@ -74,11 +74,20 @@ public class ResearchManager : MonoBehaviour
         selectedResearchDescription.text = "";
         selectedResearchProgress.text = "";
         selectedResearchButton.GetComponent<Button>().interactable = false;
+
+        List<ResearchOption> researchOptionsTemp = Resources.LoadAll<ResearchOption>("ResearchOptions/").ToList(); // Save this as a list of instances instead so we can track progress there
+        researchOptionsTemp.ForEach(researchOption => researchOptions.Add(Instantiate(researchOption)));
     }
 
     private void Start() {
-        List<ResearchOption> researchOptionsTemp = Resources.LoadAll<ResearchOption>("ResearchOptions/").ToList(); // Save this as a list of instances instead so we can track progress there
-        researchOptionsTemp.ForEach(researchOption => researchOptions.Add(Instantiate(researchOption)));
+        if (Player.Instance == null) {
+            GameManager.instance.PlayerCreated += WaitForPlayer;
+            return;
+        }
+        researchOptions.ForEach(researchOption => researchOption.Create());
+    }
+
+    void WaitForPlayer() {
         researchOptions.ForEach(researchOption => researchOption.Create());
     }
 

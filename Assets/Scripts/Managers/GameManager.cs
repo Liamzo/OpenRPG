@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
     public CinemachineVirtualCamera virtualCamera;
 
 
+    public event System.Action PlayerCreated = delegate { };
+
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -38,6 +41,8 @@ public class GameManager : MonoBehaviour
         ObjectHandler player = Instantiate(playerBaseStats.prefab).GetComponent<ObjectHandler>();
 
         player.CreateBaseObject(playerBaseStats);
+
+        PlayerCreated();
 
         //LoadAfterFrame(player);
 

@@ -8,6 +8,9 @@ public class SpriteRenderingHandler : MonoBehaviour
     public MeshRenderer meshRenderer;
 
     void Awake() {
+        renderCamera = GetComponentInChildren<Camera>();
+        meshRenderer = GetComponent<MeshRenderer>();
+
         RenderTexture renderTexture = new RenderTexture(32,32,0,RenderTextureFormat.ARGB32);
         renderTexture.filterMode = FilterMode.Point;
         renderTexture.Create();
