@@ -22,12 +22,12 @@ public class InteractionHandler : MonoBehaviour
     }
 
     public void Highlight() {
-        objectHandler.spriteRenderer.material.SetFloat("_DoOutline", 1.0f);
-        objectHandler.spriteRenderer.material.SetColor("_Outline_Colour", Color.yellow);
+        objectHandler.GetRenderer().material.SetFloat("_DoOutline", 1.0f);
+        objectHandler.GetRenderer().material.SetColor("_Outline_Colour", Color.yellow);
     }
     public void Unhighlight() {
-        if (objectHandler.spriteRenderer == null) return;
+        if (objectHandler.GetRenderer() == null) return;
 
-        objectHandler.spriteRenderer.material.SetFloat("_DoOutline", 0.0f);
+        objectHandler.GetRenderer().material.SetFloat("_DoOutline", 0.0f);
     }
 }

@@ -18,6 +18,7 @@ public class CharacterHandler : ObjectHandler, ISaveable
     
 
     public Dictionary<SpriteParts, SpriteLibraryAsset> baseSpriteParts;
+    public MeshRenderer meshRenderer;
 
 
 
@@ -51,6 +52,11 @@ public class CharacterHandler : ObjectHandler, ISaveable
         if (currentStamina < statsCharacter[CharacterStatNames.Stamina].GetValue() && objectStatusHandler.CanRegainStamina()) {
             ChangeStamina(statsCharacter[CharacterStatNames.StaminaRegen].GetValue() * Time.deltaTime);
         }
+    }
+
+    public override Renderer GetRenderer()
+    {
+        return meshRenderer;
     }
 
 
@@ -179,6 +185,8 @@ public class CharacterHandler : ObjectHandler, ISaveable
             int randomChoice = UnityEngine.Random.Range(0, bodyPartHolder.spriteParts.Count);
             baseSpriteParts[bodyPartHolder.spritePart] = bodyPartHolder.spriteParts[randomChoice];
         }
+
+        meshRenderer = GetComponentInChildren<MeshRenderer>();
     }
 
     IEnumerator DoFlash() {

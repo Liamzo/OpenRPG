@@ -85,6 +85,10 @@ public class ObjectHandler : MonoBehaviour
         movement = Vector3.zero;
     }
 
+    public virtual Renderer GetRenderer() {
+        return spriteRenderer;
+    }
+
     public virtual void Heal(float amount) {
         currentHealth = Mathf.Clamp(currentHealth + amount, 0f, statsObject[ObjectStatNames.Health].GetValue());
 
