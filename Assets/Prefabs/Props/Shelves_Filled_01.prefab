@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7108197604663702556}
   - component: {fileID: 7108197604663702554}
   - component: {fileID: 8607646091760019141}
+  - component: {fileID: 2101538031449216107}
   m_Layer: 0
   m_Name: Shelves_Filled_01
   m_TagString: Untagged
@@ -112,6 +113,20 @@ MonoBehaviour:
   m_LocalBounds:
     m_Center: {x: 0, y: 0.72999954, z: 0}
     m_Extent: {x: 1.3999996, y: 0.27499962, z: 0}
+--- !u!114 &2101538031449216107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7108197604663702529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a693f970360d3ab4d97e66cd80c5e8b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabId: shelvesFilled01
+  exclusionDist: 0
 --- !u!1 &7108197605000257245
 GameObject:
   m_ObjectHideFlags: 0

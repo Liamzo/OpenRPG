@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98db6edcb208a2e4aad0f30a0fdd6a85, type: 3}
   m_Name: AttackType Projectile BasicBullet
   m_EditorClassIdentifier: 
+  strategyName: 
+  strategyDescription: 
+  strategyIcon: {fileID: 0}
   triggerSlot: 0
   muzzleFlashPrefab: {fileID: 313659951529756610, guid: 2c24555792342054d936328d12c5bdcd, type: 3}
   bulletPrefab: {fileID: 7319803943386155118, guid: fb028c1093ce9a1468561fc04d6a46f1, type: 3}
-  bulletSpeed: 20
+  bulletSpeed: 30
