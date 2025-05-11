@@ -55,7 +55,7 @@ public class AttackTypeBlock : BaseStrategy, IAttackType
     void ReleaseBlock(float charge) {
         ReleaseBlock();
     }
-    void ReleaseBlock(float damage, WeaponHandler weapon, CharacterHandler damageDealer) {
+    void ReleaseBlock(float damage, WeaponHandler weapon, CharacterHandler damageDealer, BasicBullet projectile) {
         ReleaseBlock();
     }
 

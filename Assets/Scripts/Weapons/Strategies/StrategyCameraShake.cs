@@ -60,7 +60,7 @@ public class StrategyCameraShake : BaseStrategy
     }
 
     // On Hit Target
-    private void CameraShake(ObjectHandler target, HitOutcome hitOutcome, float charge, GameObject projectile)
+    private void CameraShake(ObjectHandler target, HitOutcome hitOutcome, float charge, BasicBullet projectile)
     {
         if (target == null) return;
         

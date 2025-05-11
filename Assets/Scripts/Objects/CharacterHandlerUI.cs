@@ -52,8 +52,8 @@ public class CharacterHandlerUI : CharacterHandler
     }
 
 
-    public override void TakeDamge (float damage, WeaponHandler weapon, CharacterHandler damageDealer) {
-        base.TakeDamge(damage, weapon, damageDealer);
+    public override void TakeDamge (float damage, WeaponHandler weapon, CharacterHandler damageDealer, BasicBullet projectile) {
+        base.TakeDamge(damage, weapon, damageDealer, projectile);
 
         UpdateHealthUI();
     }

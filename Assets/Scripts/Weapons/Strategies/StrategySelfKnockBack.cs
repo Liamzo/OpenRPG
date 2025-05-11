@@ -56,7 +56,7 @@ public class StrategySelfKnockBack : BaseStrategy
         DoKnockBack();
     }
 
-    private void DoKnockBack(ObjectHandler target, HitOutcome hitOutcome, float charge, GameObject projectile)
+    private void DoKnockBack(ObjectHandler target, HitOutcome hitOutcome, float charge, BasicBullet projectile)
     {
         DoKnockBack();
     }

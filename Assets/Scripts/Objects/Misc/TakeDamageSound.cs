@@ -17,7 +17,7 @@ public class TakeDamageSound : MonoBehaviour
     }
 
     // Update is called once per frame
-    void OnTakeDamage(float damage, WeaponHandler weapon, CharacterHandler damageDealer)
+    void OnTakeDamage(float damage, WeaponHandler weapon, CharacterHandler damageDealer, BasicBullet projectile)
     {
         if (brain.character.currentHealth < brain.character.statsObject[ObjectStatNames.Health].GetValue() / 2f && brain.character.currentHealth + damage >= brain.character.statsObject[ObjectStatNames.Health].GetValue() / 2f) {
             // Only trigger when health drops below half

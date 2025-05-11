@@ -223,7 +223,7 @@ public class ThreatHandlerNPC : ThreatHandler
     }
 
 
-    void OnTakeDamage(float damage, WeaponHandler weapon, CharacterHandler attacker) {
+    void OnTakeDamage(float damage, WeaponHandler weapon, CharacterHandler attacker, BasicBullet projectile) {
         FactionHandler hitFactionHandler = attacker.GetComponent<FactionHandler>();
 
         if (hitFactionHandler == null) return;

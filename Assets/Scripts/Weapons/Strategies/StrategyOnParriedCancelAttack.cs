@@ -18,7 +18,7 @@ public class StrategyOnParriedCancelAttack : BaseStrategy
     }
 
 
-    private void DoCancelAttack(ObjectHandler target, HitOutcome hitOutcome, float charge, GameObject projectile)
+    private void DoCancelAttack(ObjectHandler target, HitOutcome hitOutcome, float charge, BasicBullet projectile)
     {
         if (hitOutcome != HitOutcome.Parry) return;
 

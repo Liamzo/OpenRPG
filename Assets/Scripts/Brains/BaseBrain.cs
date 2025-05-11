@@ -82,7 +82,7 @@ public class BaseBrain : MonoBehaviour
         }
     }
 
-    protected virtual void OnTakeDamage(float damage, WeaponHandler weapon, CharacterHandler damageDealer) {
+    protected virtual void OnTakeDamage(float damage, WeaponHandler weapon, CharacterHandler damageDealer, BasicBullet projectile) {
         _animator.SetTrigger("Hit");
 
         float waitTime = weapon.GetStatValue(WeaponStatNames.Stagger) - 0.1f;
@@ -94,11 +94,27 @@ public class BaseBrain : MonoBehaviour
             waitClock = waitTime;
         }
 
-        GameObject bloodEffect = ObjectPoolManager.Instance.GetPooledObject(PoolIdentifiers.BloodEffect);
+        GameObject bloodGO = ObjectPoolManager.Instance.GetPooledObject(PoolIdentifiers.BloodEffect);
+        ParticleSystem bloodEffect = bloodGO.GetComponent<ParticleSystem>();
         bloodEffect.transform.position = equipmentHandler.orbitPoint.position;
-        // bloodEffect.transform.parent = equipmentHandler.orbitPoint;
-        // bloodEffect.transform.localPosition = Vector3.zero;
-        bloodEffect.SetActive(true);
+
+        Vector3 bloodDirection;
+        if (projectile == null) {
+            bloodDirection = (transform.position - weapon.item.owner.transform.position).normalized;
+            var shape = bloodEffect.shape;
+            shape.arc = 120f;
+            shape.rotation = new Vector3(0, 0, 30f);
+        } else {
+            bloodDirection = projectile.direction;
+            var shape = bloodEffect.shape;
+            shape.arc = 20f;
+            shape.rotation = new Vector3(0, 0, 80f);
+        }
+
+        bloodEffect.transform.localEulerAngles = new Vector3(0, 0, Vector2.SignedAngle(Vector3.up, bloodDirection));
+
+
+        bloodGO.SetActive(true);
     }
 
     protected virtual void OnDeath(ObjectHandler obj) {

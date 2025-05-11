@@ -50,7 +50,7 @@ public class NonPlayerBrain : BaseBrain
         threatHandler.OnReact += AttemptReaction;
     }
 
-    protected void InteruptThought(float damage, WeaponHandler weapon, CharacterHandler damageDealer) {
+    protected void InteruptThought(float damage, WeaponHandler weapon, CharacterHandler damageDealer, BasicBullet projectile) {
         if (thoughtLocked != null) {
             thoughtLocked.Cancel();
         }

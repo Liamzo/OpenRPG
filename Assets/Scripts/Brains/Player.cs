@@ -401,7 +401,7 @@ public class Player : BaseBrain
         interactionDoing = null;
     }
 
-    void InteruptInteractionDamage(float damage, WeaponHandler weapon, CharacterHandler attacker) {
+    void InteruptInteractionDamage(float damage, WeaponHandler weapon, CharacterHandler attacker, BasicBullet projectile) {
         CancelInteraction();
     }
 

@@ -59,7 +59,7 @@ public class StrategyKnockBack : BaseStrategy
     }
 
     // On Hit Target
-    private void DoKnockBack(ObjectHandler target, HitOutcome hitOutcome, float charge, GameObject projectile)
+    private void DoKnockBack(ObjectHandler target, HitOutcome hitOutcome, float charge, BasicBullet projectile)
     {
         if (target == null) return;
         

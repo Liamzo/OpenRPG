@@ -68,7 +68,7 @@ public class StrategyBulletCasing : BaseStrategy
     }
 
     // On Hit Target
-    private void SpawnBulletCasing(ObjectHandler target, HitOutcome hitOutcome, float charge, GameObject projectile)
+    private void SpawnBulletCasing(ObjectHandler target, HitOutcome hitOutcome, float charge, BasicBullet projectile)
     {
         SpawnBulletCasing();
     }

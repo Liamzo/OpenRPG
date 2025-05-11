@@ -35,7 +35,7 @@ public class StrategyOnParryAttack : BaseStrategy
     }
 
 
-    private void DoAttack(WeaponHandler attackingWeapon, ObjectHandler damageDealer, GameObject projectile)
+    private void DoAttack(WeaponHandler attackingWeapon, ObjectHandler damageDealer, BasicBullet projectile)
     {
         weapon.AttackHold(0);
         weapon.AttackRelease(0);

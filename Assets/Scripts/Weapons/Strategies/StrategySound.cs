@@ -65,7 +65,7 @@ public class StrategySound : BaseStrategy
     }
 
     // On Hit Target
-    private void PlaySound(ObjectHandler target, HitOutcome hitOutcome, float charge, GameObject projectile)
+    private void PlaySound(ObjectHandler target, HitOutcome hitOutcome, float charge, BasicBullet projectile)
     {
         if (target == null) return;
         

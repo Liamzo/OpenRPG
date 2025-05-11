@@ -30,8 +30,8 @@ public class CharacterHandler : ObjectHandler, ISaveable
 
 
     // Events
-    public event System.Action<WeaponHandler, ObjectHandler, GameObject> OnBlock = delegate { };
-    public event System.Action<WeaponHandler, ObjectHandler, GameObject> OnParry = delegate { };
+    public event System.Action<WeaponHandler, ObjectHandler, BasicBullet> OnBlock = delegate { };
+    public event System.Action<WeaponHandler, ObjectHandler, BasicBullet> OnParry = delegate { };
 
 
     protected override void Awake()
@@ -59,8 +59,25 @@ public class CharacterHandler : ObjectHandler, ISaveable
         return meshRenderer;
     }
 
+    public override void Heal(float amount)
+    {
+        base.Heal(amount);
 
-    public override HitOutcome GetHit(WeaponHandler weapon, CharacterHandler damageDealer, GameObject projectile) 
+        float bloodCoverage = Mathf.Lerp(0.5f, 0f, currentHealth / statsObject[ObjectStatNames.Health].GetValue());
+        meshRenderer.material.SetFloat("_DissolveCoverage", bloodCoverage);
+    }
+
+    public override void TakeDamge(float damage, WeaponHandler weapon, CharacterHandler damageDealer, BasicBullet projectile)
+    {
+        base.TakeDamge(damage, weapon, damageDealer, projectile);
+
+
+        float bloodCoverage = Mathf.Lerp(0.5f, 0f, currentHealth / statsObject[ObjectStatNames.Health].GetValue());
+        meshRenderer.material.SetFloat("_DissolveCoverage", bloodCoverage);
+    }
+
+
+    public override HitOutcome GetHit(WeaponHandler weapon, CharacterHandler damageDealer, BasicBullet projectile) 
     {
         if (objectStatusHandler.isBlocking) {
             // Vector2 hitPosition = projectile == null ? damageDealer.rigidBody.position : projectile.transform.position;
@@ -119,7 +136,7 @@ public class CharacterHandler : ObjectHandler, ISaveable
         return statsCharacter[statName].GetValue();
     }
 
-    void OnDamageFlash(float damage, WeaponHandler weapon, CharacterHandler damageDealer) {
+    void OnDamageFlash(float damage, WeaponHandler weapon, CharacterHandler damageDealer, BasicBullet projectile) {
         StartCoroutine("DoFlash");
     }
 

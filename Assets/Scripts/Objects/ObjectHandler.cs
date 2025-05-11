@@ -41,7 +41,7 @@ public class ObjectHandler : MonoBehaviour
 
 
     // Events
-    public event System.Action<float, WeaponHandler, CharacterHandler> OnTakeDamage = delegate { };
+    public event System.Action<float, WeaponHandler, CharacterHandler, BasicBullet> OnTakeDamage = delegate { };
     public event System.Action<ObjectHandler> OnDeath = delegate { };
 
 
@@ -97,7 +97,7 @@ public class ObjectHandler : MonoBehaviour
             Die();
     }
 
-    public virtual void TakeDamge (float damage, WeaponHandler weapon, CharacterHandler damageDealer) {
+    public virtual void TakeDamge (float damage, WeaponHandler weapon, CharacterHandler damageDealer, BasicBullet projectile) {
         damage -= statsObject[ObjectStatNames.ArmourValue].GetValue();
 
         currentHealth = Mathf.Clamp(currentHealth - damage, 0f, statsObject[ObjectStatNames.Health].GetValue());
@@ -109,7 +109,7 @@ public class ObjectHandler : MonoBehaviour
         go.GetComponentInChildren<TextMeshPro>().SetText(damage.ToString());
         go.SetActive(true);
 
-        OnTakeDamage(damage, weapon, damageDealer);
+        OnTakeDamage(damage, weapon, damageDealer, projectile);
 
         if (currentHealth <= 0) {
             // Give the character that killed this EXP if there is one
@@ -138,7 +138,7 @@ public class ObjectHandler : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public virtual HitOutcome GetHit(WeaponHandler weapon, CharacterHandler damageDealer, GameObject projectile) {
+    public virtual HitOutcome GetHit(WeaponHandler weapon, CharacterHandler damageDealer, BasicBullet projectile) {
         // Check for Dodge
         if (objectStatusHandler.isDodging) {
             // Dodge
