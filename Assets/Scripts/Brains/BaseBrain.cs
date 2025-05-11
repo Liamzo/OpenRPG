@@ -119,7 +119,7 @@ public class BaseBrain : MonoBehaviour
 
     protected virtual void OnDeath(ObjectHandler obj) {
         _animator.SetTrigger("Death");
-        GetComponent<CharacterHandler>().enabled = false;
+        //GetComponent<CharacterHandler>().enabled = false;
         this.enabled = false;
         GetComponent<Collider2D>().enabled = false;
 

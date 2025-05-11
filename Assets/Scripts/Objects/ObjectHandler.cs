@@ -135,6 +135,7 @@ public class ObjectHandler : MonoBehaviour
     IEnumerator CompleteDeath () {
         yield return new WaitForSeconds(1f);
         
+        this.enabled = false;
         Destroy(gameObject);
     }
 

@@ -21,7 +21,7 @@ public class Physicsable : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        objectHandler.OnDeath += OnDeath;
     }
 
     private void Update() {
@@ -63,6 +63,17 @@ public class Physicsable : MonoBehaviour
         _prevValue = Vector3.zero;
         knockDuration = baseKnockDuration;
     }
+
+
+    void OnDeath(ObjectHandler handler) {
+        if (knockTimer <= knockDuration) {
+            // Currently being knocked back
+            knockForce *= 3;
+        }
+
+        objectHandler.statsObject[ObjectStatNames.Weight].AddModifier(new Modifier(ModifierTypes.Multiplier, -66.66f));
+    }
+
 
 
     float Flip(float x)

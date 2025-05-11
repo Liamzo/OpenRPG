@@ -63,12 +63,12 @@ public class StrategyKnockBack : BaseStrategy
     {
         if (target == null) return;
         
-        Vector3 hitPosition = projectile == null ? weapon.item.owner.transform.position : projectile.transform.position;
+        Vector3 hitDirection = projectile == null ? (target.transform.position - weapon.item.owner.transform.position).normalized : projectile.direction;
 
         if (hitOutcome == HitOutcome.Hit) {
-            target.GetComponent<Physicsable>().KnockBack(hitPosition, weapon.statsWeapon[WeaponStatNames.KnockBack].GetValue());
+            target.GetComponent<Physicsable>().Knock(hitDirection, weapon.statsWeapon[WeaponStatNames.KnockBack].GetValue());
         } else if (hitOutcome == HitOutcome.Block) {
-            target.GetComponent<Physicsable>().KnockBack(hitPosition, weapon.statsWeapon[WeaponStatNames.KnockBack].GetValue()/2f);
+            target.GetComponent<Physicsable>().Knock(hitDirection, weapon.statsWeapon[WeaponStatNames.KnockBack].GetValue()/2f);
         }
     }
 }
