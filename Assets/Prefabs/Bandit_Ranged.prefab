@@ -855,8 +855,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canReact: 0
-  maxMeleeRange: 7
-  maxAttacks: 2
+  maxMeleeRange: 4
+  maxAttacks: 1
 --- !u!114 &3141492362439029711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -929,7 +929,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canReact: 0
   coolDown: 4
-  meleeChance: 25
+  meleeChance: 15
   rangedChance: 15
   canParry: 0
 --- !u!114 &4034216854347845990
@@ -946,7 +946,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canReact: 0
   coolDown: 4
-  meleeChance: 50
+  meleeChance: 40
   rangedChance: 66
 --- !u!1 &8523436995661248248
 GameObject:
