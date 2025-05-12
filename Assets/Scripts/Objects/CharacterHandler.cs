@@ -223,7 +223,7 @@ public class CharacterHandler : ObjectHandler, ISaveable
                 string libraryId = CharacterCustomizationManager.Instance.FindIdBySpriteLibrary(library);
                 json += $"{{ part: {part}, library: {libraryId} }},";
             } else {
-                json += $"{{ part: {part}, library: null }},";
+                json += $"{{ part: {part}, library: none }},";
             }
         }
 

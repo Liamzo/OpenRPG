@@ -130,6 +130,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 519420032, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 519420032, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 519420032, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
     - target: {fileID: 602655482, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -146,6 +158,66 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1374396717, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: allSpriteParts.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1374396717, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: allSpriteParts.Array.data[1].spritePart
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1374396717, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: allSpriteParts.Array.data[2].spritePart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1374396717, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: allSpriteParts.Array.data[3].spritePart
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1374396717, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: allSpriteParts.Array.data[4].spritePart
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1374396717, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: allSpriteParts.Array.data[0].spritePartId
+      value: none
+      objectReference: {fileID: 0}
+    - target: {fileID: 1374396717, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: allSpriteParts.Array.data[1].spritePartId
+      value: base01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1374396717, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: allSpriteParts.Array.data[2].spritePartId
+      value: hair01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1374396717, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: allSpriteParts.Array.data[3].spritePartId
+      value: jacket01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1374396717, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: allSpriteParts.Array.data[4].spritePartId
+      value: jacket01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1374396717, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: allSpriteParts.Array.data[0].spriteLibrary
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1374396717, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: allSpriteParts.Array.data[1].spriteLibrary
+      value: 
+      objectReference: {fileID: 7108339969198208228, guid: 4566bbe1ca9968e47a6d295b8ce789c6, type: 3}
+    - target: {fileID: 1374396717, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: allSpriteParts.Array.data[2].spriteLibrary
+      value: 
+      objectReference: {fileID: 7108339969198208228, guid: ac8cf2aa7b8ed0a4ba9cb9b166d5928f, type: 3}
+    - target: {fileID: 1374396717, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: allSpriteParts.Array.data[3].spriteLibrary
+      value: 
+      objectReference: {fileID: 7108339969198208228, guid: 5194d9e635e53a94b9c0992a0370760c, type: 3}
+    - target: {fileID: 1374396717, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
+      propertyPath: allSpriteParts.Array.data[4].spriteLibrary
+      value: 
+      objectReference: {fileID: 7108339969198208228, guid: 5194d9e635e53a94b9c0992a0370760c, type: 3}
     - target: {fileID: 1526807545, guid: 0790cbf5c35d044408ee393d61b6cc42, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
