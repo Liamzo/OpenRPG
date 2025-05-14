@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2021465411}
   - component: {fileID: 2021465408}
   - component: {fileID: 2021465410}
-  - component: {fileID: 4147258264417287786}
   - component: {fileID: 7810784309537741201}
   m_Layer: 0
   m_Name: Thoughts
@@ -106,23 +105,6 @@ MonoBehaviour:
   circleDirection: 1
   minDirectionDuration: 3
   maxDirectionDuration: 5
---- !u!114 &4147258264417287786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2021465406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6710567ee0b7934192d3144ef959224, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canReact: 0
-  coolDown: 3
-  meleeChance: 33
-  rangedChance: 20
-  canParry: 0
 --- !u!114 &7810784309537741201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,8 +119,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canReact: 0
   coolDown: 5
-  meleeChance: 33
-  rangedChance: 50
+  meleeChance: 50
+  rangedChance: 66
 --- !u!1 &1154453471690096199
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,7 +149,7 @@ GameObject:
   - component: {fileID: 891896985806456306}
   - component: {fileID: 118165342880759752}
   m_Layer: 10
-  m_Name: Bandit
+  m_Name: Bandit_Fast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -342,7 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449d5b5940e1bcd4e845a0c4bdff59fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingEquipment: {fileID: 11400000, guid: fa750eecf55927c42b56502a664062f3, type: 2}
+  startingEquipment: {fileID: 11400000, guid: 1862172d29d09834fb643fc353cf2a3e, type: 2}
   currentEquipment: []
   orbitPoint: {fileID: 4284077682130451465}
   rightMeleeSpot: {fileID: 2429620863195684732}

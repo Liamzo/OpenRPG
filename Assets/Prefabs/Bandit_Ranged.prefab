@@ -1164,7 +1164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449d5b5940e1bcd4e845a0c4bdff59fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingEquipment: {fileID: 11400000, guid: 7e9924f84f1ef0747b7b365e1fb3949b, type: 2}
+  startingEquipment: {fileID: 11400000, guid: 44daec136d8064b43b85137486f6f5cd, type: 2}
   currentEquipment: []
   orbitPoint: {fileID: 6717185283199218870}
   rightMeleeSpot: {fileID: 5186909632776001475}

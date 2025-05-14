@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5eac169f66d096428752ed9c9ae5a10, type: 3}
-  m_Name: SwordObjectStats
+  m_Name: Axe01ObjectStats
   m_EditorClassIdentifier: 
-  objectName: Iron Sword
-  sprite: {fileID: 21300000, guid: 37e9fb16acbe38c45815380a7e9eb232, type: 3}
+  objectName: Iron Axe
+  sprite: {fileID: 21300000, guid: 2aae50fb7956e0c4ba74d83b6392d3af, type: 3}
   prefab: {fileID: 4328129691896571672, guid: 828d290f2e4ca1a4baf519d5c210c007, type: 3}
-  prefabId: sword_01
-  description: A basic iron sword
+  prefabId: axe_01
+  description: A rusty iron axe
   type: 0
   expValue: 0
   stats:
@@ -35,7 +35,7 @@ MonoBehaviour:
     - rid: 2539556635058110471
       type: {class: BaseItemStats, ns: , asm: Assembly-CSharp}
       data:
-        icon: {fileID: 21300000, guid: 37e9fb16acbe38c45815380a7e9eb232, type: 3}
+        icon: {fileID: 21300000, guid: 2aae50fb7956e0c4ba74d83b6392d3af, type: 3}
         itemActions:
         - {fileID: 11400000, guid: 394bdde43074ad04ca06c57e06a485a1, type: 2}
         - {fileID: 11400000, guid: fdd49667933645f44b86c89802be93ec, type: 2}
@@ -62,25 +62,25 @@ MonoBehaviour:
         - statName: 1
           value: 1
         - statName: 2
-          value: 6
+          value: 8
         - statName: 0
-          value: 1
+          value: 2
         - statName: 3
-          value: 4
+          value: 2.5
         - statName: 11
           value: 5
         - statName: 10
           value: 10
         - statName: 6
-          value: 4
+          value: 3
         - statName: 14
           value: 1
         - statName: 4
-          value: 1.5
+          value: 2
         - statName: 5
-          value: 80
+          value: 100
         - statName: 13
-          value: 50
+          value: 70
         animationController: {fileID: 9100000, guid: f9ef938c87396da4d8049c30a2356d6f, type: 2}
         spriteRotation: {x: 0, y: 0, z: 0}
         attackPoint: {x: 0.5, y: -1.5, z: 0}

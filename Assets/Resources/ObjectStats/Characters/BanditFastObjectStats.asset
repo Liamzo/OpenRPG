@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5eac169f66d096428752ed9c9ae5a10, type: 3}
-  m_Name: RangedBanditObjectStats
+  m_Name: BanditFastObjectStats
   m_EditorClassIdentifier: 
-  objectName: Red Hawk
+  objectName: Block Stainly
   sprite: {fileID: 0}
-  prefab: {fileID: 8523436995661248248, guid: 9ece42e72c7b43e4096067d7061e661d, type: 3}
-  prefabId: bandit_02
+  prefab: {fileID: 1154453471690096199, guid: 305e71b106d786b43a2d8e085ac21894, type: 3}
+  prefabId: bandit_03
   description: 
   type: 2
   expValue: 15
   stats:
   - statName: 0
-    value: 5
+    value: 6
   - statName: 1
     value: 1
   - statName: 2
@@ -40,7 +40,7 @@ MonoBehaviour:
           - {fileID: 7108339969198208228, guid: 4566bbe1ca9968e47a6d295b8ce789c6, type: 3}
         - spritePart: 1
           spriteParts:
-          - {fileID: 7108339969198208228, guid: ac8cf2aa7b8ed0a4ba9cb9b166d5928f, type: 3}
+          - {fileID: 0}
         - spritePart: 2
           spriteParts:
           - {fileID: 0}
@@ -50,7 +50,7 @@ MonoBehaviour:
         - statName: 1
           value: 15
         - statName: 2
-          value: 7
+          value: 10
         - statName: 3
           value: 1.5
         - statName: 4

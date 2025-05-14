@@ -258,7 +258,7 @@ public class WeaponHandler : MonoBehaviour, ISaveable
 
         animator.runtimeAnimatorController = baseWeaponStats.animationController;
 
-        item.objectHandler.spriteRenderer.transform.eulerAngles = baseWeaponStats.spriteRotation;
+        item.objectHandler.spriteRenderer.transform.eulerAngles = baseWeaponStats.spriteRotation; // Think only matters for Ranged Weapons? Definetely not for melee, that's handled by Animator
 
         meleeHitbox.offset = new Vector2(baseWeaponStats.colliderSize.x, baseWeaponStats.colliderSize.y);
         meleeHitbox.size = new Vector2(baseWeaponStats.colliderSize.z, baseWeaponStats.colliderSize.w);
@@ -327,6 +327,15 @@ public class WeaponHandler : MonoBehaviour, ISaveable
         {
             triggerHolders[anticipation.triggerSlot].anticipation = anticipation;
         }
+    
+        animator.runtimeAnimatorController = baseWeaponStats.animationController;
+
+        item.objectHandler.spriteRenderer.transform.eulerAngles = baseWeaponStats.spriteRotation; // Think only matters for Ranged Weapons? Definetely not for melee, that's handled by Animator
+
+        meleeHitbox.offset = new Vector2(baseWeaponStats.colliderSize.x, baseWeaponStats.colliderSize.y);
+        meleeHitbox.size = new Vector2(baseWeaponStats.colliderSize.z, baseWeaponStats.colliderSize.w);
+
+        attackPoint.localPosition = baseWeaponStats.attackPoint;
     }
 
 

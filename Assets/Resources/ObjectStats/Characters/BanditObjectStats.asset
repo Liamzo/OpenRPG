@@ -40,7 +40,7 @@ MonoBehaviour:
           - {fileID: 7108339969198208228, guid: 4566bbe1ca9968e47a6d295b8ce789c6, type: 3}
         - spritePart: 1
           spriteParts:
-          - {fileID: 0}
+          - {fileID: 7108339969198208228, guid: ac8cf2aa7b8ed0a4ba9cb9b166d5928f, type: 3}
         - spritePart: 2
           spriteParts:
           - {fileID: 7108339969198208228, guid: 5194d9e635e53a94b9c0992a0370760c, type: 3}

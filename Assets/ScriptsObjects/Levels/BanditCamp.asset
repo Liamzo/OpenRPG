@@ -54,6 +54,8 @@ MonoBehaviour:
           chance: 3
         - baseStats: {fileID: 11400000, guid: 906a2f066fb62184dafd194ea507c6a1, type: 2}
           chance: 2
+        - baseStats: {fileID: 11400000, guid: 0a6fa0c5749c06b47a494113f8441e83, type: 2}
+          chance: 2
         enemyAmount: 5
     - rid: 2539556613908856833
       type: {class: RoadGenEvent, ns: , asm: Assembly-CSharp}
