@@ -18,6 +18,7 @@ public class RoadGenEvent : BaseGenEvent
     {
         GameObject newTileMap = GameObject.Instantiate(tilemapPrefab, GameObject.FindWithTag("TileMap").transform);
         Tilemap tilemap = newTileMap.GetComponent<Tilemap>();
+        tilemap.GetComponent<TilemapRenderer>().sortingOrder = GameObject.FindWithTag("TileMap").transform.childCount;
 
         int amount = Random.Range(minAmount, maxAmount+1);
         for (int i = 0; i < amount; i++)

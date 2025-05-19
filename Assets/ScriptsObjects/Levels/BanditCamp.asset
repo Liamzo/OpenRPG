@@ -60,7 +60,7 @@ MonoBehaviour:
     - rid: 2539556613908856833
       type: {class: RoadGenEvent, ns: , asm: Assembly-CSharp}
       data:
-        roadTile: {fileID: 11400000, guid: f024967e99a286945af7f79c363919b3, type: 2}
+        roadTile: {fileID: 11400000, guid: 408ae3a66a72d9d459f193edb8138c7a, type: 2}
         tilemapPrefab: {fileID: 3466845665134259520, guid: 2ab8e02106c30cf4da4f565574e6a99c, type: 3}
         minAmount: 1
         maxAmount: 2
