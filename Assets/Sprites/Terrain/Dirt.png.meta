@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9eff0e96e06abe84fb16f238b0c66de8
+guid: 6d587a3f496d05445a818e151bc20ae0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Road_0
+      name: Dirt_0
       rect:
         serializedVersion: 2
         x: 0
@@ -125,20 +125,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2c91666edbecd244ad591c5bb89a8b5
-      internalID: 2098777843
+      spriteID: c6a6a76c00cdd2b46b4b4061c7157b9b
+      internalID: -728681010
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_1
+      name: Dirt_1
       rect:
         serializedVersion: 2
         x: 32
@@ -146,20 +146,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 69da781ef83f241499435b6e47b09ac0
-      internalID: -255794048
+      spriteID: d88561970eb5fc84faeb357f18d304c1
+      internalID: 475061075
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_2
+      name: Dirt_2
       rect:
         serializedVersion: 2
         x: 64
@@ -167,20 +167,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1629649c28832dc43be354a3004b8ad3
-      internalID: -1662170928
+      spriteID: fb3fa56fd17215b45bc27006fd573902
+      internalID: 6267608
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_3
+      name: Dirt_3
       rect:
         serializedVersion: 2
         x: 96
@@ -188,20 +188,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f7826e4f3f4c464785cc6065d7c1ff2
-      internalID: -412648851
+      spriteID: bf68b6b840c487147aed81aa2fd09a08
+      internalID: -1882508534
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_4
+      name: Dirt_4
       rect:
         serializedVersion: 2
         x: 128
@@ -209,20 +209,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf3b4be30d24eaf41acaf2e9c8e411c9
-      internalID: -691754651
+      spriteID: b3077aef41ebe424da6e68c65766bb37
+      internalID: -1962921937
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_5
+      name: Dirt_5
       rect:
         serializedVersion: 2
         x: 160
@@ -230,20 +230,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 467a63b634fa93645a51ab7b20a1d52e
-      internalID: 269567220
+      spriteID: 77e0b6f2d46cddc4cb873b74560ae52f
+      internalID: 1467734895
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_6
+      name: Dirt_6
       rect:
         serializedVersion: 2
         x: 192
@@ -251,20 +251,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 574f76bbde7e30d4e8c159ff9c7d111a
-      internalID: 780185907
+      spriteID: ef20d41b6478fdc45ad4e504185966e4
+      internalID: 642928320
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_7
+      name: Dirt_7
       rect:
         serializedVersion: 2
         x: 224
@@ -272,20 +272,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1fce6178f8954ad4aa2b7f9512641d8c
-      internalID: -1259656575
+      spriteID: 7440b0826c6b84e48831b1326ba18305
+      internalID: -1896637877
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_8
+      name: Dirt_8
       rect:
         serializedVersion: 2
         x: 256
@@ -293,41 +293,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1da1a1e476fc2c4394c2943249b541d
-      internalID: -81628819
+      spriteID: e6a8b8f8959bc6a43ade0daaea33df6f
+      internalID: -1232234354
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_9
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 288
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 018ab82541ef592459edb3b46f11fff9
-      internalID: -232958821
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Road_10
+      name: Dirt_9
       rect:
         serializedVersion: 2
         x: 0
@@ -335,20 +314,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7c03d46fd2626cd4c94b5a7adfe2d891
-      internalID: 946918855
+      spriteID: 8f91b8b5849c34f4597c9053d0876fa6
+      internalID: 1305359564
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_11
+      name: Dirt_10
       rect:
         serializedVersion: 2
         x: 32
@@ -356,20 +335,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb32e48d446d0ba4d876f94b68c902f6
-      internalID: -819794547
+      spriteID: 8eb68c070ff6cb64685f57d45862fc91
+      internalID: -62611133
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_12
+      name: Dirt_11
       rect:
         serializedVersion: 2
         x: 64
@@ -377,20 +356,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c5ee971c63c3c9c48bd586d7cbceda2a
-      internalID: 889065438
+      spriteID: e21a250bc4c3b6043951f19f7de6daf2
+      internalID: -552320358
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_13
+      name: Dirt_12
       rect:
         serializedVersion: 2
         x: 96
@@ -398,20 +377,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb7c4f18f66cf434fa8315708ef2b533
-      internalID: -1720643685
+      spriteID: f6e6b4787307d6d409996264e9e8040a
+      internalID: -867050726
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_14
+      name: Dirt_13
       rect:
         serializedVersion: 2
         x: 128
@@ -419,20 +398,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f675a1a0099f36141ad1551aaa84e6ab
-      internalID: -676538092
+      spriteID: dfe53237c7d99b04a9a428e52c07551a
+      internalID: -1906178051
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_15
+      name: Dirt_14
       rect:
         serializedVersion: 2
         x: 160
@@ -440,20 +419,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d2092f159af0b074aa2aa25c63695094
-      internalID: -682430220
+      spriteID: 16dc74daaa6a6f24eb7c0593d69c9a69
+      internalID: 939415052
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_16
+      name: Dirt_15
       rect:
         serializedVersion: 2
         x: 192
@@ -461,20 +440,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2000af80ad2e248438e544a6ddd6d361
-      internalID: -2121309638
+      spriteID: 899ddd3d7d529504f85af2b3c97d4504
+      internalID: 318821664
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_17
+      name: Dirt_16
       rect:
         serializedVersion: 2
         x: 224
@@ -482,20 +461,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ab7877fea861e2645a6d92515367a46d
-      internalID: -657340500
+      spriteID: 32ca9573651110b46b8c91ca7a71a699
+      internalID: -1110976824
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_18
+      name: Dirt_17
       rect:
         serializedVersion: 2
         x: 256
@@ -503,20 +482,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6556e5ed269bd0f48a7f1351f5eb08bc
-      internalID: 1201956619
+      spriteID: 02fe8b03e8fe6334495e626e6170b674
+      internalID: -659589940
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_19
+      name: Dirt_18
       rect:
         serializedVersion: 2
         x: 0
@@ -524,20 +503,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b18c393be7c05d4591497f9cb13b4b4
-      internalID: 849694567
+      spriteID: a211b0e9d1554f6488987b30badb6fc3
+      internalID: 1223753172
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_20
+      name: Dirt_19
       rect:
         serializedVersion: 2
         x: 32
@@ -545,20 +524,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ff454a3fb25dbe489bba417417181c1
-      internalID: -1459922677
+      spriteID: d0cc380bf18c8124cb624377b6886582
+      internalID: 989078641
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_21
+      name: Dirt_20
       rect:
         serializedVersion: 2
         x: 64
@@ -566,20 +545,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3561b23abd2b2a64da241f7bfde17102
-      internalID: 525070274
+      spriteID: c72e06b8084b8cd4487f031e54619e21
+      internalID: 791583165
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_22
+      name: Dirt_21
       rect:
         serializedVersion: 2
         x: 96
@@ -587,20 +566,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7485cd3cde2c3344c890f5b311b56178
-      internalID: -498158501
+      spriteID: 86cab39da6734244ebbe5f1a499b6823
+      internalID: -436050272
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_23
+      name: Dirt_22
       rect:
         serializedVersion: 2
         x: 128
@@ -608,20 +587,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 214d5ca910754e64297addacd371d6b1
-      internalID: -573093788
+      spriteID: cdd5edda6d227d94c9a4c4e736bacb9d
+      internalID: -146205899
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_24
+      name: Dirt_23
       rect:
         serializedVersion: 2
         x: 160
@@ -629,20 +608,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf35c9ae94c5f4640a5bf99c36bd5ced
-      internalID: 178914213
+      spriteID: f79f25faf269ddb45a54c84fd2498308
+      internalID: -1175492264
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_25
+      name: Dirt_24
       rect:
         serializedVersion: 2
         x: 192
@@ -650,20 +629,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9a17cf10871dc1c45b3959215ea963a2
-      internalID: -1290585751
+      spriteID: cfdab1364f81a37428592c9a14f5311b
+      internalID: -758869805
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_26
+      name: Dirt_25
       rect:
         serializedVersion: 2
         x: 224
@@ -671,20 +650,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 655938c720da41643b8e35ccd62ff2d6
-      internalID: 781427582
+      spriteID: 23508b23e6e4b8f4598a82fd90e66d95
+      internalID: -1382377340
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_27
+      name: Dirt_26
       rect:
         serializedVersion: 2
         x: 256
@@ -692,20 +671,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e23df5bfb78a4b45b5bd46c5eeb95d4
-      internalID: 847608590
+      spriteID: f285f00cdfd3f2546bb52149985a23a2
+      internalID: 909759481
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_28
+      name: Dirt_27
       rect:
         serializedVersion: 2
         x: 288
@@ -713,20 +692,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7da0c83bef8b5f940b46d641a94827b5
-      internalID: -509045961
+      spriteID: 3459c38185be5154eae0234a93d00bbe
+      internalID: 2105040192
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_29
+      name: Dirt_28
       rect:
         serializedVersion: 2
         x: 0
@@ -734,20 +713,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1b77ae7de6ed56429c75d8f79442ddd
-      internalID: -517838332
+      spriteID: c40a78e2c34504d42874040ee1ce911c
+      internalID: 1969417572
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_30
+      name: Dirt_29
       rect:
         serializedVersion: 2
         x: 32
@@ -755,20 +734,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a854a580f885ad44a9c436d59bb068d7
-      internalID: 1370515374
+      spriteID: 5262d1d68978f5b419137c8211eaadd1
+      internalID: 689086517
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_31
+      name: Dirt_30
       rect:
         serializedVersion: 2
         x: 64
@@ -776,20 +755,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 46e5188b23556034dabc3d6b3f5196df
-      internalID: -1144525548
+      spriteID: c230c702715b574468b0225df50d09ff
+      internalID: -1011796278
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_32
+      name: Dirt_31
       rect:
         serializedVersion: 2
         x: 96
@@ -797,20 +776,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c3b9b5e12d0718942a8625e555b50ed6
-      internalID: -1318857023
+      spriteID: c54415c126cfbd9449e8a9bf99181142
+      internalID: -792589085
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_33
+      name: Dirt_32
       rect:
         serializedVersion: 2
         x: 128
@@ -818,20 +797,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c52e23d47b6877c40a6d1a33152d3fae
-      internalID: -1454380126
+      spriteID: f1c39d10d3accf448b39eba10e5aec6c
+      internalID: -1907266826
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_34
+      name: Dirt_33
       rect:
         serializedVersion: 2
         x: 160
@@ -839,20 +818,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 48e9c97a47a2afa4eaf3622033a27d2a
-      internalID: -523257179
+      spriteID: e0cd4773588e4f348816c4c4443ca48d
+      internalID: 159741143
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_35
+      name: Dirt_34
       rect:
         serializedVersion: 2
         x: 0
@@ -860,20 +839,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba223b72683a03d45b07dc596670c0f9
-      internalID: -1012297402
+      spriteID: 15f4866a7a29a104f821541a58327c9e
+      internalID: 1329200476
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_36
+      name: Dirt_35
       rect:
         serializedVersion: 2
         x: 32
@@ -881,20 +860,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b26e92444ecfac14d8838bbeb0d2b9b8
-      internalID: -1707992623
+      spriteID: cb7e4a2494f067340a1152b9bf9e67e7
+      internalID: 146993110
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_37
+      name: Dirt_36
       rect:
         serializedVersion: 2
         x: 64
@@ -902,20 +881,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 474ff3c414b17d8498b1436e2b9c3c2d
-      internalID: 1352722682
+      spriteID: 4f9008e6dc51160439c8b9cd59fba8bd
+      internalID: -753906597
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_38
+      name: Dirt_37
       rect:
         serializedVersion: 2
         x: 96
@@ -923,20 +902,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec7d5395120ae24458c85a3a1ec38384
-      internalID: -2029165961
+      spriteID: 313246d916707a842882b8e5fd911409
+      internalID: -258152653
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_39
+      name: Dirt_38
       rect:
         serializedVersion: 2
         x: 128
@@ -944,20 +923,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4dff135d6832c574e9c9652f88f764bb
-      internalID: -603998596
+      spriteID: 6fcca4cd6e6eb38469a627f6f703c1ba
+      internalID: 911383337
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_40
+      name: Dirt_39
       rect:
         serializedVersion: 2
         x: 160
@@ -965,20 +944,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2071e87be2f171e408adb2e961c56e36
-      internalID: -1332953406
+      spriteID: c0c7f682633eac346b820643ab7798f4
+      internalID: 153284798
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_41
+      name: Dirt_40
       rect:
         serializedVersion: 2
         x: 192
@@ -986,20 +965,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e5ab40bc7e09bc468de4770d4bd6a7d
-      internalID: -1340210094
+      spriteID: ee6835732c0285a4f956f9358ef67a7d
+      internalID: -1367221001
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_42
+      name: Dirt_41
       rect:
         serializedVersion: 2
         x: 224
@@ -1007,20 +986,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c52e292ff370224d93049ca396ed795
-      internalID: 224602105
+      spriteID: 9668f89da4a687843b4dd512a3b20f47
+      internalID: 1350776474
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_43
+      name: Dirt_42
       rect:
         serializedVersion: 2
         x: 256
@@ -1028,41 +1007,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a3e6705720eefd74b946e901676e5b8e
-      internalID: -1961276327
+      spriteID: 6981b8c6197eaec49997aa5d1fc2bdaf
+      internalID: -337768989
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_44
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 160
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 167c1c0bd0bd236479d1e89f3b778e1d
-      internalID: 1377816632
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Road_45
+      name: Dirt_43
       rect:
         serializedVersion: 2
         x: 0
@@ -1070,20 +1028,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d3d05707d529ab4ca9232f5b7e4cbe9
-      internalID: 1841236472
+      spriteID: 83bd917ff385b674c99b28cf6de1971b
+      internalID: -492290515
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_46
+      name: Dirt_44
       rect:
         serializedVersion: 2
         x: 32
@@ -1091,20 +1049,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 85fa03bbdb557bd408aff90631f9e10a
-      internalID: -1395960418
+      spriteID: 39c5beb0db7fa3a47a88864147a183c1
+      internalID: -2077643563
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_47
+      name: Dirt_45
       rect:
         serializedVersion: 2
         x: 64
@@ -1112,20 +1070,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 88e9d669bba09894091d2ebff1a6ed5f
-      internalID: 557977956
+      spriteID: ada10383d204f194d98906e8ead042a6
+      internalID: 453533176
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_48
+      name: Dirt_46
       rect:
         serializedVersion: 2
         x: 96
@@ -1133,20 +1091,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad93d9155cb705544a6f111814297f22
-      internalID: 659883586
+      spriteID: 346a63a9e847a13458d913a62b38cc18
+      internalID: -1159420510
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_49
+      name: Dirt_47
       rect:
         serializedVersion: 2
         x: 128
@@ -1154,20 +1112,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 27a5489f6b6bf2842aa7e4ac5f75bd52
-      internalID: -1309122333
+      spriteID: 7af668a39da8f9e4aa6fa38e2cb35952
+      internalID: -1370571246
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_50
+      name: Dirt_48
       rect:
         serializedVersion: 2
         x: 160
@@ -1175,20 +1133,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bac62eb8b57961240b2528c9c7cb3d33
-      internalID: -2075641544
+      spriteID: b6ba8db880ca8ee4e8a116a4d8ea799f
+      internalID: 558793276
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_51
+      name: Dirt_49
       rect:
         serializedVersion: 2
         x: 192
@@ -1196,20 +1154,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1aaaf14d94b4440418a45c538695f3e0
-      internalID: 1072056057
+      spriteID: 561c74855ef1c4446b94b239f5950c2a
+      internalID: 521362309
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_52
+      name: Dirt_50
       rect:
         serializedVersion: 2
         x: 224
@@ -1217,20 +1175,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af355d55eebd44a458a1bddf13c3fdbe
-      internalID: 429035684
+      spriteID: b0bac95e311b9d94ab31d1deca4e93e9
+      internalID: 1618701938
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_53
+      name: Dirt_51
       rect:
         serializedVersion: 2
         x: 256
@@ -1238,20 +1196,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ed6fe1a1074bdc46a1efdc5e31b9b0c
-      internalID: -207373066
+      spriteID: a235f7b47e86f3e4294e5e454ae477b5
+      internalID: 1842802899
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Road_54
+      name: Dirt_52
       rect:
         serializedVersion: 2
         x: 288
@@ -1259,14 +1217,14 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0359d093fccd6524fa640277e08cb9c3
-      internalID: -756434206
+      spriteID: f166c1bd7109cfa4f8220b8fc7724d0c
+      internalID: -1418739581
       vertices: []
       indices: 
       edges: []
@@ -1282,61 +1240,59 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Road_0: 2098777843
-      Road_1: -255794048
-      Road_10: 946918855
-      Road_11: -819794547
-      Road_12: 889065438
-      Road_13: -1720643685
-      Road_14: -676538092
-      Road_15: -682430220
-      Road_16: -2121309638
-      Road_17: -657340500
-      Road_18: 1201956619
-      Road_19: 849694567
-      Road_2: -1662170928
-      Road_20: -1459922677
-      Road_21: 525070274
-      Road_22: -498158501
-      Road_23: -573093788
-      Road_24: 178914213
-      Road_25: -1290585751
-      Road_26: 781427582
-      Road_27: 847608590
-      Road_28: -509045961
-      Road_29: -517838332
-      Road_3: -412648851
-      Road_30: 1370515374
-      Road_31: -1144525548
-      Road_32: -1318857023
-      Road_33: -1454380126
-      Road_34: -523257179
-      Road_35: -1012297402
-      Road_36: -1707992623
-      Road_37: 1352722682
-      Road_38: -2029165961
-      Road_39: -603998596
-      Road_4: -691754651
-      Road_40: -1332953406
-      Road_41: -1340210094
-      Road_42: 224602105
-      Road_43: -1961276327
-      Road_44: 1377816632
-      Road_45: 1841236472
-      Road_46: -1395960418
-      Road_47: 557977956
-      Road_48: 659883586
-      Road_49: -1309122333
-      Road_5: 269567220
-      Road_50: -2075641544
-      Road_51: 1072056057
-      Road_52: 429035684
-      Road_53: -207373066
-      Road_54: -756434206
-      Road_6: 780185907
-      Road_7: -1259656575
-      Road_8: -81628819
-      Road_9: -232958821
+      Dirt_0: -728681010
+      Dirt_1: 475061075
+      Dirt_10: -62611133
+      Dirt_11: -552320358
+      Dirt_12: -867050726
+      Dirt_13: -1906178051
+      Dirt_14: 939415052
+      Dirt_15: 318821664
+      Dirt_16: -1110976824
+      Dirt_17: -659589940
+      Dirt_18: 1223753172
+      Dirt_19: 989078641
+      Dirt_2: 6267608
+      Dirt_20: 791583165
+      Dirt_21: -436050272
+      Dirt_22: -146205899
+      Dirt_23: -1175492264
+      Dirt_24: -758869805
+      Dirt_25: -1382377340
+      Dirt_26: 909759481
+      Dirt_27: 2105040192
+      Dirt_28: 1969417572
+      Dirt_29: 689086517
+      Dirt_3: -1882508534
+      Dirt_30: -1011796278
+      Dirt_31: -792589085
+      Dirt_32: -1907266826
+      Dirt_33: 159741143
+      Dirt_34: 1329200476
+      Dirt_35: 146993110
+      Dirt_36: -753906597
+      Dirt_37: -258152653
+      Dirt_38: 911383337
+      Dirt_39: 153284798
+      Dirt_4: -1962921937
+      Dirt_40: -1367221001
+      Dirt_41: 1350776474
+      Dirt_42: -337768989
+      Dirt_43: -492290515
+      Dirt_44: -2077643563
+      Dirt_45: 453533176
+      Dirt_46: -1159420510
+      Dirt_47: -1370571246
+      Dirt_48: 558793276
+      Dirt_49: 521362309
+      Dirt_5: 1467734895
+      Dirt_50: 1618701938
+      Dirt_51: 1842802899
+      Dirt_52: -1418739581
+      Dirt_6: 642928320
+      Dirt_7: -1896637877
+      Dirt_8: -1232234354
+      Dirt_9: 1305359564
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
