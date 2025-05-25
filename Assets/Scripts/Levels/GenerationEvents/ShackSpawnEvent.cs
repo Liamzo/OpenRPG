@@ -25,6 +25,8 @@ public class ShackSpawnEvent : BaseGenEvent
             LevelManager.instance.currentLevel.things.Add(go);
 
             go.GetComponentsInChildren<Building>().ToList().ForEach(x => x.Generate());
+
+            LevelManager.instance.currentLevel.exclusionZones.Add(new CircleExclusionZone(newPosition, 5f));
         }
     }
 }

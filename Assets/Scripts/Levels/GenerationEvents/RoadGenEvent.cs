@@ -47,5 +47,7 @@ public class RoadGenEvent : BaseGenEvent
                 }
             }
         }
+
+        LevelManager.instance.currentLevel.exclusionZones.Add(new TileMapExclusionZone(tilemap));
     }
 }

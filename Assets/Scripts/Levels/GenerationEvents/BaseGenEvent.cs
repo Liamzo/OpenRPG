@@ -83,13 +83,21 @@ public class BaseGenEvent
             }
         }
 
-        foreach (GameObject existingPosition in LevelManager.instance.currentLevel.things)
+        // foreach (GameObject existingPosition in LevelManager.instance.currentLevel.things)
+        // {
+        //     if (Vector2.Distance(existingPosition.transform.position, position) < minDistance)
+        //     {
+        //         return false;
+        //     }
+        // }
+        foreach (ExclusionZone exclusionZone in LevelManager.instance.currentLevel.exclusionZones)
         {
-            if (Vector2.Distance(existingPosition.transform.position, position) < minDistance)
+            if (exclusionZone.CheckInZone(position, minDistance))
             {
                 return false;
             }
         }
+
         return true;
     }
 }

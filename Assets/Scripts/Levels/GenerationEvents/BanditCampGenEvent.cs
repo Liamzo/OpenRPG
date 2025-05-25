@@ -40,5 +40,7 @@ public class BanditCampGenEvent : BaseGenEvent
             LevelManager.instance.currentLevel.characters.Add(character);
             character.CreateBaseObject(enemyPrefab);
         }
+
+        LevelManager.instance.currentLevel.exclusionZones.Add(new CircleExclusionZone(campPosition, 10f));
     }
 }

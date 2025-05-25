@@ -19,9 +19,12 @@ public class Level
     public List<GameObject> things;
     public List<JSONNode> thingsSaved;
 
+    public List<ExclusionZone> exclusionZones;
+
 
     public Level(LevelData data) {
         levelData = data;
+
         items = new List<ObjectHandler>();
         itemsData = new List<JSONNode>();
 
@@ -33,6 +36,8 @@ public class Level
 
         things = new List<GameObject>();
         thingsSaved = new List<JSONNode>();
+
+        exclusionZones = new ();
     }
 
     public void SaveLevel() {

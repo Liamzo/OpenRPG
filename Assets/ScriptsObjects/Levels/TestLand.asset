@@ -22,23 +22,45 @@ MonoBehaviour:
   ambientAudioList: 1d0000001e000000
   musicAudioList: 20000000
   items: []
-  characters:
-  - baseStats: {fileID: 11400000, guid: 0a6fa0c5749c06b47a494113f8441e83, type: 2}
-    position: {x: 41, y: 41}
+  characters: []
   props: []
   things: []
   generationEvents:
-  - rid: 2615096476447014918
+  - rid: 2491941435964129280
+  - rid: 2491941435964129281
+  - rid: 2491941435964129282
   references:
     version: 2
     RefIds:
-    - rid: 2615096476447014918
+    - rid: 2491941435964129280
+      type: {class: RoadGenEvent, ns: , asm: Assembly-CSharp}
+      data:
+        roadTile: {fileID: 11400000, guid: 408ae3a66a72d9d459f193edb8138c7a, type: 2}
+        tilemapPrefab: {fileID: 3466845665134259520, guid: 2ab8e02106c30cf4da4f565574e6a99c, type: 3}
+        minAmount: 2
+        maxAmount: 2
+        minWidth: 8
+        maxWidth: 12
+    - rid: 2491941435964129281
       type: {class: BanditCampGenEvent, ns: , asm: Assembly-CSharp}
       data:
         campPrefabs:
         - prefab: {fileID: 6494099200600906937, guid: a77e2a6421e072f42847312384ffafeb, type: 3}
-          chance: 100
+          chance: 1
         enemyPrefabs:
         - baseStats: {fileID: 11400000, guid: 2f5c5583472adde4782057969a20be67, type: 2}
-          chance: 100
+          chance: 3
+        - baseStats: {fileID: 11400000, guid: 906a2f066fb62184dafd194ea507c6a1, type: 2}
+          chance: 2
+        - baseStats: {fileID: 11400000, guid: 0a6fa0c5749c06b47a494113f8441e83, type: 2}
+          chance: 2
         enemyAmount: 5
+    - rid: 2491941435964129282
+      type: {class: TreesGenEvent, ns: , asm: Assembly-CSharp}
+      data:
+        treePrefabs:
+        - prefab: {fileID: 1307998372530817856, guid: d7a5f0dd7d5edaf43bf860c729a56cf0, type: 3}
+          chance: 50
+        - prefab: {fileID: 8632036033638678713, guid: a8e024b17474c8c4a8d7d67f45f79dd0, type: 3}
+          chance: 50
+        treeCoverage: 1
