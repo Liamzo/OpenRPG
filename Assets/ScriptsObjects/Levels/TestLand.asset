@@ -26,11 +26,12 @@ MonoBehaviour:
   props: []
   things: []
   generationEvents:
-  - rid: 2734136133669879813
   - rid: 2491941435964129280
-  - rid: 2491941435964129282
   - rid: 2734136133669879809
   - rid: 2734136133669879811
+  - rid: 2734136133669879813
+  - rid: 2491941435964129282
+  - rid: 2734136133669879815
   - rid: 2491941435964129281
   references:
     version: 2
@@ -38,6 +39,7 @@ MonoBehaviour:
     - rid: 2491941435964129280
       type: {class: RoadGenEvent, ns: , asm: Assembly-CSharp}
       data:
+        eventName: 
         roadTile: {fileID: 11400000, guid: 408ae3a66a72d9d459f193edb8138c7a, type: 2}
         tilemapPrefab: {fileID: 3466845665134259520, guid: 2ab8e02106c30cf4da4f565574e6a99c, type: 3}
         minAmount: 2
@@ -48,6 +50,7 @@ MonoBehaviour:
     - rid: 2491941435964129281
       type: {class: BanditCampGenEvent, ns: , asm: Assembly-CSharp}
       data:
+        eventName: 
         campPrefabs:
         - prefab: {fileID: 6494099200600906937, guid: a77e2a6421e072f42847312384ffafeb, type: 3}
           chance: 1
@@ -62,15 +65,17 @@ MonoBehaviour:
     - rid: 2491941435964129282
       type: {class: TreesGenEvent, ns: , asm: Assembly-CSharp}
       data:
+        eventName: Trees
         treePrefabs:
         - prefab: {fileID: 1307998372530817856, guid: d7a5f0dd7d5edaf43bf860c729a56cf0, type: 3}
           chance: 50
         - prefab: {fileID: 8632036033638678713, guid: a8e024b17474c8c4a8d7d67f45f79dd0, type: 3}
           chance: 50
-        treeCoverage: 1
+        treeCoverage: 50
     - rid: 2734136133669879809
       type: {class: GroundPatchGenEvent, ns: , asm: Assembly-CSharp}
       data:
+        eventName: Dirt
         patchTile: {fileID: 11400000, guid: c3db8018cb0a4fa4ead59af0009b78a6, type: 2}
         tilemapPrefab: {fileID: 3466845665134259520, guid: 2ab8e02106c30cf4da4f565574e6a99c, type: 3}
         minWidth: 20
@@ -81,9 +86,13 @@ MonoBehaviour:
         maxPatchSize: 60
         holeChance: 0.05
         continueChance: 0.6
+        spawnEdgeThings: 0
+        edgePrefabs: []
+        spawnEdgeChance: 0
     - rid: 2734136133669879811
       type: {class: GroundPatchGenEvent, ns: , asm: Assembly-CSharp}
       data:
+        eventName: Grass
         patchTile: {fileID: 11400000, guid: 63aa8e37718aa974f9253081cf5ae1c1, type: 2}
         tilemapPrefab: {fileID: 3466845665134259520, guid: 2ab8e02106c30cf4da4f565574e6a99c, type: 3}
         minWidth: 20
@@ -94,9 +103,13 @@ MonoBehaviour:
         maxPatchSize: 40
         holeChance: 0.05
         continueChance: 0.6
+        spawnEdgeThings: 0
+        edgePrefabs: []
+        spawnEdgeChance: 0
     - rid: 2734136133669879813
       type: {class: GroundPatchGenEvent, ns: , asm: Assembly-CSharp}
       data:
+        eventName: Water
         patchTile: {fileID: 11400000, guid: 8cb6a058c7064144893242abab56527f, type: 2}
         tilemapPrefab: {fileID: 3466845665134259520, guid: 2ab8e02106c30cf4da4f565574e6a99c, type: 3}
         minWidth: 20
@@ -107,3 +120,24 @@ MonoBehaviour:
         maxPatchSize: 60
         holeChance: 0
         continueChance: 0.6
+        spawnEdgeThings: 1
+        edgePrefabs:
+        - prefab: {fileID: 1307998372530817856, guid: cd40f4525ad4bd648979a2926d08e922, type: 3}
+          chance: 1
+        - prefab: {fileID: 1307998372530817856, guid: 689455e8e211a1d4383938555d6bfd4e, type: 3}
+          chance: 1
+        - prefab: {fileID: 1307998372530817856, guid: d805825aad2b5c84788a2c6a45116475, type: 3}
+          chance: 1
+        spawnEdgeChance: 0.25
+    - rid: 2734136133669879815
+      type: {class: TreesGenEvent, ns: , asm: Assembly-CSharp}
+      data:
+        eventName: Plants
+        treePrefabs:
+        - prefab: {fileID: 1307998372530817856, guid: cd40f4525ad4bd648979a2926d08e922, type: 3}
+          chance: 1
+        - prefab: {fileID: 1307998372530817856, guid: 689455e8e211a1d4383938555d6bfd4e, type: 3}
+          chance: 1
+        - prefab: {fileID: 1307998372530817856, guid: d805825aad2b5c84788a2c6a45116475, type: 3}
+          chance: 1
+        treeCoverage: 150

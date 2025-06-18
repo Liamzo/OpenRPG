@@ -7,7 +7,11 @@ using UnityEngine;
 [System.Serializable]
 public class BaseGenEvent
 {
-    public virtual void Generate(LevelData level) {
+    public string eventName;
+
+    
+    public virtual void Generate(LevelData level)
+    {
 
     }
 

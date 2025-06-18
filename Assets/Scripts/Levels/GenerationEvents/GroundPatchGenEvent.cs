@@ -19,12 +19,18 @@ public class GroundPatchGenEvent : BaseGenEvent
     public int maxPatchSize;
     public float holeChance = 0.0f;
     public float continueChance = 0.6f;
+    public bool spawnEdgeThings;
+    public List<ThingSpawnChance> edgePrefabs;
+    public float spawnEdgeChance;
+    
 
     public override void Generate(LevelData level)
     {
         GameObject newTileMap = GameObject.Instantiate(tilemapPrefab, GameObject.FindWithTag("TileMap").transform);
         Tilemap tilemap = newTileMap.GetComponent<Tilemap>();
         tilemap.GetComponent<TilemapRenderer>().sortingOrder = GameObject.FindWithTag("TileMap").transform.childCount;
+
+        List<Vector3Int> patchTiles = new();
 
         for (int i = 0; i < numberOfPatchs; i++)
         {
@@ -59,7 +65,35 @@ public class GroundPatchGenEvent : BaseGenEvent
             foreach (Vector3Int position in added)
             {
                 if (Random.value > holeChance)
+                {
                     tilemap.SetTile(position, patchTile);
+                    patchTiles.Add(position);
+                }
+            }
+        }
+
+        if (spawnEdgeThings)
+        {
+            foreach (Vector3Int position in patchTiles)
+            {
+                foreach (Vector3Int direction in directions)
+                {
+                    Vector3Int neighbour = position + direction;
+
+                    if (!patchTiles.Contains(neighbour))
+                    {
+                        if (Random.value < spawnEdgeChance)
+                        {
+                            Vector2 newPosition = new Vector2(Random.Range(-0.3f, 0.3f), Random.Range(-0.3f, 0.3f));
+                            GameObject thingPrefab = BaseGenEvent.PickRandomThingSpawn(edgePrefabs);
+                            GameObject go = GameObject.Instantiate(thingPrefab);
+
+                            go.transform.position = (Vector3)neighbour + (Vector3)newPosition;
+
+                            LevelManager.instance.currentLevel.things.Add(go);
+                        }
+                    }
+                }
             }
         }
 
