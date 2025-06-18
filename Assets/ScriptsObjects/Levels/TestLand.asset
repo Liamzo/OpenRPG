@@ -26,9 +26,12 @@ MonoBehaviour:
   props: []
   things: []
   generationEvents:
+  - rid: 2734136133669879813
   - rid: 2491941435964129280
-  - rid: 2491941435964129281
   - rid: 2491941435964129282
+  - rid: 2734136133669879809
+  - rid: 2734136133669879811
+  - rid: 2491941435964129281
   references:
     version: 2
     RefIds:
@@ -39,8 +42,9 @@ MonoBehaviour:
         tilemapPrefab: {fileID: 3466845665134259520, guid: 2ab8e02106c30cf4da4f565574e6a99c, type: 3}
         minAmount: 2
         maxAmount: 2
-        minWidth: 8
-        maxWidth: 12
+        minWidth: 6
+        maxWidth: 8
+        holeChance: 0.02
     - rid: 2491941435964129281
       type: {class: BanditCampGenEvent, ns: , asm: Assembly-CSharp}
       data:
@@ -64,3 +68,42 @@ MonoBehaviour:
         - prefab: {fileID: 8632036033638678713, guid: a8e024b17474c8c4a8d7d67f45f79dd0, type: 3}
           chance: 50
         treeCoverage: 1
+    - rid: 2734136133669879809
+      type: {class: GroundPatchGenEvent, ns: , asm: Assembly-CSharp}
+      data:
+        patchTile: {fileID: 11400000, guid: c3db8018cb0a4fa4ead59af0009b78a6, type: 2}
+        tilemapPrefab: {fileID: 3466845665134259520, guid: 2ab8e02106c30cf4da4f565574e6a99c, type: 3}
+        minWidth: 20
+        maxWidth: 80
+        numberOfPatchs: 15
+        exclusionZone: 0
+        minPatchSize: 40
+        maxPatchSize: 60
+        holeChance: 0.05
+        continueChance: 0.6
+    - rid: 2734136133669879811
+      type: {class: GroundPatchGenEvent, ns: , asm: Assembly-CSharp}
+      data:
+        patchTile: {fileID: 11400000, guid: 63aa8e37718aa974f9253081cf5ae1c1, type: 2}
+        tilemapPrefab: {fileID: 3466845665134259520, guid: 2ab8e02106c30cf4da4f565574e6a99c, type: 3}
+        minWidth: 20
+        maxWidth: 80
+        numberOfPatchs: 10
+        exclusionZone: 0
+        minPatchSize: 20
+        maxPatchSize: 40
+        holeChance: 0.05
+        continueChance: 0.6
+    - rid: 2734136133669879813
+      type: {class: GroundPatchGenEvent, ns: , asm: Assembly-CSharp}
+      data:
+        patchTile: {fileID: 11400000, guid: 8cb6a058c7064144893242abab56527f, type: 2}
+        tilemapPrefab: {fileID: 3466845665134259520, guid: 2ab8e02106c30cf4da4f565574e6a99c, type: 3}
+        minWidth: 20
+        maxWidth: 80
+        numberOfPatchs: 5
+        exclusionZone: 1
+        minPatchSize: 20
+        maxPatchSize: 60
+        holeChance: 0
+        continueChance: 0.6
