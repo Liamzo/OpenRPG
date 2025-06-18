@@ -80,11 +80,6 @@ public class CharacterHandler : ObjectHandler, ISaveable
     public override HitOutcome GetHit(WeaponHandler weapon, CharacterHandler damageDealer, BasicBullet projectile) 
     {
         if (objectStatusHandler.isBlocking) {
-            // Vector2 hitPosition = projectile == null ? damageDealer.rigidBody.position : projectile.transform.position;
-            // Vector3 attackerDir = (hitPosition - rigidBody.position).normalized;
-
-            // float angleBetween = Vector3.Angle(GetComponent<BaseBrain>().lookingDirection, attackerDir);
-
             Vector2 hitPosition = projectile == null ? damageDealer.hitboxCollider.bounds.center : projectile.transform.position;
             Vector3 attackerDir = (hitPosition - (Vector2)hitboxCollider.bounds.center).normalized;
             float angleBetween = Vector3.Angle(GetComponent<BaseBrain>().lookingDirection, attackerDir);
