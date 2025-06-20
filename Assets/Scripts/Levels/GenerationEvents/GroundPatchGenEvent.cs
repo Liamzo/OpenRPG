@@ -9,12 +9,12 @@ public class GroundPatchGenEvent : BaseGenEvent
 {
     public RuleTile patchTile;
     public GameObject tilemapPrefab;
+    public bool exclusionZone;
 
     public int minWidth;
     public int maxWidth;
 
     public int numberOfPatchs = 1;
-    public bool exclusionZone;
     public int minPatchSize;
     public int maxPatchSize;
     public float holeChance = 0.0f;

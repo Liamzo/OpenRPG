@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45fdb40d0b076044d867de142dedb32b, type: 3}
+  m_Name: TestLand2
+  m_EditorClassIdentifier: 
+  sceneName: TestLand
+  levelName: Test Land2
+  levelPosition: {x: 0, y: 0}
+  icon: {fileID: 21300000, guid: 5e6587a9998f0de43ad4e6bd8faf534b, type: 3}
+  levelTier: 0
+  persistent: 0
+  spawnPosition: {x: 50, y: 50}
+  ambientAudioList: 1d0000001e000000
+  musicAudioList: 20000000
+  items: []
+  characters: []
+  props: []
+  things: []
+  generationEvents:
+  - rid: 2734136248357355520
+  - rid: 2734136248357355522
+  - rid: 2734136248357355525
+  - rid: 2734136248357355527
+  references:
+    version: 2
+    RefIds:
+    - rid: 2734136248357355520
+      type: {class: NoiseGroundGenEvent, ns: , asm: Assembly-CSharp}
+      data:
+        eventName: Dirt Ground
+        tile: {fileID: 11400000, guid: c3db8018cb0a4fa4ead59af0009b78a6, type: 2}
+        tilemapPrefab: {fileID: 3466845665134259520, guid: 2ab8e02106c30cf4da4f565574e6a99c, type: 3}
+        exclusionZone: 0
+        coverage: 0.5
+        noiseScale: 0.03
+    - rid: 2734136248357355522
+      type: {class: GroundPatchGenEvent, ns: , asm: Assembly-CSharp}
+      data:
+        eventName: Grass Patch
+        patchTile: {fileID: 11400000, guid: 63aa8e37718aa974f9253081cf5ae1c1, type: 2}
+        tilemapPrefab: {fileID: 3466845665134259520, guid: 2ab8e02106c30cf4da4f565574e6a99c, type: 3}
+        exclusionZone: 0
+        minWidth: -10
+        maxWidth: 110
+        numberOfPatchs: 50
+        minPatchSize: 20
+        maxPatchSize: 60
+        holeChance: 0.05
+        continueChance: 0.6
+        spawnEdgeThings: 0
+        edgePrefabs: []
+        spawnEdgeChance: 0
+    - rid: 2734136248357355525
+      type: {class: GroundPatchGenEvent, ns: , asm: Assembly-CSharp}
+      data:
+        eventName: Dirt Ptch
+        patchTile: {fileID: 11400000, guid: c3db8018cb0a4fa4ead59af0009b78a6, type: 2}
+        tilemapPrefab: {fileID: 3466845665134259520, guid: 2ab8e02106c30cf4da4f565574e6a99c, type: 3}
+        exclusionZone: 0
+        minWidth: -10
+        maxWidth: 110
+        numberOfPatchs: 30
+        minPatchSize: 20
+        maxPatchSize: 40
+        holeChance: 0.05
+        continueChance: 0.6
+        spawnEdgeThings: 0
+        edgePrefabs: []
+        spawnEdgeChance: 0
+    - rid: 2734136248357355527
+      type: {class: GroundPatchGenEvent, ns: , asm: Assembly-CSharp}
+      data:
+        eventName: Water Patch
+        patchTile: {fileID: 11400000, guid: 8cb6a058c7064144893242abab56527f, type: 2}
+        tilemapPrefab: {fileID: 3466845665134259520, guid: 2ab8e02106c30cf4da4f565574e6a99c, type: 3}
+        exclusionZone: 1
+        minWidth: -10
+        maxWidth: 110
+        numberOfPatchs: 20
+        minPatchSize: 50
+        maxPatchSize: 150
+        holeChance: 0.025
+        continueChance: 0.6
+        spawnEdgeThings: 0
+        edgePrefabs: []
+        spawnEdgeChance: 0
